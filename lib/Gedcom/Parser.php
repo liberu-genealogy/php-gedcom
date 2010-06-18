@@ -384,15 +384,6 @@ class Parser
     /**
      *
      */
-    protected function parseReliRecord()
-    {
-        // TODO
-    }
-    
-    
-    /**
-     *
-     */
     protected function parseEducRecord()
     {
         $this->parseEventRecord('education');
@@ -438,6 +429,10 @@ class Parser
                 
                 switch($recordType)
                 {
+                    case 'TYPE':
+                        $event->type = trim($record[2]);
+                    break;
+                    
                     case 'DATE':
                         $event->date = trim($record[2]);
                     break;
@@ -482,22 +477,12 @@ class Parser
     }
     
     
-    
-    /**
-     *
-     */
-    protected function parseAddrRecord()
-    {
-        // TODO
-    }
-    
-    
     /**
      *
      */
     protected function parseCensRecord()
     {
-        // TODO
+        $this->parseEventRecord('census');
     }
     
     
@@ -506,7 +491,7 @@ class Parser
      */
     protected function parseEvenRecord()
     {
-        // TODO
+        $this->parseEventRecord('unknown');
     }
     
     
@@ -515,7 +500,7 @@ class Parser
      */
     protected function parseResiRecord()
     {
-        // TODO
+        $this->parseEventRecord('residence');
     }
     
     
@@ -524,7 +509,7 @@ class Parser
      */
     protected function parseImmiRecord()
     {
-        // TODO
+        $this->parseEventRecord('immigration');
     }
     
     
@@ -533,7 +518,7 @@ class Parser
      */
     protected function parsePropRecord()
     {
-        // TODO
+        $this->parseEventRecord('property');
     }
     
     
