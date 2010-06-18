@@ -455,7 +455,7 @@ class Parser
                         
                         array_pop($this->_recordStack);
                         
-                        $person->addSource($reference);
+                        $event->addReference($reference);
                     break;
                     
                     default:

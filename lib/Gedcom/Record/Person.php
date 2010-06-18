@@ -3,6 +3,7 @@
 namespace Gedcom\Record;
 
 require_once __DIR__ . '/../Record.php';
+require_once __DIR__ . '/Reference.php';
 require_once __DIR__ . '/Event.php';
 
 /**
@@ -11,7 +12,7 @@ require_once __DIR__ . '/Event.php';
  */
 class Person extends \Gedcom\Record
 {
-    public $sources = array();
+    public $references = array();
     
     public $events = array();
     
@@ -19,9 +20,9 @@ class Person extends \Gedcom\Record
      *
      *
      */
-    public function addSource($reference)
+    public function addReference(Reference $reference)
     {
-        $this->sources[] = $reference;
+        $this->references[] = $reference;
     }
     
     /**

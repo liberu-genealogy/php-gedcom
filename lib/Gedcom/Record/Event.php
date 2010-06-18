@@ -10,4 +10,15 @@ class Event extends \Gedcom\Record
     public $date = null;
     public $place = null;
     
+    public $references = array();
+    
+    /**
+     *
+     *
+     */
+    public function addReference(Reference $reference)
+    {
+        $this->references[] = $reference;
+    }
+    
 }
