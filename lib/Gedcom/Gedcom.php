@@ -6,6 +6,7 @@ require_once __DIR__ . '/Record/Person.php';
 require_once __DIR__ . '/Record/Source.php';
 require_once __DIR__ . '/Record/Reference.php';
 require_once __DIR__ . '/Record/Data.php';
+require_once __DIR__ . '/Record/Event.php';
 require_once __DIR__ . '/Parser.php';
 
 use Gedcom\Record\Person;

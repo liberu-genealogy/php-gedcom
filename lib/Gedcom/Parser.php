@@ -236,62 +236,7 @@ class Parser
      */
     protected function parseBirtRecord()
     {
-        $this->_currentLine++;
-        
-        $person = &$this->_recordStack[count($this->_recordStack) - 1];
-        
-        while($this->_currentLine < count($this->_file))
-        {
-            $record = $this->getCurrentLineRecord();
-            
-            if((int)$record[0] < 2)
-            {
-                $this->_currentLine--;
-                
-                return;
-            }
-            else if($record[0] == '2')
-            {
-                $recordType = trim($record[1]);
-                
-                switch($recordType)
-                {
-                    case 'DATE':
-                        $person->birth_date = trim($record[2]);
-                    break;
-                    
-                    case 'PLAC':
-                        $person->birth_place = trim($record[2]);
-                    break;
-                    
-                    case 'SOUR':
-                        $reference = $this->_gedcom->createReference($this->normalizeIdentifier($record[2], 'S'), 'birth');
-                        
-                        array_push($this->_recordStack, $reference);
-                        
-                        $this->parseReference($record[0]);
-                        
-                        array_pop($this->_recordStack);
-                        
-                        $person->addSource($reference);
-                    break;
-                    
-                    default:
-                        $this->logUnhandledRecord('#' . __LINE__);
-                }
-            }
-            //else if((int)$record[0] > 2)
-            //{
-                // do nothing, this should be handled in cases above by
-                // passing off code execution to other classes
-            //}
-            else
-            {
-                $this->logUnhandledRecord();
-            }
-            
-            $this->_currentLine++;
-        }
+        $this->parseEventRecord('birth');
     }
     
     
@@ -358,7 +303,6 @@ class Parser
      */
     protected function parseData($atLevel)
     {
-        // TODO
         $this->_currentLine++;
         
         $data = &$this->_recordStack[count($this->_recordStack) - 1];
@@ -384,11 +328,11 @@ class Parser
                     break;
                     
                     case 'CONT':
-                        $this->text .= "\n" . trim($record[2]);
+                        $data->text .= "\n" . trim($record[2]);
                     break;
                     
                     case 'CONC':
-                        $this->text .= trim($record[2]);
+                        $data->text .= trim($record[2]);
                     break;
                     
                     default:
@@ -415,7 +359,7 @@ class Parser
      */
     protected function parseBapmRecord()
     {
-        // TODO
+        $this->parseEventRecord('baptism');
     }
     
     
@@ -424,66 +368,7 @@ class Parser
      */
     protected function parseDeatRecord()
     {
-        $this->_currentLine++;
-        
-        $person = &$this->_recordStack[count($this->_recordStack) - 1];
-        
-        while($this->_currentLine < count($this->_file))
-        {
-            $record = $this->getCurrentLineRecord();
-            
-            if((int)$record[0] < 2)
-            {
-                $this->_currentLine--;
-                
-                return;
-            }
-            else if($record[0] == '2')
-            {
-                $recordType = trim($record[1]);
-                
-                switch($recordType)
-                {
-                    case 'DATE':
-                        $person->death_date = trim($record[2]);
-                    break;
-                    
-                    case 'PLAC':
-                        $person->death_place = trim($record[2]);
-                    break;
-                    
-                    case 'CAUS':
-                        $person->death_cause = trim($record[2]);
-                    break;
-                    
-                    case 'SOUR':
-                        $reference = $this->_gedcom->createReference($this->normalizeIdentifier($record[2], 'S'), 'death');
-                        
-                        array_push($this->_recordStack, $reference);
-                        
-                        $this->parseReference($record[0]);
-                        
-                        array_pop($this->_recordStack);
-                        
-                        $person->addSource($reference);
-                    break;
-                    
-                    default:
-                        $this->logUnhandledRecord('#' . __LINE__);
-                }
-            }
-            //else if((int)$record[0] > 2)
-            //{
-                // do nothing, this should be handled in cases above by
-                // passing off code execution to other classes
-            //}
-            else
-            {
-                $this->logUnhandledRecord('#' . __LINE__);
-            }
-            
-            $this->_currentLine++;
-        }
+        $this->parseEventRecord('death', array('CAUS' => 'cause'));
     }
     
     
@@ -492,63 +377,7 @@ class Parser
      */
     protected function parseBuriRecord()
     {
-        // TODO
-        $this->_currentLine++;
-        
-        $person = &$this->_recordStack[count($this->_recordStack) - 1];
-        
-        while($this->_currentLine < count($this->_file))
-        {
-            $record = $this->getCurrentLineRecord();
-            
-            if((int)$record[0] < 2)
-            {
-                $this->_currentLine--;
-                
-                return;
-            }
-            else if($record[0] == '2')
-            {
-                $recordType = trim($record[1]);
-                
-                switch($recordType)
-                {
-                    case 'DATE':
-                        $person->burial_date = trim($record[2]);
-                    break;
-                    
-                    case 'PLAC':
-                        $person->burial_place = trim($record[2]);
-                    break;
-                    
-                    case 'SOUR':
-                        $reference = $this->_gedcom->createReference($this->normalizeIdentifier($record[2], 'S'), 'burial');
-                        
-                        array_push($this->_recordStack, $reference);
-                        
-                        $this->parseReference($record[0]);
-                        
-                        array_pop($this->_recordStack);
-                        
-                        $person->addSource($reference);
-                    break;
-                    
-                    default:
-                        $this->logUnhandledRecord('#' . __LINE__);
-                }
-            }
-            //else if((int)$record[0] > 2)
-            //{
-                // do nothing, this should be handled in cases above by
-                // passing off code execution to other classes
-            //}
-            else
-            {
-                $this->logUnhandledRecord('#' . __LINE__);
-            }
-            
-            $this->_currentLine++;
-        }
+        $this->parseEventRecord('burial');
     }
     
     
@@ -566,7 +395,7 @@ class Parser
      */
     protected function parseEducRecord()
     {
-        // TODO
+        $this->parseEventRecord('education');
     }
     
     
@@ -575,8 +404,83 @@ class Parser
      */
     protected function parseOccuRecord()
     {
-        // TODO
+        $this->parseEventRecord('occupation');
     }
+    
+    
+    /**
+     *
+     *
+     */
+    protected function parseEventRecord($eventType, $additionalAttr = array())
+    {
+        $this->_currentLine++;
+        
+        $person = &$this->_recordStack[count($this->_recordStack) - 1];
+        
+        $event = $person->addEvent($eventType);
+        
+        array_push($this->_recordStack, $event);
+        
+        while($this->_currentLine < count($this->_file))
+        {
+            $record = $this->getCurrentLineRecord();
+            
+            if((int)$record[0] < 2)
+            {
+                $this->_currentLine--;
+                
+                break;
+            }
+            else if($record[0] == '2')
+            {
+                $recordType = trim($record[1]);
+                
+                switch($recordType)
+                {
+                    case 'DATE':
+                        $event->date = trim($record[2]);
+                    break;
+                    
+                    case 'PLAC':
+                        $event->place = trim($record[2]);
+                    break;
+                    
+                    case 'SOUR':
+                        $reference = $this->_gedcom->createReference($this->normalizeIdentifier($record[2], 'S'), $eventType);
+                        
+                        array_push($this->_recordStack, $reference);
+                        
+                        $this->parseReference($record[0]);
+                        
+                        array_pop($this->_recordStack);
+                        
+                        $person->addSource($reference);
+                    break;
+                    
+                    default:
+                        if(isset($additionalAttr[$recordType]))
+                            $event->$additionalAttr[$recordType] = trim($record[2]);
+                        else
+                            $this->logUnhandledRecord('#' . __LINE__);
+                }
+            }
+            //else if((int)$record[0] > 2)
+            //{
+                // do nothing, this should be handled in cases above by
+                // passing off code execution to other classes
+            //}
+            else
+            {
+                $this->logUnhandledRecord('#' . __LINE__);
+            }
+            
+            $this->_currentLine++;
+        }
+        
+        array_pop($this->_recordStack);
+    }
+    
     
     
     /**
