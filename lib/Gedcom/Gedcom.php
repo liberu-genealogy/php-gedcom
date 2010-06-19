@@ -3,12 +3,14 @@
 namespace Gedcom;
 
 require_once __DIR__ . '/Record/Person.php';
+require_once __DIR__ . '/Record/Family.php';
 require_once __DIR__ . '/Record/Source.php';
 require_once __DIR__ . '/Record/Reference.php';
 require_once __DIR__ . '/Record/Data.php';
 require_once __DIR__ . '/Parser.php';
 
 use Gedcom\Record\Person;
+use Gedcom\Record\Family;
 use Gedcom\Record\Source;
 use Gedcom\Record\Reference;
 use Gedcom\Record\Data;
@@ -17,6 +19,7 @@ class Gedcom
 {
     public $sources = array();
     public $people = array();
+    public $families = array();
     
     /**
      *
@@ -52,6 +55,35 @@ class Gedcom
         $reference->attribute = $for;
         
         return $reference;
+    }
+    
+    
+    /**
+     *
+     *
+     */
+    public function &createFamily($identifier)
+    {
+        $family = new Family();
+        $family->refId = $identifier;
+        
+        $this->families[] = $family;
+        
+        return $family;
+    }
+    
+    
+    
+    /**
+     *
+     *
+     */
+    public function &findPerson($identifier)
+    {
+        if(isset($this->people[$identifier]))
+            return $this->people[$identifier];
+        
+        return null;
     }
     
     

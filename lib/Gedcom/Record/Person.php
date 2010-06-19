@@ -4,11 +4,10 @@ namespace Gedcom\Record;
 
 require_once __DIR__ . '/../Record.php';
 require_once __DIR__ . '/Reference.php';
-require_once __DIR__ . '/Person/Event.php';
+require_once __DIR__ . '/Event.php';
 require_once __DIR__ . '/Person/Attribute.php';
 
 use Gedcom\Record\Person\Attribute;
-use Gedcom\Record\Person\Event;
 
 /**
  *
@@ -17,6 +16,9 @@ use Gedcom\Record\Person\Event;
 class Person extends \Gedcom\Record
 {
     public $attributes = array();
+    
+    public $relationships = array();
+    
     public $events = array();
     
     public $references = array();

@@ -59,11 +59,35 @@ class Parser
                     
                     //$this->parsePerson($person);
                 }
+                else if(substr($recordType, 0, 1) == 'F')
+                {
+                    $identifier = substr($recordType, 1);
+                    
+                    $family = $this->_gedcom->createFamily($identifier);
+                    
+                    // TODO
+                    // [3589] => 110483: (Unhandled) 0|@F3565@|FAM - #64
+                    $this->parseFamily($family);
+                }
+                else if(trim($recordType) == 'HEAD')
+                {
+                    // What should we do with this? Log it? 
+                }
+                else if(substr($recordType, 0, 2) == 'NI')
+                {
+                    // TODO
+                    // [7] => 15619: (Unhandled) 0|@NI1241@|NOTE - #72
+                }
+                else if(substr($recordType, 0, 2) == 'NS')
+                {
+                    // TODO
+                    // [1] => 110683: (Unhandled) 0|@NS26371@|NOTE ABBR Oak Grove CemeteryTEXT
+                        // http://www.rootsweb.com/~mikent/cemeteries/paris/oakgrove/oakgrove.html - #78
+                }
                 else
                 {
                     // FIXME - uncomment and implement record types
-                    //echo 'Unhandled Row Type: <br/>';
-                    //echo '<pre>' . print_r($record, true) . '</pre>';
+                    //$this->logUnhandledRecord('#' . __LINE__);
                 }
             }
             
@@ -173,6 +197,79 @@ class Parser
         }
         
         array_pop($this->_recordStack);
+    }
+    
+    
+    /**
+     *
+     *
+     */
+    protected function parseFamily(&$family)
+    {
+        $this->_currentLine++;
+        
+        array_push($this->_recordStack, $family);
+        
+        while($this->_currentLine < count($this->_file))
+        {
+            $record = $this->getCurrentLineRecord();
+            
+            if($record[0] == '0')
+            {
+                $this->_currentLine--;
+                break;
+            }
+            else if($record[0] == '1')
+            {
+                $recordType = trim($record[1]);
+                
+                $familyId = trim(trim($record[1]), '@F');
+                
+                switch($recordType)
+                {
+                    case 'HUSB':
+                        $family->husbandId = trim(trim($record[2]), '@I');
+                    break;    
+                    
+                    case 'WIFE':
+                        $family->wifeId = trim(trim($record[2]), '@I');
+                    break;
+                    
+                    case 'CHIL':
+                        $family->children[] = trim(trim($record[2]), '@I');
+                    break;
+                    
+                    case 'MARR':
+                        $this->parseEventRecord('marriage');
+                    break;
+                    
+                    case 'DIV':
+                        $this->parseEventRecord('divorce');
+                    break;
+                    
+                    case 'NOTE':
+                        $family->notes[] = trim(trim($record[2]), '@NF');
+                    break;
+                    
+                    default:
+                        $this->logUnhandledRecord('#' . __LINE__);
+                }
+            }
+            /*else if((int)$record[0] > 1)
+            {
+                // do nothing, this should be handled in cases above by
+                // passing off code execution to other classes
+            }*/
+            else
+            {
+                $this->logUnhandledRecord('#' . __LINE__);
+            }
+            
+            $this->_currentLine++;
+        }
+        
+        array_pop($this->_recordStack);
+        
     }
     
     

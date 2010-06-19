@@ -1,8 +1,8 @@
 <?php
 
-namespace Gedcom\Record\Person;
+namespace Gedcom\Record;
 
-require_once __DIR__ . '/../../Record.php';
+require_once __DIR__ . '/../Record.php';
 
 class Event extends \Gedcom\Record
 {
