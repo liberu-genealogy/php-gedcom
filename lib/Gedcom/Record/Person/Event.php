@@ -1,8 +1,8 @@
 <?php
 
-namespace Gedcom\Record;
+namespace Gedcom\Record\Person;
 
-require_once __DIR__ . '/../Record.php';
+require_once __DIR__ . '/../../Record.php';
 
 class Event extends \Gedcom\Record
 {
@@ -16,7 +16,7 @@ class Event extends \Gedcom\Record
      *
      *
      */
-    public function addReference(Reference $reference)
+    public function addReference(\Gedcom\Record\Reference $reference)
     {
         $this->references[] = $reference;
     }

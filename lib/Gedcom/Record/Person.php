@@ -4,7 +4,11 @@ namespace Gedcom\Record;
 
 require_once __DIR__ . '/../Record.php';
 require_once __DIR__ . '/Reference.php';
-require_once __DIR__ . '/Event.php';
+require_once __DIR__ . '/Person/Event.php';
+require_once __DIR__ . '/Person/Attribute.php';
+
+use Gedcom\Record\Person\Attribute;
+use Gedcom\Record\Person\Event;
 
 /**
  *
@@ -12,9 +16,10 @@ require_once __DIR__ . '/Event.php';
  */
 class Person extends \Gedcom\Record
 {
-    public $references = array();
-    
+    public $attributes = array();
     public $events = array();
+    
+    public $references = array();
     
     /**
      *
@@ -24,6 +29,23 @@ class Person extends \Gedcom\Record
     {
         $this->references[] = $reference;
     }
+    
+    
+    /**
+     *
+     *
+     */
+    public function &addAttribute($name, $value)
+    {
+        $attribute = new Person\Attribute();
+        $attribute->name = $name;
+        $attribute->value = $value;
+        
+        $this->attributes[] = $attribute;
+        
+        return $attribute;
+    }
+    
     
     /**
      *

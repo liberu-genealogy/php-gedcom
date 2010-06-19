@@ -48,7 +48,7 @@ class Parser
                     
                     $this->parseSource($source);
                 }
-                if(substr($recordType, 0, 1) == 'I')
+                else if(substr($recordType, 0, 1) == 'I')
                 {
                     $identifier = substr($recordType, 1);
                     
@@ -163,7 +163,7 @@ class Parser
                     $this->logUnhandledRecord('#' . __LINE__);
                 }
             }
-            else if((int)$record[0] > 1)
+            /*else if((int)$record[0] > 1)
             {
                 // FIXME - Comment this statement out once all known data
                 // attributes are coded so that we fall through to error
@@ -171,7 +171,7 @@ class Parser
                 
                 // do nothing, this should be handled in cases above by
                 // passing off code execution to other classes
-            }
+            }*/
             else
             {
                 $this->logUnhandledRecord('#' . __LINE__);
@@ -189,9 +189,61 @@ class Parser
      */
     protected function storeGenericInformation($type, $data)
     {
-        $record = &$this->_recordStack[count($this->_recordStack) - 1];
+        $this->_currentLine++;
         
-        $record->$type = trim($data);
+        $person = &$this->_recordStack[count($this->_recordStack) - 1];
+        
+        $attribute = $person->addAttribute($type, $data);
+        
+        // TODO? Push onto the stack?
+        
+        while($this->_currentLine < count($this->_file))
+        {
+            $record = $this->getCurrentLineRecord();
+            
+            if((int)$record[0] <= 1)
+            {
+                $this->_currentLine--;
+                
+                return;
+            }
+            else if((int)$record[0] == 2)
+            {
+                $recordType = trim($record[1]);
+                
+                switch($recordType)
+                {
+                    case 'SOUR':
+                        $reference = $this->_gedcom->createReference($this->normalizeIdentifier($record[2], 'S'), $type);
+                        
+                        array_push($this->_recordStack, $reference);
+                        
+                        $this->parseReference($record[0]);
+                        
+                        array_pop($this->_recordStack);
+                        
+                        $attribute->addReference($reference);
+                    break;
+                    
+                    default:
+                        $this->logUnhandledRecord('#' . __LINE__);
+                }
+            }
+            //else if((int)$record[0] > (int)$atLevel)
+            //{
+                // do nothing, this should be handled in cases above by
+                // passing off code execution to other classes
+            //}
+            else
+            {
+                $this->logUnhandledRecord('#' . __LINE__);
+            }
+            
+            $this->_currentLine++;
+        }
+        
+        //$record = &$this->_recordStack[count($this->_recordStack) - 1];
+        //$record->$type = trim($data);
     }
     
     
@@ -237,6 +289,15 @@ class Parser
     protected function parseBirtRecord()
     {
         $this->parseEventRecord('birth');
+    }
+    
+    
+    /**
+     *
+     */
+    protected function parseChrRecord()
+    {
+        $this->parseEventRecord('christening');
     }
     
     
