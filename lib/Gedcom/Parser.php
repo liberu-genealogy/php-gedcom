@@ -36,6 +36,9 @@ class Parser
         {
             $record = $this->getCurrentLineRecord();
             
+            // We only process 0 level records here. Sub levels are processed
+            // in methods for those data types (individuals, sources, etc)
+            
             if($record[0] == '0')
             {
                 $recordType = trim($record[1], '@');
@@ -50,11 +53,11 @@ class Parser
                 }
                 else if(substr($recordType, 0, 1) == 'I')
                 {
-                    $identifier = substr($recordType, 1);
+                    //$identifier = substr($recordType, 1);
                     
-                    $person = $this->_gedcom->createPerson($identifier);
+                    //$person = $this->_gedcom->createPerson($identifier);
                     
-                    $this->parsePerson($person);
+                    //$this->parsePerson($person);
                 }
                 else
                 {
@@ -105,18 +108,11 @@ class Parser
             {
                 $source->addNote($this->normalizeIdentifier($record[2], 'NS'));
             }
-            else if($record[0] == '1' && trim($record[1]) == 'REPO')
+            /*else if((int)$record[0] > 1)
             {
-                // FIXME: Not enough data to implement this right now. All
-                // instances in my GEDCOM are blank
-            }
-            else if((int)$record[0] > 1)
-            {
-                // FIXME - Comment this out and implement all unhandled records
-                
                 // do nothing, this should be handled in cases above by
                 // passing off code execution to other classes
-            }
+            }*/
             else
             {
                 $this->logUnhandledRecord('#' . __LINE__);
@@ -165,10 +161,6 @@ class Parser
             }
             /*else if((int)$record[0] > 1)
             {
-                // FIXME - Comment this statement out once all known data
-                // attributes are coded so that we fall through to error
-                // logging below
-                
                 // do nothing, this should be handled in cases above by
                 // passing off code execution to other classes
             }*/
@@ -229,11 +221,11 @@ class Parser
                         $this->logUnhandledRecord('#' . __LINE__);
                 }
             }
-            //else if((int)$record[0] > (int)$atLevel)
-            //{
+            /*else if((int)$record[0] > (int)$atLevel)
+            {
                 // do nothing, this should be handled in cases above by
                 // passing off code execution to other classes
-            //}
+            }*/
             else
             {
                 $this->logUnhandledRecord('#' . __LINE__);
@@ -241,9 +233,6 @@ class Parser
             
             $this->_currentLine++;
         }
-        
-        //$record = &$this->_recordStack[count($this->_recordStack) - 1];
-        //$record->$type = trim($data);
     }
     
     
@@ -344,11 +333,11 @@ class Parser
                         $this->logUnhandledRecord('#' . __LINE__);
                 }
             }
-            //else if((int)$record[0] > (int)$atLevel)
-            //{
+            /*else if((int)$record[0] > (int)$atLevel)
+            {
                 // do nothing, this should be handled in cases above by
                 // passing off code execution to other classes
-            //}
+            }*/
             else
             {
                 $this->logUnhandledRecord('#' . __LINE__);
@@ -400,11 +389,11 @@ class Parser
                         $this->logUnhandledRecord('#' . __LINE__);
                 }
             }
-            //else if((int)$record[0] > (int)$atLevel)
-            //{
+            /*else if((int)$record[0] > (int)$atLevel)
+            {
                 // do nothing, this should be handled in cases above by
                 // passing off code execution to other classes
-            //}
+            }*/
             else
             {
                 $this->logUnhandledRecord('#' . __LINE__);
@@ -521,11 +510,11 @@ class Parser
                             $this->logUnhandledRecord('#' . __LINE__);
                 }
             }
-            //else if((int)$record[0] > 2)
-            //{
+            /*else if((int)$record[0] > 2)
+            {
                 // do nothing, this should be handled in cases above by
                 // passing off code execution to other classes
-            //}
+            }*/
             else
             {
                 $this->logUnhandledRecord('#' . __LINE__);
