@@ -16,10 +16,10 @@ use Gedcom\Record\Person\Attribute;
 class Person extends \Gedcom\Record
 {
     public $attributes = array();
-    
-    public $relationships = array();
-    
     public $events = array();
+    
+    public $fams = array();
+    public $famc = array();
     
     public $references = array();
     

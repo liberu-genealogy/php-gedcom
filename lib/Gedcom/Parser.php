@@ -16,10 +16,6 @@ class Parser
     protected $_file = null;
     protected $_currentLine = 0;
     
-    protected $_currentRecord = null;
-    
-    protected $_recordStack = array();
-    
     protected $_errorLog = array();
     
     /**
@@ -153,8 +149,6 @@ class Parser
     {
         $this->_currentLine++;
         
-        array_push($this->_recordStack, $person);
-        
         while($this->_currentLine < count($this->_file))
         {
             $record = $this->getCurrentLineRecord('P');
@@ -162,19 +156,20 @@ class Parser
             if($record[0] == '0')
             {
                 $this->_currentLine--;
-                
-                return;
+                break;
             }
             else if($record[0] == '1')
             {
                 $recordType = trim($record[1]);
                 
-                if(is_callable(array($this, 'parse' . $recordType . 'Record')))
+                $handler = 'parse' . $recordType . 'Record';
+                
+                if(is_callable(array($this, $handler)))
                 {
                     if(isset($record[2]))
-                        $this->{'parse' . $recordType . 'Record'}(trim($record[2]));
+                        $this->$handler($person, trim($record[2]));
                     else
-                        $this->{'parse' . $recordType . 'Record'}();
+                        $this->$handler($person);
                 }
                 else
                 {
@@ -193,8 +188,6 @@ class Parser
             
             $this->_currentLine++;
         }
-        
-        array_pop($this->_recordStack);
     }
     
     
@@ -205,8 +198,6 @@ class Parser
     protected function parseFamily(&$family)
     {
         $this->_currentLine++;
-        
-        array_push($this->_recordStack, $family);
         
         while($this->_currentLine < count($this->_file))
         {
@@ -238,11 +229,11 @@ class Parser
                     break;
                     
                     case 'MARR':
-                        $this->parseEventRecord('marriage');
+                        $this->parseEventRecord($family, 'marriage');
                     break;
                     
                     case 'DIV':
-                        $this->parseEventRecord('divorce');
+                        $this->parseEventRecord($family, 'divorce');
                     break;
                     
                     case 'NOTE':
@@ -265,20 +256,15 @@ class Parser
             
             $this->_currentLine++;
         }
-        
-        array_pop($this->_recordStack);
-        
     }
     
     
     /**
      *
      */
-    protected function parseGenericInformation($type, $data)
+    protected function parseGenericInformation(&$person, $type, $data)
     {
         $this->_currentLine++;
-        
-        $person = &$this->_recordStack[count($this->_recordStack) - 1];
         
         $attribute = $person->addAttribute($type, $data);
         
@@ -303,11 +289,7 @@ class Parser
                     case 'SOUR':
                         $reference = $this->_gedcom->createReference($this->normalizeIdentifier($record[2], 'S'), $type);
                         
-                        array_push($this->_recordStack, $reference);
-                        
-                        $this->parseReference($record[0]);
-                        
-                        array_pop($this->_recordStack);
+                        $this->parseReference($reference, $record[0]);
                         
                         $attribute->addReference($reference);
                     break;
@@ -334,34 +316,25 @@ class Parser
     /**
      *
      */
-    protected function parseNameRecord($value)
+    protected function parseNameRecord(&$person, $value)
     {
-        $this->parseGenericInformation('name', $value);
+        $this->parseGenericInformation($person, 'name', $value);
     }
     
     
     /**
      *
      */
-    protected function parseSexRecord($value)
+    protected function parseSexRecord(&$person, $value)
     {
-        $this->parseGenericInformation('sex', $value);
+        $this->parseGenericInformation($person, 'sex', $value);
     }
     
     
     /**
      *
      */
-    protected function parseFamcRecord()
-    {
-        // TODO
-    }
-    
-    
-    /**
-     *
-     */
-    protected function parseFamsRecord()
+    protected function parseFamcRecord(&$person)
     {
         // TODO
     }
@@ -370,29 +343,36 @@ class Parser
     /**
      *
      */
-    protected function parseBirtRecord()
+    protected function parseFamsRecord(&$person)
     {
-        $this->parseEventRecord('birth');
+        // TODO
     }
     
     
     /**
      *
      */
-    protected function parseChrRecord()
+    protected function parseBirtRecord(&$person)
     {
-        $this->parseEventRecord('christening');
+        $this->parseEventRecord($person, 'birth');
     }
     
     
     /**
      *
      */
-    protected function parseReference($atLevel)
+    protected function parseChrRecord(&$person)
+    {
+        $this->parseEventRecord($person, 'christening');
+    }
+    
+    
+    /**
+     *
+     */
+    protected function parseReference(&$reference, $atLevel)
     {
         $this->_currentLine++;
-        
-        $reference = &$this->_recordStack[count($this->_recordStack) - 1];
         
         while($this->_currentLine < count($this->_file))
         {
@@ -417,11 +397,7 @@ class Parser
                     case 'DATA':
                         $data = $reference->addData();
                         
-                        array_push($this->_recordStack, $data);
-                        
-                        $this->parseData($record[0]);
-                        
-                        array_pop($this->_recordStack);
+                        $this->parseData($data, $record[0]);
                     break;
                     
                     default:
@@ -446,11 +422,9 @@ class Parser
     /**
      *
      */
-    protected function parseData($atLevel)
+    protected function parseData(&$data, $atLevel)
     {
         $this->_currentLine++;
-        
-        $data = &$this->_recordStack[count($this->_recordStack) - 1];
         
         while($this->_currentLine < count($this->_file))
         {
@@ -502,45 +476,45 @@ class Parser
     /**
      *
      */
-    protected function parseBapmRecord()
+    protected function parseBapmRecord(&$person)
     {
-        $this->parseEventRecord('baptism');
+        $this->parseEventRecord($person, 'baptism');
     }
     
     
     /**
      *
      */
-    protected function parseDeatRecord()
+    protected function parseDeatRecord(&$person)
     {
-        $this->parseEventRecord('death', array('CAUS' => 'cause'));
+        $this->parseEventRecord($person, 'death', array('CAUS' => 'cause'));
     }
     
     
     /**
      *
      */
-    protected function parseBuriRecord()
+    protected function parseBuriRecord(&$person)
     {
-        $this->parseEventRecord('burial');
+        $this->parseEventRecord($person, 'burial');
     }
     
     
     /**
      *
      */
-    protected function parseEducRecord()
+    protected function parseEducRecord(&$person)
     {
-        $this->parseEventRecord('education');
+        $this->parseEventRecord($person, 'education');
     }
     
     
     /**
      *
      */
-    protected function parseOccuRecord()
+    protected function parseOccuRecord(&$person)
     {
-        $this->parseEventRecord('occupation');
+        $this->parseEventRecord($person, 'occupation');
     }
     
     
@@ -548,15 +522,11 @@ class Parser
      *
      *
      */
-    protected function parseEventRecord($eventType, $additionalAttr = array())
+    protected function parseEventRecord(&$person, $eventType, $additionalAttr = array())
     {
         $this->_currentLine++;
         
-        $person = &$this->_recordStack[count($this->_recordStack) - 1];
-        
         $event = $person->addEvent($eventType);
-        
-        array_push($this->_recordStack, $event);
         
         while($this->_currentLine < count($this->_file))
         {
@@ -589,11 +559,7 @@ class Parser
                     case 'SOUR':
                         $reference = $this->_gedcom->createReference($this->normalizeIdentifier($record[2], 'S'), $eventType);
                         
-                        array_push($this->_recordStack, $reference);
-                        
-                        $this->parseReference($record[0]);
-                        
-                        array_pop($this->_recordStack);
+                        $this->parseReference($reference, $record[0]);
                         
                         $event->addReference($reference);
                     break;
@@ -617,53 +583,51 @@ class Parser
             
             $this->_currentLine++;
         }
-        
-        array_pop($this->_recordStack);
     }
     
     
     /**
      *
      */
-    protected function parseCensRecord()
+    protected function parseCensRecord(&$person)
     {
-        $this->parseEventRecord('census');
+        $this->parseEventRecord($person, 'census');
     }
     
     
     /**
      *
      */
-    protected function parseEvenRecord()
+    protected function parseEvenRecord(&$person)
     {
-        $this->parseEventRecord('unknown');
+        $this->parseEventRecord($person, 'unknown');
     }
     
     
     /**
      *
      */
-    protected function parseResiRecord()
+    protected function parseResiRecord(&$person)
     {
-        $this->parseEventRecord('residence');
+        $this->parseEventRecord($person, 'residence');
     }
     
     
     /**
      *
      */
-    protected function parseImmiRecord()
+    protected function parseImmiRecord(&$person)
     {
-        $this->parseEventRecord('immigration');
+        $this->parseEventRecord($person, 'immigration');
     }
     
     
     /**
      *
      */
-    protected function parsePropRecord()
+    protected function parsePropRecord(&$person)
     {
-        $this->parseEventRecord('property');
+        $this->parseEventRecord($person, 'property');
     }
     
     
