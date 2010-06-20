@@ -53,11 +53,11 @@ class Parser
                 }
                 else if(substr($recordType, 0, 1) == 'I')
                 {
-                    //$identifier = substr($recordType, 1);
+                    $identifier = substr($recordType, 1);
                     
-                    //$person = $this->_gedcom->createPerson($identifier);
+                    $person = $this->_gedcom->createPerson($identifier);
                     
-                    //$this->parsePerson($person);
+                    $this->parsePerson($person);
                 }
                 else if(substr($recordType, 0, 1) == 'F')
                 {
@@ -65,8 +65,6 @@ class Parser
                     
                     $family = $this->_gedcom->createFamily($identifier);
                     
-                    // TODO
-                    // [3589] => 110483: (Unhandled) 0|@F3565@|FAM - #64
                     $this->parseFamily($family);
                 }
                 else if(trim($recordType) == 'HEAD')
@@ -276,7 +274,7 @@ class Parser
     /**
      *
      */
-    protected function storeGenericInformation($type, $data)
+    protected function parseGenericInformation($type, $data)
     {
         $this->_currentLine++;
         
@@ -338,7 +336,7 @@ class Parser
      */
     protected function parseNameRecord($value)
     {
-        $this->storeGenericInformation('name', $value);
+        $this->parseGenericInformation('name', $value);
     }
     
     
@@ -347,7 +345,7 @@ class Parser
      */
     protected function parseSexRecord($value)
     {
-        $this->storeGenericInformation('sex', $value);
+        $this->parseGenericInformation('sex', $value);
     }
     
     
@@ -718,16 +716,6 @@ class Parser
     public function getErrors()
     {
         return $this->_errorLog;
-    }
-    
-    
-    /**
-     *
-     *
-     */
-    protected function isPrimaryRecord($record, $identifier)
-    {
-        return $record[0] == '1' && strtolower(trim($record[1])) == strtolower($identifier);
     }
     
     

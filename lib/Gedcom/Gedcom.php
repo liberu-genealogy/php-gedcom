@@ -15,6 +15,10 @@ use Gedcom\Record\Source;
 use Gedcom\Record\Reference;
 use Gedcom\Record\Data;
 
+/**
+ *
+ *
+ */
 class Gedcom
 {
     public $sources = array();
@@ -67,7 +71,7 @@ class Gedcom
         $family = new Family();
         $family->refId = $identifier;
         
-        $this->families[] = $family;
+        $this->families[$identifier] = $family;
         
         return $family;
     }
