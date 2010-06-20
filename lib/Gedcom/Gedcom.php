@@ -5,6 +5,7 @@ namespace Gedcom;
 require_once __DIR__ . '/Record/Person.php';
 require_once __DIR__ . '/Record/Family.php';
 require_once __DIR__ . '/Record/Source.php';
+require_once __DIR__ . '/Record/Note.php';
 require_once __DIR__ . '/Record/Reference.php';
 require_once __DIR__ . '/Record/Data.php';
 require_once __DIR__ . '/Parser.php';
@@ -12,6 +13,7 @@ require_once __DIR__ . '/Parser.php';
 use Gedcom\Record\Person;
 use Gedcom\Record\Family;
 use Gedcom\Record\Source;
+use Gedcom\Record\Note;
 use Gedcom\Record\Reference;
 use Gedcom\Record\Data;
 
@@ -24,6 +26,7 @@ class Gedcom
     public $sources = array();
     public $people = array();
     public $families = array();
+    public $notes = array();
     
     /**
      *
@@ -76,6 +79,20 @@ class Gedcom
         return $family;
     }
     
+    
+    /**
+     *
+     *
+     */
+    public function &createNote($identifier)
+    {
+        $note = new Note();
+        $note->refId = $identifier;
+        
+        $this->notes[$identifier] = $note;
+        
+        return $note;
+    }
     
     
     /**

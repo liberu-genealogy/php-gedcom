@@ -69,14 +69,19 @@ class Parser
                 }
                 else if(substr($recordType, 0, 2) == 'NI')
                 {
-                    // TODO
-                    // [7] => 15619: (Unhandled) 0|@NI1241@|NOTE - #72
+                    $identifier = substr($recordType, 1);
+                    
+                    $note = $this->_gedcom->createNote($identifier);
+                    
+                    $this->parseNote($note);
                 }
                 else if(substr($recordType, 0, 2) == 'NS')
                 {
-                    // TODO
-                    // [1] => 110683: (Unhandled) 0|@NS26371@|NOTE ABBR Oak Grove CemeteryTEXT
-                        // http://www.rootsweb.com/~mikent/cemeteries/paris/oakgrove/oakgrove.html - #78
+                    $identifier = substr($recordType, 1);
+                    
+                    $note = $this->_gedcom->createNote($identifier);
+                    
+                    $this->parseNote($note);
                 }
                 else
                 {
@@ -124,7 +129,7 @@ class Parser
             }
             else if($record[0] == '1' && trim($record[1]) == 'NOTE')
             {
-                $source->addNote($this->normalizeIdentifier($record[2], 'NS'));
+                $source->addNote($this->normalizeIdentifier($record[2], 'N'));
             }
             /*else if((int)$record[0] > 1)
             {
@@ -237,7 +242,7 @@ class Parser
                     break;
                     
                     case 'NOTE':
-                        $family->notes[] = trim(trim($record[2]), '@NF');
+                        $family->notes[] = trim(trim($record[2]), '@N');
                     break;
                     
                     default:
@@ -245,6 +250,57 @@ class Parser
                 }
             }
             /*else if((int)$record[0] > 1)
+            {
+                // do nothing, this should be handled in cases above by
+                // passing off code execution to other classes
+            }*/
+            else
+            {
+                $this->logUnhandledRecord('#' . __LINE__);
+            }
+            
+            $this->_currentLine++;
+        }
+    }
+    
+    
+    /**
+     *
+     */
+    protected function parseNote(&$note)
+    {
+        $this->_currentLine++;
+        
+        while($this->_currentLine < count($this->_file))
+        {
+            $record = $this->getCurrentLineRecord();
+            
+            if((int)$record[0] <= 0)
+            {
+                $this->_currentLine--;
+                break;
+            }
+            else if((int)$record[0] > 0)
+            {
+                $recordType = trim($record[1]);
+                
+                switch($recordType)
+                {
+                    case 'CONT':
+                        if(isset($record[2]))
+                            $note->note .= "\n" . trim($record[2]);
+                    break;
+                    
+                    case 'CONC':
+                        if(isset($record[2]))
+                            $note->note .= trim($record[2]);
+                    break;
+                    
+                    default:
+                        $this->logUnhandledRecord('#' . __LINE__);
+                }
+            }
+            /*else if((int)$record[0] > 0)
             {
                 // do nothing, this should be handled in cases above by
                 // passing off code execution to other classes
