@@ -85,7 +85,6 @@ class Parser
                 }
                 else
                 {
-                    // FIXME - uncomment and implement record types
                     //$this->logUnhandledRecord('#' . __LINE__);
                 }
             }
@@ -736,9 +735,11 @@ class Parser
     /**
      *
      */
-    protected function parseNoteRecord()
+    protected function parseNoteRecord(&$person)
     {
-        // TODO
+        $record = $this->getCurrentLineRecord();
+        
+        $person->addNote($this->normalizeIdentifier($record[2], 'N'));
     }
     
     
