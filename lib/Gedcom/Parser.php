@@ -268,8 +268,6 @@ class Parser
         
         $attribute = $person->addAttribute($type, $data);
         
-        // TODO? Push onto the stack?
-        
         while($this->_currentLine < count($this->_file))
         {
             $record = $this->getCurrentLineRecord();
@@ -336,7 +334,31 @@ class Parser
      */
     protected function parseFamcRecord(&$person)
     {
-        // TODO
+        $record = $this->getCurrentLineRecord();
+        
+        $refId = trim(trim($record[2]), '@F');
+        
+        $person->famc[$refId] = $refId;
+        
+        $this->_currentLine++;
+        
+        while($this->_currentLine < count($this->_file))
+        {
+            $record = $this->getCurrentLineRecord();
+            
+            if((int)$record[0] <= 1)
+            {
+                $this->_currentLine--;
+                
+                break;
+            }
+            else
+            {
+                $this->logUnhandledRecord('#' . __LINE__);
+            }
+            
+            $this->_currentLine++;
+        }
     }
     
     
@@ -345,7 +367,31 @@ class Parser
      */
     protected function parseFamsRecord(&$person)
     {
-        // TODO
+        $record = $this->getCurrentLineRecord();
+        
+        $refId = trim(trim($record[2]), '@F');
+        
+        $person->fams[$refId] = $refId;
+        
+        $this->_currentLine++;
+        
+        while($this->_currentLine < count($this->_file))
+        {
+            $record = $this->getCurrentLineRecord();
+            
+            if((int)$record[0] <= 1)
+            {
+                $this->_currentLine--;
+                
+                break;
+            }
+            else
+            {
+                $this->logUnhandledRecord('#' . __LINE__);
+            }
+            
+            $this->_currentLine++;
+        }
     }
     
     
