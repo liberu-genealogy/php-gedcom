@@ -24,7 +24,7 @@ class Parser
      */
     public function parseFile($fileName)
     {
-        $this->_file = file($fileName);
+        $this->_file = explode("\n", mb_convert_encoding(file_get_contents($fileName), 'UTF-8'));
         
         $this->_gedcom = new Gedcom();
         
@@ -796,7 +796,7 @@ class Parser
         $identifier = trim($identifier, '@');
         
         if(substr($identifier, 0, strlen($tag)) !== $tag)
-            throw new Exception('Tag Mismatch: ' . $tag . ' - ' . $identifier);
+            throw new \Exception('Tag Mismatch: [' . $tag . ':' . $identifier . ']');
         
         $identifier = substr($identifier, strlen($tag));
         
