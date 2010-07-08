@@ -37,9 +37,14 @@ class Parser
             
             if($record[0] == '0')
             {
-                $recordType = trim($record[1], '@');
-                
-                if(substr($recordType, 0, 1) == 'S')
+                $recordType = trim(trim($record[1], '@'));
+                 
+                if($recordType == 'TRLR')
+                {
+                    // EOF
+                    break;
+                }
+                else if(substr($recordType, 0, 1) == 'S')
                 {
                     $identifier = substr($recordType, 1);
                     
@@ -85,7 +90,7 @@ class Parser
                 }
                 else
                 {
-                    //$this->logUnhandledRecord('#' . __LINE__);
+                    $this->logUnhandledRecord(__LINE__);
                 }
             }
             
@@ -137,7 +142,7 @@ class Parser
             }*/
             else
             {
-                $this->logUnhandledRecord('#' . __LINE__);
+                $this->logUnhandledRecord(__LINE__);
             }
             
             $this->_currentLine++;
@@ -177,7 +182,7 @@ class Parser
                 }
                 else
                 {
-                    $this->logUnhandledRecord('#' . __LINE__);
+                    $this->logUnhandledRecord(__LINE__);
                 }
             }
             /*else if((int)$record[0] > 1)
@@ -187,7 +192,7 @@ class Parser
             }*/
             else
             {
-                $this->logUnhandledRecord('#' . __LINE__);
+                $this->logUnhandledRecord(__LINE__);
             }
             
             $this->_currentLine++;
@@ -245,7 +250,7 @@ class Parser
                     break;
                     
                     default:
-                        $this->logUnhandledRecord('#' . __LINE__);
+                        $this->logUnhandledRecord(__LINE__);
                 }
             }
             /*else if((int)$record[0] > 1)
@@ -255,7 +260,7 @@ class Parser
             }*/
             else
             {
-                $this->logUnhandledRecord('#' . __LINE__);
+                $this->logUnhandledRecord(__LINE__);
             }
             
             $this->_currentLine++;
@@ -296,7 +301,7 @@ class Parser
                     break;
                     
                     default:
-                        $this->logUnhandledRecord('#' . __LINE__);
+                        $this->logUnhandledRecord(__LINE__);
                 }
             }
             /*else if((int)$record[0] > 0)
@@ -306,7 +311,7 @@ class Parser
             }*/
             else
             {
-                $this->logUnhandledRecord('#' . __LINE__);
+                $this->logUnhandledRecord(__LINE__);
             }
             
             $this->_currentLine++;
@@ -348,7 +353,7 @@ class Parser
                     break;
                     
                     default:
-                        $this->logUnhandledRecord('#' . __LINE__);
+                        $this->logUnhandledRecord(__LINE__);
                 }
             }
             /*else if((int)$record[0] > (int)$atLevel)
@@ -358,7 +363,7 @@ class Parser
             }*/
             else
             {
-                $this->logUnhandledRecord('#' . __LINE__);
+                $this->logUnhandledRecord(__LINE__);
             }
             
             $this->_currentLine++;
@@ -409,7 +414,7 @@ class Parser
             }
             else
             {
-                $this->logUnhandledRecord('#' . __LINE__);
+                $this->logUnhandledRecord(__LINE__);
             }
             
             $this->_currentLine++;
@@ -442,7 +447,7 @@ class Parser
             }
             else
             {
-                $this->logUnhandledRecord('#' . __LINE__);
+                $this->logUnhandledRecord(__LINE__);
             }
             
             $this->_currentLine++;
@@ -502,7 +507,7 @@ class Parser
                     break;
                     
                     default:
-                        $this->logUnhandledRecord('#' . __LINE__);
+                        $this->logUnhandledRecord(__LINE__);
                 }
             }
             /*else if((int)$record[0] > (int)$atLevel)
@@ -512,7 +517,7 @@ class Parser
             }*/
             else
             {
-                $this->logUnhandledRecord('#' . __LINE__);
+                $this->logUnhandledRecord(__LINE__);
             }
             
             $this->_currentLine++;
@@ -548,7 +553,7 @@ class Parser
                     break;
                     
                     case 'CONT':
-                        $data->text .= "\n" . trim($record[2]);
+                        $data->text .= "\n" . (isset($record[2]) ? trim($record[2]) : '');
                     break;
                     
                     case 'CONC':
@@ -556,7 +561,7 @@ class Parser
                     break;
                     
                     default:
-                        $this->logUnhandledRecord('#' . __LINE__);
+                        $this->logUnhandledRecord(__LINE__);
                 }
             }
             /*else if((int)$record[0] > (int)$atLevel)
@@ -566,7 +571,7 @@ class Parser
             }*/
             else
             {
-                $this->logUnhandledRecord('#' . __LINE__);
+                $this->logUnhandledRecord(__LINE__);
             }
             
             $this->_currentLine++;
@@ -623,7 +628,7 @@ class Parser
      *
      *
      */
-    protected function parseEventRecord(&$person, $eventType, $additionalAttr = array())
+    protected function parseEventRecord(&$person, $eventType = null, $additionalAttr = array())
     {
         $this->_currentLine++;
         
@@ -654,7 +659,8 @@ class Parser
                     break;
                     
                     case 'PLAC':
-                        $event->place = trim($record[2]);
+                        if(!empty($record[2]))
+                            $event->place = trim($record[2]);
                     break;
                     
                     case 'SOUR':
@@ -669,7 +675,7 @@ class Parser
                         if(isset($additionalAttr[$recordType]))
                             $event->$additionalAttr[$recordType] = trim($record[2]);
                         else
-                            $this->logUnhandledRecord('#' . __LINE__);
+                            $this->logUnhandledRecord(__LINE__);
                 }
             }
             /*else if((int)$record[0] > 2)
@@ -679,7 +685,7 @@ class Parser
             }*/
             else
             {
-                $this->logUnhandledRecord('#' . __LINE__);
+                $this->logUnhandledRecord( __LINE__);
             }
             
             $this->_currentLine++;
@@ -749,7 +755,7 @@ class Parser
      */
     protected function getCurrentLineRecord()
     {
-        $line = $this->_file[$this->_currentLine];
+        $line = trim($this->_file[$this->_currentLine]);
         
         return explode(' ', $line, 3);
     }
