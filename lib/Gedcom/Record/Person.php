@@ -24,7 +24,9 @@ class Person extends \Gedcom\Record
     public $references = array();
     
     public $notes = array();
-    
+    public $objects = array();
+
+
     /**
      *
      *
@@ -40,9 +42,19 @@ class Person extends \Gedcom\Record
      */
     public function addNote($refId)
     {
-        $this->references[$refId] = $refId;
+        $this->notes[$refId] = $refId;
     }
+   
     
+    /**
+     *
+     *
+     */
+    public function addInternalNote(\Gedcom\Record\Note $note)
+    {
+        $this->notes[] = $note;
+    }
+
     
     /**
      *
@@ -72,6 +84,89 @@ class Person extends \Gedcom\Record
         $this->events[] = &$event;
         
         return $event;
+    }
+    
+    /**
+     *
+     *
+     */
+    public function getGender()
+    {
+        $attribute = $this->getFirstAttribute('sex');
+        
+        return !empty($attribute) ? $attribute->value : null;
+    }
+    
+    
+    /**
+     *
+     *
+     */
+    public function getSurname()
+    {
+        $name = $this->getFirstAttribute('name');
+        
+        if(empty($name))
+            return null;
+        
+        $personName = explode('/', trim($name->value, '/'));
+        
+        if(count($personName) < 2)
+        {
+            return $personName[0];
+        }
+        
+        return $personName[1];
+    }
+    
+    
+    /**
+     *
+     *
+     */
+    public function getGivenName()
+    {
+        $name = $this->getFirstAttribute('name');
+        
+        if(empty($name))
+            return null;
+        
+        $personName = explode('/', trim($name->value, '/'));
+        
+        if(count($personName) < 2)
+        {
+            return null;
+        }
+        
+        return $personName[0]; 
+    }
+    
+    
+    /**
+     *
+     *
+     */
+    public function getFirstAttribute($type)
+    {
+        return current($this->getAttribute($type));
+    }
+    
+    
+    /**
+     *
+     *
+     */
+    public function getAttribute($type)
+    {
+        $attributes = array();
+        
+        foreach($this->attributes as $attribute)
+        {
+            if($attribute->name == $type)
+                $attributes[] = $attribute;
+        }
+        
+        return $attributes;
     }
     
 }

@@ -9,9 +9,8 @@ require_once __DIR__ . '/../Record.php';
  *
  *
  */
-class Note extends \Gedcom\Record
+class Change extends \Gedcom\Record
 {
-    public $note = null;
-
-    public $sources = array();
+    public $date = null;
+    public $time = null;
 }

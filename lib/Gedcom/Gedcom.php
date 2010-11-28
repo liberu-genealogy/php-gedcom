@@ -6,8 +6,12 @@ require_once __DIR__ . '/Record/Person.php';
 require_once __DIR__ . '/Record/Family.php';
 require_once __DIR__ . '/Record/Source.php';
 require_once __DIR__ . '/Record/Note.php';
+require_once __DIR__ . '/Record/Note/Reference.php';
 require_once __DIR__ . '/Record/Reference.php';
+require_once __DIR__ . '/Record/ReferenceNumber.php';
 require_once __DIR__ . '/Record/Data.php';
+require_once __DIR__ . '/Record/Change.php';
+require_once __DIR__ . '/Record/Object.php';
 require_once __DIR__ . '/Parser.php';
 
 use Gedcom\Record\Person;
@@ -84,12 +88,12 @@ class Gedcom
      *
      *
      */
-    public function &createNote($identifier)
+    public function &createNote($identifier = null)
     {
         $note = new Note();
         $note->refId = $identifier;
         
-        $this->notes[$identifier] = $note;
+        $this->notes[] = $note;
         
         return $note;
     }
