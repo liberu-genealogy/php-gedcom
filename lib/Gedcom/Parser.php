@@ -18,7 +18,7 @@ class Parser extends Parser\Base
      *
      *
      */
-    public function parseFile($fileName)
+    public function parse($fileName)
     {
         $contents = file_get_contents($fileName);
         
@@ -57,8 +57,7 @@ class Parser extends Parser\Base
                 }
                 else if(isset($record[2]) && $record[2] == 'SOUR')
                 {
-                    $source = $this->_gedcom->createSource($identifier);
-                    $this->parseSource($source);
+                    Parser\Source::parse($this);
                 }
                 else if(isset($record[2]) && $record[2] == 'INDI')
                 {
@@ -77,7 +76,8 @@ class Parser extends Parser\Base
                 }
                 else
                 {
-                    $this->logUnhandledRecord(__LINE__);
+                    // FIXME
+                    //$this->logUnhandledRecord(__LINE__);
                 }
             }
             
@@ -85,129 +85,6 @@ class Parser extends Parser\Base
         }
         
         return $this->_gedcom;
-    }
-    
-    
-    /**
-     *
-     *
-     */
-    protected function parseSource(&$source)
-    {
-        $this->_currentLine++;
-        
-        while($this->_currentLine < count($this->_file))
-        {
-            $record = $this->getCurrentLineRecord('S');
-            
-            if($record[0] == '0')
-            {
-                $this->_currentLine--;
-                
-                break;
-            }
-            else if($record[0] == '1' && trim($record[1]) == 'TITL')
-            {
-                $source->title = trim($record[2]);
-            }
-            else if($record[0] == '1' && trim($record[1]) == 'RIN')
-            {
-                $source->rin = trim($record[2]);
-            }
-            else if($record[0] == '1' && trim($record[1]) == 'AUTH')
-            {
-                $source->author = trim($record[2]);
-            }
-            else if($record[0] == '1' && trim($record[1]) == 'PUBL')
-            {
-                $source->published = trim($record[2]);
-            }
-            else if($record[0] == '1' && trim($record[1]) == 'NOTE')
-            {
-                if(isset($record[2]) && preg_match('/\@N([0-9]*)\@/i', $record[2]) > 0)
-                {
-                    $source->addNote($this->normalizeIdentifier($record[2], 'N'));
-                }
-                else
-                {
-                    $inlineNote = $record[2];
-                    
-                    $this->_currentLine++;
-                    
-                    while($this->_currentLine < count($this->_file))
-                    {
-                        $record = $this->getCurrentLineRecord();
-                        
-                        if((int)$record[0] <= 1)
-                        {
-                            $this->_currentLine--;
-                            break;
-                        }
-                        
-                        switch($record[1])
-                        {
-                            case 'CONT':
-                                if(isset($record[2]))
-                                    $inlineNote .= "\n" . trim($record[2]);
-                            break;
-                            
-                            case 'CONC':
-                                if(isset($record[2]))
-                                    $inlineNote .= ' ' . trim($record[2]);
-                            break;
-                        }
-                        
-                        $this->_currentLine++;
-                    }
-                    
-                    $source->addInlineNote($inlineNote);
-                }
-            }
-            else if((int)$record[0] == 1 && trim($record[1]) == 'CHAN')
-            {
-                $this->_currentLine++;
-                
-                $source->change = new \Gedcom\Record\Change();
-                
-                while($this->_currentLine < count($this->_file))
-                {
-                    $record = $this->getCurrentLineRecord();
-                    
-                    if((int)$record[0] <= 1)
-                    {
-                        $this->_currentLine--;
-                        break;
-                    }
-                    else if((int)$record[0] == 2 && trim($record[1] == 'DATE'))
-                    {
-                        if(isset($record[2]))
-                            $source->date = trim($record[2]);
-                    }
-                    else if((int)$record[0] == 3 && trim($record[1] == 'TIME'))
-                    {
-                        if(isset($record[2]))
-                            $source->time = trim($record[2]);
-                    }
-                    else
-                    {
-                        $this->logUnhandledRecord(__LINE__);
-                    }
-                    
-                    $this->_currentLine++;
-                }
-            }
-            /*else if((int)$record[0] > 1)
-            {
-                // do nothing, this should be handled in cases above by
-                // passing off code execution to other classes
-            }*/
-            else
-            {
-                $this->logUnhandledRecord(__LINE__);
-            }
-            
-            $this->_currentLine++;
-        }
     }
     
     
@@ -268,7 +145,8 @@ class Parser extends Parser\Base
                     }
                     else
                     {
-                        $this->logUnhandledRecord(__LINE__);
+                        // FIXME
+                        //$this->logUnhandledRecord(__LINE__);
                     }
                     
                     $this->_currentLine++;
@@ -289,7 +167,8 @@ class Parser extends Parser\Base
                 }
                 else
                 {
-                    $this->logUnhandledRecord(__LINE__);
+                    // FIXME
+                    //$this->logUnhandledRecord(__LINE__);
                 }
             }
             /*else if((int)$record[0] > 1)
@@ -299,7 +178,8 @@ class Parser extends Parser\Base
             }*/
             else
             {
-                $this->logUnhandledRecord(__LINE__);
+                // FIXME
+                //$this->logUnhandledRecord(__LINE__);
             }
             
             $this->_currentLine++;
@@ -354,7 +234,8 @@ class Parser extends Parser\Base
                     break;
                     
                     default:
-                        $this->logUnhandledRecord(__LINE__);
+                        // FIXME
+                        //$this->logUnhandledRecord(__LINE__);
                     break;
                 }
                 
@@ -363,7 +244,8 @@ class Parser extends Parser\Base
         }
         else
         {
-            $this->logUnhandledRecord(__LINE__);
+            // FIXME
+            //$this->logUnhandledRecord(__LINE__);
         }
         
         return $note;
@@ -449,7 +331,8 @@ class Parser extends Parser\Base
                             }
                             else
                             {
-                                $this->logUnhandledRecord(__LINE__);
+                                // FIXME
+                                //$this->logUnhandledRecord(__LINE__);
                             }
                             
                             $this->_currentLine++;
@@ -457,7 +340,8 @@ class Parser extends Parser\Base
                     break;
                     
                     default:
-                        $this->logUnhandledRecord(__LINE__);
+                        // FIXME
+                        //$this->logUnhandledRecord(__LINE__);
                 }
             }
             /*else if((int)$record[0] > 1)
@@ -467,7 +351,8 @@ class Parser extends Parser\Base
             }*/
             else
             {
-                $this->logUnhandledRecord(__LINE__);
+                // FIXME
+                //$this->logUnhandledRecord(__LINE__);
             }
             
             $this->_currentLine++;
@@ -544,7 +429,8 @@ class Parser extends Parser\Base
                             }
                             else
                             {
-                                $this->logUnhandledRecord(__LINE__);
+                                // FIXME
+                                //$this->logUnhandledRecord(__LINE__);
                             }
                             
                             $this->_currentLine++;
@@ -577,7 +463,8 @@ class Parser extends Parser\Base
                             }
                             else
                             {
-                                $this->logUnhandledRecord(__LINE__);
+                                // FIXME
+                                //$this->logUnhandledRecord(__LINE__);
                             }
                             
                             $this->_currentLine++;
@@ -585,15 +472,17 @@ class Parser extends Parser\Base
                     break;
 
                     case 'SOUR':
-                        $source = new \Gedcom\Record\Source();
+                        // FIXME    
+                        //$source = new \Gedcom\Record\Source();
 
-                        $this->parseSource($source);
+                        //$this->parseSource($source);
 
-                        $note->sources[] = $source;
+                        //$note->sources[] = $source;
                     break;
                     
                     default:
-                        $this->logUnhandledRecord(__LINE__);
+                        // FIXME
+                        //$this->logUnhandledRecord(__LINE__);
                 }
             }
             /*else if((int)$record[0] > 0)
@@ -603,7 +492,8 @@ class Parser extends Parser\Base
             }*/
             else
             {
-                $this->logUnhandledRecord(__LINE__);
+                // FIXME
+                //$this->logUnhandledRecord(__LINE__);
             }
             
             $this->_currentLine++;
@@ -658,7 +548,8 @@ class Parser extends Parser\Base
                     break;
                     
                     default:
-                        $this->logUnhandledRecord(__LINE__);
+                        // FIXME
+                        //$this->logUnhandledRecord(__LINE__);
                 }
             }
             /*else if((int)$record[0] > (int)$atLevel)
@@ -668,7 +559,8 @@ class Parser extends Parser\Base
             }*/
             else
             {
-                $this->logUnhandledRecord(__LINE__);
+                // FIXME
+                //$this->logUnhandledRecord(__LINE__);
             }
             
             $this->_currentLine++;
@@ -728,7 +620,8 @@ class Parser extends Parser\Base
             }
             else
             {
-                $this->logUnhandledRecord(__LINE__);
+                // FIXME
+                //$this->logUnhandledRecord(__LINE__);
             }
             
             $this->_currentLine++;
@@ -761,7 +654,8 @@ class Parser extends Parser\Base
             }
             else
             {
-                $this->logUnhandledRecord(__LINE__);
+                // FIXME
+                //$this->logUnhandledRecord(__LINE__);
             }
             
             $this->_currentLine++;
@@ -852,7 +746,8 @@ class Parser extends Parser\Base
                     break;
                     
                     default:
-                        $this->logUnhandledRecord(__LINE__);
+                        // FIXME
+                        //$this->logUnhandledRecord(__LINE__);
                 }
             }
             /*else if((int)$record[0] > (int)$atLevel)
@@ -862,7 +757,8 @@ class Parser extends Parser\Base
             }*/
             else
             {
-                $this->logUnhandledRecord(__LINE__);
+                // FIXME
+                //$this->logUnhandledRecord(__LINE__);
             }
             
             $this->_currentLine++;
@@ -916,7 +812,8 @@ class Parser extends Parser\Base
             }*/
             else
             {
-                $this->logUnhandledRecord(__LINE__);
+                // FIXME
+                //$this->logUnhandledRecord(__LINE__);
             }
             
             $this->_currentLine++;
@@ -1033,7 +930,10 @@ class Parser extends Parser\Base
                         if(isset($additionalAttr[$recordType]))
                             $event->$additionalAttr[$recordType] = trim($record[2]);
                         else
-                            $this->logUnhandledRecord(__LINE__);
+                        {
+                            // FIXME
+                            //$this->logUnhandledRecord(__LINE__);
+                        }
                 }
             }
             /*else if((int)$record[0] > 2)
@@ -1043,7 +943,8 @@ class Parser extends Parser\Base
             }*/
             else
             {
-                $this->logUnhandledRecord( __LINE__);
+                // FIXME
+                //$this->logUnhandledRecord( __LINE__);
             }
             
             $this->_currentLine++;
