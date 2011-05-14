@@ -23,7 +23,6 @@ class Person extends \Gedcom\Record
     
     public $references = array();
     
-    public $notes = array();
     public $objects = array();
 
 
@@ -34,25 +33,6 @@ class Person extends \Gedcom\Record
     public function addReference(Reference $reference)
     {
         $this->references[] = $reference;
-    }
-    
-    /**
-     *
-     *
-     */
-    public function addNote($refId)
-    {
-        $this->notes[$refId] = $refId;
-    }
-   
-    
-    /**
-     *
-     *
-     */
-    public function addInternalNote(\Gedcom\Record\Note $note)
-    {
-        $this->notes[] = $note;
     }
 
     

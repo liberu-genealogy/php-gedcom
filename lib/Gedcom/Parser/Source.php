@@ -46,53 +46,25 @@ class Source
             {
                 $source->published = $parser->parseMultilineRecord();
             }
+            else if($record[0] == '1' && trim($record[1]) == 'REPO')
+            {
+                $source->repository = \Gedcom\Parser\SourceRepositoryCitation::parse($parser);
+            }
             else if($record[0] == '1' && trim($record[1]) == 'NOTE')
             {
-                if(isset($record[2]) && preg_match('/\@N([0-9]*)\@/i', $record[2]) > 0)
-                {
-                    $source->addNote($parser->normalizeIdentifier($record[2], 'N'));
-                }
+                $note = \Gedcom\Parser\Note::parse($parser);
+                
+                if(is_a($note, '\Gedcom\Record\Note\Reference'))
+                    $source->addNoteReference($note);
                 else
-                {
-                    $inlineNote = $record[2];
-                    
-                    //$this->_currentLine++;
-                    $parser->forward();
-                    
-                    while($parser->getCurrentLine() < $parser->getFileLength())
-                    {
-                        $record = $parser->getCurrentLineRecord();
-                        
-                        if((int)$record[0] <= 1)
-                        {
-                            //$this->_currentLine--;
-                            $parser->back();
-                            break;
-                        }
-                        
-                        switch($record[1])
-                        {
-                            case 'CONT':
-                                if(isset($record[2]))
-                                    $inlineNote .= "\n" . trim($record[2]);
-                            break;
-                            
-                            case 'CONC':
-                                if(isset($record[2]))
-                                    $inlineNote .= ' ' . trim($record[2]);
-                            break;
-                        }
-                        
-                        //$this->_currentLine++;
-                        $parser->forward();
-                    }
-                    
-                    $source->addInlineNote($inlineNote);
-                }
+                    $source->addNote($note);
+            }
+            else if($record[0] == '1' && trim($record[1]) == 'DATA')
+            {
+                $source->data = \Gedcom\Parser\Source\Data::parse($parser);
             }
             else if((int)$record[0] == 1 && trim($record[1]) == 'CHAN')
             {
-                //$this->_currentLine++;
                 $parser->forward();
                 
                 $source->change = new \Gedcom\Record\Change();
@@ -103,7 +75,6 @@ class Source
                     
                     if((int)$record[0] <= 1)
                     {
-                        //$this->_currentLine--;
                         $parser->back();
                         break;
                     }
@@ -122,7 +93,6 @@ class Source
                         $parser->logUnhandledRecord(__LINE__);
                     }
                     
-                    //$this->_currentLine++;
                     $parser->forward();
                 }
             }
@@ -136,8 +106,9 @@ class Source
                 $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }
             
-            //$this->_currentLine++;
             $parser->forward();
         }
+        
+        return $source;
     }
 }

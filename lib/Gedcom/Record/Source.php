@@ -9,19 +9,6 @@ class Source extends \Gedcom\Record
     public $title = null;
     public $author = null;
     public $published = null;
-    
-    public $notes = array();
-    
-    public $inlineNotes = array();
-    
-    public function addNote($noteId)
-    {
-        $this->notes[$noteId] = $noteId;
-    }
-    
-    public function addInlineNote($note)
-    {
-        $this->inlineNotes[] = $note;
-    }
+    public $repository = null;
     
 }

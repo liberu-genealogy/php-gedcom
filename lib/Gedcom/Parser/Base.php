@@ -62,8 +62,11 @@ abstract class Base
     {
         return $this->_gedcom;
     }
-
-
+    
+    
+    /**
+     *
+     */
     public function parseMultiLineRecord()
     {
         $linesAdvanced = 0;

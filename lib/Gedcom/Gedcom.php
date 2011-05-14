@@ -9,9 +9,12 @@ require_once __DIR__ . '/Record/Note.php';
 require_once __DIR__ . '/Record/Note/Reference.php';
 require_once __DIR__ . '/Record/Reference.php';
 require_once __DIR__ . '/Record/ReferenceNumber.php';
+require_once __DIR__ . '/Record/SourceRepositoryCitation.php';
+require_once __DIR__ . '/Record/SourceCallNumber.php';
 require_once __DIR__ . '/Record/Data.php';
 require_once __DIR__ . '/Record/Change.php';
 require_once __DIR__ . '/Record/Object.php';
+require_once __DIR__ . '/Record/Note/Text.php';
 require_once __DIR__ . '/Parser.php';
 
 use Gedcom\Record\Person;
@@ -19,7 +22,10 @@ use Gedcom\Record\Family;
 use Gedcom\Record\Source;
 use Gedcom\Record\Note;
 use Gedcom\Record\Reference;
+use Gedcom\Record\SourceRepositoryCitation;
+use Gedcom\Record\SourceCallNumber;
 use Gedcom\Record\Data;
+use Gedcom\Record\Note\Text;
 
 /**
  *
@@ -43,6 +49,29 @@ class Gedcom
         return $this->sources[$identifier];
     }
     
+    
+    /**
+     *
+     */
+    public function &createSourceRepositoryCitation($identifier)
+    {
+        $citation = new SourceRepositoryCitation();
+        $citation->repositoryId = $identifier;
+        
+        return $citation;
+    }
+    
+    
+    /**
+     *
+     */
+    public function &createSourceCallNumber($identifier)
+    {
+        $caln = new SourceCallNumber();
+        $caln->caln = $identifier;
+        
+        return $caln;
+    }
     
     /**
      *

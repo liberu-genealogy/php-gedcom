@@ -1002,48 +1002,12 @@ class Parser extends Parser\Base
      */
     protected function parseNoteRecord(&$person, $info, $level)
     {
-        $record = $this->getCurrentLineRecord();
+        $note = \Gedcom\Parser\Note::parse($this);
         
-        if(isset($record[2]) && preg_match('/\@N([0-9]*)\@/i', $info) > 0)
-        {
-            $person->addNote($this->normalizeIdentifier($info, 'N'));
-        }
+        if(is_a($note, '\Gedcom\Record\Note\Reference'))
+            $person->addNoteReference($note);
         else
-        {
-            //$note = $person->addInternalNote($info);
-
-            $note = new \Gedcom\Record\Note(); //$this->_gedcom->createNote();
-            $this->parseNote($note);
-
-            $person->addInternalNote($note);
-
-            /*$this->_currentLine++;
-
-            while($this->_currentLine < count($this->_file))
-            {
-                $record = $this->getCurrentLineRecord();
-
-                if((int)$record[0] <= $level)
-                {
-                    $this->_currentLine--;
-                    break;
-                }
-                else if(isset($record[1]) && trim($record[1]) == 'CONT')
-                {
-                    $note .= "\n" . (isset($record[2]) ? trim($record[2]) : '');
-                }
-                else if(isset($record[1]) && trim($record[1]) == 'CONC')
-                {
-                    $note .= (isset($record[2]) ? trim($record[2]) : '');
-                }
-                else
-                {
-                    $this->logUnhandledRecord(__LINE__);
-                }
-
-                $this->_currentLine++;
-            }*/
-        }
+            $person->addNote($note);
     }
 
 }
