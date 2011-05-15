@@ -2,6 +2,9 @@
 
 namespace Gedcom\Parser;
 
+require_once __DIR__ . '/Object/Embedded.php';
+require_once __DIR__ . '/Object/Reference.php';
+
 /**
  *
  *

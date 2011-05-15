@@ -56,14 +56,9 @@ class Person extends \Gedcom\Record
      *
      *
      */
-    public function &addEvent($type)
+    public function addEvent(&$event)
     {
-        $event = new Event();
-        $event->type = $type;
-        
         $this->events[] = &$event;
-        
-        return $event;
     }
     
     /**
