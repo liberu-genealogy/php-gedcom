@@ -2,580 +2,298 @@
 
 namespace Gedcom\Parser;
 
-require_once __DIR__ . '/Base.php';
 require_once __DIR__ . '/../Record/Person.php';
 
 /**
  *
  *
  */
-class Individual extends Base
+class Individual extends \Gedcom\Parser\Component
 {
-    protected $_individual = null;
-    
-   
-    /**
-     *
-     *
-     */
-    public function init()
-    {
-        $this->_individual = $this->_gedcom->createPerson(); //new \Gedcom\Record\Person();
-    }
+    protected static $_eventTypes = array('BIRT','CHR','BAPM','BLES','ADOP','GRAD','DEAT',
+        'BURI','EDUC', 'OCCU','CENS','RESI','IMMI','PROP','BARM','BASM','RETI','WILL');
     
     
     /**
      *
      *
      */
-    public function parseFile(&$fileLines, &$currentLine, $indent)
+    public static function &parse(\Gedcom\Parser &$parser)
     {
-        $this->_file = &$fileLines;
-        $this->_currentLine = &$currentLine;
-        $this->_indentationLevel = $indent;
+        $record = $parser->getCurrentLineRecord();
+        $identifier = $parser->normalizeIdentifier($record[2]);
+        $depth = (int)$record[0];
         
-        $this->_currentLine++;
+        $person = &$parser->getGedcom()->createPerson($identifier);
         
-        while($this->_currentLine < count($this->_file))
+        $parser->forward();
+        
+        while($parser->getCurrentLine() < $parser->getFileLength())
         {
-            $record = $this->getCurrentLineRecord('P');
+            $record = $parser->getCurrentLineRecord();
+            $recordType = strtoupper(trim($record[1]));
+            $currentDepth = (int)$record[0];
             
-            if($record[0] == '0')
+            if($currentDepth <= $depth)
             {
-                $this->_currentLine--;
+                $parser->back();
                 break;
             }
-            else if((int)$record[0] == 1 && trim($record[1]) == 'CHAN')
+            
+            switch($recordType)
             {
-                $this->_currentLine++;
+                case 'CHAN':
+                    $change = \Gedcom\Parser\Change::parse($parser);
+                    $person->change = &$change;
+                break;
                 
-                $this->_individual->change = new \Gedcom\Record\Change();
-                
-                while($this->_currentLine < count($this->_file))
-                {
-                    $record = $this->getCurrentLineRecord();
-                    
-                    if((int)$record[0] <= 1)
+                default:
+                    if(in_array($recordType, self::$_eventTypes))
                     {
-                        $this->_currentLine--;
-                        break;
-                    }
-                    else if((int)$record[0] == 2 && trim($record[1] == 'DATE'))
-                    {
-                        if(isset($record[2]))
-                            $this->_individual->change->date = trim($record[2]);
-                    }
-                    else if((int)$record[0] == 3 && trim($record[1] == 'TIME'))
-                    {
-                        if(isset($record[2]))
-                            $this->_individual->change->time = trim($record[2]);
+                        self::parseEventRecord($parser, $person, $recordType, isset($record[2]) ? trim($record[2]) : null);
                     }
                     else
                     {
-                        $this->logUnhandledRecord(__LINE__);
+                        $handler = 'parse' . $recordType . 'Record';
+                        
+                        if(is_callable(array(get_class(), $handler)))
+                        {
+                            if(isset($record[2]))
+                                call_user_func(array(get_class(), $handler), $parser, $person, trim($record[2]), 1);
+                            else
+                                call_user_func(array(get_class(), $handler), $parser, $person, 1);
+                        }
+                        else
+                        {
+                            // FIXME
+                            $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
+                        }
                     }
-                    
-                    $this->_currentLine++;
-                }
-            }
-            else if($record[0] == '1')
-            {
-                $recordType = trim($record[1]);
-                
-                $handler = 'parse' . $recordType . 'Record';
-                
-                if(is_callable(array($this, $handler)))
-                {
-                    if(isset($record[2]))
-                        $this->$handler($this->_individual, trim($record[2]));
-                    else
-                        $this->$handler($this->_individual);
-                }
-                else
-                {
-                    $this->logUnhandledRecord(__LINE__);
-                }
-            }
-            /*else if((int)$record[0] > 1)
-            {
-                // do nothing, this should be handled in cases above by
-                // passing off code execution to other classes
-            }*/
-            else
-            {
-                $this->logUnhandledRecord(__LINE__);
             }
             
-            $this->_currentLine++;
+            $parser->forward();
         }
+        
+        return $person;
+    }
+    
+    /**
+     *
+     */
+    protected static function parseNameRecord(&$parser, &$person, $value)
+    {
+        self::parseGenericInformation($parser, $person, 'name', $value);
+    }
+    
+    /**
+     *
+     */
+    protected static function parseRinRecord(&$parser, &$person, $value)
+    {
+        self::parseGenericInformation($parser, $person, 'rin', $value);
+    }
+    
+    /**
+     *
+     */
+    protected static function parseSexRecord(&$parser, &$person, $value)
+    {
+        self::parseGenericInformation($parser, $person, 'sex', $value);
+    }
+    
+    
+    /**
+     *
+     */
+    protected static function parseEvenRecord(&$parser, &$person)
+    {
+        self::parseEventRecord($parser, $person, 'unknown');
+    }
+    
+    
+    
 
-        return $this->_individual;
-    }
-    
-    
-    /**
-     *
-     */
-    protected function parseGenericInformation(&$person, $type, $data)
-    {
-        $this->_currentLine++;
-        
-        $attribute = $person->addAttribute($type, $data);
-        
-        while($this->_currentLine < count($this->_file))
-        {
-            $record = $this->getCurrentLineRecord();
-            
-            if((int)$record[0] <= 1)
-            {
-                $this->_currentLine--;
-                
-                return;
-            }
-            else if((int)$record[0] == 2)
-            {
-                $recordType = trim($record[1]);
-                
-                switch($recordType)
-                {
-                    case 'SOUR':
-                        $reference = $this->_gedcom->createReference($this->normalizeIdentifier($record[2], 'S'), $type);
-                        
-                        $this->parseReference($reference, $record[0]);
-                        
-                        $attribute->addReference($reference);
-                    break;
-                    
-                    default:
-                        $this->logUnhandledRecord(__LINE__);
-                }
-            }
-            /*else if((int)$record[0] > (int)$atLevel)
-            {
-                // do nothing, this should be handled in cases above by
-                // passing off code execution to other classes
-            }*/
-            else
-            {
-                $this->logUnhandledRecord(__LINE__);
-            }
-            
-            $this->_currentLine++;
-        }
-    }
-    
-    
-    /**
-     *
-     */
-    protected function parseNameRecord(&$person, $value)
-    {
-        $this->parseGenericInformation($person, 'name', $value);
-    }
-    
-    
-    /**
-     *
-     */
-    protected function parseRinRecord(&$person, $value)
-    {
-        $this->parseGenericInformation($person, 'rin', $value);
-    }
-    
-    
-    /**
-     *
-     */
-    protected function parseSexRecord(&$person, $value)
-    {
-        $this->parseGenericInformation($person, 'sex', $value);
-    }
-    
-    
-    /**
-     *
-     */
-    protected function parseFamcRecord(&$person)
-    {
-        $record = $this->getCurrentLineRecord();
-        
-        $refId = trim(trim($record[2]), '@F');
-        
-        $person->famc[$refId] = $refId;
-        
-        $this->_currentLine++;
-        
-        while($this->_currentLine < count($this->_file))
-        {
-            $record = $this->getCurrentLineRecord();
-            
-            if((int)$record[0] <= 1)
-            {
-                $this->_currentLine--;
-                
-                break;
-            }
-            else
-            {
-                $this->logUnhandledRecord(__LINE__);
-            }
-            
-            $this->_currentLine++;
-        }
-    }
-    
-    
-    /**
-     *
-     */
-    protected function parseFamsRecord(&$person)
-    {
-        $record = $this->getCurrentLineRecord();
-        
-        $refId = trim(trim($record[2]), '@F');
-        
-        $person->fams[$refId] = $refId;
-        
-        $this->_currentLine++;
-        
-        while($this->_currentLine < count($this->_file))
-        {
-            $record = $this->getCurrentLineRecord();
-            
-            if((int)$record[0] <= 1)
-            {
-                $this->_currentLine--;
-                
-                break;
-            }
-            else
-            {
-                $this->logUnhandledRecord(__LINE__);
-            }
-            
-            $this->_currentLine++;
-        }
-    }
     
     
     /**
      *
      *
      */
-    protected function parseObjeRecord(&$person)
+    protected static function parseEventRecord(&$parser, &$person, $eventType = null, $additionalAttr = array())
     {
-        $record = $this->getCurrentLineRecord();
-       
-        $this->_currentLine++;
-       
-        $parser = new \Gedcom\Parser\Object();
-        
-        $person->objects[] = $parser->parseFile($this->_file, $this->_currentLine, 1);
-
-        $this->_errorLog += $parser->getErrors();
-    }
-    
-    
-    /**
-     *
-     */
-    protected function parseBirtRecord(&$person)
-    {
-        $this->parseEventRecord($person, 'birth');
-    }
-    
-    
-    /**
-     *
-     */
-    protected function parseChrRecord(&$person)
-    {
-        $this->parseEventRecord($person, 'christening');
-    }
-    
-    
-    /**
-     *
-     */
-    protected function parseReference(&$reference, $atLevel)
-    {
-        $this->_currentLine++;
-        
-        while($this->_currentLine < count($this->_file))
-        {
-            $record = $this->getCurrentLineRecord();
-            
-            if((int)$record[0] <= (int)$atLevel)
-            {
-                $this->_currentLine--;
-                
-                return;
-            }
-            else if((int)$record[0] == ((int)$atLevel) + 1)
-            {
-                $recordType = trim($record[1]);
-                
-                switch($recordType)
-                {
-                    case 'PAGE':
-                        $reference->page = trim($record[2]);
-                    break;
-                
-                    case 'DATA':
-                        $data = $reference->addData();
-                        
-                        $this->parseData($data, $record[0]);
-                    break;
-                    
-                    default:
-                        $this->logUnhandledRecord(__LINE__);
-                }
-            }
-            /*else if((int)$record[0] > (int)$atLevel)
-            {
-                // do nothing, this should be handled in cases above by
-                // passing off code execution to other classes
-            }*/
-            else
-            {
-                $this->logUnhandledRecord(__LINE__);
-            }
-            
-            $this->_currentLine++;
-        }
-    }
-    
-    
-    /**
-     *
-     */
-    protected function parseData(&$data, $atLevel)
-    {
-        $this->_currentLine++;
-        
-        while($this->_currentLine < count($this->_file))
-        {
-            $record = $this->getCurrentLineRecord();
-            
-            if((int)$record[0] <= (int)$atLevel)
-            {
-                $this->_currentLine--;
-                
-                return;
-            }
-            else if((int)$record[0] > ((int)$atLevel))
-            {
-                $recordType = trim($record[1]);
-                
-                switch($recordType)
-                {
-                    case 'TEXT':
-                        $data->text = trim($record[2]);
-                    break;
-                    
-                    case 'CONT':
-                        $data->text .= "\n" . (isset($record[2]) ? trim($record[2]) : '');
-                    break;
-                    
-                    case 'CONC':
-                        $data->text .= trim($record[2]);
-                    break;
-                    
-                    default:
-                        $this->logUnhandledRecord(__LINE__);
-                }
-            }
-            /*else if((int)$record[0] > (int)$atLevel)
-            {
-                // do nothing, this should be handled in cases above by
-                // passing off code execution to other classes
-            }*/
-            else
-            {
-                $this->logUnhandledRecord(__LINE__);
-            }
-            
-            $this->_currentLine++;
-        }
-    }
-    
-    
-    /**
-     *
-     */
-    protected function parseBapmRecord(&$person)
-    {
-        $this->parseEventRecord($person, 'baptism');
-    }
-    
-    
-    /**
-     *
-     */
-    protected function parseDeatRecord(&$person)
-    {
-        $this->parseEventRecord($person, 'death', array('CAUS' => 'cause'));
-    }
-    
-    
-    /**
-     *
-     */
-    protected function parseBuriRecord(&$person)
-    {
-        $this->parseEventRecord($person, 'burial');
-    }
-    
-    
-    /**
-     *
-     */
-    protected function parseEducRecord(&$person)
-    {
-        $this->parseEventRecord($person, 'education');
-    }
-    
-    
-    /**
-     *
-     */
-    protected function parseOccuRecord(&$person)
-    {
-        $this->parseEventRecord($person, 'occupation');
-    }
-    
-    
-    /**
-     *
-     *
-     */
-    protected function parseEventRecord(&$person, $eventType = null, $additionalAttr = array())
-    {
-        $this->_currentLine++;
+        $record = $parser->getCurrentLineRecord();
+        $depth = (int)$record[0];
         
         $event = $person->addEvent($eventType);
         
-        while($this->_currentLine < count($this->_file))
+        $parser->forward();
+        
+        while($parser->getCurrentLine() < $parser->getFileLength())
         {
-            $record = $this->getCurrentLineRecord();
+            $record = $parser->getCurrentLineRecord();
+            $currentDepth = (int)$record[0];
+            $recordType = strtoupper(trim($record[1]));
             
-            if((int)$record[0] < 2)
+            if($currentDepth <= $depth)
             {
-                $this->_currentLine--;
-                
+                $parser->back();
                 break;
             }
-            else if($record[0] == '2')
+            
+            switch($recordType)
             {
-                $recordType = trim($record[1]);
+                case 'TYPE':
+                    $event->type = trim($record[2]);
+                break;
                 
-                switch($recordType)
-                {
-                    case 'TYPE':
-                        $event->type = trim($record[2]);
-                    break;
+                case 'DATE':
+                    $event->date = trim($record[2]);
+                break;
+                
+                case 'PLAC':
+                    if(!empty($record[2]))
+                        $event->place = trim($record[2]);
+                break;
+                
+                case 'SOUR':
+                    $reference = $parser->getGedcom()->createReference($parser->normalizeIdentifier($record[2]), $eventType);
                     
-                    case 'DATE':
-                        $event->date = trim($record[2]);
-                    break;
+                    self::parseReference($parser, $reference, $record[0]);
                     
-                    case 'PLAC':
-                        if(!empty($record[2]))
-                            $event->place = trim($record[2]);
-                    break;
+                    $event->addReference($reference);
+                break;
+                
+                case 'NOTE':
+                    $note = \Gedcom\Parser\Note::parse($parser);
                     
-                    case 'SOUR':
-                        $reference = $this->_gedcom->createReference($this->normalizeIdentifier($record[2], 'S'), $eventType);
-                        
-                        $this->parseReference($reference, $record[0]);
-                        
-                        $event->addReference($reference);
-                    break;
-                    
-                    default:
-                        if(isset($additionalAttr[$recordType]))
-                            $event->$additionalAttr[$recordType] = trim($record[2]);
-                        else
-                            $this->logUnhandledRecord(__LINE__);
-                }
-            }
-            /*else if((int)$record[0] > 2)
-            {
-                // do nothing, this should be handled in cases above by
-                // passing off code execution to other classes
-            }*/
-            else
-            {
-                $this->logUnhandledRecord( __LINE__);
+                    if(is_a($note, '\Gedcom\Record\Note\Reference'))
+                        $event->addNoteReference($note);
+                    else
+                        $event->addNote($note);
+                break;
+                
+                default:
+                    // FIXME
+                    /*
+                    if(isset($additionalAttr[$recordType]))
+                        $event->$additionalAttr[$recordType] = trim($record[2]);
+                    else
+                    {*/
+                        // FIXME
+                        $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
+                    //}
             }
             
-            $this->_currentLine++;
+            $parser->forward();
         }
     }
+
     
     
     /**
      *
-     */
-    protected function parseCensRecord(&$person)
-    {
-        $this->parseEventRecord($person, 'census');
-    }
-    
-    
-    /**
      *
      */
-    protected function parseEvenRecord(&$person)
+    protected static function parseGenericInformation(&$parser, &$person, $type, $data)
     {
-        $this->parseEventRecord($person, 'unknown');
-    }
-    
-    
-    /**
-     *
-     */
-    protected function parseResiRecord(&$person)
-    {
-        $this->parseEventRecord($person, 'residence');
-    }
-    
-    
-    /**
-     *
-     */
-    protected function parseImmiRecord(&$person)
-    {
-        $this->parseEventRecord($person, 'immigration');
-    }
-    
-    
-    /**
-     *
-     */
-    protected function parsePropRecord(&$person)
-    {
-        $this->parseEventRecord($person, 'property');
-    }
-    
-    
-    /**
-     *
-     */
-    protected function parseNoteRecord(&$person)
-    {
-        $record = $this->getCurrentLineRecord();
+        $record = $parser->getCurrentLineRecord();
+        $depth = (int)$record[0];
         
-        if(isset($record[2]) && preg_match('/\@N([0-9]*)\@/i', $record[2]) > 0)
+        $attribute = $person->addAttribute($type, $data);
+        
+        $parser->forward();
+        
+        while($parser->getCurrentLine() < $parser->getFileLength())
         {
-            $person->addNote($this->normalizeIdentifier($record[2], 'N'));
-        }
-        else
-        {
-            echo '<pre>' . print_r(__FILE__ . "/" . __LINE__ . ": ", true) . '</pre>';
-            echo '<pre>' . print_r($record, true) . '</pre>';
+            $record = $parser->getCurrentLineRecord();
+            $currentDepth = (int)$record[0];
+            $recordType = strtoupper(trim($record[1]));
+            
+            if($currentDepth <= $depth)
+            {
+                $parser->back();
+                break;
+            }
+            
+            switch($recordType)
+            {
+                case 'SOUR':
+                    $reference = $parser->getGedcom()->createReference($parser->normalizeIdentifier($record[2]), $type);
+                    
+                    self::parseReference($parser, $reference, $record[0]);
+                    
+                    $attribute->addReference($reference);
+                break;
+                
+                case 'NOTE':
+                    $note = \Gedcom\Parser\Note::parse($parser);
+                    
+                    if(is_a($note, '\Gedcom\Record\Note\Reference'))
+                        $attribute->addNoteReference($note);
+                    else
+                        $attribute->addNote($note);
+                break;
+                
+                default:
+                    // FIXME
+                    //$this->logUnhandledRecord(__LINE__);
+            }
+            
+            $parser->forward();
         }
     }
-
+    
+    
+    /**
+     *
+     *
+     */
+    protected static function parseReference(&$parser, &$reference)
+    {
+        $record = $parser->getCurrentLineRecord();
+        $depth = (int)$record[0];
+        
+        $parser->forward();
+        
+        while($parser->getCurrentLine() < $parser->getFileLength())
+        {
+            $record = $parser->getCurrentLineRecord();
+            $currentDepth = (int)$record[0];
+            $recordType = strtoupper(trim($record[1]));
+            
+            if($currentDepth <= $depth)
+            {
+                $parser->back();
+                break;
+            }
+            
+            switch($recordType)
+            {
+                case 'PAGE':
+                    $reference->page = trim($record[2]);
+                break;
+                
+                case 'DATA':
+                    $data = $reference->addData();
+                    // FIXME (missing method):
+                    //self::parseData($parser, $data, $record[0]);
+                break;
+                
+                case 'NOTE':
+                    $note = \Gedcom\Parser\Note::parse($parser);
+                    
+                    if(is_a($note, '\Gedcom\Record\Note\Reference'))
+                        $reference->addNoteReference($note);
+                    else
+                        $reference->addNote($note);
+                break;
+                
+                default:
+                    // FIXME
+                    //$this->logUnhandledRecord(__LINE__);
+            }
+            
+            $parser->forward();
+        }
+    }
 }
-
