@@ -24,7 +24,9 @@ class Text
         {
             $record = $parser->getCurrentLineRecord();
             
-            if((int)$record[0] <= $depth)
+            $currentDepth = (int)$record[0];
+            
+            if($currentDepth <= $depth)
             {
                 $parser->back();
                 break;
@@ -40,6 +42,10 @@ class Text
                 case 'CONC':
                     if(isset($record[2]))
                         $text->note .= ' ' . trim($record[2]);
+                break;
+            
+                case 'SOUR':
+                    // FIXME
                 break;
                 
                 default:

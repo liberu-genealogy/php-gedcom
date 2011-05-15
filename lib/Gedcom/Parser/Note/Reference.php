@@ -34,6 +34,10 @@ class Reference
             
             switch($record[1])
             {
+                case 'SOUR':
+                    // FIXME
+                break;
+                
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }
