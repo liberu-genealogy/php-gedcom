@@ -72,6 +72,11 @@ class Source
                 else
                     $source->addObject($object);
             }
+            else if((int)$record[0] == 1 && trim($record[1]) == 'REFN')
+            {
+                $referenceNumber = \Gedcom\Parser\ReferenceNumber::parse($parser);
+                $source->addReferenceNumber($referenceNumber);
+            }
             else if((int)$record[0] == 1 && trim($record[1]) == 'CHAN')
             {
                 $parser->forward();

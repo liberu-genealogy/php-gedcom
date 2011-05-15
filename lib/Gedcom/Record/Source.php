@@ -11,4 +11,13 @@ class Source extends \Gedcom\Record
     public $published = null;
     public $repository = null;
     
+    public $referenceNumbers = array();
+    
+    /**
+     *
+     */
+    public function addReferenceNumber(\Gedcom\Record\ReferenceNumber &$refn)
+    {
+        $this->referenceNumbers[] = $refn;
+    }
 }
