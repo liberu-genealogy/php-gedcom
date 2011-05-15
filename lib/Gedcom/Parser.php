@@ -748,16 +748,15 @@ class Parser extends Parser\Base
      */
     protected function parseData(&$data, $atLevel)
     {
-        $this->_currentLine++;
+        $this->forward();
         
-        while($this->_currentLine < count($this->_file))
+        while($this->getCurrentLine() < $this->getFileLength())
         {
             $record = $this->getCurrentLineRecord();
             
             if((int)$record[0] <= (int)$atLevel)
             {
-                $this->_currentLine--;
-                
+                $this->back();
                 return;
             }
             else if((int)$record[0] > ((int)$atLevel))
@@ -767,33 +766,23 @@ class Parser extends Parser\Base
                 switch($recordType)
                 {
                     case 'TEXT':
-                        $data->text = trim($record[2]);
+                        $data->text = $this->parseMultiLineRecord();
                     break;
                     
-                    case 'CONT':
-                        $data->text .= "\n" . (isset($record[2]) ? trim($record[2]) : '');
-                    break;
-                    
-                    case 'CONC':
-                        $data->text .= trim($record[2]);
+                    case 'DATE':
+                        $data->date = trim($record[2]);
                     break;
                     
                     default:
                         $this->logUnhandledRecord(__LINE__);
                 }
             }
-            /*else if((int)$record[0] > (int)$atLevel)
-            {
-                // do nothing, this should be handled in cases above by
-                // passing off code execution to other classes
-            }*/
             else
             {
-                // FIXME
-                //$this->logUnhandledRecord(__LINE__);
+                $this->logUnhandledRecord(__LINE__);
             }
             
-            $this->_currentLine++;
+            $this->forward();
         }
     }
     

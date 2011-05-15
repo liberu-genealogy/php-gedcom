@@ -41,6 +41,9 @@ class Text
                     if(isset($record[2]))
                         $text->note .= ' ' . trim($record[2]);
                 break;
+                
+                default:
+                    $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }
             
             $parser->forward();

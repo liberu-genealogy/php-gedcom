@@ -7,5 +7,6 @@ require_once __DIR__ . '/../Record.php';
 class Data extends \Gedcom\Record
 {
     public $text = null;
+    public $date = null;
     
 }

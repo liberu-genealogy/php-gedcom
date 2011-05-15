@@ -34,7 +34,8 @@ class Reference
             
             switch($record[1])
             {
-                
+                default:
+                    $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }
             
             $parser->forward();
