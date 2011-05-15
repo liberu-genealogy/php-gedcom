@@ -73,7 +73,7 @@ abstract class Base
         
         $record = $this->getCurrentLineRecord();
         
-        $depth = $record[0];
+        $depth = (int)$record[0];
         
         $data = trim($record[2]);
         
@@ -82,19 +82,23 @@ abstract class Base
         while($this->_currentLine < count($this->_file))
         {
             $record = $this->getCurrentLineRecord();
+            $recordType = strtoupper(trim($record[1]));
+            $currentDepth = (int)$record[0];
             
-            if((int)$record[0] <= (int)$depth)
+            if($currentDepth <= $depth)
             {
                 if($linesAdvanced > 1)
                     $this->back();
                 break;
             }
             
-            switch($record[1])
+            switch($recordType)
             {
                 case 'CONT':
+                    $data .= "\n";
+                    
                     if(isset($record[2]))
-                        $data .= "\n" . trim($record[2]);
+                        $data .= trim($record[2]);
                 break;
                 
                 case 'CONC':
@@ -108,6 +112,7 @@ abstract class Base
             }
             
             $this->forward();
+            
             $linesAdvanced++;
         }
         

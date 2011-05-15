@@ -2,20 +2,18 @@
 
 namespace Gedcom\Parser\Note;
 
-
 /**
  *
  *
  */
-class Reference
+class Reference extends \Gedcom\Parser\Component
 {
-    public static function parse(&$parser)
+    public static function &parse(\Gedcom\Parser &$parser)
     {
         $record = $parser->getCurrentLineRecord();
-        
         $depth = (int)$record[0];
         
-        $identifier = str_replace('@', '', $record[2]);
+        $identifier = $parser->normalizeIdentifier($record[2]);
         
         $reference = new \Gedcom\Record\Note\Reference();
         $reference->refId = $identifier;
@@ -25,14 +23,16 @@ class Reference
         while($parser->getCurrentLine() < $parser->getFileLength())
         {
             $record = $parser->getCurrentLineRecord();
+            $recordType = strtoupper(trim($record[1]));
+            $currentDepth = (int)$record[0];
             
-            if((int)$record[0] <= $depth)
+            if($currentDepth <= $depth)
             {
                 $parser->back();
                 break;
             }
             
-            switch($record[1])
+            switch($recordType)
             {
                 case 'SOUR':
                     // FIXME

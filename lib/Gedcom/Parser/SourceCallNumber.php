@@ -2,20 +2,21 @@
 
 namespace Gedcom\Parser;
 
-//require_once __DIR__ . '/Base.php';
-//require_once __DIR__ . '/../Record/Source.php';
-
 /**
  *
  *
  */
-class SourceCallNumber
+class SourceCallNumber extends \Gedcom\Parser\Component
 {
-    public static function parse(&$parser)
+    
+    /**
+     *
+     *
+     */
+    public static function &parse(\Gedcom\Parser &$parser)
     {
         $record = $parser->getCurrentLineRecord();
-        $identifier = str_replace('@', '', $record[2]);
-        
+        $identifier = $parser->normalizeIdentifier($record[2]);
         $depth = (int)$record[0];
         
         $caln = $parser->getGedcom()->createSourceCallNumber($identifier);
@@ -25,6 +26,7 @@ class SourceCallNumber
         while($parser->getCurrentLine() < $parser->getFileLength())
         {
             $record = $parser->getCurrentLineRecord();
+            $recordType = strtoupper(trim($record[1]));
             $lineDepth = (int)$record[0];
             
             if($lineDepth <= $depth)
@@ -32,13 +34,15 @@ class SourceCallNumber
                 $parser->back();
                 break;
             }
-            else if($lineDepth == $depth + 1 && trim($record[1]) == 'MEDI')
+            
+            switch($recordType)
             {
-                // FIXME
-            }
-            else
-            {
-                $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
+                case 'MEDI':
+                    // FIXME
+                break;
+                
+                default:
+                    $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }
             
             $parser->forward();

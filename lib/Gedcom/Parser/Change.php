@@ -2,13 +2,17 @@
 
 namespace Gedcom\Parser;
 
-
 /**
  *
  *
  */
-class Change
+class Change extends \Gedcom\Parser\Component
 {
+    
+    /**
+     *
+     *
+     */
     public static function &parse(\Gedcom\Parser &$parser)
     {
         $record = $parser->getCurrentLineRecord();

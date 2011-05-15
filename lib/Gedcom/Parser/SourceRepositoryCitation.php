@@ -2,17 +2,21 @@
 
 namespace Gedcom\Parser;
 
-
 /**
  *
  *
  */
-class SourceRepositoryCitation
+class SourceRepositoryCitation extends \Gedcom\Parser\Component
 {
-    public static function parse(&$parser)
+    
+    /**
+     *
+     *
+     */
+    public static function &parse(\Gedcom\Parser &$parser)
     {
         $record = $parser->getCurrentLineRecord();
-        $identifier = str_replace('@', '', $record[2]);
+        $identifier = $parser->normalizeIdentifier($record[2]);
         
         $depth = (int)$record[0];
         
@@ -23,29 +27,32 @@ class SourceRepositoryCitation
         while($parser->getCurrentLine() < $parser->getFileLength())
         {
             $record = $parser->getCurrentLineRecord();
-            $lineDepth = (int)$record[0];
+            $currentDepth = (int)$record[0];
+            $recordType = strtoupper(trim($record[1]));
             
-            if($lineDepth <= $depth)
+            if($currentDepth <= $depth)
             {
                 $parser->back();
                 break;
             }
-            else if($lineDepth == $depth + 1 && trim($record[1]) == 'CALN')
+            
+            switch($recordType)
             {
-                $citation->caln[] = \Gedcom\Parser\SourceCallNumber::parse($parser);
-            }
-            else if($lineDepth == $depth + 1 && trim($record[1]) == 'NOTE')
-            {
-                $note = \Gedcom\Parser\Note::parse($parser);
+                case 'CALN': 
+                    $citation->caln[] = \Gedcom\Parser\SourceCallNumber::parse($parser);
+                break;
                 
-                if(is_a($note, '\Gedcom\Record\Note\Reference'))
-                    $citation->addNoteReference($note);
-                else
-                    $citation->addNote($note);
-            }
-            else
-            {
-                $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
+                case 'NOTE':
+                    $note = \Gedcom\Parser\Note::parse($parser);
+                    
+                    if(is_a($note, '\Gedcom\Record\Note\Reference'))
+                        $citation->addNoteReference($note);
+                    else
+                        $citation->addNote($note);
+                break;
+                
+                default:
+                    $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }
             
             $parser->forward();

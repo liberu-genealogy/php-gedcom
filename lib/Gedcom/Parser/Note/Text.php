@@ -2,17 +2,20 @@
 
 namespace Gedcom\Parser\Note;
 
-
 /**
  *
  *
  */
-class Text
+class Text extends \Gedcom\Parser\Component
 {
-    public static function parse(&$parser)
+    
+    /**
+     *
+     *
+     */
+    public static function &parse(\Gedcom\Parser &$parser)
     {
         $record = $parser->getCurrentLineRecord();
-        
         $depth = (int)$record[0];
         
         $text = new \Gedcom\Record\Note\Text();
@@ -23,7 +26,7 @@ class Text
         while($parser->getCurrentLine() < $parser->getFileLength())
         {
             $record = $parser->getCurrentLineRecord();
-            
+            $recordType = strtoupper(trim($record[1]));
             $currentDepth = (int)$record[0];
             
             if($currentDepth <= $depth)
@@ -32,11 +35,13 @@ class Text
                 break;
             }
             
-            switch($record[1])
+            switch($recordType)
             {
                 case 'CONT':
+                    $text->note .= "\n";
+                    
                     if(isset($record[2]))
-                        $text->note .= "\n" . trim($record[2]);
+                        $text->note .= trim($record[2]);
                 break;
                 
                 case 'CONC':

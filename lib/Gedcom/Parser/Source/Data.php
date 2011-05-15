@@ -6,12 +6,16 @@ namespace Gedcom\Parser\Source;
  *
  *
  */
-class Data
+class Data extends \Gedcom\Parser\Component
 {
-    public static function parse(&$parser)
+    
+    /**
+     *
+     *
+     */
+    public static function &parse(\Gedcom\Parser &$parser)
     {
         $record = $parser->getCurrentLineRecord();
-        
         $depth = (int)$record[0];
         
         $data = new \Gedcom\Record\Source\Data();
@@ -21,14 +25,16 @@ class Data
         while($parser->getCurrentLine() < $parser->getFileLength())
         {
             $record = $parser->getCurrentLineRecord();
+            $recordType = strtoupper(trim($record[1]));
+            $currentDepth = (int)$record[0];
             
-            if((int)$record[0] <= $depth)
+            if($currentDepth <= $depth)
             {
                 $parser->back();
                 break;
             }
             
-            switch($record[1])
+            switch($recordType)
             {
                 case 'EVEN':
                     $data->events[] = \Gedcom\Parser\Source\Data\Event::parse($parser);

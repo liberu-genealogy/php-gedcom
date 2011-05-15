@@ -4,7 +4,6 @@ namespace Gedcom\Record\Note;
 
 require_once __DIR__ . '/../../Record.php';
 
-
 /**
  *
  *

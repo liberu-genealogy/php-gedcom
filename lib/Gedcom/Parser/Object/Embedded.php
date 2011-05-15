@@ -2,17 +2,20 @@
 
 namespace Gedcom\Parser\Object;
 
-
 /**
  *
  *
  */
-class Embedded
+class Embedded extends \Gedcom\Parser\Component
 {
-    public static function parse(&$parser)
+    
+    /**
+     *
+     *
+     */
+    public static function &parse(\Gedcom\Parser &$parser)
     {
         $record = $parser->getCurrentLineRecord();
-        
         $depth = (int)$record[0];
         
         $embedded = new \Gedcom\Record\Object\Embedded();
@@ -22,14 +25,16 @@ class Embedded
         while($parser->getCurrentLine() < $parser->getFileLength())
         {
             $record = $parser->getCurrentLineRecord();
+            $recordType = strtoupper(trim($record[1]));
+            $currentDepth = (int)$record[0];
             
-            if((int)$record[0] <= $depth)
+            if($currentDepth <= $depth)
             {
                 $parser->back();
                 break;
             }
             
-            switch($record[1])
+            switch($recordType)
             {
                 case 'TITL':
                     $embedded->title = trim($record[2]);
