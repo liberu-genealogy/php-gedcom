@@ -669,6 +669,9 @@ class Parser extends Parser\Base
      */
     protected function parseObjeRecord(&$person)
     {
+        // FIXME
+        
+        /*
         $record = $this->getCurrentLineRecord();
        
         $this->_currentLine++;
@@ -678,6 +681,7 @@ class Parser extends Parser\Base
         $person->objects[] = $parser->parseFile($this->_file, $this->_currentLine, 1);
 
         $this->_errorLog += $parser->getErrors();
+        */
     }
     
     

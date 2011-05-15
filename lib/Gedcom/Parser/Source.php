@@ -63,6 +63,15 @@ class Source
             {
                 $source->data = \Gedcom\Parser\Source\Data::parse($parser);
             }
+            else if($record[0] == '1' && trim($record[1]) == 'OBJE')
+            {
+                $object = \Gedcom\Parser\Object::parse($parser);
+                
+                if(is_a($object, '\Gedcom\Record\Object\Reference'))
+                    $source->addObjectReference($object);
+                else
+                    $source->addObject($object);
+            }
             else if((int)$record[0] == 1 && trim($record[1]) == 'CHAN')
             {
                 $parser->forward();
