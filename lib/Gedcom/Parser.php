@@ -406,37 +406,10 @@ class Parser extends Parser\Base
                     break;
                    
                     case 'REFN':
-                        $reference = new \Gedcom\Record\ReferenceNumber();
-                        
-                        if(isset($record[2]))
-                            $reference->number = trim($record[2]);
-
-                        $this->_currentLine++;
-
-                        while($this->_currentLine < count($this->_file))
-                        {
-                            $subRecord = $this->getCurrentLineRecord();
-
-                            if((int)$subRecord[0] <= (int)$record[0])
-                            {
-                                $this->_currentLine--;
-                                break;
-                            }
-                            else if(isset($subRecord[1]) && trim($subRecord[1]) == 'TYPE')
-                            {
-                                if(isset($subRecord[2]))
-                                    $reference->type = trim($subRecord[2]);
-                            }
-                            else
-                            {
-                                // FIXME
-                                //$this->logUnhandledRecord(__LINE__);
-                            }
-                            
-                            $this->_currentLine++;
-                        }
+                        $reference = \Gedcom\Parser\ReferenceNumber::parse($this);
+                        $note->addReferenceNumber($reference);
                     break;
-
+                    
                     case 'CHAN':
                         $this->_currentLine++;
                         
