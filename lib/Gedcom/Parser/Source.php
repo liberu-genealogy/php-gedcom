@@ -8,10 +8,16 @@ namespace Gedcom\Parser;
  */
 class Source
 {
+    
+    /**
+     *
+     *
+     */
     public static function parse(&$parser)
     {
         $record = $parser->getCurrentLineRecord();
-        $identifier = str_replace('@', '', $record[2]);
+        $identifier = $parser->normalizeIdentifier($record[2]);
+        $depth = (int)$record[0];
         
         $source = &$parser->getGedcom()->createSource($identifier);
         
@@ -19,105 +25,76 @@ class Source
         
         while($parser->getCurrentLine() < $parser->getFileLength())
         {
-            $record = $parser->getCurrentLineRecord('S');
+            $record = $parser->getCurrentLineRecord();
+            $currentDepth = (int)$record[0];
+            $recordType = strtoupper(trim($record[1]));
             
-            if($record[0] == '0')
+            if($currentDepth <= $depth)
             {
                 $parser->back();
                 break;
             }
-            else if($record[0] == '1' && trim($record[1]) == 'TITL')
+            
+            switch($recordType)
             {
-                $source->title = $parser->parseMultilineRecord();
-            }
-            else if($record[0] == '1' && trim($record[1]) == 'RIN')
-            {
-                $source->rin = trim($record[2]);
-            }
-            else if($record[0] == '1' && trim($record[1]) == 'AUTH')
-            {
-                $source->author = $parser->parseMultilineRecord();
-            }
-            else if($record[0] == '1' && trim($record[1]) == 'TEXT')
-            {
-                $source->text = $parser->parseMultilineRecord();
-            }
-            else if($record[0] == '1' && trim($record[1]) == 'PUBL')
-            {
-                $source->published = $parser->parseMultilineRecord();
-            }
-            else if($record[0] == '1' && trim($record[1]) == 'REPO')
-            {
-                $source->repository = \Gedcom\Parser\SourceRepositoryCitation::parse($parser);
-            }
-            else if($record[0] == '1' && trim($record[1]) == 'NOTE')
-            {
-                $note = \Gedcom\Parser\Note::parse($parser);
+                case 'TITL':
+                    $source->title = $parser->parseMultilineRecord();
+                break;
                 
-                if(is_a($note, '\Gedcom\Record\Note\Reference'))
-                    $source->addNoteReference($note);
-                else
-                    $source->addNote($note);
-            }
-            else if($record[0] == '1' && trim($record[1]) == 'DATA')
-            {
-                $source->data = \Gedcom\Parser\Source\Data::parse($parser);
-            }
-            else if($record[0] == '1' && trim($record[1]) == 'OBJE')
-            {
-                $object = \Gedcom\Parser\Object::parse($parser);
+                case 'RIN':
+                    $source->rin = trim($record[2]);
+                break;
                 
-                if(is_a($object, '\Gedcom\Record\Object\Reference'))
-                    $source->addObjectReference($object);
-                else
-                    $source->addObject($object);
-            }
-            else if((int)$record[0] == 1 && trim($record[1]) == 'REFN')
-            {
-                $referenceNumber = \Gedcom\Parser\ReferenceNumber::parse($parser);
-                $source->addReferenceNumber($referenceNumber);
-            }
-            else if((int)$record[0] == 1 && trim($record[1]) == 'CHAN')
-            {
-                $parser->forward();
+                case 'AUTH':
+                    $source->author = $parser->parseMultilineRecord();
+                break;
                 
-                $source->change = new \Gedcom\Record\Change();
+                case 'TEXT':
+                    $source->text = $parser->parseMultilineRecord();
+                break;
                 
-                while($parser->getCurrentLine() < $parser->getFileLength())
-                {
-                    $record = $parser->getCurrentLineRecord();
+                case 'PUBL':
+                    $source->published = $parser->parseMultilineRecord();
+                break;
+                
+                case 'REPO':
+                    $source->repository = \Gedcom\Parser\SourceRepositoryCitation::parse($parser);
+                break;
+                
+                case 'NOTE':
+                    $note = \Gedcom\Parser\Note::parse($parser);
                     
-                    if((int)$record[0] <= 1)
-                    {
-                        $parser->back();
-                        break;
-                    }
-                    else if((int)$record[0] == 2 && trim($record[1] == 'DATE'))
-                    {
-                        if(isset($record[2]))
-                            $source->date = trim($record[2]);
-                    }
-                    else if((int)$record[0] == 3 && trim($record[1] == 'TIME'))
-                    {
-                        if(isset($record[2]))
-                            $source->time = trim($record[2]);
-                    }
+                    if(is_a($note, '\Gedcom\Record\Note\Reference'))
+                        $source->addNoteReference($note);
                     else
-                    {
-                        $parser->logUnhandledRecord(__LINE__);
-                    }
+                        $source->addNote($note);
+                break;
+                
+                case 'DATA':
+                    $source->data = \Gedcom\Parser\Source\Data::parse($parser);
+                break;
+                
+                case 'OBJE':
+                    $object = \Gedcom\Parser\Object::parse($parser);
                     
-                    $parser->forward();
-                }
-            }
-            /*else if((int)$record[0] > 1)
-            {
-                // do nothing, this should be handled in cases above by
-                // passing off code execution to other classes
-            }*/
-            else
-            {
-                $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
+                    if(is_a($object, '\Gedcom\Record\Object\Reference'))
+                        $source->addObjectReference($object);
+                    else
+                        $source->addObject($object);
+                break;
+                
+                case 'REFN':
+                    $referenceNumber = \Gedcom\Parser\ReferenceNumber::parse($parser);
+                    $source->addReferenceNumber($referenceNumber);
+                break;
+                
+                case 'CHAN':
+                    $change = \Gedcom\Parser\Change::parse($parser);
+                    $source->change = &$change;
+                break;
+                
+                default:
+                    $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }
             
             $parser->forward();

@@ -161,15 +161,15 @@ abstract class Base
      *
      *
      */
-    public function normalizeIdentifier($identifier, $tag)
+    public function normalizeIdentifier($identifier/*, $tag*/)
     {
         $identifier = trim($identifier);
         $identifier = trim($identifier, '@');
         
-        if(substr($identifier, 0, strlen($tag)) !== $tag)
+        /*if(substr($identifier, 0, strlen($tag)) !== $tag)
             throw new \Exception('Tag Mismatch: [' . $tag . ':' . $identifier . '] on ' . $this->_currentLine);
         
-        $identifier = substr($identifier, strlen($tag));
+        $identifier = substr($identifier, strlen($tag));*/
         
         return $identifier;
     }

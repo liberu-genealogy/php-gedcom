@@ -98,7 +98,7 @@ class Parser extends Parser\Base
         
         while($this->_currentLine < count($this->_file))
         {
-            $record = $this->getCurrentLineRecord('P');
+            $record = $this->getCurrentLineRecord();
             
             if($record[0] == '0')
             {
@@ -107,50 +107,8 @@ class Parser extends Parser\Base
             }
             else if((int)$record[0] == 1 && trim($record[1]) == 'CHAN')
             {
-                $this->_currentLine++;
-                
-                $person->change = new \Gedcom\Record\Change();
-                
-                while($this->_currentLine < count($this->_file))
-                {
-                    $subRecord = $this->getCurrentLineRecord();
-                    
-                    if((int)$subRecord[0] <= 1)
-                    {
-                        $this->_currentLine--;
-                        break;
-                    }
-                    else if((int)$subRecord[0] == 2 && trim($subRecord[1] == 'DATE'))
-                    {
-                        if(isset($subRecord[2]))
-                            $person->change->date = trim($subRecord[2]);
-                    }
-                    else if((int)$subRecord[0] == 3 && trim($subRecord[1] == 'TIME'))
-                    {
-                        if(isset($subRecord[2]))
-                            $person->change->time = trim($subRecord[2]);
-                    }
-                    else if(trim($subRecord[1]) == 'NOTE')
-                    {
-                        $note = $this->parseDataElementNote($record[0]);
-                        
-                        if(is_a($note, "\\Gedcom\\Record\\Note"))
-                        {
-                            $person->change->notes[] = $note;
-                        }
-                        else if(is_a($note, "\\Gedcom\\Record\\Note\\Reference"))
-                        {
-                            $person->change->note_references[] = $note;
-                        }
-                    }
-                    else
-                    {
-                        // FIXME
-                        //$this->logUnhandledRecord(__LINE__);
-                    }
-                    
-                    $this->_currentLine++;
-                }
+                $change = \Gedcom\Parser\Change::parse($this);
+                $person->change = &$change;
             }
             else if($record[0] == '1')
             {
@@ -411,37 +369,8 @@ class Parser extends Parser\Base
                     break;
                     
                     case 'CHAN':
-                        $this->_currentLine++;
-                        
-                        while($this->_currentLine < count($this->_file))
-                        {
-                            $record = $this->getCurrentLineRecord();
-                            
-                            $note->change = new \Gedcom\Record\Change();
-                            
-                            if((int)$record[0] <= 1)
-                            {
-                                $this->_currentLine--;
-                                break;
-                            }
-                            else if((int)$record[0] == 2 && trim($record[1] == 'DATE'))
-                            {
-                                if(isset($record[2]))
-                                    $note->change->date = trim($record[2]);
-                            }
-                            else if((int)$record[0] == 3 && trim($record[1] == 'TIME'))
-                            {
-                                if(isset($record[2]))
-                                    $note->change->time = trim($record[2]);
-                            }
-                            else
-                            {
-                                // FIXME
-                                //$this->logUnhandledRecord(__LINE__);
-                            }
-                            
-                            $this->_currentLine++;
-                        }
+                        $change = \Gedcom\Parser\Change::parse($this);
+                        $note->change = &$change;
                     break;
 
                     case 'SOUR':
