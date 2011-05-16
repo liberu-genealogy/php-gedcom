@@ -1,12 +1,12 @@
 <?php
 
-namespace Gedcom\Parser\SourceCitation;
+namespace Gedcom\Parser\Individual;
 
 /**
  *
  *
  */
-class Embedded extends \Gedcom\Parser\Component
+class Association extends \Gedcom\Parser\Component
 {
     
     /**
@@ -18,8 +18,8 @@ class Embedded extends \Gedcom\Parser\Component
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
         
-        $embedded = new \Gedcom\Record\SourceCitation\Embedded();
-        $embedded->source = $record[2];
+        $asso = new \Gedcom\Record\Individual\Association();
+        $asso->individualId = $parser->normalizeIdentifier($record[2]);
         
         $parser->forward();
         
@@ -37,31 +37,28 @@ class Embedded extends \Gedcom\Parser\Component
             
             switch($recordType)
             {
-                case 'CONT':
-                    $embedded->source .= "\n";
-                    
-                    if(isset($record[2]))
-                        $embedded->source .= trim($record[2]);
+                case 'RELA':
+                    $asso->rela = trim($record[2]);
                 break;
                 
-                case 'CONC':
-                    if(isset($record[2]))
-                        $embedded->source .= ' ' . trim($record[2]);
-                break;
-            
-                case 'TEXT':
-                    $embedded->text = $parser->parseMultiLineRecord();
+                case 'SOUR':
+                    $citation = \Gedcom\Parser\SourceCitation::parse($parser);
+                    
+                    if(is_a($citation, '\Gedcom\Record\SourceCitation\Reference'))
+                        $asso->addSourceCitationReference($citation);
+                    else
+                        $asso->addSourceCitation($citation);
                 break;
                 
                 case 'NOTE':
                     $note = \Gedcom\Parser\Note::parse($parser);
                     
                     if(is_a($note, '\Gedcom\Record\Note\Reference'))
-                        $embedded->addNoteReference($note);
+                        $asso->addNoteReference($note);
                     else
-                        $embedded->addNote($note);
+                        $asso->addNote($note);
                 break;
-            
+                
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }
@@ -69,6 +66,6 @@ class Embedded extends \Gedcom\Parser\Component
             $parser->forward();
         }
         
-        return $embedded;
+        return $asso;
     }
 }

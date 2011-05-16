@@ -1,14 +1,14 @@
 <?php
 
-namespace Gedcom\Parser\SourceCitation;
+namespace Gedcom\Parser\Family;
 
 /**
  *
  *
  */
-class Embedded extends \Gedcom\Parser\Component
+class SealingSpouse extends \Gedcom\Parser\Component
 {
-    
+
     /**
      *
      *
@@ -18,8 +18,7 @@ class Embedded extends \Gedcom\Parser\Component
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
         
-        $embedded = new \Gedcom\Record\SourceCitation\Embedded();
-        $embedded->source = $record[2];
+        $slgs = new \Gedcom\Record\Family\SealingSpouse();
         
         $parser->forward();
         
@@ -37,31 +36,40 @@ class Embedded extends \Gedcom\Parser\Component
             
             switch($recordType)
             {
-                case 'CONT':
-                    $embedded->source .= "\n";
-                    
-                    if(isset($record[2]))
-                        $embedded->source .= trim($record[2]);
+                case 'STAT':
+                    $slgs->stat = trim($record[2]);
                 break;
                 
-                case 'CONC':
-                    if(isset($record[2]))
-                        $embedded->source .= ' ' . trim($record[2]);
+                case 'DATE':
+                    $slgs->date = trim($record[2]);
                 break;
-            
-                case 'TEXT':
-                    $embedded->text = $parser->parseMultiLineRecord();
+                
+                case 'PLAC':
+                    $slgs->plac = trim($record[2]);
+                break;
+                
+                case 'TEMP':
+                    $slgs->temp = trim($record[2]);
+                break;
+                
+                case 'SOUR':
+                    $citation = \Gedcom\Parser\SourceCitation::parse($parser);
+                    
+                    if(is_a($citation, '\Gedcom\Record\SourceCitation\Reference'))
+                        $slgs->addSourceCitationReference($citation);
+                    else
+                        $slgs->addSourceCitation($citation);
                 break;
                 
                 case 'NOTE':
                     $note = \Gedcom\Parser\Note::parse($parser);
                     
                     if(is_a($note, '\Gedcom\Record\Note\Reference'))
-                        $embedded->addNoteReference($note);
+                        $slgs->addNoteReference($note);
                     else
-                        $embedded->addNote($note);
+                        $slgs->addNote($note);
                 break;
-            
+                
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }
@@ -69,6 +77,6 @@ class Embedded extends \Gedcom\Parser\Component
             $parser->forward();
         }
         
-        return $embedded;
+        return $slgs;
     }
 }

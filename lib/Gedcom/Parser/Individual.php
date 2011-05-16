@@ -50,8 +50,27 @@ class Individual extends \Gedcom\Parser\Component
                     $individual->addName($name);
                 break;
                 
+                case 'ALIA':
+                    $individual->addAlias($parser->normalizeIdentifier($record[2]));
+                break;
+                
                 case 'SEX':
                     $individual->sex = trim($record[2]);
+                break;
+                
+                case 'BIRT':
+                    $birth = \Gedcom\Parser\Individual\Event\Birth::parse($parser);
+                    $individual->addEvent($birth);
+                break;
+                
+                case 'ADOP':
+                    $adoption = \Gedcom\Parser\Individual\Event\Adoption::parse($parser);
+                    $individual->addEvent($adoption);
+                break;
+                
+                case 'CHR':
+                    $chr = \Gedcom\Parser\Individual\Event\Chr::parse($parser);
+                    $individual->addEvent($chr);
                 break;
                 
                 case 'RIN':
@@ -83,6 +102,31 @@ class Individual extends \Gedcom\Parser\Component
                 case 'FAMC':
                     $famc = \Gedcom\Parser\Individual\Family\Child::parse($parser);
                     $individual->addChildFamily($famc);
+                break;
+                
+                case 'ASSO':
+                    $asso = \Gedcom\Parser\Individual\Association::parse($parser);
+                    $individual->addAssociation($asso);
+                break;
+                
+                case 'ANCI':
+                    $individual->addAncestorInterest($parser->normalizeIdentifier($record[2]));
+                break;
+                
+                case 'DESI':
+                    $individual->addDescendantInterest($parser->normalizeIdentifier($record[2]));
+                break;
+                
+                case 'SUBM':
+                    $individual->addSubmitter($parser->normalizeIdentifier($record[2]));
+                break;
+                
+                case 'BAPL':
+                case 'CONL':
+                case 'ENDL':
+                case 'SLGC':
+                    $ordinance = \Gedcom\Parser\Individual\LdsIndividualOrdinance::parse($parser);
+                    $individual->addLdsIndividualOrdinance($ordinance);
                 break;
                 
                 case 'OBJE':
