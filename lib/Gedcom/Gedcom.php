@@ -85,19 +85,6 @@ class Gedcom
     
     /**
      *
-     */
-    public function &createReference($identifier, $for)
-    {
-        $reference = new Reference();
-        $reference->sourceId = $identifier;
-        $reference->attribute = $for;
-        
-        return $reference;
-    }
-    
-    
-    /**
-     *
      *
      */
     public function &createFamily($identifier)
