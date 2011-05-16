@@ -6,7 +6,7 @@ namespace Gedcom\Parser\Individual;
  *
  *
  */
-class Event extends \Gedcom\Parser\Component
+class Attribute extends \Gedcom\Parser\Component
 {
     
     /**
@@ -18,10 +18,9 @@ class Event extends \Gedcom\Parser\Component
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
         
-        $event = new \Gedcom\Record\Event();
-        
-        if(isset($record[1]) && strtoupper(trim($record[1])) != 'EVEN')
-            $event->type = trim($record[1]);
+        $attribute = new \Gedcom\Record\Event();
+        $attribute->type = trim($record[1]);
+        $attribute->attribute = isset($record[2]) ? trim($record[2]) : null;
         
         $parser->forward();
         
@@ -40,64 +39,64 @@ class Event extends \Gedcom\Parser\Component
             switch($recordType)
             {
                 case 'TYPE':
-                    $event->type = trim($record[2]);
+                    $attribute->type = trim($record[2]);
                 break;
                 
                 case 'DATE':
-                    $event->date = trim($record[2]);
+                    $attribute->date = trim($record[2]);
                 break;
                 
                 case 'PLAC':
                     $place = \Gedcom\Parser\Individual\Event\Place::parse($parser);
-                    $event->place = &$place;
+                    $attribute->place = &$place;
                 break;
                 
                 case 'ADDR':
-                    $event->addr = \Gedcom\Parser\Address::parse($parser);
+                    $attribute->addr = \Gedcom\Parser\Address::parse($parser);
                 break;
                 
                 case 'PHON':
                     $phone = \Gedcom\Parser\Phone::parse($parser);
-                    $event->addPhone($phone);
+                    $attribute->addPhone($phone);
                 break;
                 
                 case 'CAUS':
-                    $event->caus = trim($record[2]);
+                    $attribute->caus = trim($record[2]);
                 break;
                 
                 case 'AGE':
-                    $event->age = trim($record[2]);
+                    $attribute->age = trim($record[2]);
                 break;
                 
                 case 'AGNC':
-                    $event->agnc = trim($record[2]);
+                    $attribute->agnc = trim($record[2]);
                 break;
                 
                 case 'SOUR':
                     $citation = \Gedcom\Parser\SourceCitation::parse($parser);
                     
                     if(is_a($citation, '\Gedcom\Record\SourceCitation\Reference'))
-                        $event->addSourceCitationReference($citation);
+                        $attribute->addSourceCitationReference($citation);
                     else
-                        $event->addSourceCitation($citation);
+                        $attribute->addSourceCitation($citation);
                 break;
                 
                 case 'OBJE':
                     $object = \Gedcom\Parser\Object::parse($parser);
                     
                     if(is_a($object, '\Gedcom\Record\Object\Reference'))
-                        $event->addObjectReference($object);
+                        $attribute->addObjectReference($object);
                     else
-                        $event->addObject($object);
+                        $attribute->addObject($object);
                 break;
                 
                 case 'NOTE':
                     $note = \Gedcom\Parser\Note::parse($parser);
                     
                     if(is_a($note, '\Gedcom\Record\Note\Reference'))
-                        $event->addNoteReference($note);
+                        $attribute->addNoteReference($note);
                     else
-                        $event->addNote($note);
+                        $attribute->addNote($note);
                 break;
                 
                 default:
@@ -107,6 +106,6 @@ class Event extends \Gedcom\Parser\Component
             $parser->forward();
         }
         
-        return $event;
+        return $attribute;
     }
 }

@@ -29,8 +29,6 @@ class Individual extends \Gedcom\Record
     public $fams = array();
     public $famc = array();
     
-    public $references = array();
-    
     public $objects = array();
 
     /**
@@ -40,32 +38,15 @@ class Individual extends \Gedcom\Record
     {
         $this->names[] = $name;
     }
-
-    /**
-     *
-     *
-     */
-    public function addReference(Reference $reference)
-    {
-        $this->references[] = $reference;
-    }
-
     
     /**
      *
      *
      */
-    public function &addAttribute($name, $value)
+    public function addAttribute(&$attribute)
     {
-        $attribute = new Individual\Attribute();
-        $attribute->name = $name;
-        $attribute->value = $value;
-        
         $this->attributes[] = $attribute;
-        
-        return $attribute;
     }
-    
     
     /**
      *

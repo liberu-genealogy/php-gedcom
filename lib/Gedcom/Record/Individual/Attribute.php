@@ -9,22 +9,8 @@ require_once __DIR__ . '/../Reference.php';
  *
  *
  */
-class Attribute extends \Gedcom\Record
+class Attribute extends \Gedcom\Record\Event
 {
-    public $name = null;
-    public $value = null;
-    
-    public $event = null;
-    
-    public $references = array();
-    
-    /**
-     *
-     *
-     */
-    public function addReference(\Gedcom\Record\Reference $reference)
-    {
-        $this->references[] = $reference;
-    }
-    
+    public $type = null;
+    public $attribute = null;
 }

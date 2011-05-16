@@ -12,9 +12,10 @@ class Individual extends \Gedcom\Parser\Component
 {
     protected static $_eventTypes = array('ADOP','BIRT','BAPM','BARM','BASM','BLES','BURI',
         'CENS','CHR','CHRA','CONF','CREM','DEAT','EMIG','FCOM','GRAD','IMMI','NATU','ORDN',
-        'RETI','PROB','WILL','EVEN','CAST','EDUC','NATI','OCCU','PROP','RELI','RESI','TITL');
+        'RETI','PROB','WILL','EVEN');
     
-    protected static $_attrTypes = array();
+    protected static $_attrTypes = array('CAST','EDUC','NATI','OCCU','PROP','RELI','RESI',
+        'TITL','SSN','IDNO','DSCR','NCHI','NMR');
     
     /**
      *
@@ -117,89 +118,21 @@ class Individual extends \Gedcom\Parser\Component
                         $event = \Gedcom\Parser\Individual\Event::parse($parser);
                         $individual->addEvent($event);
                     }
+                    else if(in_array($recordType, self::$_attrTypes))
+                    {
+                        $attribute = \Gedcom\Parser\Individual\Attribute::parse($parser);
+                        $individual->addAttribute($attribute);
+                    }
                     else
                     {
-                        $handler = 'parse' . $recordType . 'Record';
-                        
-                        if(is_callable(array(get_class(), $handler)))
-                        {
-                            if(isset($record[2]))
-                                call_user_func(array(get_class(), $handler), $parser, $individual, trim($record[2]), 1);
-                            else
-                                call_user_func(array(get_class(), $handler), $parser, $individual, 1);
-                        }
-                        else
-                        {
-                            $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
-                        }
+                        $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
                     }
+                break;
             }
             
             $parser->forward();
         }
         
         return $individual;
-    }
-    
-    /**
-     *
-     */
-    protected static function parseEvenRecord(&$parser, &$individual)
-    {
-        //self::parseEventRecord($parser, $individual, 'unknown');
-    }
-    
-    
-    /**
-     *
-     *
-     */
-    protected static function parseReference(&$parser, &$reference)
-    {
-        $record = $parser->getCurrentLineRecord();
-        $depth = (int)$record[0];
-        
-        $parser->forward();
-        
-        while($parser->getCurrentLine() < $parser->getFileLength())
-        {
-            $record = $parser->getCurrentLineRecord();
-            $currentDepth = (int)$record[0];
-            $recordType = strtoupper(trim($record[1]));
-            
-            if($currentDepth <= $depth)
-            {
-                $parser->back();
-                break;
-            }
-            
-            switch($recordType)
-            {
-                case 'PAGE':
-                    $reference->page = trim($record[2]);
-                break;
-                
-                case 'DATA':
-                    $data = $reference->addData();
-                    // FIXME (missing method):
-                    //self::parseData($parser, $data, $record[0]);
-                break;
-                
-                case 'NOTE':
-                    $note = \Gedcom\Parser\Note::parse($parser);
-                    
-                    if(is_a($note, '\Gedcom\Record\Note\Reference'))
-                        $reference->addNoteReference($note);
-                    else
-                        $reference->addNote($note);
-                break;
-                
-                default:
-                    // FIXME
-                    //$this->logUnhandledRecord(__LINE__);
-            }
-            
-            $parser->forward();
-        }
     }
 }
