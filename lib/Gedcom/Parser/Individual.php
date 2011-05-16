@@ -2,7 +2,7 @@
 
 namespace Gedcom\Parser;
 
-require_once __DIR__ . '/../Record/Person.php';
+require_once __DIR__ . '/../Record/Individual.php';
 
 /**
  *
@@ -12,6 +12,8 @@ class Individual extends \Gedcom\Parser\Component
 {
     protected static $_eventTypes = array('BIRT','CHR','BAPM','BLES','ADOP','GRAD','DEAT',
         'BURI','EDUC', 'OCCU','CENS','RESI','IMMI','PROP','BARM','BASM','RETI','WILL');
+    
+    protected static $_attrTypes = array();
     
     /**
      *
@@ -23,7 +25,7 @@ class Individual extends \Gedcom\Parser\Component
         $identifier = $parser->normalizeIdentifier($record[2]);
         $depth = (int)$record[0];
         
-        $person = &$parser->getGedcom()->createPerson($identifier);
+        $individual = &$parser->getGedcom()->createIndividual($identifier);
         
         $parser->forward();
         
@@ -41,34 +43,64 @@ class Individual extends \Gedcom\Parser\Component
             
             switch($recordType)
             {
+                case 'SEX':
+                    $individual->sex = trim($record[2]);
+                break;
+                
+                case 'RIN':
+                    $individual->rin = trim($record[2]);
+                break;
+                
+                case 'RESN':
+                    $individual->resn = trim($record[2]);
+                break;
+                
+                case 'RFN':
+                    $individual->rfn = trim($record[2]);
+                break;
+                
+                case 'AFN':
+                    $individual->afn = trim($record[2]);
+                break;
+                
                 case 'CHAN':
                     $change = \Gedcom\Parser\Change::parse($parser);
-                    $person->change = &$change;
+                    $individual->change = &$change;
+                break;
+                
+                case 'FAMS':
+                    $fams = \Gedcom\Parser\Individual\Family\Spouse::parse($parser);
+                    $individual->addSpouseFamily($fams);
+                break;
+                
+                case 'FAMC':
+                    $famc = \Gedcom\Parser\Individual\Family\Child::parse($parser);
+                    $individual->addChildFamily($famc);
                 break;
                 
                 case 'OBJE':
                     $object = \Gedcom\Parser\Object::parse($parser);
                     
                     if(is_a($object, '\Gedcom\Record\Object\Reference'))
-                        $person->addObjectReference($object);
+                        $individual->addObjectReference($object);
                     else
-                        $person->addObject($object);
+                        $individual->addObject($object);
                 break;
                 
                 case 'NOTE':
                     $note = \Gedcom\Parser\Note::parse($parser);
                     
                     if(is_a($note, '\Gedcom\Record\Note\Reference'))
-                        $person->addNoteReference($note);
+                        $individual->addNoteReference($note);
                     else
-                        $person->addNote($note);
+                        $individual->addNote($note);
                 break;
                 
                 default:
                     if($recordType == 'EVEN' || in_array($recordType, self::$_eventTypes))
                     {
                         $event = \Gedcom\Parser\Individual\Event::parse($parser);
-                        $person->addEvent($event);
+                        $individual->addEvent($event);
                     }
                     else
                     {
@@ -77,13 +109,12 @@ class Individual extends \Gedcom\Parser\Component
                         if(is_callable(array(get_class(), $handler)))
                         {
                             if(isset($record[2]))
-                                call_user_func(array(get_class(), $handler), $parser, $person, trim($record[2]), 1);
+                                call_user_func(array(get_class(), $handler), $parser, $individual, trim($record[2]), 1);
                             else
-                                call_user_func(array(get_class(), $handler), $parser, $person, 1);
+                                call_user_func(array(get_class(), $handler), $parser, $individual, 1);
                         }
                         else
                         {
-                            // FIXME
                             $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
                         }
                     }
@@ -92,51 +123,35 @@ class Individual extends \Gedcom\Parser\Component
             $parser->forward();
         }
         
-        return $person;
+        return $individual;
     }
     
     /**
      *
      */
-    protected static function parseNameRecord(&$parser, &$person, $value)
+    protected static function parseNameRecord(&$parser, &$individual, $value)
     {
-        self::parseGenericInformation($parser, $person, 'name', $value);
+        self::parseGenericInformation($parser, $individual, 'name', $value);
     }
     
     /**
      *
      */
-    protected static function parseRinRecord(&$parser, &$person, $value)
+    protected static function parseEvenRecord(&$parser, &$individual)
     {
-        self::parseGenericInformation($parser, $person, 'rin', $value);
-    }
-    
-    /**
-     *
-     */
-    protected static function parseSexRecord(&$parser, &$person, $value)
-    {
-        self::parseGenericInformation($parser, $person, 'sex', $value);
-    }
-    
-    /**
-     *
-     */
-    protected static function parseEvenRecord(&$parser, &$person)
-    {
-        //self::parseEventRecord($parser, $person, 'unknown');
+        //self::parseEventRecord($parser, $individual, 'unknown');
     }
     
     /**
      *
      *
      */
-    protected static function parseGenericInformation(&$parser, &$person, $type, $data)
+    protected static function parseGenericInformation(&$parser, &$individual, $type, $data)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
         
-        $attribute = $person->addAttribute($type, $data);
+        $attribute = $individual->addAttribute($type, $data);
         
         $parser->forward();
         

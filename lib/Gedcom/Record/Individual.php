@@ -5,18 +5,24 @@ namespace Gedcom\Record;
 require_once __DIR__ . '/../Record.php';
 require_once __DIR__ . '/Reference.php';
 require_once __DIR__ . '/Event.php';
-require_once __DIR__ . '/Person/Attribute.php';
+require_once __DIR__ . '/Individual/Attribute.php';
 
-use Gedcom\Record\Person\Attribute;
+use Gedcom\Record\Individual\Attribute;
 
 /**
  *
  *
  */
-class Person extends \Gedcom\Record
+class Individual extends \Gedcom\Record
 {
     public $attributes = array();
     public $events = array();
+    
+    public $sex = null;
+    public $rin = null;
+    public $resn = null;
+    public $rfn = null;
+    public $afn = null;
     
     public $fams = array();
     public $famc = array();
@@ -42,7 +48,7 @@ class Person extends \Gedcom\Record
      */
     public function &addAttribute($name, $value)
     {
-        $attribute = new Person\Attribute();
+        $attribute = new Individual\Attribute();
         $attribute->name = $name;
         $attribute->value = $value;
         
@@ -59,6 +65,23 @@ class Person extends \Gedcom\Record
     public function addEvent(&$event)
     {
         $this->events[] = &$event;
+    }
+    
+    /**
+     *
+     *
+     */
+    public function addSpouseFamily(&$family)
+    {
+        $this->fams[] = $family;
+    }
+    
+    /**
+     *
+     */
+    public function addChildFamily(&$family)
+    {
+        $this->famc[] = $family;
     }
     
     /**

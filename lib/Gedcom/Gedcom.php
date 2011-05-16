@@ -2,7 +2,7 @@
 
 namespace Gedcom;
 
-require_once __DIR__ . '/Record/Person.php';
+require_once __DIR__ . '/Record/Individual.php';
 require_once __DIR__ . '/Record/Family.php';
 require_once __DIR__ . '/Record/Source.php';
 require_once __DIR__ . '/Record/Note.php';
@@ -17,7 +17,7 @@ require_once __DIR__ . '/Record/Object.php';
 require_once __DIR__ . '/Record/Note/Text.php';
 require_once __DIR__ . '/Parser.php';
 
-use Gedcom\Record\Person;
+use Gedcom\Record\Individual;
 use Gedcom\Record\Family;
 use Gedcom\Record\Source;
 use Gedcom\Record\Note;
@@ -76,9 +76,9 @@ class Gedcom
     /**
      *
      */
-    public function &createPerson($identifier)
+    public function &createIndividual($identifier)
     {
-        $this->people[$identifier] = new Person();
+        $this->people[$identifier] = new Individual();
         $this->people[$identifier]->refId = $identifier;
         
         return $this->people[$identifier];
