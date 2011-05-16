@@ -48,8 +48,8 @@ class Event extends \Gedcom\Parser\Component
                 break;
                 
                 case 'PLAC':
-                    if(!empty($record[2]))
-                        $event->place = trim($record[2]);
+                    $place = \Gedcom\Parser\Individual\Event\Place::parse($parser);
+                    $event->place = &$place;
                 break;
                 
                 case 'ADDR':
