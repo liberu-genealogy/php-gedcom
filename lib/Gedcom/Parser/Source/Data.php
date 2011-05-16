@@ -57,6 +57,10 @@ class Data extends \Gedcom\Parser\Component
                         $data->addNote($note);
                 break;
                 
+                case 'TEXT':
+                    $data->addText($parser->parseMultiLineRecord());
+                break;
+                
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }
