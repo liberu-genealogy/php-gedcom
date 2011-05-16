@@ -14,6 +14,4 @@ class Address extends \Gedcom\Record
     public $post = null;
     public $ctry = null;
     
-    public $phones = array();
-    
 }

@@ -14,6 +14,8 @@ class Event extends \Gedcom\Record
     
     public $addr = null;
     
+    public $phones = array();
+    
     public $agnc = null;
     
     public $references = array();
@@ -22,9 +24,17 @@ class Event extends \Gedcom\Record
      *
      *
      */
-    public function addReference(\Gedcom\Record\Reference $reference)
+    public function addReference(\Gedcom\Record\Reference &$reference)
     {
         $this->references[] = $reference;
+    }
+    
+    /**
+     *
+     */
+    public function addPhone(\Gedcom\Record\Phone &$phone)
+    {
+        $this->phones[] = $phone;
     }
     
 }

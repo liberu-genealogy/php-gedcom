@@ -12,7 +12,7 @@ class Individual extends \Gedcom\Parser\Component
 {
     protected static $_eventTypes = array('ADOP','BIRT','BAPM','BARM','BASM','BLES','BURI',
         'CENS','CHR','CHRA','CONF','CREM','DEAT','EMIG','FCOM','GRAD','IMMI','NATU','ORDN',
-        'RETI','PROB','WILL','EVEN');
+        'RETI','PROB','WILL','EVEN','CAST','EDUC','NATI','OCCU','PROP','RELI','RESI','TITL');
     
     protected static $_attrTypes = array();
     

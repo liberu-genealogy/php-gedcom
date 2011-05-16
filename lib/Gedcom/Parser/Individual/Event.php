@@ -56,6 +56,11 @@ class Event extends \Gedcom\Parser\Component
                     $event->addr = \Gedcom\Parser\Address::parse($parser);
                 break;
                 
+                case 'PHON':
+                    $phone = \Gedcom\Parser\Phone::parse($parser);
+                    $event->addPhone($phone);
+                break;
+                
                 case 'CAUS':
                     $event->caus = trim($record[2]);
                 break;
