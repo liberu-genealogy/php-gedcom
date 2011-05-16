@@ -48,9 +48,14 @@ class Text extends \Gedcom\Parser\Component
                     if(isset($record[2]))
                         $text->note .= ' ' . trim($record[2]);
                 break;
-            
+                
                 case 'SOUR':
-                    // FIXME
+                    $citation = \Gedcom\Parser\SourceCitation::parse($parser);
+                    
+                    if(is_a($citation, '\Gedcom\Record\SourceCitation\Reference'))
+                        $text->addSourceCitationReference($citation);
+                    else
+                        $text->addSourceCitation($citation);
                 break;
                 
                 default:

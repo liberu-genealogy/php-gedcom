@@ -97,6 +97,15 @@ class Individual extends \Gedcom\Parser\Component
                         $individual->addNote($note);
                 break;
                 
+                case 'SOUR':
+                    $citation = \Gedcom\Parser\SourceCitation::parse($parser);
+                    
+                    if(is_a($citation, '\Gedcom\Record\SourceCitation\Reference'))
+                        $individual->addSourceCitationReference($citation);
+                    else
+                        $individual->addSourceCitation($citation);
+                break;
+                
                 default:
                     if($recordType == 'EVEN' || in_array($recordType, self::$_eventTypes))
                     {

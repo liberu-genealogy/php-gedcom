@@ -1,22 +1,25 @@
 <?php
 
-namespace Gedcom\Parser\Note;
+namespace Gedcom\Parser\SourceCitation;
 
 /**
  *
  *
  */
-class Reference extends \Gedcom\Parser\Component
+class Embedded extends \Gedcom\Parser\Component
 {
+    
+    /**
+     *
+     *
+     */
     public static function &parse(\Gedcom\Parser &$parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
         
-        $identifier = $parser->normalizeIdentifier($record[2]);
-        
-        $reference = new \Gedcom\Record\Note\Reference();
-        $reference->refId = $identifier;
+        $embedded = new \Gedcom\Record\SourceCitation\Embedded();
+        $embedded->text = $record[2];
         
         $parser->forward();
         
@@ -34,15 +37,18 @@ class Reference extends \Gedcom\Parser\Component
             
             switch($recordType)
             {
-                case 'SOUR':
-                    $citation = \Gedcom\Parser\SourceCitation::parse($parser);
+                case 'CONT':
+                    $embedded->text .= "\n";
                     
-                    if(is_a($citation, '\Gedcom\Record\SourceCitation\Reference'))
-                        $reference->addSourceCitationReference($citation);
-                    else
-                        $reference->addSourceCitation($citation);
+                    if(isset($record[2]))
+                        $embedded->text .= trim($record[2]);
                 break;
                 
+                case 'CONC':
+                    if(isset($record[2]))
+                        $embedded->text .= ' ' . trim($record[2]);
+                break;
+            
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }
@@ -50,6 +56,6 @@ class Reference extends \Gedcom\Parser\Component
             $parser->forward();
         }
         
-        return $reference;
+        return $embedded;
     }
 }

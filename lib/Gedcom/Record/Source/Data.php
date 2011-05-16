@@ -11,5 +11,6 @@ class Data extends \Gedcom\Record
 {
     public $events = array();
     public $agnc = null;
+    public $date = null;
     
 }

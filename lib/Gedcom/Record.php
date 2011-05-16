@@ -17,6 +17,10 @@ abstract class Record
     public $objects = array();
     public $objectReferences = array();
     
+    public $sourceCitations = array();
+    public $sourceCitationReferences = array();
+    
+    
     /**
      *
      */
@@ -47,6 +51,22 @@ abstract class Record
     public function addObjectReference(\Gedcom\Record\Object\Reference &$object)
     {
         $this->objectReferences[] = $object;
+    }
+    
+    /**
+     *
+     */
+    public function addSourceCitation(\Gedcom\Record\SourceCitation\Embedded &$citation)
+    {
+        $this->sourceCitations[] = $citation;
+    }
+    
+    /**
+     *
+     */
+    public function addSourceCitationReference(\Gedcom\Record\SourceCitation\Reference &$citation)
+    {
+        $this->sourceCitationReferences[] = $citation;
     }
 }
 

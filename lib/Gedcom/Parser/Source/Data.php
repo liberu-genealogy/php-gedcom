@@ -40,6 +40,10 @@ class Data extends \Gedcom\Parser\Component
                     $data->events[] = \Gedcom\Parser\Source\Data\Event::parse($parser);
                 break;
                 
+                case 'DATE':
+                    $data->date = trim($record[2]);
+                break;
+                
                 case 'AGNC':
                     $data->agnc = trim($record[2]);
                 break;

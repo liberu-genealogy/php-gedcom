@@ -69,12 +69,12 @@ class Event extends \Gedcom\Parser\Component
                 break;
                 
                 case 'SOUR':
-                    // FIXME
-                    /*$reference = $parser->getGedcom()->createReference($parser->normalizeIdentifier($record[2]), $event->type);
+                    $citation = \Gedcom\Parser\SourceCitation::parse($parser);
                     
-                    self::parseReference($parser, $reference, $record[0]);
-                    
-                    $event->addReference($reference);*/
+                    if(is_a($citation, '\Gedcom\Record\SourceCitation\Reference'))
+                        $event->addSourceCitationReference($citation);
+                    else
+                        $event->addSourceCitation($citation);
                 break;
                 
                 case 'OBJE':
@@ -102,7 +102,6 @@ class Event extends \Gedcom\Parser\Component
                         $event->$additionalAttr[$recordType] = trim($record[2]);
                     else
                     {*/
-                        // FIXME
                         $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
                     //}
             }
