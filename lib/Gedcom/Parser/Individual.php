@@ -10,8 +10,9 @@ require_once __DIR__ . '/../Record/Individual.php';
  */
 class Individual extends \Gedcom\Parser\Component
 {
-    protected static $_eventTypes = array('BIRT','CHR','BAPM','BLES','ADOP','GRAD','DEAT',
-        'BURI','EDUC', 'OCCU','CENS','RESI','IMMI','PROP','BARM','BASM','RETI','WILL');
+    protected static $_eventTypes = array('ADOP','BIRT','BAPM','BARM','BASM','BLES','BURI',
+        'CENS','CHR','CHRA','CONF','CREM','DEAT','EMIG','FCOM','GRAD','IMMI','NATU','ORDN',
+        'RETI','PROB','WILL','EVEN');
     
     protected static $_attrTypes = array();
     

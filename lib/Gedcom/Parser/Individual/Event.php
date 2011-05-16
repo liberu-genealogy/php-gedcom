@@ -52,6 +52,22 @@ class Event extends \Gedcom\Parser\Component
                         $event->place = trim($record[2]);
                 break;
                 
+                case 'ADDR':
+                    $event->addr = \Gedcom\Parser\Address::parse($parser);
+                break;
+                
+                case 'CAUS':
+                    $event->caus = trim($record[2]);
+                break;
+                
+                case 'AGE':
+                    $event->age = trim($record[2]);
+                break;
+                
+                case 'AGNC':
+                    $event->agnc = trim($record[2]);
+                break;
+                
                 case 'SOUR':
                     // FIXME
                     /*$reference = $parser->getGedcom()->createReference($parser->normalizeIdentifier($record[2]), $event->type);
@@ -59,6 +75,15 @@ class Event extends \Gedcom\Parser\Component
                     self::parseReference($parser, $reference, $record[0]);
                     
                     $event->addReference($reference);*/
+                break;
+                
+                case 'OBJE':
+                    $object = \Gedcom\Parser\Object::parse($parser);
+                    
+                    if(is_a($object, '\Gedcom\Record\Object\Reference'))
+                        $event->addObjectReference($object);
+                    else
+                        $event->addObject($object);
                 break;
                 
                 case 'NOTE':
@@ -85,6 +110,6 @@ class Event extends \Gedcom\Parser\Component
             $parser->forward();
         }
         
-        return $text;
+        return $event;
     }
 }

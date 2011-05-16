@@ -9,6 +9,12 @@ class Event extends \Gedcom\Record
     public $type = null;
     public $date = null;
     public $place = null;
+    public $caus = null;
+    public $age = null;
+    
+    public $addr = null;
+    
+    public $agnc = null;
     
     public $references = array();
     
