@@ -39,6 +39,10 @@ class Adoption extends \Gedcom\Parser\Individual\Event
             
             switch($recordType)
             {
+                case 'ADOP':
+                    $event->adop = trim($record[2]);
+                break;
+                
                 case 'FAMC':
                     $event->famc = $parser->normalizeIdentifier($record[2]);
                 break;

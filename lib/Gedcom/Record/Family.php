@@ -19,9 +19,11 @@ class Family extends \Gedcom\Record
     
     public $events = array();
     
-    public $references = array();
-    
     public $notes = array();
+    
+    public $sealingSpouses = array();
+    
+    public $submitters = array();
 
 
     /**
@@ -38,4 +40,21 @@ class Family extends \Gedcom\Record
         return $event;
     }
     
+    /**
+     *
+     */
+    public function addSealingSpouse(\Gedcom\Record\Family\SealingSpouse &$spouse)
+    {
+        $this->sealingSpouses[] = $spouse;
+    }
+    
+    
+    /**
+     *
+     *
+     */
+    public function addSubmitter($submitter)
+    {
+        $this->submitters[] = $submitter;
+    }
 }

@@ -121,6 +121,11 @@ class Individual extends \Gedcom\Parser\Component
                     $individual->addSubmitter($parser->normalizeIdentifier($record[2]));
                 break;
                 
+                case 'REFN':
+                    $ref = \Gedcom\Parser\ReferenceNumber::parse($parser);
+                    $individual->addReferenceNumber($ref);
+                break;
+                
                 case 'BAPL':
                 case 'CONL':
                 case 'ENDL':

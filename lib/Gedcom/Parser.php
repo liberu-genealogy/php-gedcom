@@ -113,15 +113,15 @@ class Parser extends Parser\Base
                 switch($recordType)
                 {
                     case 'HUSB':
-                        $family->husbandId = trim(trim($record[2]), '@I');
+                        $family->husbandId = $this->normalizeIdentifier($record[2]);
                     break;    
                     
                     case 'WIFE':
-                        $family->wifeId = trim(trim($record[2]), '@I');
+                        $family->wifeId = $this->normalizeIdentifier($record[2]);
                     break;
                     
                     case 'CHIL':
-                        $family->children[] = trim(trim($record[2]), '@I');
+                        $family->children[] = $this->normalizeIdentifier($record[2]);
                     break;
                     /*
                      FIXME
@@ -134,12 +134,16 @@ class Parser extends Parser\Base
                     break;
                     */
                     
+                    case 'SUBM':
+                        $family->addSubmitter($this->normalizeIdentifier($record[2]));
+                    break;
+                    
                     case 'RIN':
                         $family->rin = trim($record[2]);
                     break;
                     
                     case 'NOTE':
-                        $family->notes[] = trim(trim($record[2]), '@N');
+                        $family->notes[] = $this->normalizeIdentifier($record[2]);
                     break;
                 
                     case 'CHAN':
@@ -147,16 +151,16 @@ class Parser extends Parser\Base
                         $family->change = $change;
                     break;
                     
+                    case 'SLGS':
+                        $slgs = \Gedcom\Parser\Family\SealingSpouse::parse($this);
+                        $family->addSealingSpouse($slgs);
+                    break;
+                    
                     default:
                         // FIXME
                         //$this->logUnhandledRecord(__LINE__);
                 }
             }
-            /*else if((int)$record[0] > 1)
-            {
-                // do nothing, this should be handled in cases above by
-                // passing off code execution to other classes
-            }*/
             else
             {
                 // FIXME

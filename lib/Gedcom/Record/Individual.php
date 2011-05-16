@@ -19,6 +19,7 @@ class Individual extends \Gedcom\Record
     public $events = array();
     
     public $names = array();
+    public $aliases = array();
     
     public $sex = null;
     public $rin = null;
@@ -28,8 +29,17 @@ class Individual extends \Gedcom\Record
     
     public $fams = array();
     public $famc = array();
+    public $associations = array();
+    
+    public $submitters = array();
+    public $ancestorInterests = array();
+    public $descendantInterests = array();
     
     public $objects = array();
+    
+    public $ldsIndividualOrdinances = array();
+
+    public $referenceNumbers = array();
 
     /**
      *
@@ -37,6 +47,14 @@ class Individual extends \Gedcom\Record
     public function addName(\Gedcom\Record\Individual\Name &$name)
     {
         $this->names[] = $name;
+    }
+    
+    /**
+     *
+     */
+    public function addAlias($alias)
+    {
+        $this->aliases[] = $alias;
     }
     
     /**
@@ -72,6 +90,56 @@ class Individual extends \Gedcom\Record
     public function addChildFamily(&$family)
     {
         $this->famc[] = $family;
+    }
+    
+    /**
+     *
+     */
+    public function addAssociation(\Gedcom\Record\Individual\Association &$association)
+    {
+        $this->associations[] = $association;
+    }
+    
+    /**
+     *
+     */
+    public function addAncestorInterest($interest)
+    {
+        $this->ancestorInterest[] = $interest;
+    }
+    
+    /**
+     *
+     *
+     */
+    public function addDescendantInterest($interest)
+    {
+        $this->descendantInterests[] = $interest;
+    }
+    
+    /**
+     *
+     *
+     */
+    public function addSubmitter($submitter)
+    {
+        $this->submitters[] = $submitter;
+    }
+    
+    /**
+     *
+     */
+    public function addReferenceNumber(\Gedcom\Record\ReferenceNumber &$ref)
+    {
+        $this->referenceNumbers[] = $ref;
+    }
+    
+    /**
+     *
+     */
+    public function addLdsIndividualOrdinance(\Gedcom\Record\Individual\LdsIndividualOrdinance &$ordinance)
+    {
+        $this->ldsIndividualOrdinances[] = $ordinance;
     }
     
     /**
