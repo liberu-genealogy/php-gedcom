@@ -44,6 +44,11 @@ class Individual extends \Gedcom\Parser\Component
             
             switch($recordType)
             {
+                case 'NAME':
+                    $name = \Gedcom\Parser\Individual\Name::parse($parser);
+                    $individual->addName($name);
+                break;
+                
                 case 'SEX':
                     $individual->sex = trim($record[2]);
                 break;
@@ -139,70 +144,9 @@ class Individual extends \Gedcom\Parser\Component
     /**
      *
      */
-    protected static function parseNameRecord(&$parser, &$individual, $value)
-    {
-        self::parseGenericInformation($parser, $individual, 'name', $value);
-    }
-    
-    /**
-     *
-     */
     protected static function parseEvenRecord(&$parser, &$individual)
     {
         //self::parseEventRecord($parser, $individual, 'unknown');
-    }
-    
-    /**
-     *
-     *
-     */
-    protected static function parseGenericInformation(&$parser, &$individual, $type, $data)
-    {
-        $record = $parser->getCurrentLineRecord();
-        $depth = (int)$record[0];
-        
-        $attribute = $individual->addAttribute($type, $data);
-        
-        $parser->forward();
-        
-        while($parser->getCurrentLine() < $parser->getFileLength())
-        {
-            $record = $parser->getCurrentLineRecord();
-            $currentDepth = (int)$record[0];
-            $recordType = strtoupper(trim($record[1]));
-            
-            if($currentDepth <= $depth)
-            {
-                $parser->back();
-                break;
-            }
-            
-            switch($recordType)
-            {
-                case 'SOUR':
-                    $reference = $parser->getGedcom()->createReference($parser->normalizeIdentifier($record[2]), $type);
-                    
-                    self::parseReference($parser, $reference, $record[0]);
-                    
-                    $attribute->addReference($reference);
-                break;
-                
-                case 'NOTE':
-                    $note = \Gedcom\Parser\Note::parse($parser);
-                    
-                    if(is_a($note, '\Gedcom\Record\Note\Reference'))
-                        $attribute->addNoteReference($note);
-                    else
-                        $attribute->addNote($note);
-                break;
-                
-                default:
-                    // FIXME
-                    //$this->logUnhandledRecord(__LINE__);
-            }
-            
-            $parser->forward();
-        }
     }
     
     

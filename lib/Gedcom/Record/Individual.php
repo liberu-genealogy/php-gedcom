@@ -18,6 +18,8 @@ class Individual extends \Gedcom\Record
     public $attributes = array();
     public $events = array();
     
+    public $names = array();
+    
     public $sex = null;
     public $rin = null;
     public $resn = null;
@@ -31,6 +33,13 @@ class Individual extends \Gedcom\Record
     
     public $objects = array();
 
+    /**
+     *
+     */
+    public function addName(\Gedcom\Record\Individual\Name &$name)
+    {
+        $this->names[] = $name;
+    }
 
     /**
      *

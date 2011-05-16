@@ -14,6 +14,8 @@ class Attribute extends \Gedcom\Record
     public $name = null;
     public $value = null;
     
+    public $event = null;
+    
     public $references = array();
     
     /**
