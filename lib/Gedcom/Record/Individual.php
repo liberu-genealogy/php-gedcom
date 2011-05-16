@@ -3,7 +3,6 @@
 namespace Gedcom\Record;
 
 require_once __DIR__ . '/../Record.php';
-require_once __DIR__ . '/Reference.php';
 require_once __DIR__ . '/Event.php';
 require_once __DIR__ . '/Individual/Attribute.php';
 

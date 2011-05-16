@@ -2,8 +2,7 @@
 
 namespace Gedcom\Record\Individual;
 
-require_once __DIR__ . '/../../Record.php';
-require_once __DIR__ . '/../Reference.php';
+require_once __DIR__ . '/../Event.php';
 
 /**
  *
