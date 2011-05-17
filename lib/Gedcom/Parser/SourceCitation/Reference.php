@@ -56,6 +56,11 @@ class Reference extends \Gedcom\Parser\Component
                     $reference->page = trim($record[2]);
                 break;
                 
+                case 'EVEN':
+                    $even = \Gedcom\Parser\SourceCitation\Event::parse($parser);
+                    $note->even = &$even;
+                break;
+                
                 case 'OBJE':
                     $object = \Gedcom\Parser\Object::parse($parser);
                     
