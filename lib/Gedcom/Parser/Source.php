@@ -19,7 +19,10 @@ class Source extends \Gedcom\Parser\Component
         $identifier = $parser->normalizeIdentifier($record[1]);
         $depth = (int)$record[0];
         
-        $source = &$parser->getGedcom()->createSource($identifier);
+        $source = new \Gedcom\Record\Source();
+        $source->refId = $identifier;
+        
+        $parser->getGedcom()->addSource($source);
         
         $parser->forward();
         

@@ -20,7 +20,8 @@ class SourceRepositoryCitation extends \Gedcom\Parser\Component
         
         $depth = (int)$record[0];
         
-        $citation = $parser->getGedcom()->createSourceRepositoryCitation($identifier);
+        $citation = new \Gedcom\Record\SourceRepositoryCitation();
+        $citation->repoId = $identifier;
         
         $parser->forward();
         

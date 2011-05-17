@@ -6,6 +6,6 @@ require_once __DIR__ . '/../Record.php';
 
 class SourceRepositoryCitation extends \Gedcom\Record
 {
-    public $repositoryId = null;
+    public $repoId = null;
     
 }

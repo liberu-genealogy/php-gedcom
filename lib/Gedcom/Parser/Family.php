@@ -21,7 +21,10 @@ class Family extends \Gedcom\Parser\Component
         $identifier = $parser->normalizeIdentifier($record[1]);
         $depth = (int)$record[0];
         
-        $family = $parser->getGedcom()->createFamily($identifier);
+        $family = new \Gedcom\Record\Family();
+        $family->refId = $identifier;
+        
+        $parser->getGedcom()->addFamily($family);
         
         $parser->forward();
         

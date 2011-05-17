@@ -19,7 +19,10 @@ class Note extends \Gedcom\Parser\Component
         $identifier = $parser->normalizeIdentifier($record[1]);
         $depth = (int)$record[0];
         
-        $note = $parser->getGedcom()->createNote($identifier);
+        $note = new \Gedcom\Record\Note();
+        $note->refId = $identifier;
+        
+        $parser->getGedcom()->addNote($note);
         
         $parser->forward();
         

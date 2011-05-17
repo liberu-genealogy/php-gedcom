@@ -19,7 +19,8 @@ class SourceCallNumber extends \Gedcom\Parser\Component
         $identifier = $parser->normalizeIdentifier($record[2]);
         $depth = (int)$record[0];
         
-        $caln = $parser->getGedcom()->createSourceCallNumber($identifier);
+        $caln = new \Gedcom\Record\SourceCallNumber();
+        $caln->caln = $identifier;
         
         $parser->forward();
         
@@ -38,7 +39,7 @@ class SourceCallNumber extends \Gedcom\Parser\Component
             switch($recordType)
             {
                 case 'MEDI':
-                    // FIXME
+                    $caln->medi = trim($record[2]);
                 break;
                 
                 default:

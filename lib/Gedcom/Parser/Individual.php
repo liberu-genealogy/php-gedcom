@@ -27,7 +27,10 @@ class Individual extends \Gedcom\Parser\Component
         $identifier = $parser->normalizeIdentifier($record[1]);
         $depth = (int)$record[0];
         
-        $individual = &$parser->getGedcom()->createIndividual($identifier);
+        $individual = new \Gedcom\Record\Individual();
+        $individual->refId = $identifier;
+        
+        $parser->getGedcom()->addIndividual($individual);
         
         $parser->forward();
         
