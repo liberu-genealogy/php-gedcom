@@ -2,10 +2,16 @@
 
 namespace Gedcom;
 
-require_once __DIR__ . '/Parser/Base.php';
 require_once __DIR__ . '/Gedcom.php';
+require_once __DIR__ . '/Parser/Base.php';
+require_once __DIR__ . '/Parser/Header.php';
+require_once __DIR__ . '/Parser/Submission.php';
+require_once __DIR__ . '/Parser/Submitter.php';
+require_once __DIR__ . '/Parser/Source.php';
 require_once __DIR__ . '/Parser/Object.php';
+require_once __DIR__ . '/Parser/Note.php';
 require_once __DIR__ . '/Parser/Individual.php';
+require_once __DIR__ . '/Parser/Family.php';
 
 /**
  *
@@ -40,17 +46,14 @@ class Parser extends Parser\Base
                
                 if(trim($record[1]) == 'HEAD')
                 {
-                    // TODO
                     Parser\Header::parse($this);
                 }
                 else if(isset($record[2]) && trim($record[2]) == 'SUBN')
                 {
-                    // TODO SUBMISSION
                     Parser\Submission::parse($this);
                 }
                 else if(isset($record[2]) && trim($record[2]) == 'SUBM')
                 {
-                    // TODO SUBMITER
                     Parser\Submitter::parse($this);
                 }
                 else if(isset($record[2]) && $record[2] == 'SOUR')
@@ -75,7 +78,7 @@ class Parser extends Parser\Base
                 }
                 else if(isset($record[2]) && $record[2] == 'OBJE')
                 {
-                    //Parser\Object::parse($this);
+                    Parser\Object::parse($this);
                 }
                 else if(trim($record[1]) == 'TRLR')
                 {
@@ -89,14 +92,13 @@ class Parser extends Parser\Base
             }
             else
             {
-                // FIXME
-                //$this->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
+                $this->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }
             
             $this->forward();
         }
         
-        return $this->_gedcom;
+        return $this->getGedcom();
     }
 }
 

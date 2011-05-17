@@ -135,7 +135,7 @@ class Individual extends \Gedcom\Parser\Component
                 break;
                 
                 case 'OBJE':
-                    $object = \Gedcom\Parser\Object::parse($parser);
+                    $object = \Gedcom\Parser\ObjectReference::parse($parser);
                     
                     if(is_a($object, '\Gedcom\Record\Object\Reference'))
                         $individual->addObjectReference($object);

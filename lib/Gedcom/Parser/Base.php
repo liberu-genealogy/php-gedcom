@@ -75,7 +75,7 @@ abstract class Base
         
         $depth = (int)$record[0];
         
-        $data = trim($record[2]);
+        $data = isset($record[2]) ? trim($record[2]) : '';
         
         $this->forward();
         

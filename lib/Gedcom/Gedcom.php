@@ -39,6 +39,7 @@ class Gedcom
     public $families = array();
     public $notes = array();
     public $repos = array();
+    public $objects = array();
     public $submitters = array();
     
     /**
@@ -123,6 +124,14 @@ class Gedcom
     public function addRepo(\Gedcom\Record\Repo &$repo)
     {
         $this->repos[] = &$repo;
+    }
+    
+    /**
+     *
+     */
+    public function addObject(\Gedcom\Record\Object &$object)
+    {
+        $this->objects[] = &$object;
     }
     
     /**
