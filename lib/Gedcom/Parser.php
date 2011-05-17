@@ -26,14 +26,14 @@ class Parser extends Parser\Base
         
         $this->_gedcom = new Gedcom();
         
-        while($this->_currentLine < count($this->_file))
+        while($this->getCurrentLine() < $this->getFileLength())
         {
             $record = $this->getCurrentLineRecord();
-            
+            $depth = (int)$record[0];
             // We only process 0 level records here. Sub levels are processed
             // in methods for those data types (individuals, sources, etc)
             
-            if((int)$record[0] == 0)
+            if($depth == 0)
             {
                 // Although not always an identifier (HEAD,TRLR):
                 $identifier = $this->normalizeIdentifier($record[1]);
@@ -41,19 +41,17 @@ class Parser extends Parser\Base
                 if(trim($record[1]) == 'HEAD')
                 {
                     // TODO
+                    Parser\Header::parse($this);
                 }
                 else if(isset($record[2]) && trim($record[2]) == 'SUBN')
                 {
                     // TODO SUBMISSION
+                    Parser\Submission::parse($this);
                 }
                 else if(isset($record[2]) && trim($record[2]) == 'SUBM')
                 {
                     // TODO SUBMITER
-                }
-                else if(trim($record[1]) == 'TRLR')
-                {
-                    // EOF
-                    break;
+                    Parser\Submitter::parse($this);
                 }
                 else if(isset($record[2]) && $record[2] == 'SOUR')
                 {
@@ -71,14 +69,31 @@ class Parser extends Parser\Base
                 {
                     Parser\Note::parse($this);
                 }
+                else if(isset($record[2]) && $record[2] == 'REPO')
+                {
+                    Parser\Repo::parse($this);
+                }
+                else if(isset($record[2]) && $record[2] == 'OBJE')
+                {
+                    //Parser\Object::parse($this);
+                }
+                else if(trim($record[1]) == 'TRLR')
+                {
+                    // EOF
+                    break;
+                }
                 else
                 {
-                    // FIXME
-                    //$this->logUnhandledRecord(__LINE__);
+                    $this->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
                 }
             }
+            else
+            {
+                // FIXME
+                //$this->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
+            }
             
-            $this->_currentLine++;
+            $this->forward();
         }
         
         return $this->_gedcom;

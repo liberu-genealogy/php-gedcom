@@ -31,10 +31,15 @@ use Gedcom\Record\Note\Text;
  */
 class Gedcom
 {
+    public $head = null;
+    public $submission = null;
+    
     public $sources = array();
     public $people = array();
     public $families = array();
     public $notes = array();
+    public $repos = array();
+    public $submitters = array();
     
     /**
      *
@@ -112,6 +117,21 @@ class Gedcom
         return $note;
     }
     
+    /**
+     *
+     */
+    public function addRepo(\Gedcom\Record\Repo &$repo)
+    {
+        $this->repos[] = &$repo;
+    }
+    
+    /**
+     *
+     */
+    public function addSubmitter(\Gedcom\Record\Submitter &$subm)
+    {
+        $this->submitters[] = &$subm;
+    }
     
     /**
      *

@@ -1,14 +1,14 @@
 <?php
 
-namespace Gedcom\Parser;
+namespace Gedcom\Parser\Header\Source;
 
 /**
  *
  *
  */
-class Change extends \Gedcom\Parser\Component
+class Corp extends \Gedcom\Parser\Component
 {
-    
+
     /**
      *
      *
@@ -18,14 +18,15 @@ class Change extends \Gedcom\Parser\Component
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
         
-        $parser->forward();
+        $corp = new \Gedcom\Record\Header\Source\Corp();
+        $corp->corp = trim($record[2]);
         
-        $change = new \Gedcom\Record\Change();
+        $parser->forward();
         
         while($parser->getCurrentLine() < $parser->getFileLength())
         {
             $record = $parser->getCurrentLineRecord();
-            $recordType = trim($record[1]);
+            $recordType = strtoupper(trim($record[1]));
             $currentDepth = (int)$record[0];
             
             if($currentDepth <= $depth)
@@ -36,23 +37,14 @@ class Change extends \Gedcom\Parser\Component
             
             switch($recordType)
             {
-                case 'DATE':
-                    $change->date = trim($record[2]);
+                case 'ADDR':
+                    $corp->address = \Gedcom\Parser\Address::parse($parser);
                 break;
                 
-                case 'TIME':
-                    $change->time = trim($record[2]);
+                case 'PHON':
+                    $corp->addPhone(trim($record[2]));
                 break;
                 
-                case 'NOTE':
-                    $note = \Gedcom\Parser\NoteReference::parse($parser);
-                    
-                    if(is_a($note, '\Gedcom\Record\Note\Reference'))
-                        $change->addNoteReference($note);
-                    else
-                        $change->addNote($note);
-                break;
-            
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }
@@ -60,6 +52,6 @@ class Change extends \Gedcom\Parser\Component
             $parser->forward();
         }
         
-        return $change;
+        return $corp;
     }
 }
