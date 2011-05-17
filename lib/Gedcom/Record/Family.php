@@ -14,6 +14,8 @@ class Family extends \Gedcom\Record
     public $husbandId = null;
     public $wifeId = null;
     
+    public $nchi = null;
+    
     public $children = array();
     
     public $events = array();
@@ -23,6 +25,8 @@ class Family extends \Gedcom\Record
     public $sealingSpouses = array();
     
     public $submitters = array();
+    
+    public $referenceNumbers = array();
 
 
     /**
@@ -47,7 +51,6 @@ class Family extends \Gedcom\Record
         $this->sealingSpouses[] = $spouse;
     }
     
-    
     /**
      *
      *
@@ -55,5 +58,14 @@ class Family extends \Gedcom\Record
     public function addSubmitter($submitter)
     {
         $this->submitters[] = $submitter;
+    }
+    
+    /**
+     *
+     *
+     */
+    public function addReferenceNumber(\Gedcom\Record\ReferenceNumber &$referenceNumber)
+    {
+        $this->referenceNumbers[] = $referenceNumber;
     }
 }

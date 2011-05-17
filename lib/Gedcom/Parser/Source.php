@@ -16,7 +16,7 @@ class Source extends \Gedcom\Parser\Component
     public static function &parse(\Gedcom\Parser &$parser)
     {
         $record = $parser->getCurrentLineRecord();
-        $identifier = $parser->normalizeIdentifier($record[2]);
+        $identifier = $parser->normalizeIdentifier($record[1]);
         $depth = (int)$record[0];
         
         $source = &$parser->getGedcom()->createSource($identifier);

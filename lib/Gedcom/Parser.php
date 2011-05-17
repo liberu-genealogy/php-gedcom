@@ -36,7 +36,7 @@ class Parser extends Parser\Base
             if((int)$record[0] == 0)
             {
                 // Although not always an identifier (HEAD,TRLR):
-                $identifier = trim(trim($record[1], '@'));
+                $identifier = $this->normalizeIdentifier($record[1]);
                
                 if(trim($record[1]) == 'HEAD')
                 {
@@ -65,8 +65,7 @@ class Parser extends Parser\Base
                 }
                 else if(isset($record[2]) && $record[2] == 'FAM')
                 {
-                    $family = $this->_gedcom->createFamily($identifier);
-                    $this->parseFamily($family);
+                    Parser\Family::parse($this);
                 }
                 else if(isset($record[2]) && $record[2] == 'NOTE')
                 {
@@ -84,91 +83,6 @@ class Parser extends Parser\Base
         }
         
         return $this->_gedcom;
-    }
-    
-    
-    /**
-     *
-     *
-     */
-    protected function parseFamily(&$family)
-    {
-        $this->_currentLine++;
-        
-        while($this->_currentLine < count($this->_file))
-        {
-            $record = $this->getCurrentLineRecord();
-            
-            if($record[0] == '0')
-            {
-                $this->_currentLine--;
-                break;
-            }
-            else if($record[0] == '1')
-            {
-                $recordType = trim($record[1]);
-                
-                $familyId = trim(trim($record[1]), '@F');
-                
-                switch($recordType)
-                {
-                    case 'HUSB':
-                        $family->husbandId = $this->normalizeIdentifier($record[2]);
-                    break;    
-                    
-                    case 'WIFE':
-                        $family->wifeId = $this->normalizeIdentifier($record[2]);
-                    break;
-                    
-                    case 'CHIL':
-                        $family->children[] = $this->normalizeIdentifier($record[2]);
-                    break;
-                    /*
-                     FIXME
-                    case 'MARR':
-                        $this->parseEventRecord($family, 'marriage');
-                    break;
-                    
-                    case 'DIV':
-                        $this->parseEventRecord($family, 'divorce');
-                    break;
-                    */
-                    
-                    case 'SUBM':
-                        $family->addSubmitter($this->normalizeIdentifier($record[2]));
-                    break;
-                    
-                    case 'RIN':
-                        $family->rin = trim($record[2]);
-                    break;
-                    
-                    case 'NOTE':
-                        $family->notes[] = $this->normalizeIdentifier($record[2]);
-                    break;
-                
-                    case 'CHAN':
-                        $change = \Gedcom\Parser\Change::parse($this);
-                        $family->change = $change;
-                    break;
-                    
-                    case 'SLGS':
-                        $slgs = \Gedcom\Parser\Family\SealingSpouse::parse($this);
-                        $family->addSealingSpouse($slgs);
-                    break;
-                    
-                    default:
-                        // FIXME
-                        //$this->logUnhandledRecord(__LINE__);
-                }
-            }
-            else
-            {
-                // FIXME
-                //$this->logUnhandledRecord(__LINE__);
-            }
-            
-            $this->_currentLine++;
-        }
     }
     
     
