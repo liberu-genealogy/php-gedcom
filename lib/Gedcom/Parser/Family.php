@@ -108,7 +108,7 @@ class Family extends \Gedcom\Parser\Component
                 default:
                     if($recordType == 'EVEN' || in_array($recordType, self::$_eventTypes))
                     {
-                        $event = \Gedcom\Parser\Individual\Event::parse($parser);
+                        $event = \Gedcom\Parser\Family\Event::parse($parser);
                         $family->addEvent($event);
                     }
                     else
