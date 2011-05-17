@@ -69,8 +69,7 @@ class Parser extends Parser\Base
                 }
                 else if(isset($record[2]) && $record[2] == 'NOTE')
                 {
-                    $note = $this->_gedcom->createNote($identifier);
-                    $this->parseNote($note);
+                    Parser\Note::parse($this);
                 }
                 else
                 {
@@ -84,91 +83,5 @@ class Parser extends Parser\Base
         
         return $this->_gedcom;
     }
-    
-    
-    /**
-     *
-     */
-    protected function parseNote(&$note)
-    {
-        $record = $this->getCurrentLineRecord();
-
-        $startLevel = $record[0];
-
-        if($startLevel > 0)
-        {
-            //$if(isset($record[2]) && preg_match
-        }
-
-        $this->_currentLine++;
-        
-        while($this->_currentLine < count($this->_file))
-        {
-            $record = $this->getCurrentLineRecord();
-            
-            if((int)$record[0] <= 0)
-            {
-                $this->_currentLine--;
-                break;
-            }
-            else if((int)$record[0] > 0)
-            {
-                $recordType = trim($record[1]);
-                
-                switch($recordType)
-                {
-                    case 'RIN':
-                        $note->rin = trim($record[2]);
-                    break;
-                    
-                    case 'CONT':
-                        if(isset($record[2]))
-                            $note->note .= "\n" . $record[2];
-                    break;
-                    
-                    case 'CONC':
-                        if(isset($record[2]))
-                            $note->note .= $record[2];
-                    break;
-                   
-                    case 'REFN':
-                        $reference = \Gedcom\Parser\ReferenceNumber::parse($this);
-                        $note->addReferenceNumber($reference);
-                    break;
-                    
-                    case 'CHAN':
-                        $change = \Gedcom\Parser\Change::parse($this);
-                        $note->change = &$change;
-                    break;
-
-                    case 'SOUR':
-                        // FIXME    
-                        //$source = new \Gedcom\Record\Source();
-
-                        //$this->parseSource($source);
-
-                        //$note->sources[] = $source;
-                    break;
-                    
-                    default:
-                        // FIXME
-                        //$this->logUnhandledRecord(__LINE__);
-                }
-            }
-            /*else if((int)$record[0] > 0)
-            {
-                // do nothing, this should be handled in cases above by
-                // passing off code execution to other classes
-            }*/
-            else
-            {
-                // FIXME
-                //$this->logUnhandledRecord(__LINE__);
-            }
-            
-            $this->_currentLine++;
-        }
-    }
-
 }
 

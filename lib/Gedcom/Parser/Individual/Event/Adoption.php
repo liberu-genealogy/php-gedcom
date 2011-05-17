@@ -100,7 +100,7 @@ class Adoption extends \Gedcom\Parser\Individual\Event
                 break;
                 
                 case 'NOTE':
-                    $note = \Gedcom\Parser\Note::parse($parser);
+                    $note = \Gedcom\Parser\NoteReference::parse($parser);
                     
                     if(is_a($note, '\Gedcom\Record\Note\Reference'))
                         $event->addNoteReference($note);
