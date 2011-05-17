@@ -6,7 +6,7 @@ namespace Gedcom\Parser\Header;
  *
  *
  */
-class Source extends \Gedcom\Parser\Component
+class Gedc extends \Gedcom\Parser\Component
 {
     
     /**
@@ -18,8 +18,7 @@ class Source extends \Gedcom\Parser\Component
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
         
-        $source = new \Gedcom\Record\Header\Source();
-        $source->source = trim($record[2]);
+        $gedcom = new \Gedcom\Record\Header\Gedcom();
         
         $parser->forward();
         
@@ -38,19 +37,11 @@ class Source extends \Gedcom\Parser\Component
             switch($recordType)
             {
                 case 'VERS':
-                    $source->version = trim($record[2]);
+                    $gedcom->version = trim($record[2]);
                 break;
                 
-                case 'NAME':
-                    $source->name = trim($record[2]);
-                break;
-                
-                case 'CORP':
-                    $source->corp = \Gedcom\Parser\Header\Source\Corp::parse($parser);
-                break;
-                
-                case 'DATA':
-                    $source->data = \Gedcom\Parser\Header\Source\Data::parse($parser);
+                case 'FORM':
+                    $gedcom->form = trim($record[2]);
                 break;
                 
                 default:
@@ -60,6 +51,6 @@ class Source extends \Gedcom\Parser\Component
             $parser->forward();
         }
         
-        return $source;
+        return $gedcom;
     }
 }

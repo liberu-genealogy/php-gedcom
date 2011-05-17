@@ -8,28 +8,7 @@ namespace Gedcom\Parser;
  */
 class Header extends \Gedcom\Parser\Component
 {
-
     
-/*
-    +1 SOUR <APPROVED_SYSTEM_ID>  {1:1}
-      +2 VERS <VERSION_NUMBER>  {0:1}
-      +2 NAME <NAME_OF_PRODUCT>  {0:1}
-      +2 CORP <NAME_OF_BUSINESS>  {0:1}
-        +3 <<ADDRESS_STRUCTURE>>  {0:1}
-      +2 DATA <NAME_OF_SOURCE_DATA>  {0:1}
-        +3 DATE <PUBLICATION_DATE>  {0:1}
-        +3 COPR <COPYRIGHT_SOURCE_DATA>  {0:1}
-    +1 DATE <TRANSMISSION_DATE>  {0:1}
-      +2 TIME <TIME_VALUE>  {0:1}
-    +1 GEDC        {1:1}
-      +2 VERS <VERSION_NUMBER>  {1:1}
-      +2 FORM <GEDCOM_FORM>  {1:1}
-    +1 CHAR <CHARACTER_SET>  {1:1}
-      +2 VERS <VERSION_NUMBER>  {0:1}
-    +1 PLAC        {0:1}
-      +2 FORM <PLACE_HIERARCHY>  {1:1}
-*/
-
     /**
      *
      *
@@ -91,6 +70,22 @@ class Header extends \Gedcom\Parser\Component
                 
                 case 'LANG':
                     $head->lang = trim($record[2]);
+                break;
+            
+                case 'DATE':
+                    $head->date = \Gedcom\Parser\Header\Date::parse($parser);
+                break;
+                
+                case 'GEDC':
+                    $head->gedc = \Gedcom\Parser\Header\Gedc::parse($parser);
+                break;
+                
+                case 'CHAR':
+                    $head->char = \Gedcom\Parser\Header\Char::parse($parser);
+                break;
+                
+                case 'PLAC':
+                    $head->plac = \Gedcom\Parser\Header\Plac::parse($parser);
                 break;
                 
                 case 'NOTE':
