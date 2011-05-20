@@ -30,11 +30,13 @@ class Parser extends Parser\Base
         
         $this->_file = explode("\n", mb_convert_encoding($contents, 'UTF-8'));
         
-        $this->_gedcom = new Gedcom();
-        
         while($this->getCurrentLine() < $this->getFileLength())
         {
             $record = $this->getCurrentLineRecord();
+            
+            if($record === false)
+                continue;
+            
             $depth = (int)$record[0];
             // We only process 0 level records here. Sub levels are processed
             // in methods for those data types (individuals, sources, etc)

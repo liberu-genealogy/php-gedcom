@@ -104,15 +104,4 @@ class Gedcom
         
         return null;
     }
-    
-    /**
-     *
-     */
-    public static function parseFile($fileName)
-    {
-        $parser = new Parser();
-        $gedcom = $parser->parseFile($fileName);
-        
-        return $gedcom;
-    }
 }
