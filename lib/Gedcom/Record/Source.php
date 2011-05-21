@@ -6,18 +6,22 @@ require_once __DIR__ . '/../Record.php';
 
 class Source extends \Gedcom\Record
 {
-    public $title = null;
-    public $author = null;
-    public $published = null;
-    public $repository = null;
+    public $titl = null;
+    public $auth = null;
+    public $data = null;
+    public $text = null;
+    public $publ = null;
+    public $repo = null;
+    public $abbr = null;
+    public $rin = null;
     
-    public $referenceNumbers = array();
+    public $refn = array();
     
     /**
      *
      */
-    public function addReferenceNumber(\Gedcom\Record\ReferenceNumber &$refn)
+    public function addRefn(\Gedcom\Record\ReferenceNumber &$refn)
     {
-        $this->referenceNumbers[] = $refn;
+        $this->refn[] = $refn;
     }
 }

@@ -3,8 +3,8 @@
 namespace Gedcom\Parser;
 
 /**
- *
- *
+ * 
+ * 
  */
 class Source extends \Gedcom\Parser\Component
 {
@@ -41,7 +41,7 @@ class Source extends \Gedcom\Parser\Component
             switch($recordType)
             {
                 case 'TITL':
-                    $source->title = $parser->parseMultilineRecord();
+                    $source->titl = $parser->parseMultilineRecord();
                 break;
                 
                 case 'RIN':
@@ -49,7 +49,7 @@ class Source extends \Gedcom\Parser\Component
                 break;
                 
                 case 'AUTH':
-                    $source->author = $parser->parseMultilineRecord();
+                    $source->auth = $parser->parseMultilineRecord();
                 break;
                 
                 case 'TEXT':
@@ -57,11 +57,15 @@ class Source extends \Gedcom\Parser\Component
                 break;
                 
                 case 'PUBL':
-                    $source->published = $parser->parseMultilineRecord();
+                    $source->publ = $parser->parseMultilineRecord();
+                break;
+                
+                case 'ABBR':
+                    $source->abbr = trim($record[2]);
                 break;
                 
                 case 'REPO':
-                    $source->repository = \Gedcom\Parser\SourceRepositoryCitation::parse($parser);
+                    $source->repo = \Gedcom\Parser\SourceRepositoryCitation::parse($parser);
                 break;
                 
                 case 'NOTE':
@@ -88,12 +92,12 @@ class Source extends \Gedcom\Parser\Component
                 
                 case 'REFN':
                     $referenceNumber = \Gedcom\Parser\ReferenceNumber::parse($parser);
-                    $source->addReferenceNumber($referenceNumber);
+                    $source->addRefn($referenceNumber);
                 break;
                 
                 case 'CHAN':
                     $change = \Gedcom\Parser\Change::parse($parser);
-                    $source->change = &$change;
+                    $source->chan = &$change;
                 break;
                 
                 default:
