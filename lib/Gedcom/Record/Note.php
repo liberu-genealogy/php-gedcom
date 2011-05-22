@@ -12,14 +12,14 @@ class Note extends \Gedcom\Record
 {
     public $note = null;
     public $even = null;
-    public $sources = array();
-    public $referenceNumbers = array();
+    public $refn = array();
+    public $rin = null;
     
     /**
      *
      */
-    public function addReferenceNumber(\Gedcom\Record\ReferenceNumber &$refn)
+    public function addRefn(\Gedcom\Record\ReferenceNumber &$refn)
     {
-        $this->referenceNumbers[] = $refn;
+        $this->refn[] = $refn;
     }
 }

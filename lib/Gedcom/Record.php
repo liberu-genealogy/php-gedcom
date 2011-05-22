@@ -11,6 +11,8 @@ abstract class Record
 {
     public $refId = null;
     
+    public $chan = null;
+    
     public $notes = array();
     public $noteReferences = array();
     

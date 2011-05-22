@@ -15,14 +15,20 @@ class Note extends \Gedcom\Parser\Component
      */
     public static function &parse(\Gedcom\Parser &$parser)
     {
-        $record = $parser->getCurrentLineRecord();
+        $record = $parser->getCurrentLineRecord(4);
         $identifier = $parser->normalizeIdentifier($record[1]);
         $depth = (int)$record[0];
         
         $note = new \Gedcom\Record\Note();
         $note->refId = $identifier;
         
+        if(isset($record[3]))
+            $note->note = $record[3];
+        
         $parser->getGedcom()->addNote($note);
+        
+        if(isset($record[3]))
+            $note->note = $record[3];
         
         $parser->forward();
         
@@ -55,13 +61,13 @@ class Note extends \Gedcom\Parser\Component
                 break;
                
                 case 'REFN':
-                    $reference = \Gedcom\Parser\ReferenceNumber::parse($parser);
-                    $note->addReferenceNumber($reference);
+                    $refn = \Gedcom\Parser\ReferenceNumber::parse($parser);
+                    $note->addRefn($refn);
                 break;
                 
                 case 'CHAN':
                     $change = \Gedcom\Parser\Change::parse($parser);
-                    $note->change = &$change;
+                    $note->chan = &$change;
                 break;
                 
                 case 'SOUR':

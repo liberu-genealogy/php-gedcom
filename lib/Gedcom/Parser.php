@@ -70,7 +70,7 @@ class Parser extends Parser\Base
                 {
                     Parser\Family::parse($this);
                 }
-                else if(isset($record[2]) && $record[2] == 'NOTE')
+                else if(isset($record[2]) && substr(trim($record[2]), 0, 4) == 'NOTE')
                 {
                     Parser\Note::parse($this);
                 }

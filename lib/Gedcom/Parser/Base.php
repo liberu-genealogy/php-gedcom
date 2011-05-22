@@ -123,11 +123,14 @@ abstract class Base
      *
      *
      */
-    public function getCurrentLineRecord()
+    public function getCurrentLineRecord($pieces = 3)
     {
+        if(empty($this->_file[$this->_currentLine]))
+            return false;
+        
         $line = trim($this->_file[$this->_currentLine]);
         
-        return explode(' ', $line, 3);
+        return explode(' ', $line, $pieces);
     }
     
     
