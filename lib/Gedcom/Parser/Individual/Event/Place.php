@@ -19,7 +19,7 @@ class Place extends \Gedcom\Parser\Component
         $depth = (int)$record[0];
         
         $place = new \Gedcom\Record\Individual\Event\Place();
-        $place->place = trim($record[2]);
+        $place->place = isset($record[2]) ? trim($record[2]) : null;
         
         $parser->forward();
         
