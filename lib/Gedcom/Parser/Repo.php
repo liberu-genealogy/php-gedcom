@@ -51,7 +51,7 @@ class Repo extends \Gedcom\Parser\Component
                 
                 case 'PHON':
                     $phone = \Gedcom\Parser\Phone::parse($parser);
-                    $repo->addPhone($phone);
+                    $repo->addPhon($phone);
                 break;
                 
                 case 'NOTE':
@@ -65,12 +65,12 @@ class Repo extends \Gedcom\Parser\Component
                 
                 case 'REFN':
                     $referenceNumber = \Gedcom\Parser\ReferenceNumber::parse($parser);
-                    $repo->addReferenceNumber($referenceNumber);
+                    $repo->addRefn($referenceNumber);
                 break;
                 
                 case 'CHAN':
                     $change = \Gedcom\Parser\Change::parse($parser);
-                    $repo->change = &$change;
+                    $repo->chan = &$change;
                 break;
                 
                 case 'RIN':

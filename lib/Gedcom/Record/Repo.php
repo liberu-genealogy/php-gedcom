@@ -8,24 +8,24 @@ class Repo extends \Gedcom\Record
 {
     public $addr = null;
     public $rin = null;
-    public $change = null;
-    public $phones = array();
+    public $chan = null;
+    public $phon = array();
     
-    public $referenceNumbers = array();
+    public $refn = array();
     
     /**
      *
      */
-    public function addPhone(\Gedcom\Record\Phone &$phone)
+    public function addPhon(\Gedcom\Record\Phone &$phon)
     {
-        $this->phones[] = $phone;
+        $this->phon[] = $phon;
     }
     
     /**
      *
      */
-    public function addReferenceNumber(\Gedcom\Record\ReferenceNumber &$refn)
+    public function addRefn(\Gedcom\Record\ReferenceNumber &$refn)
     {
-        $this->referenceNumbers[] = $refn;
+        $this->refn[] = $refn;
     }
 }
