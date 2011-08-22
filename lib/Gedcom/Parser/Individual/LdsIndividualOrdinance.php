@@ -80,17 +80,17 @@ class LdsIndividualOrdinance extends \Gedcom\Parser\Component
                 case 'SOUR':
                     $citation = \Gedcom\Parser\SourceCitation::parse($parser);
                     
-                    if(is_a($citation, '\Gedcom\Record\SourceCitation\Reference'))
-                        $ldsIndividualOrdinance->addSourceCitationReference($citation);
+                    if(is_a($citation, '\Gedcom\Record\SourceCitation\Ref'))
+                        $ldsIndividualOrdinance->addSourceCitationRef($citation);
                     else
                         $ldsIndividualOrdinance->addSourceCitation($citation);
                 break;
                 
                 case 'NOTE':
-                    $note = \Gedcom\Parser\NoteReference::parse($parser);
+                    $note = \Gedcom\Parser\NoteRef::parse($parser);
                     
-                    if(is_a($note, '\Gedcom\Record\Note\Reference'))
-                        $ldsIndividualOrdinance->addNoteReference($note);
+                    if(is_a($note, '\Gedcom\Record\Note\Ref'))
+                        $ldsIndividualOrdinance->addNoteRef($note);
                     else
                         $ldsIndividualOrdinance->addNote($note);
                 break;

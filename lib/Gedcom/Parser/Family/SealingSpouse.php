@@ -55,17 +55,17 @@ class SealingSpouse extends \Gedcom\Parser\Component
                 case 'SOUR':
                     $citation = \Gedcom\Parser\SourceCitation::parse($parser);
                     
-                    if(is_a($citation, '\Gedcom\Record\SourceCitation\Reference'))
-                        $slgs->addSourceCitationReference($citation);
+                    if(is_a($citation, '\Gedcom\Record\SourceCitation\Ref'))
+                        $slgs->addSourceCitationRef($citation);
                     else
                         $slgs->addSourceCitation($citation);
                 break;
                 
                 case 'NOTE':
-                    $note = \Gedcom\Parser\NoteReference::parse($parser);
+                    $note = \Gedcom\Parser\NoteRef::parse($parser);
                     
-                    if(is_a($note, '\Gedcom\Record\Note\Reference'))
-                        $slgs->addNoteReference($note);
+                    if(is_a($note, '\Gedcom\Record\Note\Ref'))
+                        $slgs->addNoteRef($note);
                     else
                         $slgs->addNote($note);
                 break;

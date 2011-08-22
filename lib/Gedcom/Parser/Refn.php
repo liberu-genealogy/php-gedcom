@@ -6,7 +6,7 @@ namespace Gedcom\Parser;
  *
  *
  */
-class ReferenceNumber extends \Gedcom\Parser\Component
+class Refn extends \Gedcom\Parser\Component
 {
     
     /**
@@ -18,8 +18,8 @@ class ReferenceNumber extends \Gedcom\Parser\Component
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
         
-        $referenceNumber = new \Gedcom\Record\ReferenceNumber();
-        $referenceNumber->number = trim($record[2]);
+        $refn = new \Gedcom\Record\Refn();
+        $refn->number = trim($record[2]);
         
         $parser->forward();
         
@@ -38,7 +38,7 @@ class ReferenceNumber extends \Gedcom\Parser\Component
             switch($recordType)
             {
                 case 'TYPE':
-                    $referenceNumber->type = trim($record[2]);
+                    $refn->type = trim($record[2]);
                 break;
                 
                 default:
@@ -48,6 +48,6 @@ class ReferenceNumber extends \Gedcom\Parser\Component
             $parser->forward();
         }
         
-        return $referenceNumber;
+        return $refn;
     }
 }

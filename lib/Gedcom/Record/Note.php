@@ -18,7 +18,7 @@ class Note extends \Gedcom\Record
     /**
      *
      */
-    public function addRefn(\Gedcom\Record\ReferenceNumber &$refn)
+    public function addRefn(\Gedcom\Record\Refn &$refn)
     {
         $this->refn[] = $refn;
     }

@@ -26,7 +26,7 @@ class Family extends \Gedcom\Record
     
     public $submitters = array();
     
-    public $referenceNumbers = array();
+    public $refn = array();
 
 
     /**
@@ -64,8 +64,8 @@ class Family extends \Gedcom\Record
      *
      *
      */
-    public function addReferenceNumber(\Gedcom\Record\ReferenceNumber &$referenceNumber)
+    public function addRefn(\Gedcom\Record\Refn &$refn)
     {
-        $this->referenceNumbers[] = $referenceNumber;
+        $this->refn[] = $refn;
     }
 }

@@ -7,7 +7,7 @@ require_once realpath(__DIR__ . '/../../Record.php');
 /**
  *
  */
-class Reference extends \Gedcom\Record
+class Ref extends \Gedcom\Record
 {
     public $sourceId;
     public $page = null;

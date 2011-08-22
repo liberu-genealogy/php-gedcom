@@ -60,10 +60,10 @@ class Subm extends \Gedcom\Parser\Component
                 break;
                 
                 case 'NOTE':
-                    $note = \Gedcom\Parser\NoteReference::parse($parser);
+                    $note = \Gedcom\Parser\NoteRef::parse($parser);
                     
-                    if(is_a($note, '\Gedcom\Record\Note\Reference'))
-                        $subm->addNoteReference($note);
+                    if(is_a($note, '\Gedcom\Record\Note\Ref'))
+                        $subm->addNoteRef($note);
                     else
                         $subm->addNote($note);
                 break;

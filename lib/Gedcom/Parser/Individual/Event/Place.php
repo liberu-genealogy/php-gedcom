@@ -42,10 +42,10 @@ class Place extends \Gedcom\Parser\Component
                 break;
                 
                 case 'NOTE':
-                    $note = \Gedcom\Parser\NoteReference::parse($parser);
+                    $note = \Gedcom\Parser\NoteRef::parse($parser);
                     
-                    if(is_a($note, '\Gedcom\Record\Note\Reference'))
-                        $place->addNoteReference($note);
+                    if(is_a($note, '\Gedcom\Record\Note\Ref'))
+                        $place->addNoteRef($note);
                     else
                         $place->addNote($note);
                 break;
@@ -53,8 +53,8 @@ class Place extends \Gedcom\Parser\Component
                 case 'SOUR':
                     $citation = \Gedcom\Parser\SourceCitation::parse($parser);
                     
-                    if(is_a($citation, '\Gedcom\Record\SourceCitation\Reference'))
-                        $place->addSourceCitationReference($citation);
+                    if(is_a($citation, '\Gedcom\Record\SourceCitation\Ref'))
+                        $place->addSourceCitationRef($citation);
                     else
                         $place->addSourceCitation($citation);
                 break;

@@ -2,6 +2,8 @@
 
 namespace Gedcom\Parser\Individual\Event;
 
+require_once __DIR__ . '/../../../Record/Individual/Event/Birth.php';
+
 /**
  *
  *
@@ -80,26 +82,26 @@ class Birth extends \Gedcom\Parser\Individual\Event
                 case 'SOUR':
                     $citation = \Gedcom\Parser\SourceCitation::parse($parser);
                     
-                    if(is_a($citation, '\Gedcom\Record\SourceCitation\Reference'))
-                        $event->addSourceCitationReference($citation);
+                    if(is_a($citation, '\Gedcom\Record\SourceCitation\Ref'))
+                        $event->addSourceCitationRef($citation);
                     else
                         $event->addSourceCitation($citation);
                 break;
                 
                 case 'OBJE':
-                    $object = \Gedcom\Parser\ObjectReference::parse($parser);
+                    $object = \Gedcom\Parser\ObjeRef::parse($parser);
                     
-                    if(is_a($object, '\Gedcom\Record\Object\Reference'))
-                        $event->addObjectReference($object);
+                    if(is_a($object, '\Gedcom\Record\Obje\Ref'))
+                        $event->addObjeRef($object);
                     else
-                        $event->addObject($object);
+                        $event->addObje($object);
                 break;
                 
                 case 'NOTE':
-                    $note = \Gedcom\Parser\NoteReference::parse($parser);
+                    $note = \Gedcom\Parser\NoteRef::parse($parser);
                     
-                    if(is_a($note, '\Gedcom\Record\Note\Reference'))
-                        $event->addNoteReference($note);
+                    if(is_a($note, '\Gedcom\Record\Note\Ref'))
+                        $event->addNoteRef($note);
                     else
                         $event->addNote($note);
                 break;

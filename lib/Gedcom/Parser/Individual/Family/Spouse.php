@@ -40,10 +40,10 @@ class Spouse extends \Gedcom\Parser\Component
             switch($recordType)
             {
                 case 'NOTE':
-                    $note = \Gedcom\Parser\NoteReference::parse($parser);
+                    $note = \Gedcom\Parser\NoteRef::parse($parser);
                     
-                    if(is_a($note, '\Gedcom\Record\Note\Reference'))
-                        $family->addNoteReference($note);
+                    if(is_a($note, '\Gedcom\Record\Note\Ref'))
+                        $family->addNoteRef($note);
                     else
                         $family->addNote($note);
                 break;

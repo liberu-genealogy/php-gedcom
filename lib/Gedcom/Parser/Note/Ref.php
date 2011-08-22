@@ -17,8 +17,8 @@ class Ref extends \Gedcom\Parser\Component
         
         $identifier = $parser->normalizeIdentifier($record[2]);
         
-        $reference = new \Gedcom\Record\Note\Ref();
-        $reference->refId = $identifier;
+        $ref = new \Gedcom\Record\Note\Ref();
+        $ref->refId = $identifier;
         
         $parser->forward();
         
@@ -39,10 +39,10 @@ class Ref extends \Gedcom\Parser\Component
                 case 'SOUR':
                     $citation = \Gedcom\Parser\SourceCitation::parse($parser);
                     
-                    if(is_a($citation, '\Gedcom\Record\SourceCitation\Reference'))
-                        $reference->addSourceCitationReference($citation);
+                    if(is_a($citation, '\Gedcom\Record\SourceCitation\Ref'))
+                        $ref->addSourceCitationRef($citation);
                     else
-                        $reference->addSourceCitation($citation);
+                        $ref->addSourceCitation($citation);
                 break;
                 
                 default:
@@ -52,6 +52,6 @@ class Ref extends \Gedcom\Parser\Component
             $parser->forward();
         }
         
-        return $reference;
+        return $ref;
     }
 }

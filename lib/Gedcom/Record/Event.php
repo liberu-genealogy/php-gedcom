@@ -14,18 +14,18 @@ class Event extends \Gedcom\Record
     
     public $addr = null;
     
-    public $phones = array();
+    public $phon = array();
     
     public $agnc = null;
     
-    public $references = array();
+    public $ref = array();
     
     /**
      *
      */
-    public function addPhone(\Gedcom\Record\Phone &$phone)
+    public function addPhon(\Gedcom\Record\Phon &$phon)
     {
-        $this->phones[] = $phone;
+        $this->phon[] = $phon;
     }
     
 }

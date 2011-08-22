@@ -56,8 +56,8 @@ class Attribute extends \Gedcom\Parser\Component
                 break;
                 
                 case 'PHON':
-                    $phone = \Gedcom\Parser\Phone::parse($parser);
-                    $attribute->addPhone($phone);
+                    $phone = \Gedcom\Parser\Phon::parse($parser);
+                    $attribute->addPhon($phone);
                 break;
                 
                 case 'CAUS':
@@ -75,26 +75,26 @@ class Attribute extends \Gedcom\Parser\Component
                 case 'SOUR':
                     $citation = \Gedcom\Parser\SourceCitation::parse($parser);
                     
-                    if(is_a($citation, '\Gedcom\Record\SourceCitation\Reference'))
-                        $attribute->addSourceCitationReference($citation);
+                    if(is_a($citation, '\Gedcom\Record\SourceCitation\Ref'))
+                        $attribute->addSourceCitationRef($citation);
                     else
                         $attribute->addSourceCitation($citation);
                 break;
                 
                 case 'OBJE':
-                    $object = \Gedcom\Parser\ObjectReference::parse($parser);
+                    $object = \Gedcom\Parser\ObjeRef::parse($parser);
                     
-                    if(is_a($object, '\Gedcom\Record\Object\Reference'))
-                        $attribute->addObjectReference($object);
+                    if(is_a($object, '\Gedcom\Record\Obje\Ref'))
+                        $attribute->addObjeRef($object);
                     else
-                        $attribute->addObject($object);
+                        $attribute->addObje($object);
                 break;
                 
                 case 'NOTE':
-                    $note = \Gedcom\Parser\NoteReference::parse($parser);
+                    $note = \Gedcom\Parser\NoteRef::parse($parser);
                     
-                    if(is_a($note, '\Gedcom\Record\Note\Reference'))
-                        $attribute->addNoteReference($note);
+                    if(is_a($note, '\Gedcom\Record\Note\Ref'))
+                        $attribute->addNoteRef($note);
                     else
                         $attribute->addNote($note);
                 break;

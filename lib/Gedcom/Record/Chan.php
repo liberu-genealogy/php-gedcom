@@ -8,7 +8,7 @@ require_once __DIR__ . '/../Record.php';
  *
  *
  */
-class Change extends \Gedcom\Record
+class Chan extends \Gedcom\Record
 {
     public $date = null;
     public $time = null;

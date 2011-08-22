@@ -16,7 +16,7 @@ class Repo extends \Gedcom\Record
     /**
      *
      */
-    public function addPhon(\Gedcom\Record\Phone &$phon)
+    public function addPhon(\Gedcom\Record\Phon &$phon)
     {
         $this->phon[] = $phon;
     }
@@ -24,7 +24,7 @@ class Repo extends \Gedcom\Record
     /**
      *
      */
-    public function addRefn(\Gedcom\Record\ReferenceNumber &$refn)
+    public function addRefn(\Gedcom\Record\Refn &$refn)
     {
         $this->refn[] = $refn;
     }

@@ -7,7 +7,7 @@ require_once __DIR__ . '/Record/Family.php';
 require_once __DIR__ . '/Record/Source.php';
 require_once __DIR__ . '/Record/Note.php';
 require_once __DIR__ . '/Record/Data.php';
-require_once __DIR__ . '/Record/Change.php';
+require_once __DIR__ . '/Record/Chan.php';
 require_once __DIR__ . '/Record/Object.php';
 require_once __DIR__ . '/Parser.php';
 

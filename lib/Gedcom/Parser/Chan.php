@@ -20,7 +20,7 @@ class Chan extends \Gedcom\Parser\Component
         
         $parser->forward();
         
-        $change = new \Gedcom\Record\Change();
+        $chan = new \Gedcom\Record\Chan();
         
         while($parser->getCurrentLine() < $parser->getFileLength())
         {
@@ -37,20 +37,20 @@ class Chan extends \Gedcom\Parser\Component
             switch($recordType)
             {
                 case 'DATE':
-                    $change->date = trim($record[2]);
+                    $chan->date = trim($record[2]);
                 break;
                 
                 case 'TIME':
-                    $change->time = trim($record[2]);
+                    $chan->time = trim($record[2]);
                 break;
                 
                 case 'NOTE':
-                    $note = \Gedcom\Parser\NoteReference::parse($parser);
+                    $note = \Gedcom\Parser\NoteRef::parse($parser);
                     
-                    if(is_a($note, '\Gedcom\Record\Note\Reference'))
-                        $change->addNoteReference($note);
+                    if(is_a($note, '\Gedcom\Record\Note\Ref'))
+                        $chan->addNoteRef($note);
                     else
-                        $change->addNote($note);
+                        $chan->addNote($note);
                 break;
             
                 default:
@@ -60,6 +60,6 @@ class Chan extends \Gedcom\Parser\Component
             $parser->forward();
         }
         
-        return $change;
+        return $chan;
     }
 }

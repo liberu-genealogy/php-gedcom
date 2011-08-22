@@ -67,8 +67,8 @@ class Family extends \Gedcom\Parser\Component
                 break;
                 
                 case 'CHAN':
-                    $change = \Gedcom\Parser\Change::parse($parser);
-                    $family->change = $change;
+                    $chan = \Gedcom\Parser\Chan::parse($parser);
+                    $family->chan = $chan;
                 break;
                 
                 case 'SLGS':
@@ -77,15 +77,15 @@ class Family extends \Gedcom\Parser\Component
                 break;
                 
                 case 'REFN':
-                    $ref = \Gedcom\Parser\ReferenceNumber::parse($parser);
-                    $family->addReferenceNumber($ref);
+                    $ref = \Gedcom\Parser\Refn::parse($parser);
+                    $family->addRefn($ref);
                 break;
                 
                 case 'NOTE':
-                    $note = \Gedcom\Parser\NoteReference::parse($parser);
+                    $note = \Gedcom\Parser\NoteRef::parse($parser);
                     
-                    if(is_a($note, '\Gedcom\Record\Note\Reference'))
-                        $family->addNoteReference($note);
+                    if(is_a($note, '\Gedcom\Record\Note\Ref'))
+                        $family->addNoteRef($note);
                     else
                         $family->addNote($note);
                 break;
@@ -93,19 +93,19 @@ class Family extends \Gedcom\Parser\Component
                 case 'SOUR':
                     $citation = \Gedcom\Parser\SourceCitation::parse($parser);
                     
-                    if(is_a($citation, '\Gedcom\Record\SourceCitation\Reference'))
-                        $family->addSourceCitationReference($citation);
+                    if(is_a($citation, '\Gedcom\Record\SourceCitation\Ref'))
+                        $family->addSourceCitationRef($citation);
                     else
                         $family->addSourceCitation($citation);
                 break;
                 
                 case 'OBJE':
-                    $object = \Gedcom\Parser\ObjectReference::parse($parser);
+                    $object = \Gedcom\Parser\ObjeRef::parse($parser);
                     
-                    if(is_a($object, '\Gedcom\Record\Object\Reference'))
-                        $family->addObjectReference($object);
+                    if(is_a($object, '\Gedcom\Record\Obje\Ref'))
+                        $family->addObjeRef($object);
                     else
-                        $family->addObject($object);
+                        $family->addObje($object);
                 break;
                 
                 default:

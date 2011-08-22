@@ -6,19 +6,8 @@ namespace Gedcom\Parser\SourceCitation;
  *
  *
  */
-class Reference extends \Gedcom\Parser\Component
+class Ref extends \Gedcom\Parser\Component
 {
-
-/*
-  n SOUR @<XREF:SOUR>@    {1:1}
-    +1 EVEN <EVENT_TYPE_CITED_FROM>  {0:1}
-      +2 ROLE <ROLE_IN_EVENT>  {0:1}
-    +1 DATA        {0:1}
-      +2 DATE <ENTRY_RECORDING_DATE>  {0:1}
-      +2 TEXT <TEXT_FROM_SOURCE>  {0:M}
-        +3 [ CONC | CONT ] <TEXT_FROM_SOURCE>  {0:M}
-
-*/
     
     /**
      *
@@ -29,8 +18,8 @@ class Reference extends \Gedcom\Parser\Component
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
         
-        $reference = new \Gedcom\Record\SourceCitation\Reference();
-        $reference->sourceId = $parser->normalizeIdentifier($record[1]);
+        $ref = new \Gedcom\Record\SourceCitation\Ref();
+        $ref->sourceId = $parser->normalizeIdentifier($record[1]);
         
         $parser->forward();
         
@@ -49,11 +38,11 @@ class Reference extends \Gedcom\Parser\Component
             switch($recordType)
             {
                 case 'QUAY':
-                    $reference->quay = trim($record[2]);
+                    $ref->quay = trim($record[2]);
                 break;
                 
                 case 'PAGE':
-                    $reference->page = trim($record[2]);
+                    $ref->page = trim($record[2]);
                 break;
                 
                 case 'EVEN':
@@ -62,25 +51,25 @@ class Reference extends \Gedcom\Parser\Component
                 break;
                 
                 case 'OBJE':
-                    $object = \Gedcom\Parser\ObjectReference::parse($parser);
+                    $object = \Gedcom\Parser\ObjectRef::parse($parser);
                     
-                    if(is_a($object, '\Gedcom\Record\Object\Reference'))
-                        $reference->addObjectReference($object);
+                    if(is_a($object, '\Gedcom\Record\Object\Ref'))
+                        $ref->addObjectRef($object);
                     else
-                        $reference->addObject($object);
+                        $ref->addObject($object);
                 break;
                 
                 case 'NOTE':
-                    $note = \Gedcom\Parser\NoteReference::parse($parser);
+                    $note = \Gedcom\Parser\NoteRef::parse($parser);
                     
-                    if(is_a($note, '\Gedcom\Record\Note\Reference'))
-                        $reference->addNoteReference($note);
+                    if(is_a($note, '\Gedcom\Record\Note\Ref'))
+                        $ref->addNoteRef($note);
                     else
-                        $reference->addNote($note);
+                        $ref->addNote($note);
                 break;
                 
                 case 'DATA':
-                    $reference->data = \Gedcom\Parser\Source\Data::parse($parser);
+                    $ref->data = \Gedcom\Parser\Source\Data::parse($parser);
                 break;
                 
                 default:
@@ -90,6 +79,6 @@ class Reference extends \Gedcom\Parser\Component
             $parser->forward();
         }
         
-        return $reference;
+        return $ref;
     }
 }

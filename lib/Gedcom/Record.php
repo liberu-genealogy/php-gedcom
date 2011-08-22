@@ -14,21 +14,21 @@ abstract class Record
     public $chan = null;
     
     public $notes = array();
-    public $noteReferences = array();
+    public $noteRef = array();
     
     public $objects = array();
-    public $objectReferences = array();
+    public $objectRef = array();
     
     public $sourceCitations = array();
-    public $sourceCitationReferences = array();
+    public $sourceCitationRef = array();
     
     
     /**
      *
      */
-    public function addNoteRef(\Gedcom\Record\Note\Ref &$reference)
+    public function addNoteRef(\Gedcom\Record\Note\Ref &$ref)
     {
-        $this->noteReferences[] = $reference;
+        $this->noteRef[] = $ref;
     }
     
     /**
@@ -50,15 +50,15 @@ abstract class Record
     /**
      *
      */
-    public function addObjectRef(\Gedcom\Record\Obje\Ref &$object)
+    public function addObjeRef(\Gedcom\Record\Obje\Ref &$object)
     {
-        $this->objectReferences[] = $object;
+        $this->objectRef[] = $object;
     }
     
     /**
      *
      */
-    public function addSourceCitation(\Gedcom\Record\SourceCitation\Embedded &$citation)
+    public function addSourceCitation(\Gedcom\Record\SourceCitation\Embe &$citation)
     {
         $this->sourceCitations[] = $citation;
     }
@@ -66,9 +66,9 @@ abstract class Record
     /**
      *
      */
-    public function addSourceCitationReference(\Gedcom\Record\SourceCitation\Reference &$citation)
+    public function addSourceCitationRef(\Gedcom\Record\SourceCitation\Ref &$citation)
     {
-        $this->sourceCitationReferences[] = $citation;
+        $this->sourceCitationRef[] = $citation;
     }
 }
 

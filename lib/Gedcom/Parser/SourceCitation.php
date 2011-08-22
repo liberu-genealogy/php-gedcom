@@ -2,8 +2,8 @@
 
 namespace Gedcom\Parser;
 
-require_once __DIR__ . '/SourceCitation/Embedded.php';
-require_once __DIR__ . '/SourceCitation/Reference.php';
+require_once __DIR__ . '/SourceCitation/Embe.php';
+require_once __DIR__ . '/SourceCitation/Ref.php';
 
 /**
  *
@@ -22,9 +22,9 @@ class SourceCitation extends \Gedcom\Parser\Component
         $citation = null;
         
         if(isset($record[2]) && preg_match('/\@([A-Z0-9]*)\@/i', $record[2]) > 0)
-            $citation = \Gedcom\Parser\SourceCitation\Reference::parse($parser);
+            $citation = \Gedcom\Parser\SourceCitation\Ref::parse($parser);
         else
-            $citation = \Gedcom\Parser\SourceCitation\Embedded::parse($parser);
+            $citation = \Gedcom\Parser\SourceCitation\Embe::parse($parser);
         
         return $citation;
     }

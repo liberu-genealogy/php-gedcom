@@ -18,8 +18,8 @@ class Ref extends \Gedcom\Parser\Component
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
         
-        $reference = new \Gedcom\Record\Obje\Ref();
-        $reference->objectId = $parser->normalizeIdentifier($record[1]);
+        $ref = new \Gedcom\Record\Obje\Ref();
+        $ref->objectId = $parser->normalizeIdentifier($record[1]);
         
         $parser->forward();
         
@@ -44,6 +44,6 @@ class Ref extends \Gedcom\Parser\Component
             $parser->forward();
         }
         
-        return $reference;
+        return $ref;
     }
 }

@@ -38,7 +38,7 @@ class Individual extends \Gedcom\Record
     
     public $ldsIndividualOrdinances = array();
 
-    public $referenceNumbers = array();
+    public $refn = array();
 
     /**
      *
@@ -128,9 +128,9 @@ class Individual extends \Gedcom\Record
     /**
      *
      */
-    public function addReferenceNumber(\Gedcom\Record\ReferenceNumber &$ref)
+    public function addRefn(\Gedcom\Record\Refn &$ref)
     {
-        $this->referenceNumbers[] = $ref;
+        $this->refn[] = $ref;
     }
     
     /**

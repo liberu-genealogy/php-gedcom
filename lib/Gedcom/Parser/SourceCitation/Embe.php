@@ -6,7 +6,7 @@ namespace Gedcom\Parser\SourceCitation;
  *
  *
  */
-class Embedded extends \Gedcom\Parser\Component
+class Embe extends \Gedcom\Parser\Component
 {
     
     /**
@@ -18,7 +18,7 @@ class Embedded extends \Gedcom\Parser\Component
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
         
-        $embedded = new \Gedcom\Record\SourceCitation\Embedded();
+        $embedded = new \Gedcom\Record\SourceCitation\Embe();
         $embedded->source = $record[2];
         
         $parser->forward();
@@ -54,10 +54,10 @@ class Embedded extends \Gedcom\Parser\Component
                 break;
                 
                 case 'NOTE':
-                    $note = \Gedcom\Parser\NoteReference::parse($parser);
+                    $note = \Gedcom\Parser\NoteRef::parse($parser);
                     
-                    if(is_a($note, '\Gedcom\Record\Note\Reference'))
-                        $embedded->addNoteReference($note);
+                    if(is_a($note, '\Gedcom\Record\Note\Ref'))
+                        $embedded->addNoteRef($note);
                     else
                         $embedded->addNote($note);
                 break;

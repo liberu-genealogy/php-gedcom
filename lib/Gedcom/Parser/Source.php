@@ -69,10 +69,10 @@ class Source extends \Gedcom\Parser\Component
                 break;
                 
                 case 'NOTE':
-                    $note = \Gedcom\Parser\NoteReference::parse($parser);
+                    $note = \Gedcom\Parser\NoteRef::parse($parser);
                     
-                    if(is_a($note, '\Gedcom\Record\Note\Reference'))
-                        $source->addNoteReference($note);
+                    if(is_a($note, '\Gedcom\Record\Note\Ref'))
+                        $source->addNoteRef($note);
                     else
                         $source->addNote($note);
                 break;
@@ -82,22 +82,22 @@ class Source extends \Gedcom\Parser\Component
                 break;
                 
                 case 'OBJE':
-                    $object = \Gedcom\Parser\ObjectReference::parse($parser);
+                    $object = \Gedcom\Parser\ObjeRef::parse($parser);
                     
-                    if(is_a($object, '\Gedcom\Record\Object\Reference'))
-                        $source->addObjectReference($object);
+                    if(is_a($object, '\Gedcom\Record\Obje\Ref'))
+                        $source->addObjeRef($object);
                     else
-                        $source->addObject($object);
+                        $source->addObje($object);
                 break;
                 
                 case 'REFN':
-                    $referenceNumber = \Gedcom\Parser\ReferenceNumber::parse($parser);
-                    $source->addRefn($referenceNumber);
+                    $refn = \Gedcom\Parser\Refn::parse($parser);
+                    $source->addRefn($refn);
                 break;
                 
                 case 'CHAN':
-                    $change = \Gedcom\Parser\Change::parse($parser);
-                    $source->chan = &$change;
+                    $chan = \Gedcom\Parser\Chan::parse($parser);
+                    $source->chan = &$chan;
                 break;
                 
                 default:

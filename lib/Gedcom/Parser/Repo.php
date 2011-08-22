@@ -50,27 +50,27 @@ class Repo extends \Gedcom\Parser\Component
                 break;
                 
                 case 'PHON':
-                    $phone = \Gedcom\Parser\Phone::parse($parser);
-                    $repo->addPhon($phone);
+                    $phon = \Gedcom\Parser\Phon::parse($parser);
+                    $repo->addPhon($phon);
                 break;
                 
                 case 'NOTE':
-                    $note = \Gedcom\Parser\NoteReference::parse($parser);
+                    $note = \Gedcom\Parser\NoteRef::parse($parser);
                     
-                    if(is_a($note, '\Gedcom\Record\Note\Reference'))
-                        $repo->addNoteReference($note);
+                    if(is_a($note, '\Gedcom\Record\Note\Ref'))
+                        $repo->addNoteRef($note);
                     else
                         $repo->addNote($note);
                 break;
                 
                 case 'REFN':
-                    $referenceNumber = \Gedcom\Parser\ReferenceNumber::parse($parser);
-                    $repo->addRefn($referenceNumber);
+                    $refn = \Gedcom\Parser\Refn::parse($parser);
+                    $repo->addRefn($refn);
                 break;
                 
                 case 'CHAN':
-                    $change = \Gedcom\Parser\Change::parse($parser);
-                    $repo->chan = &$change;
+                    $chan = \Gedcom\Parser\Chan::parse($parser);
+                    $repo->chan = &$chan;
                 break;
                 
                 case 'RIN':

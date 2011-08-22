@@ -3,6 +3,8 @@
 namespace Gedcom\Parser;
 
 require_once __DIR__ . '/Individual/Name.php';
+require_once __DIR__ . '/Individual/Event.php';
+require_once __DIR__ . '/Individual/Event/Birth.php';
 require_once __DIR__ . '/../Record/Individual.php';
 
 /**
@@ -94,8 +96,8 @@ class Individual extends \Gedcom\Parser\Component
                 break;
                 
                 case 'CHAN':
-                    $change = \Gedcom\Parser\Change::parse($parser);
-                    $individual->change = &$change;
+                    $chan = \Gedcom\Parser\Chan::parse($parser);
+                    $individual->chan = &$chan;
                 break;
                 
                 case 'FAMS':
@@ -126,8 +128,8 @@ class Individual extends \Gedcom\Parser\Component
                 break;
                 
                 case 'REFN':
-                    $ref = \Gedcom\Parser\ReferenceNumber::parse($parser);
-                    $individual->addReferenceNumber($ref);
+                    $ref = \Gedcom\Parser\Refn::parse($parser);
+                    $individual->addRefn($ref);
                 break;
                 
                 case 'BAPL':
@@ -139,19 +141,19 @@ class Individual extends \Gedcom\Parser\Component
                 break;
                 
                 case 'OBJE':
-                    $object = \Gedcom\Parser\ObjectReference::parse($parser);
+                    $object = \Gedcom\Parser\ObjeRef::parse($parser);
                     
-                    if(is_a($object, '\Gedcom\Record\Object\Reference'))
-                        $individual->addObjectReference($object);
+                    if(is_a($object, '\Gedcom\Record\Obje\Ref'))
+                        $individual->addObjeRef($object);
                     else
-                        $individual->addObject($object);
+                        $individual->addObje($object);
                 break;
                 
                 case 'NOTE':
-                    $note = \Gedcom\Parser\NoteReference::parse($parser);
+                    $note = \Gedcom\Parser\NoteRef::parse($parser);
                     
-                    if(is_a($note, '\Gedcom\Record\Note\Reference'))
-                        $individual->addNoteReference($note);
+                    if(is_a($note, '\Gedcom\Record\Note\Ref'))
+                        $individual->addNoteRef($note);
                     else
                         $individual->addNote($note);
                 break;
@@ -159,8 +161,8 @@ class Individual extends \Gedcom\Parser\Component
                 case 'SOUR':
                     $citation = \Gedcom\Parser\SourceCitation::parse($parser);
                     
-                    if(is_a($citation, '\Gedcom\Record\SourceCitation\Reference'))
-                        $individual->addSourceCitationReference($citation);
+                    if(is_a($citation, '\Gedcom\Record\SourceCitation\Ref'))
+                        $individual->addSourceCitationRef($citation);
                     else
                         $individual->addSourceCitation($citation);
                 break;

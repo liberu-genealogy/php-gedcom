@@ -9,22 +9,6 @@ namespace Gedcom\Parser;
 class Object extends \Gedcom\Parser\Component
 {
 
-/*
-  n @<XREF:OBJE>@ OBJE  {1:1}
-    +1 FORM <MULTIMEDIA_FORMAT>  {1:1}
-    +1 TITL <DESCRIPTIVE_TITLE>  {0:1}
-    +1 <<NOTE_STRUCTURE>>  {0:M}
-    +1 <<SOURCE_CITATION>>  {0:M}
-    +1 BLOB        {1:1}
-      +2 CONT <ENCODED_MULTIMEDIA_LINE>  {1:M}
-    +1 OBJE @<XREF:OBJE>@     // chain to continued object //  {0:1}
-    +1 REFN <USER_REFERENCE_NUMBER>  {0:M}
-      +2 TYPE <USER_REFERENCE_TYPE>  {0:1}
-    +1 RIN <AUTOMATED_RECORD_ID>  {0:1}
-    +1 <<CHANGE_DATE>>  {0:1}
-*/
-
-
     /**
      *
      *
@@ -73,8 +57,8 @@ class Object extends \Gedcom\Parser\Component
                 break;
                 
                 case 'REFN':
-                    $referenceNumber = \Gedcom\Parser\ReferenceNumber::parse($parser);
-                    $object->addReferenceNumber($referenceNumber);
+                    $refn = \Gedcom\Parser\Refn::parse($parser);
+                    $object->addRefn($refn);
                 break;
                 
                 case 'BLOB':
@@ -82,17 +66,17 @@ class Object extends \Gedcom\Parser\Component
                 break;
                 
                 case 'NOTE':
-                    $note = \Gedcom\Parser\NoteReference::parse($parser);
+                    $note = \Gedcom\Parser\NoteRef::parse($parser);
                     
-                    if(is_a($note, '\Gedcom\Record\Note\Reference'))
-                        $object->addNoteReference($note);
+                    if(is_a($note, '\Gedcom\Record\Note\Ref'))
+                        $object->addNoteRef($note);
                     else
                         $object->addNote($note);
                 break;
                 
                 case 'CHAN':
-                    $change = \Gedcom\Parser\Change::parse($parser);
-                    $object->change = &$change;
+                    $chan = \Gedcom\Parser\Chan::parse($parser);
+                    $object->chan = &$chan;
                 break;
                 
                 default:

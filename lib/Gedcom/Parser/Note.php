@@ -61,20 +61,20 @@ class Note extends \Gedcom\Parser\Component
                 break;
                
                 case 'REFN':
-                    $refn = \Gedcom\Parser\ReferenceNumber::parse($parser);
+                    $refn = \Gedcom\Parser\Refn::parse($parser);
                     $note->addRefn($refn);
                 break;
                 
                 case 'CHAN':
-                    $change = \Gedcom\Parser\Change::parse($parser);
-                    $note->chan = &$change;
+                    $chan = \Gedcom\Parser\Chan::parse($parser);
+                    $note->chan = &$chan;
                 break;
                 
                 case 'SOUR':
                     $citation = \Gedcom\Parser\SourceCitation::parse($parser);
                     
-                    if(is_a($citation, '\Gedcom\Record\SourceCitation\Reference'))
-                        $note->addSourceCitationReference($citation);
+                    if(is_a($citation, '\Gedcom\Record\SourceCitation\Ref'))
+                        $note->addSourceCitationRef($citation);
                     else
                         $note->addSourceCitation($citation);
                 break;
