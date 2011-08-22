@@ -1,12 +1,15 @@
 <?php
 
-namespace Gedcom\Parser\Object;
+namespace Gedcom\Parser\Obje;
+
+require_once __DIR__ . '/../NoteRef.php';
+require_once __DIR__ . '/../../Record/Obje/Embe.php';
 
 /**
  *
  *
  */
-class Embedded extends \Gedcom\Parser\Component
+class Embe extends \Gedcom\Parser\Component
 {
     
     /**
@@ -18,7 +21,7 @@ class Embedded extends \Gedcom\Parser\Component
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
         
-        $embedded = new \Gedcom\Record\Object\Embedded();
+        $embedded = new \Gedcom\Record\Obje\Embe();
         
         $parser->forward();
         
@@ -49,10 +52,10 @@ class Embedded extends \Gedcom\Parser\Component
                 break;
                 
                 case 'NOTE':
-                    $note = \Gedcom\Parser\NoteReference::parse($parser);
+                    $note = \Gedcom\Parser\NoteRef::parse($parser);
                     
-                    if(is_a($note, '\Gedcom\Record\Note\Reference'))
-                        $embedded->addNoteReference($note);
+                    if(is_a($note, '\Gedcom\Record\Note\Ref'))
+                        $embedded->addNoteRef($note);
                     else
                         $embedded->addNote($note);
                 break;

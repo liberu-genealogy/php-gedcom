@@ -1,6 +1,19 @@
 <?php
+/**
+ *
+ *
+ */
 
 namespace Gedcom\Parser;
+
+require __DIR__ . '/Component.php';
+require __DIR__ . '/Header/Source.php';
+require __DIR__ . '/Header/Date.php';
+require __DIR__ . '/Header/Gedc.php';
+require __DIR__ . '/Header/Char.php';
+require __DIR__ . '/Header/Plac.php';
+require __DIR__ . '/../Record/Submission.php';
+require __DIR__ . '/../Record/Header/Source.php';
 
 /**
  *
@@ -11,7 +24,7 @@ class Header extends \Gedcom\Parser\Component
     
     /**
      *
-     *
+     * @param \Gedcom\Parser parser 
      */
     public static function &parse(\Gedcom\Parser &$parser)
     {

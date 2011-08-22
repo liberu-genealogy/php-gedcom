@@ -2,6 +2,9 @@
 
 namespace Gedcom\Parser\Header\Source;
 
+require_once __DIR__ . '/../../../Record/Header/Source/Corp.php';
+require_once __DIR__ . '/../../Address.php';
+
 /**
  *
  *

@@ -4,7 +4,7 @@ namespace Gedcom\Record;
 
 require_once __DIR__ . '/../Record.php';
 
-class Submitter extends \Gedcom\Record
+class Subm extends \Gedcom\Record
 {
     public $name = null;
     public $addr = null;
@@ -12,7 +12,7 @@ class Submitter extends \Gedcom\Record
     public $rfn = null;
     
     public $langs = array();
-    public $phones = array();
+    public $phon = array();
     
     /**
      *
@@ -25,8 +25,8 @@ class Submitter extends \Gedcom\Record
     /**
      *
      */
-    public function addPhone(\Gedcom\Record\Phone &$phone)
+    public function addPhon(\Gedcom\Record\Phon &$phon)
     {
-        $this->phones[] = $phone;
+        $this->phon[] = $phon;
     }
 }

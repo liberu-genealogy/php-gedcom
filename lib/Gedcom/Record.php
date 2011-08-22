@@ -26,7 +26,7 @@ abstract class Record
     /**
      *
      */
-    public function addNoteReference(\Gedcom\Record\Note\Reference &$reference)
+    public function addNoteRef(\Gedcom\Record\Note\Ref &$reference)
     {
         $this->noteReferences[] = $reference;
     }
@@ -42,7 +42,7 @@ abstract class Record
     /**
      *
      */
-    public function addObject(\Gedcom\Record\Object\Embedded &$object)
+    public function addObje(\Gedcom\Record\Obje\Embe &$object)
     {
         $this->objects[] = $object;
     }
@@ -50,7 +50,7 @@ abstract class Record
     /**
      *
      */
-    public function addObjectReference(\Gedcom\Record\Object\Reference &$object)
+    public function addObjectRef(\Gedcom\Record\Obje\Ref &$object)
     {
         $this->objectReferences[] = $object;
     }

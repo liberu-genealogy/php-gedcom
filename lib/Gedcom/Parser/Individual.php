@@ -2,6 +2,7 @@
 
 namespace Gedcom\Parser;
 
+require_once __DIR__ . '/Individual/Name.php';
 require_once __DIR__ . '/../Record/Individual.php';
 
 /**

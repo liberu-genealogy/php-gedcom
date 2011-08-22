@@ -88,7 +88,7 @@ class Gedcom
     /**
      *
      */
-    public function addSubmitter(\Gedcom\Record\Submitter &$subm)
+    public function addSubm(\Gedcom\Record\Subm &$subm)
     {
         $this->submitters[$subm->refId] = &$subm;
     }

@@ -2,11 +2,16 @@
 
 namespace Gedcom\Parser;
 
+require_once __DIR__ . '/Chan.php';
+require_once __DIR__ . '/Phon.php';
+require_once __DIR__ . '/ObjeRef.php';
+require_once __DIR__ . '/../Record/Subm.php';
+
 /**
  *
  *
  */
-class Submitter extends \Gedcom\Parser\Component
+class Subm extends \Gedcom\Parser\Component
 {
     
     /**
@@ -19,10 +24,10 @@ class Submitter extends \Gedcom\Parser\Component
         $identifier = $parser->normalizeIdentifier($record[1]);
         $depth = (int)$record[0];
         
-        $subm = new \Gedcom\Record\Submitter();
+        $subm = new \Gedcom\Record\Subm();
         $subm->refId = $identifier;
         
-        $parser->getGedcom()->addSubmitter($subm);
+        $parser->getGedcom()->addSubm($subm);
         
         $parser->forward();
         
@@ -50,8 +55,8 @@ class Submitter extends \Gedcom\Parser\Component
                 break;
                 
                 case 'PHON':
-                    $phone = \Gedcom\Parser\Phone::parse($parser);
-                    $subm->addPhone($phone);
+                    $phone = \Gedcom\Parser\Phon::parse($parser);
+                    $subm->addPhon($phone);
                 break;
                 
                 case 'NOTE':
@@ -64,17 +69,17 @@ class Submitter extends \Gedcom\Parser\Component
                 break;
                 
                 case 'OBJE':
-                    $object = \Gedcom\Parser\ObjectReference::parse($parser);
+                    $obje = \Gedcom\Parser\ObjeRef::parse($parser);
                     
-                    if(is_a($object, '\Gedcom\Record\Object\Reference'))
-                        $subm->addObjectReference($object);
+                    if(is_a($obje, '\Gedcom\Record\Obje\Ref'))
+                        $subm->addObjeRef($obje);
                     else
-                        $subm->addObject($object);
+                        $subm->addObje($obje);
                 break;
                 
                 case 'CHAN':
-                    $change = \Gedcom\Parser\Change::parse($parser);
-                    $subm->change = &$change;
+                    $chan = \Gedcom\Parser\Chan::parse($parser);
+                    $subm->chan = &$chan;
                 break;
                 
                 case 'RIN':

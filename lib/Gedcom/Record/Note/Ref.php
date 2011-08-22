@@ -8,7 +8,7 @@ require_once __DIR__ . '/../../Record.php';
  *
  *
  */
-class Reference extends \Gedcom\Record\Note
+class Ref extends \Gedcom\Record\Note
 {
     public $noteId = null;
     public $sources = array();

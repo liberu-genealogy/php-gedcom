@@ -4,8 +4,8 @@ namespace Gedcom\Record\Header;
 
 require_once __DIR__ . '/../../Record.php';
 
-class CharacterSet extends \Gedcom\Record
+class Gedc extends \Gedcom\Record
 {
-    public $char = null;
     public $version = null;
+    public $form = null;
 }

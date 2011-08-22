@@ -2,6 +2,8 @@
 
 namespace Gedcom\Parser\Header;
 
+require_once __DIR__ . '/../../Record/Header/Gedc.php';
+
 /**
  *
  *
@@ -18,7 +20,7 @@ class Gedc extends \Gedcom\Parser\Component
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
         
-        $gedcom = new \Gedcom\Record\Header\Gedcom();
+        $gedc = new \Gedcom\Record\Header\Gedc();
         
         $parser->forward();
         
@@ -37,11 +39,11 @@ class Gedc extends \Gedcom\Parser\Component
             switch($recordType)
             {
                 case 'VERS':
-                    $gedcom->version = trim($record[2]);
+                    $gedc->version = trim($record[2]);
                 break;
                 
                 case 'FORM':
-                    $gedcom->form = trim($record[2]);
+                    $gedc->form = trim($record[2]);
                 break;
                 
                 default:
@@ -51,6 +53,6 @@ class Gedc extends \Gedcom\Parser\Component
             $parser->forward();
         }
         
-        return $gedcom;
+        return $gedc;
     }
 }

@@ -1,13 +1,13 @@
 <?php
 
-namespace Gedcom\Record\Object;
+namespace Gedcom\Record\Obje;
 
 require_once realpath(__DIR__ . '/../../Record.php');
 
 /**
  *
  */
-class Embedded extends \Gedcom\Record
+class Embe extends \Gedcom\Record
 {
     public $form = null;
     public $title = null;

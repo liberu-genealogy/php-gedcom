@@ -1,12 +1,14 @@
 <?php
 
-namespace Gedcom\Parser\Object;
+namespace Gedcom\Parser;
+
+require_once __DIR__ . '/../Record/Phon.php';
 
 /**
  *
  *
  */
-class Reference extends \Gedcom\Parser\Component
+class Phon extends \Gedcom\Parser\Component
 {
     
     /**
@@ -18,8 +20,8 @@ class Reference extends \Gedcom\Parser\Component
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
         
-        $reference = new \Gedcom\Record\Object\Reference();
-        $reference->objectId = $parser->normalizeIdentifier($record[1]);
+        $phone = new \Gedcom\Record\Phon();
+        $phone->phone = trim($record[2]);
         
         $parser->forward();
         
@@ -44,6 +46,6 @@ class Reference extends \Gedcom\Parser\Component
             $parser->forward();
         }
         
-        return $reference;
+        return $phone;
     }
 }

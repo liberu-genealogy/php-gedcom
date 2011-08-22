@@ -2,6 +2,8 @@
 
 namespace Gedcom\Parser\Header;
 
+require_once __DIR__ . '/../../Record/Header/Char.php';
+
 /**
  *
  *
@@ -18,7 +20,7 @@ class Char extends \Gedcom\Parser\Component
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
         
-        $char = new \Gedcom\Record\Header\CharacterSet();
+        $char = new \Gedcom\Record\Header\Char();
         $char->char = trim($record[2]);
         
         $parser->forward();

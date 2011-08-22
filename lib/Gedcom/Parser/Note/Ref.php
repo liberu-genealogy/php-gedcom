@@ -1,31 +1,31 @@
 <?php
 
-namespace Gedcom\Parser;
+namespace Gedcom\Parser\Note;
+
+require_once __DIR__ . '/../../Record/Note/Ref.php';
 
 /**
  *
  *
  */
-class Change extends \Gedcom\Parser\Component
+class Ref extends \Gedcom\Parser\Component
 {
-    
-    /**
-     *
-     *
-     */
     public static function &parse(\Gedcom\Parser &$parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
         
-        $parser->forward();
+        $identifier = $parser->normalizeIdentifier($record[2]);
         
-        $change = new \Gedcom\Record\Change();
+        $reference = new \Gedcom\Record\Note\Ref();
+        $reference->refId = $identifier;
+        
+        $parser->forward();
         
         while($parser->getCurrentLine() < $parser->getFileLength())
         {
             $record = $parser->getCurrentLineRecord();
-            $recordType = trim($record[1]);
+            $recordType = strtoupper(trim($record[1]));
             $currentDepth = (int)$record[0];
             
             if($currentDepth <= $depth)
@@ -36,23 +36,15 @@ class Change extends \Gedcom\Parser\Component
             
             switch($recordType)
             {
-                case 'DATE':
-                    $change->date = trim($record[2]);
-                break;
-                
-                case 'TIME':
-                    $change->time = trim($record[2]);
-                break;
-                
-                case 'NOTE':
-                    $note = \Gedcom\Parser\NoteReference::parse($parser);
+                case 'SOUR':
+                    $citation = \Gedcom\Parser\SourceCitation::parse($parser);
                     
-                    if(is_a($note, '\Gedcom\Record\Note\Reference'))
-                        $change->addNoteReference($note);
+                    if(is_a($citation, '\Gedcom\Record\SourceCitation\Reference'))
+                        $reference->addSourceCitationReference($citation);
                     else
-                        $change->addNote($note);
+                        $reference->addSourceCitation($citation);
                 break;
-            
+                
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }
@@ -60,6 +52,6 @@ class Change extends \Gedcom\Parser\Component
             $parser->forward();
         }
         
-        return $change;
+        return $reference;
     }
 }

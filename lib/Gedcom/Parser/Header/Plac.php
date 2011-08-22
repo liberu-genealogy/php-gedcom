@@ -2,6 +2,8 @@
 
 namespace Gedcom\Parser\Header;
 
+require_once __DIR__ . '/../../Record/Header/Plac.php';
+
 /**
  *
  *
@@ -18,7 +20,7 @@ class Plac extends \Gedcom\Parser\Component
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
         
-        $plac = new \Gedcom\Record\Header\Place();
+        $plac = new \Gedcom\Record\Header\Plac();
         
         $parser->forward();
         

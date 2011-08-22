@@ -2,14 +2,14 @@
 
 namespace Gedcom\Parser;
 
-require_once __DIR__ . '/Object/Embedded.php';
-require_once __DIR__ . '/Object/Reference.php';
+require_once __DIR__ . '/Obje/Embe.php';
+require_once __DIR__ . '/Obje/Ref.php';
 
 /**
  *
  *
  */
-class ObjectReference extends \Gedcom\Parser\Component
+class ObjeRef extends \Gedcom\Parser\Component
 {
     /**
      *
@@ -22,9 +22,9 @@ class ObjectReference extends \Gedcom\Parser\Component
         $object = null;
         
         if(isset($record[2]) && preg_match('/\@([A-Z0-9]*)\@/i', $record[2]) > 0)
-            $object = \Gedcom\Parser\Object\Reference::parse($parser);
+            $object = \Gedcom\Parser\Obje\Ref::parse($parser);
         else
-            $object = \Gedcom\Parser\Object\Embedded::parse($parser);
+            $object = \Gedcom\Parser\Obje\Embe::parse($parser);
         
         return $object;
     }

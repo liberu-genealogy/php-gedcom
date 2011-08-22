@@ -2,6 +2,8 @@
 
 namespace Gedcom\Parser\Header;
 
+require_once __DIR__ . '/../../Record/Header/Date.php';
+
 /**
  *
  *

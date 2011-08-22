@@ -6,7 +6,7 @@ namespace Gedcom\Parser;
  *
  *
  */
-class Submission extends \Gedcom\Parser\Component
+class Subn extends \Gedcom\Parser\Component
 {
 
     /**

@@ -2,6 +2,8 @@
 
 namespace Gedcom\Parser;
 
+require_once __DIR__ . '/../Record/Address.php';
+
 /**
  *
  *

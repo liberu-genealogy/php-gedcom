@@ -1,22 +1,25 @@
 <?php
 
-namespace Gedcom\Parser\Note;
+namespace Gedcom\Parser\Obje;
 
 /**
  *
  *
  */
-class Reference extends \Gedcom\Parser\Component
+class Ref extends \Gedcom\Parser\Component
 {
+    
+    /**
+     *
+     *
+     */
     public static function &parse(\Gedcom\Parser &$parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
         
-        $identifier = $parser->normalizeIdentifier($record[2]);
-        
-        $reference = new \Gedcom\Record\Note\Reference();
-        $reference->refId = $identifier;
+        $reference = new \Gedcom\Record\Obje\Ref();
+        $reference->objectId = $parser->normalizeIdentifier($record[1]);
         
         $parser->forward();
         
@@ -34,15 +37,6 @@ class Reference extends \Gedcom\Parser\Component
             
             switch($recordType)
             {
-                case 'SOUR':
-                    $citation = \Gedcom\Parser\SourceCitation::parse($parser);
-                    
-                    if(is_a($citation, '\Gedcom\Record\SourceCitation\Reference'))
-                        $reference->addSourceCitationReference($citation);
-                    else
-                        $reference->addSourceCitation($citation);
-                break;
-                
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }

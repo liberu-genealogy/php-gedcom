@@ -2,6 +2,9 @@
 
 namespace Gedcom\Parser\Header;
 
+require_once __DIR__ . '/Source/Corp.php';
+require_once __DIR__ . '/Source/Data.php';
+
 /**
  *
  *

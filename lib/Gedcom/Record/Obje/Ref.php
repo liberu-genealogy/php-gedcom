@@ -1,13 +1,13 @@
 <?php
 
-namespace Gedcom\Record\Object;
+namespace Gedcom\Record\Obje;
 
 require_once realpath(__DIR__ . '/../../Record.php');
 
 /**
  *
  */
-class Reference extends \Gedcom\Record
+class Ref extends \Gedcom\Record
 {
     public $objectId;
 }
