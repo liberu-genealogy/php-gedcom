@@ -90,8 +90,7 @@ abstract class Base
             
             if($currentDepth <= $depth)
             {
-                if($linesAdvanced > 1)
-                    $this->back();
+                $this->back();
                 break;
             }
             
