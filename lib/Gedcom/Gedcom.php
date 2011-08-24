@@ -92,4 +92,76 @@ class Gedcom
     {
         $this->_subm[$subm->refId] = &$subm;
     }
+    
+    /**
+     *
+     */
+    public function &getHead()
+    {
+        return $this->_head;
+    }
+    
+    /**
+     *
+     */
+    public function &getSubn()
+    {
+        return $this->_subn;
+    }
+    
+    /**
+     *
+     */
+    public function &getSubm()
+    {
+        return $this->_subm;
+    }
+    
+    /**
+     *
+     */
+    public function &getIndi()
+    {
+        return $this->_indi;
+    }
+    
+    /**
+     *
+     */
+    public function &getFam()
+    {
+        return $this->_fam;
+    }
+    
+    /**
+     *
+     */
+    public function &getRepo()
+    {
+        return $this->_repo;
+    }
+    
+    /**
+     *
+     */
+    public function &getSour()
+    {
+        return $this->_sour;
+    }
+    
+    /**
+     *
+     */
+    public function &getNote()
+    {
+        return $this->_note;
+    }
+    
+    /**
+     *
+     */
+    public function &getObje()
+    {
+        return $this->_obje;
+    }
 }
