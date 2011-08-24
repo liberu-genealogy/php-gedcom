@@ -1,12 +1,14 @@
 <?php
 
-namespace Gedcom\Parser;
+namespace Gedcom\Parser\Head;
+
+require_once __DIR__ . '/../../Record/Head/Gedc.php';
 
 /**
  *
  *
  */
-class SourceRepositoryCitation extends \Gedcom\Parser\Component
+class Gedc extends \Gedcom\Parser\Component
 {
     
     /**
@@ -16,20 +18,17 @@ class SourceRepositoryCitation extends \Gedcom\Parser\Component
     public static function &parse(\Gedcom\Parser &$parser)
     {
         $record = $parser->getCurrentLineRecord();
-        $identifier = $parser->normalizeIdentifier($record[2]);
-        
         $depth = (int)$record[0];
         
-        $citation = new \Gedcom\Record\SourceRepositoryCitation();
-        $citation->repoId = $identifier;
+        $gedc = new \Gedcom\Record\Head\Gedc();
         
         $parser->forward();
         
         while($parser->getCurrentLine() < $parser->getFileLength())
         {
             $record = $parser->getCurrentLineRecord();
-            $currentDepth = (int)$record[0];
             $recordType = strtoupper(trim($record[1]));
+            $currentDepth = (int)$record[0];
             
             if($currentDepth <= $depth)
             {
@@ -39,17 +38,12 @@ class SourceRepositoryCitation extends \Gedcom\Parser\Component
             
             switch($recordType)
             {
-                case 'CALN': 
-                    $citation->addCaln(\Gedcom\Parser\SourceCallNumber::parse($parser));
+                case 'VERS':
+                    $gedc->version = trim($record[2]);
                 break;
                 
-                case 'NOTE':
-                    $note = \Gedcom\Parser\NoteRef::parse($parser);
-                    
-                    if(is_a($note, '\Gedcom\Record\Note\Ref'))
-                        $citation->addNoteRef($note);
-                    else
-                        $citation->addNote($note);
+                case 'FORM':
+                    $gedc->form = trim($record[2]);
                 break;
                 
                 default:
@@ -59,6 +53,6 @@ class SourceRepositoryCitation extends \Gedcom\Parser\Component
             $parser->forward();
         }
         
-        return $citation;
+        return $gedc;
     }
 }

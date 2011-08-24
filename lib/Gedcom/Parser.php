@@ -4,14 +4,14 @@ namespace Gedcom;
 
 require_once __DIR__ . '/Gedcom.php';
 require_once __DIR__ . '/Parser/Base.php';
-require_once __DIR__ . '/Parser/Header.php';
+require_once __DIR__ . '/Parser/Head.php';
 require_once __DIR__ . '/Parser/Subn.php';
 require_once __DIR__ . '/Parser/Subm.php';
-require_once __DIR__ . '/Parser/Source.php';
-require_once __DIR__ . '/Parser/Object.php';
+require_once __DIR__ . '/Parser/Sour.php';
+require_once __DIR__ . '/Parser/Obje.php';
 require_once __DIR__ . '/Parser/Note.php';
-require_once __DIR__ . '/Parser/Individual.php';
-require_once __DIR__ . '/Parser/Family.php';
+require_once __DIR__ . '/Parser/Indi.php';
+require_once __DIR__ . '/Parser/Fam.php';
 
 /**
  *
@@ -22,7 +22,7 @@ class Parser extends Parser\Base
     
     /**
      *
-     *
+     * @return \Gedcom\Gedcom;
      */
     public function parse($fileName)
     {
@@ -48,7 +48,7 @@ class Parser extends Parser\Base
                
                 if(trim($record[1]) == 'HEAD')
                 {
-                    Parser\Header::parse($this);
+                    Parser\Head::parse($this);
                 }
                 else if(isset($record[2]) && trim($record[2]) == 'SUBN')
                 {
@@ -60,15 +60,15 @@ class Parser extends Parser\Base
                 }
                 else if(isset($record[2]) && $record[2] == 'SOUR')
                 {
-                    Parser\Source::parse($this);
+                    Parser\Sour::parse($this);
                 }
                 else if(isset($record[2]) && $record[2] == 'INDI')
                 {
-                    Parser\Individual::parse($this);
+                    Parser\Indi::parse($this);
                 }
                 else if(isset($record[2]) && $record[2] == 'FAM')
                 {
-                    Parser\Family::parse($this);
+                    Parser\Fam::parse($this);
                 }
                 else if(isset($record[2]) && substr(trim($record[2]), 0, 4) == 'NOTE')
                 {
@@ -80,7 +80,7 @@ class Parser extends Parser\Base
                 }
                 else if(isset($record[2]) && $record[2] == 'OBJE')
                 {
-                    Parser\Object::parse($this);
+                    Parser\Obje::parse($this);
                 }
                 else if(trim($record[1]) == 'TRLR')
                 {

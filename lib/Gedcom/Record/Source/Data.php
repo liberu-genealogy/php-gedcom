@@ -10,16 +10,16 @@ require_once realpath(__DIR__ . '/../../Record.php');
 class Data extends \Gedcom\Record
 {
     public $events = array();
-    public $agnc = null;
-    public $date = null;
+    protected $_agnc = null;
+    protected $_date = null;
     
-    public $text = array();
+    protected $_text = array();
     
     /**
      *
      */
     public function addText($text)
     {
-        $this->text[] = $text;
+        $this->_text[] = $text;
     }
 }

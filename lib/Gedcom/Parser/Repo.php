@@ -45,8 +45,8 @@ class Repo extends \Gedcom\Parser\Component
                 break;
                 
                 case 'ADDR':
-                    $addr = \Gedcom\Parser\Address::parse($parser);
-                    $repo->addr = &$addr;
+                    $addr = \Gedcom\Parser\Addr::parse($parser);
+                    $repo->addr = $addr;
                 break;
                 
                 case 'PHON':
@@ -70,7 +70,7 @@ class Repo extends \Gedcom\Parser\Component
                 
                 case 'CHAN':
                     $chan = \Gedcom\Parser\Chan::parse($parser);
-                    $repo->chan = &$chan;
+                    $repo->chan = $chan;
                 break;
                 
                 case 'RIN':

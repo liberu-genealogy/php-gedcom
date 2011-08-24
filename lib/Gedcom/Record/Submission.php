@@ -6,11 +6,11 @@ require_once __DIR__ . '/../Record.php';
 
 class Submission extends \Gedcom\Record
 {
-    public $subm = null;
-    public $famf = null;
-    public $temp = null;
-    public $ance = null;
-    public $desc = null;
-    public $ordi = null;
-    public $rin = null;
+    protected $_subm = null;
+    protected $_famf = null;
+    protected $_temp = null;
+    protected $_ance = null;
+    protected $_desc = null;
+    protected $_ordi = null;
+    protected $_rin = null;
 }

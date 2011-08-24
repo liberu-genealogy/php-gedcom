@@ -2,18 +2,18 @@
 
 namespace Gedcom;
 
-require_once __DIR__ . '/Record/Individual.php';
-require_once __DIR__ . '/Record/Family.php';
-require_once __DIR__ . '/Record/Source.php';
+require_once __DIR__ . '/Record/Indi.php';
+require_once __DIR__ . '/Record/Fam.php';
+require_once __DIR__ . '/Record/Sour.php';
 require_once __DIR__ . '/Record/Note.php';
 require_once __DIR__ . '/Record/Data.php';
 require_once __DIR__ . '/Record/Chan.php';
-require_once __DIR__ . '/Record/Object.php';
+require_once __DIR__ . '/Record/Obje.php';
 require_once __DIR__ . '/Parser.php';
 
-use Gedcom\Record\Individual;
+use Gedcom\Record\Indivi;
 use Gedcom\Record\Family;
-use Gedcom\Record\Source;
+use Gedcom\Record\Sour;
 use Gedcom\Record\Note;
 use Gedcom\Record\Data;
 use Gedcom\Record\Note\Text;
@@ -24,40 +24,40 @@ use Gedcom\Record\Note\Text;
  */
 class Gedcom
 {
-    public $head = null;
-    public $submission = null;
+    protected $_head = null;
+    protected $_subn = null;
     
-    public $sources = array();
-    public $individuals = array();
-    public $families = array();
-    public $notes = array();
-    public $repos = array();
-    public $objects = array();
-    public $submitters = array();
+    protected $_sour = array();
+    protected $_indi = array();
+    protected $_fam = array();
+    protected $_note = array();
+    protected $_repos = array();
+    protected $_obje = array();
+    protected $_subm = array();
     
     /**
      *
      */
-    public function addSource(\Gedcom\Record\Source $source)
+    public function addSour(\Gedcom\Record\Sour $sour)
     {
-        $this->sources[$source->refId] = $source;
+        $this->_sour[$sour->refId] = $sour;
     }
     
     /**
      *
      */
-    public function addIndividual(\Gedcom\Record\Individual &$indi)
+    public function addIndi(\Gedcom\Record\Indi &$indi)
     {
-        $this->individual[$indi->refId] = &$indi;
+        $this->_indi[$indi->refId] = &$indi;
     }
     
     /**
      *
      *
      */
-    public function addFamily(\Gedcom\Record\Family &$family)
+    public function addFam(\Gedcom\Record\Fam &$fam)
     {
-        $this->families[$family->refId] = &$family;
+        $this->_fam[$fam->refId] = &$fam;
     }
     
     /**
@@ -66,7 +66,7 @@ class Gedcom
      */
     public function addNote(\Gedcom\Record\Note &$note)
     {
-        $this->notes[$note->refId] = &$note;
+        $this->_note[$note->refId] = &$note;
     }
     
     /**
@@ -74,15 +74,15 @@ class Gedcom
      */
     public function addRepo(\Gedcom\Record\Repo &$repo)
     {
-        $this->repos[$repo->refId] = &$repo;
+        $this->_repo[$repo->refId] = &$repo;
     }
     
     /**
      *
      */
-    public function addObject(\Gedcom\Record\Object &$object)
+    public function addObje(\Gedcom\Record\Obje &$obje)
     {
-        $this->objects[$object->refId] = &$object;
+        $this->_obje[$obje->refId] = &$obje;
     }
     
     /**
@@ -90,18 +90,6 @@ class Gedcom
      */
     public function addSubm(\Gedcom\Record\Subm &$subm)
     {
-        $this->submitters[$subm->refId] = &$subm;
-    }
-    
-    /**
-     *
-     *
-     */
-    public function &findIndividual($identifier)
-    {
-        if(isset($this->individuals[$identifier]))
-            return $this->individuals[$identifier];
-        
-        return null;
+        $this->_subm[$subm->refId] = &$subm;
     }
 }

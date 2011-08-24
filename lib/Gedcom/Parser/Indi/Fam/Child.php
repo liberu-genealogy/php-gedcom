@@ -1,12 +1,12 @@
 <?php
 
-namespace Gedcom\Parser;
+namespace Gedcom\Parser\Indi\Fam;
 
 /**
  *
  *
  */
-class SourceRepositoryCitation extends \Gedcom\Parser\Component
+class Child extends \Gedcom\Parser\Component
 {
     
     /**
@@ -16,20 +16,20 @@ class SourceRepositoryCitation extends \Gedcom\Parser\Component
     public static function &parse(\Gedcom\Parser &$parser)
     {
         $record = $parser->getCurrentLineRecord();
-        $identifier = $parser->normalizeIdentifier($record[2]);
-        
         $depth = (int)$record[0];
         
-        $citation = new \Gedcom\Record\SourceRepositoryCitation();
-        $citation->repoId = $identifier;
+        $familyId = $parser->normalizeIdentifier($record[2]);
+        
+        $family = new \Gedcom\Record\Indi\Fam\Child();
+        $family->familyId = $familyId;
         
         $parser->forward();
         
         while($parser->getCurrentLine() < $parser->getFileLength())
         {
             $record = $parser->getCurrentLineRecord();
-            $currentDepth = (int)$record[0];
             $recordType = strtoupper(trim($record[1]));
+            $currentDepth = (int)$record[0];
             
             if($currentDepth <= $depth)
             {
@@ -39,17 +39,17 @@ class SourceRepositoryCitation extends \Gedcom\Parser\Component
             
             switch($recordType)
             {
-                case 'CALN': 
-                    $citation->addCaln(\Gedcom\Parser\SourceCallNumber::parse($parser));
+                case 'PEDI':
+                    $family->pedi = trim($record[2]);
                 break;
                 
                 case 'NOTE':
                     $note = \Gedcom\Parser\NoteRef::parse($parser);
                     
                     if(is_a($note, '\Gedcom\Record\Note\Ref'))
-                        $citation->addNoteRef($note);
+                        $family->addNoteRef($note);
                     else
-                        $citation->addNote($note);
+                        $family->addNote($note);
                 break;
                 
                 default:
@@ -59,6 +59,6 @@ class SourceRepositoryCitation extends \Gedcom\Parser\Component
             $parser->forward();
         }
         
-        return $citation;
+        return $family;
     }
 }

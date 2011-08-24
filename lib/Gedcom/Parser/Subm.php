@@ -50,7 +50,7 @@ class Subm extends \Gedcom\Parser\Component
                 break;
                 
                 case 'ADDR':
-                    $addr = \Gedcom\Parser\Address::parse($parser);
+                    $addr = \Gedcom\Parser\Addr::parse($parser);
                     $subm->addr = &$addr;
                 break;
                 
@@ -79,7 +79,7 @@ class Subm extends \Gedcom\Parser\Component
                 
                 case 'CHAN':
                     $chan = \Gedcom\Parser\Chan::parse($parser);
-                    $subm->chan = &$chan;
+                    $subm->chan = $chan;
                 break;
                 
                 case 'RIN':

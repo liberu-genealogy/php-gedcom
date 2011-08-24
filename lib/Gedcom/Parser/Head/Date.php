@@ -1,12 +1,14 @@
 <?php
 
-namespace Gedcom\Parser;
+namespace Gedcom\Parser\Head;
+
+require_once __DIR__ . '/../../Record/Head/Date.php';
 
 /**
  *
  *
  */
-class SourceRepositoryCitation extends \Gedcom\Parser\Component
+class Date extends \Gedcom\Parser\Component
 {
     
     /**
@@ -16,20 +18,18 @@ class SourceRepositoryCitation extends \Gedcom\Parser\Component
     public static function &parse(\Gedcom\Parser &$parser)
     {
         $record = $parser->getCurrentLineRecord();
-        $identifier = $parser->normalizeIdentifier($record[2]);
-        
         $depth = (int)$record[0];
         
-        $citation = new \Gedcom\Record\SourceRepositoryCitation();
-        $citation->repoId = $identifier;
+        $date = new \Gedcom\Record\Head\Date();
+        $date->date = trim($record[2]);
         
         $parser->forward();
         
         while($parser->getCurrentLine() < $parser->getFileLength())
         {
             $record = $parser->getCurrentLineRecord();
-            $currentDepth = (int)$record[0];
             $recordType = strtoupper(trim($record[1]));
+            $currentDepth = (int)$record[0];
             
             if($currentDepth <= $depth)
             {
@@ -39,17 +39,8 @@ class SourceRepositoryCitation extends \Gedcom\Parser\Component
             
             switch($recordType)
             {
-                case 'CALN': 
-                    $citation->addCaln(\Gedcom\Parser\SourceCallNumber::parse($parser));
-                break;
-                
-                case 'NOTE':
-                    $note = \Gedcom\Parser\NoteRef::parse($parser);
-                    
-                    if(is_a($note, '\Gedcom\Record\Note\Ref'))
-                        $citation->addNoteRef($note);
-                    else
-                        $citation->addNote($note);
+                case 'TIME':
+                    $date->time = trim($record[2]);
                 break;
                 
                 default:
@@ -59,6 +50,6 @@ class SourceRepositoryCitation extends \Gedcom\Parser\Component
             $parser->forward();
         }
         
-        return $citation;
+        return $date;
     }
 }

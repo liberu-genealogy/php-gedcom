@@ -6,29 +6,23 @@ namespace Gedcom\Parser;
  *
  *
  */
-class Note extends \Gedcom\Parser\Component
+class Obje extends \Gedcom\Parser\Component
 {
-    
+
     /**
      *
      *
      */
     public static function &parse(\Gedcom\Parser &$parser)
     {
-        $record = $parser->getCurrentLineRecord(4);
+        $record = $parser->getCurrentLineRecord();
         $identifier = $parser->normalizeIdentifier($record[1]);
         $depth = (int)$record[0];
         
-        $note = new \Gedcom\Record\Note();
-        $note->refId = $identifier;
+        $obje = new \Gedcom\Record\Obje();
+        $obje->refId = $identifier;
         
-        if(isset($record[3]))
-            $note->note = $record[3];
-        
-        $parser->getGedcom()->addNote($note);
-        
-        if(isset($record[3]))
-            $note->note = $record[3];
+        $parser->getGedcom()->addObje($obje);
         
         $parser->forward();
         
@@ -46,37 +40,43 @@ class Note extends \Gedcom\Parser\Component
             
             switch($recordType)
             {
+                case 'FORM':
+                    $obje->form = trim($record[2]);
+                break;
+                
+                case 'TITL':
+                    $obje->titl = trim($record[2]);
+                break;
+                
+                case 'OBJE':
+                    $obje->form = $this->normalizeIdentifier($record[2]);
+                break;
+                
                 case 'RIN':
-                    $note->rin = trim($record[2]);
+                    $obje->rin = trim($record[2]);
                 break;
                 
-                case 'CONT':
-                    if(isset($record[2]))
-                        $note->note .= "\n" . $record[2];
-                break;
-                
-                case 'CONC':
-                    if(isset($record[2]))
-                        $note->note .= $record[2];
-                break;
-               
                 case 'REFN':
                     $refn = \Gedcom\Parser\Refn::parse($parser);
-                    $note->addRefn($refn);
+                    $obje->addRefn($refn);
+                break;
+                
+                case 'BLOB':
+                    $obje->blob = $parser->parseMultiLineRecord();
+                break;
+                
+                case 'NOTE':
+                    $note = \Gedcom\Parser\NoteRef::parse($parser);
+                    
+                    if(is_a($note, '\Gedcom\Record\Note\Ref'))
+                        $obje->addNoteRef($note);
+                    else
+                        $obje->addNote($note);
                 break;
                 
                 case 'CHAN':
                     $chan = \Gedcom\Parser\Chan::parse($parser);
-                    $note->chan = $chan;
-                break;
-                
-                case 'SOUR':
-                    $citation = \Gedcom\Parser\SourceCitation::parse($parser);
-                    
-                    if(is_a($citation, '\Gedcom\Record\SourceCitation\Ref'))
-                        $note->addSourceCitationRef($citation);
-                    else
-                        $note->addSourceCitation($citation);
+                    $obje->chan = $chan;
                 break;
                 
                 default:
@@ -86,6 +86,6 @@ class Note extends \Gedcom\Parser\Component
             $parser->forward();
         }
         
-        return $source;
+        return $obje;
     }
 }

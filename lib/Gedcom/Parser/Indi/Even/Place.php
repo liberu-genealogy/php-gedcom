@@ -1,12 +1,12 @@
 <?php
 
-namespace Gedcom\Parser;
+namespace Gedcom\Parser\Indi\Even;
 
 /**
  *
  *
  */
-class SourceRepositoryCitation extends \Gedcom\Parser\Component
+class Place extends \Gedcom\Parser\Component
 {
     
     /**
@@ -16,20 +16,18 @@ class SourceRepositoryCitation extends \Gedcom\Parser\Component
     public static function &parse(\Gedcom\Parser &$parser)
     {
         $record = $parser->getCurrentLineRecord();
-        $identifier = $parser->normalizeIdentifier($record[2]);
-        
         $depth = (int)$record[0];
         
-        $citation = new \Gedcom\Record\SourceRepositoryCitation();
-        $citation->repoId = $identifier;
+        $place = new \Gedcom\Record\Indi\Even\Place();
+        $place->place = isset($record[2]) ? trim($record[2]) : null;
         
         $parser->forward();
         
         while($parser->getCurrentLine() < $parser->getFileLength())
         {
             $record = $parser->getCurrentLineRecord();
-            $currentDepth = (int)$record[0];
             $recordType = strtoupper(trim($record[1]));
+            $currentDepth = (int)$record[0];
             
             if($currentDepth <= $depth)
             {
@@ -39,17 +37,26 @@ class SourceRepositoryCitation extends \Gedcom\Parser\Component
             
             switch($recordType)
             {
-                case 'CALN': 
-                    $citation->addCaln(\Gedcom\Parser\SourceCallNumber::parse($parser));
+                case 'FORM':
+                    $place->form = trim($record[2]);
                 break;
                 
                 case 'NOTE':
                     $note = \Gedcom\Parser\NoteRef::parse($parser);
                     
                     if(is_a($note, '\Gedcom\Record\Note\Ref'))
-                        $citation->addNoteRef($note);
+                        $place->addNoteRef($note);
                     else
-                        $citation->addNote($note);
+                        $place->addNote($note);
+                break;
+                
+                case 'SOUR':
+                    $citation = \Gedcom\Parser\SourceCitation::parse($parser);
+                    
+                    if(is_a($citation, '\Gedcom\Record\SourceCitation\Ref'))
+                        $place->addSourceCitationRef($citation);
+                    else
+                        $place->addSourceCitation($citation);
                 break;
                 
                 default:
@@ -59,6 +66,6 @@ class SourceRepositoryCitation extends \Gedcom\Parser\Component
             $parser->forward();
         }
         
-        return $citation;
+        return $place;
     }
 }
