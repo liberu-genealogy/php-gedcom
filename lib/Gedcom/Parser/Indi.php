@@ -101,13 +101,13 @@ class Indi extends \Gedcom\Parser\Component
                 break;
                 
                 case 'FAMS':
-                    $fams = \Gedcom\Parser\Indi\Fam\Spouse::parse($parser);
-                    $indi->addSpouseFamily($fams);
+                    $fams = \Gedcom\Parser\Indi\Fams::parse($parser);
+                    $indi->addFams($fams);
                 break;
                 
                 case 'FAMC':
-                    $famc = \Gedcom\Parser\Indi\Fam\Child::parse($parser);
-                    $indi->addChildFamily($famc);
+                    $famc = \Gedcom\Parser\Indi\Famc::parse($parser);
+                    $indi->addFamc($famc);
                 break;
                 
                 case 'ASSO':

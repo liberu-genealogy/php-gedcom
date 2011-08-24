@@ -26,8 +26,8 @@ class Indi extends \Gedcom\Record
     protected $_rfn = null;
     protected $_afn = null;
     
-    public $fams = array();
-    public $famc = array();
+    protected $_fams = array();
+    protected $_famc = array();
     public $associations = array();
     
     public $submitters = array();
@@ -72,23 +72,6 @@ class Indi extends \Gedcom\Record
     public function addEven(&$even)
     {
         $this->_even[] = &$even;
-    }
-    
-    /**
-     *
-     *
-     */
-    public function addSpouseFamily(&$family)
-    {
-        $this->fams[] = $family;
-    }
-    
-    /**
-     *
-     */
-    public function addChildFamily(&$family)
-    {
-        $this->famc[] = $family;
     }
     
     /**

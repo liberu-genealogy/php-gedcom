@@ -11,8 +11,8 @@ require_once __DIR__ . '/Record/Chan.php';
 require_once __DIR__ . '/Record/Obje.php';
 require_once __DIR__ . '/Parser.php';
 
-use Gedcom\Record\Indivi;
-use Gedcom\Record\Family;
+use Gedcom\Record\Indi;
+use Gedcom\Record\Fam;
 use Gedcom\Record\Sour;
 use Gedcom\Record\Note;
 use Gedcom\Record\Data;

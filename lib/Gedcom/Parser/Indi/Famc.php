@@ -1,12 +1,12 @@
 <?php
 
-namespace Gedcom\Parser\Indi\Fam;
+namespace Gedcom\Parser\Indi;
 
 /**
  *
  *
  */
-class Child extends \Gedcom\Parser\Component
+class Famc extends \Gedcom\Parser\Component
 {
     
     /**
@@ -18,10 +18,10 @@ class Child extends \Gedcom\Parser\Component
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
         
-        $familyId = $parser->normalizeIdentifier($record[2]);
+        $famc = $parser->normalizeIdentifier($record[2]);
         
-        $family = new \Gedcom\Record\Indi\Fam\Child();
-        $family->familyId = $familyId;
+        $fam = new \Gedcom\Record\Indi\Famc();
+        $fam->famc = $famc;
         
         $parser->forward();
         
@@ -40,16 +40,16 @@ class Child extends \Gedcom\Parser\Component
             switch($recordType)
             {
                 case 'PEDI':
-                    $family->pedi = trim($record[2]);
+                    $fam->pedi = trim($record[2]);
                 break;
                 
                 case 'NOTE':
                     $note = \Gedcom\Parser\NoteRef::parse($parser);
                     
                     if(is_a($note, '\Gedcom\Record\Note\Ref'))
-                        $family->addNoteRef($note);
+                        $fam->addNoteRef($note);
                     else
-                        $family->addNote($note);
+                        $fam->addNote($note);
                 break;
                 
                 default:
@@ -59,6 +59,6 @@ class Child extends \Gedcom\Parser\Component
             $parser->forward();
         }
         
-        return $family;
+        return $fam;
     }
 }

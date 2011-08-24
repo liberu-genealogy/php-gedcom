@@ -1,12 +1,12 @@
 <?php
 
-namespace Gedcom\Parser\Indi\Fam;
+namespace Gedcom\Parser\Indi;
 
 /**
  *
  *
  */
-class Spouse extends \Gedcom\Parser\Component
+class Fams extends \Gedcom\Parser\Component
 {
     
     /**
@@ -18,10 +18,10 @@ class Spouse extends \Gedcom\Parser\Component
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
         
-        $familyId = $parser->normalizeIdentifier($record[2]);
+        $fams = $parser->normalizeIdentifier($record[2]);
         
-        $family = new \Gedcom\Record\Indi\Fam\Spouse();
-        $family->familyId = $familyId;
+        $fam = new \Gedcom\Record\Indi\Fams();
+        $fam->fams = $fams;
         
         $parser->forward();
         
@@ -43,9 +43,9 @@ class Spouse extends \Gedcom\Parser\Component
                     $note = \Gedcom\Parser\NoteRef::parse($parser);
                     
                     if(is_a($note, '\Gedcom\Record\Note\Ref'))
-                        $family->addNoteRef($note);
+                        $fam->addNoteRef($note);
                     else
-                        $family->addNote($note);
+                        $fam->addNote($note);
                 break;
                 
                 default:
@@ -55,6 +55,6 @@ class Spouse extends \Gedcom\Parser\Component
             $parser->forward();
         }
         
-        return $family;
+        return $fam;
     }
 }
