@@ -11,6 +11,8 @@ namespace Gedcom\Record;
  */
 class Chan extends \Gedcom\Record
 {
-    public $date = null;
-    public $time = null;
+    protected $_date = null;
+    protected $_time = null;
+    
+    protected $_note = array();
 }

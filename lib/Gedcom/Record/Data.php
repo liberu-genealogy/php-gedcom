@@ -10,7 +10,7 @@ namespace Gedcom\Record;
  */
 class Data extends \Gedcom\Record
 {
-    public $text = null;
-    public $date = null;
+    protected $_text = null;
+    protected $_date = null;
 }
 
