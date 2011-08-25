@@ -1,11 +1,11 @@
 <?php
+/**
+ *
+ */
 
 namespace Gedcom\Record\Indi;
 
-require_once __DIR__ . '/../../Record.php';
-
 /**
- *
  *
  */
 class Name extends \Gedcom\Record
@@ -18,3 +18,4 @@ class Name extends \Gedcom\Record
     public $surn = null;
     public $nsfx = null;
 }
+

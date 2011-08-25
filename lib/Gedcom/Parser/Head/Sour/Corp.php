@@ -1,9 +1,9 @@
 <?php
+/**
+ *
+ */
 
 namespace Gedcom\Parser\Head\Sour;
-
-require_once __DIR__ . '/../../../Record/Head/Sour/Corp.php';
-require_once __DIR__ . '/../../Addr.php';
 
 /**
  *

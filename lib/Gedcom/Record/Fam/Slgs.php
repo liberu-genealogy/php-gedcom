@@ -1,9 +1,14 @@
 <?php
+/**
+ *
+ */
 
 namespace Gedcom\Record\Fam;
 
-require_once __DIR__ . '/../../Record.php';
 
+/**
+ *
+ */
 class Slgs extends \Gedcom\Record
 {
     protected $_stat;
@@ -11,3 +16,4 @@ class Slgs extends \Gedcom\Record
     protected $_plac;
     protected $_temp;
 }
+

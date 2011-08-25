@@ -1,8 +1,9 @@
 <?php
+/**
+ *
+ */
 
 namespace Gedcom\Record\Source;
-
-require_once realpath(__DIR__ . '/../../Record.php');
 
 /**
  *
@@ -23,3 +24,4 @@ class Data extends \Gedcom\Record
         $this->_text[] = $text;
     }
 }
+

@@ -1,19 +1,10 @@
 <?php
 /**
  *
- *
  */
 
 namespace Gedcom\Parser;
 
-require __DIR__ . '/Component.php';
-require __DIR__ . '/Head/Sour.php';
-require __DIR__ . '/Head/Date.php';
-require __DIR__ . '/Head/Gedc.php';
-require __DIR__ . '/Head/Char.php';
-require __DIR__ . '/Head/Plac.php';
-require __DIR__ . '/../Record/Submission.php';
-require __DIR__ . '/../Record/Head/Sour.php';
 
 /**
  *

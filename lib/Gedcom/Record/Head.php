@@ -1,9 +1,13 @@
 <?php
+/**
+ *
+ */
 
 namespace Gedcom\Record;
 
-require_once __DIR__ . '/../Record.php';
-
+/**
+ *
+ */
 class Head extends \Gedcom\Record
 {
     protected $_sour = null;
@@ -18,5 +22,5 @@ class Head extends \Gedcom\Record
     protected $_lang = null;
     protected $_plac = null;
     protected $_note = null;
-
 }
+

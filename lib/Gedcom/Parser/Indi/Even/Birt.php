@@ -1,8 +1,9 @@
 <?php
+/**
+ *
+ */
 
 namespace Gedcom\Parser\Indi\Even;
-
-require_once __DIR__ . '/../../../Record/Indi/Even/Birt.php';
 
 /**
  *

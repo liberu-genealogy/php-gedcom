@@ -1,8 +1,9 @@
 <?php
+/**
+ *
+ */
 
 namespace Gedcom\Parser\Indi;
-
-require_once __DIR__ . '/../../Record/Indi/Name.php';
 
 /**
  *

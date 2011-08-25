@@ -1,9 +1,13 @@
 <?php
+/**
+ *
+ */
 
 namespace Gedcom\Record;
 
-require_once __DIR__ . '/../Record.php';
-
+/**
+ *
+ */
 class Submission extends \Gedcom\Record
 {
     protected $_subm = null;
@@ -14,3 +18,4 @@ class Submission extends \Gedcom\Record
     protected $_ordi = null;
     protected $_rin = null;
 }
+

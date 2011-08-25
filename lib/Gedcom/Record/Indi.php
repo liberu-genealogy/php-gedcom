@@ -1,12 +1,9 @@
 <?php
+/**
+ *
+ */
 
 namespace Gedcom\Record;
-
-require_once __DIR__ . '/../Record.php';
-require_once __DIR__ . '/Even.php';
-require_once __DIR__ . '/Indi/Attr.php';
-
-use Gedcom\Record\Indi\Attr;
 
 /**
  *

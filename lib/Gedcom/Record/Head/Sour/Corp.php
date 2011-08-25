@@ -1,9 +1,13 @@
 <?php
+/**
+ *
+ */
 
 namespace Gedcom\Record\Head\Sour;
 
-require_once __DIR__ . '/../../../Record.php';
-
+/**
+ *
+ */
 class Corp extends \Gedcom\Record
 {
     protected $_corp = null;
@@ -20,3 +24,4 @@ class Corp extends \Gedcom\Record
         $this->_phon[] = $phon;
     }
 }
+

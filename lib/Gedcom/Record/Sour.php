@@ -1,9 +1,13 @@
 <?php
+/**
+ *
+ */
 
 namespace Gedcom\Record;
 
-require_once __DIR__ . '/../Record.php';
-
+/**
+ *
+ */
 class Sour extends \Gedcom\Record
 {
     protected $_titl = null;
@@ -25,3 +29,4 @@ class Sour extends \Gedcom\Record
         $this->_refn[] = $refn;
     }
 }
+

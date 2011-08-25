@@ -1,4 +1,7 @@
 <?php
+/**
+ *
+ */
 
 namespace Gedcom\Parser\Indi;
 

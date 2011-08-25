@@ -1,9 +1,9 @@
 <?php
+/**
+ *
+ */
 
 namespace Gedcom\Parser\Obje;
-
-require_once __DIR__ . '/../NoteRef.php';
-require_once __DIR__ . '/../../Record/Obje/Embe.php';
 
 /**
  *

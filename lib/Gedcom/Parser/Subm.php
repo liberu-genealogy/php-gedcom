@@ -1,11 +1,9 @@
 <?php
+/**
+ *
+ */
 
 namespace Gedcom\Parser;
-
-require_once __DIR__ . '/Chan.php';
-require_once __DIR__ . '/Phon.php';
-require_once __DIR__ . '/ObjeRef.php';
-require_once __DIR__ . '/../Record/Subm.php';
 
 /**
  *

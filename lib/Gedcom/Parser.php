@@ -1,20 +1,11 @@
 <?php
+/**
+ *
+ */
 
 namespace Gedcom;
 
-require_once __DIR__ . '/Gedcom.php';
-require_once __DIR__ . '/Parser/Base.php';
-require_once __DIR__ . '/Parser/Head.php';
-require_once __DIR__ . '/Parser/Subn.php';
-require_once __DIR__ . '/Parser/Subm.php';
-require_once __DIR__ . '/Parser/Sour.php';
-require_once __DIR__ . '/Parser/Obje.php';
-require_once __DIR__ . '/Parser/Note.php';
-require_once __DIR__ . '/Parser/Indi.php';
-require_once __DIR__ . '/Parser/Fam.php';
-
 /**
- *
  *
  */
 class Parser extends Parser\Base

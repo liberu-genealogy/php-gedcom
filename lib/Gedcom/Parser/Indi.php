@@ -1,11 +1,9 @@
 <?php
+/**
+ *
+ */
 
 namespace Gedcom\Parser;
-
-require_once __DIR__ . '/Indi/Name.php';
-require_once __DIR__ . '/Indi/Even.php';
-require_once __DIR__ . '/Indi/Even/Birt.php';
-require_once __DIR__ . '/../Record/Indi.php';
 
 /**
  *

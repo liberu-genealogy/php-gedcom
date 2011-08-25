@@ -1,9 +1,13 @@
 <?php
+/**
+ *
+ */
 
 namespace Gedcom\Record;
 
-require_once __DIR__ . '/../Record.php';
-
+/**
+ *
+ */
 class Subm extends \Gedcom\Record
 {
     public $name = null;
@@ -30,3 +34,4 @@ class Subm extends \Gedcom\Record
         $this->phon[] = $phon;
     }
 }
+

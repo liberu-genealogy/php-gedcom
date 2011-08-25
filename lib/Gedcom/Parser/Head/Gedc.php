@@ -1,8 +1,9 @@
 <?php
+/**
+ *
+ */
 
 namespace Gedcom\Parser\Head;
-
-require_once __DIR__ . '/../../Record/Head/Gedc.php';
 
 /**
  *

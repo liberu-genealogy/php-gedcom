@@ -1,8 +1,9 @@
 <?php
+/**
+ *
+ */
 
 namespace Gedcom\Parser;
-
-require_once __DIR__ . '/../Record/Phon.php';
 
 /**
  *

@@ -1,4 +1,7 @@
 <?php
+/**
+ *
+ */
 
 namespace Gedcom;
 
@@ -110,3 +113,4 @@ abstract class Record
 }
 
 endif;
+

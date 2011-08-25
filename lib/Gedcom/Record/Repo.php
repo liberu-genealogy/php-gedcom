@@ -1,9 +1,13 @@
 <?php
+/**
+ *
+ */
 
 namespace Gedcom\Record;
 
-require_once __DIR__ . '/../Record.php';
-
+/**
+ *
+ */
 class Repo extends \Gedcom\Record
 {
     protected $_name = null;
@@ -30,3 +34,4 @@ class Repo extends \Gedcom\Record
         $this->_refn[] = $refn;
     }
 }
+

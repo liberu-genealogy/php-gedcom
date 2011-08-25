@@ -1,8 +1,9 @@
 <?php
+/**
+ *
+ */
 
 namespace Gedcom\Record\SourceCitation;
-
-require_once realpath(__DIR__ . '/../../Record.php');
 
 /**
  *
@@ -14,5 +15,5 @@ class Ref extends \Gedcom\Record
     public $event = null;
     public $data = null;
     public $quay = null;
-    
 }
+

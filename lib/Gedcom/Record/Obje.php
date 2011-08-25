@@ -1,9 +1,13 @@
 <?php
+/**
+ *
+ */
 
 namespace Gedcom\Record;
 
-require_once __DIR__ . '/../Record.php';
-
+/**
+ *
+ */
 class Obje extends \Gedcom\Record
 {
     protected $_form = null;
@@ -23,3 +27,4 @@ class Obje extends \Gedcom\Record
         $this->_refn[] = $refn;
     }
 }
+

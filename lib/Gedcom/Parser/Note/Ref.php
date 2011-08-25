@@ -1,8 +1,9 @@
 <?php
+/**
+ *
+ */
 
 namespace Gedcom\Parser\Note;
-
-require_once __DIR__ . '/../../Record/Note/Ref.php';
 
 /**
  *

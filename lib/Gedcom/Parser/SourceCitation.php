@@ -1,9 +1,9 @@
 <?php
+/**
+ *
+ */
 
 namespace Gedcom\Parser;
-
-require_once __DIR__ . '/SourceCitation/Embe.php';
-require_once __DIR__ . '/SourceCitation/Ref.php';
 
 /**
  *
