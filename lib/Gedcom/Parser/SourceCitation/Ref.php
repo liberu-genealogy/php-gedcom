@@ -50,7 +50,7 @@ class Ref extends \Gedcom\Parser\Component
                 
                 case 'EVEN':
                     $even = \Gedcom\Parser\SourceCitation\Event::parse($parser);
-                    $note->even = &$even;
+                    $note->even = $even;
                 break;
                 
                 case 'OBJE':

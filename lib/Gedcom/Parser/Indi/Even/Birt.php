@@ -56,7 +56,7 @@ class Birt extends \Gedcom\Parser\Indi\Even
                 
                 case 'PLAC':
                     $place = \Gedcom\Parser\Indi\Even\Place::parse($parser);
-                    $event->place = &$place;
+                    $event->place = $place;
                 break;
                 
                 case 'ADDR':

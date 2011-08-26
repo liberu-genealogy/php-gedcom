@@ -51,7 +51,7 @@ class Attr extends \Gedcom\Parser\Component
                 
                 case 'PLAC':
                     $place = \Gedcom\Parser\Indi\Even\Place::parse($parser);
-                    $attr->place = &$place;
+                    $attr->place = $place;
                 break;
                 
                 case 'ADDR':

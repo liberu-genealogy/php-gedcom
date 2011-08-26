@@ -14,7 +14,7 @@ class Indi extends \Gedcom\Record
     protected $_attr = array();
     protected $_even = array();
     
-    public $names = array();
+    protected $_name = array();
     public $aliases = array();
     
     protected $_sex = null;
@@ -42,7 +42,7 @@ class Indi extends \Gedcom\Record
      */
     public function addName(\Gedcom\Record\Indi\Name &$name)
     {
-        $this->names[] = $name;
+        $this->_name[] = $name;
     }
     
     /**

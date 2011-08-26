@@ -43,7 +43,7 @@ class SourceRepositoryCitation extends \Gedcom\Parser\Component
             switch($recordType)
             {
                 case 'CALN': 
-                    $citation->addCaln(\Gedcom\Parser\SourceCallNumber::parse($parser));
+                    $citation->addCaln(\Gedcom\Parser\Caln::parse($parser));
                 break;
                 
                 case 'NOTE':

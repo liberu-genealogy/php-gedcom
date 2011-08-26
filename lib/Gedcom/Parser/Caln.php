@@ -9,7 +9,7 @@ namespace Gedcom\Parser;
  *
  *
  */
-class SourceCallNumber extends \Gedcom\Parser\Component
+class Caln extends \Gedcom\Parser\Component
 {
     
     /**
@@ -22,7 +22,7 @@ class SourceCallNumber extends \Gedcom\Parser\Component
         $identifier = $parser->normalizeIdentifier($record[2]);
         $depth = (int)$record[0];
         
-        $caln = new \Gedcom\Record\SourceCallNumber();
+        $caln = new \Gedcom\Record\Caln();
         $caln->caln = $identifier;
         
         $parser->forward();

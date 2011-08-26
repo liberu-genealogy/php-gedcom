@@ -11,17 +11,17 @@ namespace Gedcom\Record;
  */
 class Note extends \Gedcom\Record
 {
-    public $note = null;
-    public $even = null;
-    public $refn = array();
-    public $rin = null;
+    protected $_note = null;
+    protected $_even = null;
+    protected $_refn = array();
+    protected $_rin = null;
     
     /**
      *
      */
     public function addRefn(\Gedcom\Record\Refn &$refn)
     {
-        $this->refn[] = $refn;
+        $this->_refn[] = $refn;
     }
 }
 

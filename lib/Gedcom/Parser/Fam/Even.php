@@ -52,7 +52,7 @@ class Even extends \Gedcom\Parser\Component
                 
                 case 'PLAC':
                     $place = \Gedcom\Parser\Indi\Even\Place::parse($parser);
-                    $even->place = &$place;
+                    $even->place = $place;
                 break;
                 
                 case 'ADDR':

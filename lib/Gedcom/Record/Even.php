@@ -10,17 +10,17 @@ namespace Gedcom\Record;
  */
 class Even extends \Gedcom\Record
 {
-    public $type = null;
-    public $date = null;
-    public $place = null;
-    public $caus = null;
-    public $age = null;
+    protected $_type = null;
+    protected $_date = null;
+    protected $_place = null;
+    protected $_caus = null;
+    protected $_age = null;
     
-    public $addr = null;
+    protected $_addr = null;
     
-    public $phon = array();
+    protected $_phon = array();
     
-    public $agnc = null;
+    protected $_agnc = null;
     
     public $ref = array();
     
@@ -29,7 +29,7 @@ class Even extends \Gedcom\Record
      */
     public function addPhon(\Gedcom\Record\Phon &$phon)
     {
-        $this->phon[] = $phon;
+        $this->_phon[] = $phon;
     }
 }
 

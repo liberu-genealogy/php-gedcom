@@ -22,7 +22,7 @@ class Refn extends \Gedcom\Parser\Component
         $depth = (int)$record[0];
         
         $refn = new \Gedcom\Record\Refn();
-        $refn->number = trim($record[2]);
+        $refn->refn = trim($record[2]);
         
         $parser->forward();
         

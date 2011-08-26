@@ -10,7 +10,7 @@ namespace Gedcom\Record;
  */
 class Refn extends \Gedcom\Record
 {
-    public $number = null;
-    public $type = null;
+    protected $_refn = null;
+    protected $_type = null;
     
 }

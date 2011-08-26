@@ -22,7 +22,7 @@ class Subn extends \Gedcom\Parser\Component
         $identifier = $parser->normalizeIdentifier($record[1]);
         $depth = (int)$record[0];
         
-        $subn = new \Gedcom\Record\Submission();
+        $subn = new \Gedcom\Record\Subn();
         $subn->refId = $identifier;
         
         $parser->getGedcom()->submission = &$subn;

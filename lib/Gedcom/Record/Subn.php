@@ -8,7 +8,7 @@ namespace Gedcom\Record;
 /**
  *
  */
-class Submission extends \Gedcom\Record
+class Subn extends \Gedcom\Record
 {
     protected $_subm = null;
     protected $_famf = null;
