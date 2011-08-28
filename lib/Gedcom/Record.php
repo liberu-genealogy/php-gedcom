@@ -62,6 +62,18 @@ abstract class Record
         $this->{'_' . $arr}[] = $args[0];
     }
     
+    /**
+     * Checks if this GEDCOM object has the provided attribute (ie, if the provided
+     * attribute exists below the current object in its tree).
+     * 
+     * @param string $var The name of the attribute
+     * @return bool True if this object has the provided attribute
+     */
+    public function hasAttribute($var)
+    {
+        return property_exists($this, '_' . $var);
+    }
+    
     
     /**
      *
