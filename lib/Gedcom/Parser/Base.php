@@ -24,7 +24,7 @@ abstract class Base
      *
      *
      */
-    public function __construct(&$gedcom = null)
+    public function __construct(\Gedcom\Gedcom &$gedcom = null)
     {
         if(!is_null($gedcom))
             $this->_gedcom = &$gedcom;

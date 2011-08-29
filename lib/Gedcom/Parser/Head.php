@@ -25,7 +25,7 @@ class Head extends \Gedcom\Parser\Component
         
         $head = new \Gedcom\Record\Head();
         
-        $parser->getGedcom()->head = &$head;
+        $parser->getGedcom()->setHead($head);
         
         $parser->forward();
         

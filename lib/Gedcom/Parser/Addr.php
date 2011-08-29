@@ -20,15 +20,16 @@ class Addr extends \Gedcom\Parser\Component
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
+        $line = trim($record[2]);
         
         $addr = new \Gedcom\Record\Addr();
-        
+        $addr->addr = $line;
         $parser->forward();
         
         while($parser->getCurrentLine() < $parser->getFileLength())
         {
             $record = $parser->getCurrentLineRecord();
-            $recordType = strtoupper(trim($record[1]));
+            $recordType = strtolower(trim($record[1]));
             $currentDepth = (int)$record[0];
             
             if($currentDepth <= $depth)
@@ -37,41 +38,17 @@ class Addr extends \Gedcom\Parser\Component
                 break;
             }
             
-            switch($recordType)
+            if($addr->hasAttribute($recordType))
+                $addr->$recordType = trim($record[2]);
+            else if ($recordType == 'cont')
             {
-                case 'CONT':
-                    $addr->addr .= "\n";
-                    if(isset($record[2]))
-                        $addr->addr .= trim($record[2]);
-                break;
-                
-                case 'ADR1':
-                    $addr->adr1 = trim($record[2]);
-                break;
-                
-                case 'ADR2':
-                    $addr->adr2 = trim($record[2]);
-                break;
-                
-                case 'CITY':
-                    $addr->city = trim($record[2]);
-                break;
-                
-                case 'STAE':
-                    $addr->stae = trim($record[2]);
-                break;
-                
-                case 'POST':
-                    $addr->post = trim($record[2]);
-                break;
-                
-                case 'CTRY':
-                    $addr->ctry = trim($record[2]);
-                break;
-                
-                default:
-                    $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
+                // FIXME: Can have CONT on multiple attributes
+                $addr->addr .= "\n";
+                if(isset($record[2]))
+                    $addr->addr .= trim($record[2]);
             }
+            else
+                $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             
             $parser->forward();
         }

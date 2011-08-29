@@ -25,6 +25,14 @@ class Gedcom
     /**
      *
      */
+    public function setHead(\Gedcom\Record\Head &$head)
+    {
+        $this->_head = $head;
+    }
+    
+    /**
+     *
+     */
     public function addSour(\Gedcom\Record\Sour $sour)
     {
         $this->_sour[$sour->refId] = $sour;
