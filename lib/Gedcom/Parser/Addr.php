@@ -20,13 +20,13 @@ class Addr extends \Gedcom\Parser\Component
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
-        $line = trim($record[2]);
+        $line = isset($record[2]) ? trim($record[2]) : '';
         
         $addr = new \Gedcom\Record\Addr();
         $addr->addr = $line;
         $parser->forward();
         
-        while($parser->getCurrentLine() < $parser->getFileLength())
+        while(!$parser->eof())
         {
             $record = $parser->getCurrentLineRecord();
             $recordType = strtolower(trim($record[1]));

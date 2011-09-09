@@ -8,20 +8,221 @@ namespace Gedcom;
 /**
  *
  */
-class Parser extends Parser\Base
+class Parser
 {
+    /**
+     *
+     */
+    protected $_file            = null;
     
     /**
      *
-     * @return \Gedcom\Gedcom;
+     */
+    protected $_gedcom          = null;
+    
+    /**
+     *
+     */
+    protected $_errorLog        = array();
+    
+    /**
+     *
+     */
+    protected $_linesParsed     = 0;
+    
+    /**
+     *
+     */
+    protected $_line            = '';
+    
+    /**
+     *
+     */
+    protected $_lineRecord      = null;
+    
+    /**
+     *
+     */
+    protected $_returnedLine    = '';
+    
+    /**
+     *
+     */
+    public function __construct(\Gedcom\Gedcom &$gedcom = null)
+    {
+        if(!is_null($gedcom))
+            $this->_gedcom = &$gedcom;
+        else
+            $this->_gedcom = new \gedcom\Gedcom();
+    }
+    
+    /**
+     *
+     */
+    public function forward()
+    {
+        // if there was a returned line by back(), set that as our current
+        // line and blank out the returnedLine variable, otherwise grab
+        // the next line from the file
+        
+        if(!empty($this->_returnedLine))
+        {
+            $this->_line = $this->_returnedLine;
+            $this->_returnedLine = '';
+        }
+        else
+        {
+            $this->_line = fgets($this->_file);
+            $this->_lineRecord = null;
+            $this->_linesParsed++;
+        }
+        
+        return $this;
+    }
+    
+    /**
+     *
+     */
+    public function back()
+    {
+        // our parser object encountered a line it wasn't meant to parse
+        // store this line for the previous parser to analyze
+        
+        $this->_returnedLine = $this->_line;
+        
+        return $this;
+    }
+    
+    /**
+     *
+     */
+    public function &getGedcom()
+    {
+        return $this->_gedcom;
+    }
+    
+    /**
+     *
+     */
+    public function eof()
+    {
+        return feof($this->_file);
+    }
+    
+    /**
+     *
+     */
+    public function parseMultiLineRecord()
+    {
+        $record = $this->getCurrentLineRecord();
+        
+        $depth = (int)$record[0];
+        $data = isset($record[2]) ? trim($record[2]) : '';
+        
+        $this->forward();
+        
+        while(!$this->eof())
+        {
+            $record = $this->getCurrentLineRecord();
+            $recordType = strtoupper(trim($record[1]));
+            $currentDepth = (int)$record[0];
+            
+            if($currentDepth <= $depth)
+            {
+                $this->back();
+                break;
+            }
+            
+            switch($recordType)
+            {
+                case 'CONT':
+                    $data .= "\n";
+                    
+                    if(isset($record[2]))
+                        $data .= trim($record[2]);
+                break;
+                
+                case 'CONC':
+                    if(isset($record[2]))
+                        $data .= ' ' . trim($record[2]);
+                break;
+                
+                default:
+                    $this->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
+                break;
+            }
+            
+            $this->forward();
+        }
+        
+        return $data;
+    }
+    
+    /**
+     *
+     */
+    public function &getCurrentLineRecord($pieces = 3)
+    {
+        if(!is_null($this->_lineRecord))
+            return $this->_lineRecord;
+        
+        if(empty($this->_line))
+            return false;
+        
+        $line = trim($this->_line);
+        
+        $this->_lineRecord = explode(' ', $line, $pieces);
+        
+        return $this->_lineRecord;
+    }
+    
+    /**
+     *
+     */
+    protected function logError($error)
+    {
+        $this->_errorLog[] = $error;
+    }
+    
+    /**
+     *
+     */
+    public function logUnhandledRecord($additionalInfo = '')
+    {
+        $this->logError($this->_currentLine . ': (Unhandled) ' . trim(implode('|', $this->getCurrentLineRecord())) .
+            (!empty($additionalInfo) ? ' - ' . $additionalInfo : ''));
+    }
+    
+    /**
+     *
+     */
+    public function getErrors()
+    {
+        return $this->_errorLog;
+    }
+    
+    /**
+     *
+     */
+    public function normalizeIdentifier($identifier)
+    {
+        $identifier = trim($identifier);
+        $identifier = trim($identifier, '@');
+        
+        return $identifier;
+    }
+    
+    /**
+     *
+     * @return \Gedcom\Gedcom
      */
     public function parse($fileName)
     {
-        $contents = file_get_contents($fileName);
+        $this->_file = fopen($fileName, 'r'); #explode("\n", mb_convert_encoding($contents, 'UTF-8'));
         
-        $this->_file = explode("\n", mb_convert_encoding($contents, 'UTF-8'));
+        $this->forward();
         
-        while($this->getCurrentLine() < $this->getFileLength())
+        while(!$this->eof())
         {
             $record = $this->getCurrentLineRecord();
             
@@ -29,6 +230,7 @@ class Parser extends Parser\Base
                 continue;
             
             $depth = (int)$record[0];
+            
             // We only process 0 level records here. Sub levels are processed
             // in methods for those data types (individuals, sources, etc)
             
@@ -94,4 +296,3 @@ class Parser extends Parser\Base
         return $this->getGedcom();
     }
 }
-

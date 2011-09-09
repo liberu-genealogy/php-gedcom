@@ -27,15 +27,15 @@ class Gedcom
      */
     public function setHead(\Gedcom\Record\Head &$head)
     {
-        $this->_head = $head;
+        $this->_head = &$head;
     }
     
     /**
      *
      */
-    public function addSour(\Gedcom\Record\Sour $sour)
+    public function addSour(\Gedcom\Record\Sour &$sour)
     {
-        $this->_sour[$sour->refId] = $sour;
+        $this->_sour[$sour->refId] = &$sour;
     }
     
     /**
@@ -160,4 +160,3 @@ class Gedcom
         return $this->_obje;
     }
 }
-

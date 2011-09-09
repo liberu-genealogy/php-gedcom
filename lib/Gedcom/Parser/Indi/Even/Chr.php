@@ -28,7 +28,7 @@ class Chr extends \Gedcom\Parser\Indi\Even
         
         $parser->forward();
         
-        while($parser->getCurrentLine() < $parser->getFileLength())
+        while(!$parser->eof())
         {
             $record = $parser->getCurrentLineRecord();
             $recordType = strtoupper(trim($record[1]));

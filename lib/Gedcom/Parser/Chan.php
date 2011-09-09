@@ -25,7 +25,7 @@ class Chan extends \Gedcom\Parser\Component
         
         $chan = new \Gedcom\Record\Chan();
         
-        while($parser->getCurrentLine() < $parser->getFileLength())
+        while(!$parser->eof())
         {
             $record = $parser->getCurrentLineRecord();
             $recordType = trim($record[1]);

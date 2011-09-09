@@ -46,7 +46,7 @@ class LdsIndividualOrdinance extends \Gedcom\Parser\Component
         
         $parser->forward();
         
-        while($parser->getCurrentLine() < $parser->getFileLength())
+        while(!$parser->eof())
         {
             $record = $parser->getCurrentLineRecord();
             $recordType = strtoupper(trim($record[1]));

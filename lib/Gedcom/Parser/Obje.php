@@ -29,7 +29,7 @@ class Obje extends \Gedcom\Parser\Component
         
         $parser->forward();
         
-        while($parser->getCurrentLine() < $parser->getFileLength())
+        while(!$parser->eof())
         {
             $record = $parser->getCurrentLineRecord();
             $currentDepth = (int)$record[0];
