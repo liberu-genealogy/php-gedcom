@@ -30,6 +30,14 @@ class ParserTest extends PHPUnit_Framework_TestCase
     /**
      *
      */
+    public function testNoErrors()
+    {
+        $this->assertEquals(1, count($this->_parser->getErrors()));
+    }
+    
+    /**
+     *
+     */
     public function testRecordCounts()
     {
         $this->assertEquals(count($this->_gedcom->getIndi()), 15);
@@ -81,7 +89,7 @@ class ParserTest extends PHPUnit_Framework_TestCase
         
         $secondSource = $sour['SR2'];
         
-        $this->assertEquals($secondSource->refId, 'SR2');
+        $this->assertEquals($secondSource->id, 'SR2');
         $this->assertEquals($secondSource->titl, 'All I Know About GEDCOM, I Learned on the Internet');
         $this->assertEquals($secondSource->abbr, 'What I Know About GEDCOM');
         $this->assertEquals($secondSource->auth, 'Second Source Author');

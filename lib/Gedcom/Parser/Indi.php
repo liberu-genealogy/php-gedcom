@@ -11,9 +11,11 @@ namespace Gedcom\Parser;
  */
 class Indi extends \Gedcom\Parser\Component
 {
+    /*
     protected static $_eventTypes = array('ADOP','BIRT','BAPM','BARM','BASM','BLES','BURI',
         'CENS','CHR','CHRA','CONF','CREM','DEAT','EMIG','FCOM','GRAD','IMMI','NATU','ORDN',
         'RETI','PROB','WILL','EVEN');
+    */
     
     protected static $_attrTypes = array('CAST','EDUC','NATI','OCCU','PROP','RELI','RESI',
         'TITL','SSN','IDNO','DSCR','NCHI','NMR');
@@ -29,7 +31,7 @@ class Indi extends \Gedcom\Parser\Component
         $depth = (int)$record[0];
         
         $indi = new \Gedcom\Record\Indi();
-        $indi->refId = $identifier;
+        $indi->id = $identifier;
         
         $parser->getGedcom()->addIndi($indi);
         
@@ -62,6 +64,7 @@ class Indi extends \Gedcom\Parser\Component
                     $indi->sex = trim($record[2]);
                 break;
                 
+                /*
                 case 'BIRT':
                     $birth = \Gedcom\Parser\Indi\Even\Birt::parse($parser);
                     $indi->addEven($birth);
@@ -76,6 +79,7 @@ class Indi extends \Gedcom\Parser\Component
                     $chr = \Gedcom\Parser\Indi\Even\Chr::parse($parser);
                     $indi->addEven($chr);
                 break;
+                */
                 
                 case 'RIN':
                     $indi->rin = trim($record[2]);
@@ -165,13 +169,38 @@ class Indi extends \Gedcom\Parser\Component
                         $indi->addSourceCitation($citation);
                 break;
                 
+                case 'ADOP':
+                case 'BIRT':
+                case 'BAPM':
+                case 'BARM':
+                case 'BASM':
+                case 'BLES':
+                case 'BURI':
+                case 'CENS':
+                case 'CHR':
+                case 'CHRA':
+                case 'CONF':
+                case 'CREM':
+                case 'DEAT':
+                case 'EMIG':
+                case 'FCOM':
+                case 'GRAD':
+                case 'IMMI':
+                case 'NATU':
+                case 'ORDN':
+                case 'RETI':
+                case 'PROB':
+                case 'WILL':
+                case 'EVEN':
+                    $className = ucfirst(strtolower($recordType));
+                    $class = '\\Gedcom\\Parser\\Indi\\' . $className;
+                    
+                    $event = $class::parse($parser);
+                    $indi->addEven($event);
+                    break;
+                
                 default:
-                    if($recordType == 'EVEN' || in_array($recordType, self::$_eventTypes))
-                    {
-                        $event = \Gedcom\Parser\Indi\Even::parse($parser);
-                        $indi->addEven($event);
-                    }
-                    else if(in_array($recordType, self::$_attrTypes))
+                    if(in_array($recordType, self::$_attrTypes))
                     {
                         $att = \Gedcom\Parser\Indi\Attr::parse($parser);
                         $indi->addAttr($att);

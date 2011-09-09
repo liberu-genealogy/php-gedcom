@@ -23,7 +23,7 @@ class Subn extends \Gedcom\Parser\Component
         $depth = (int)$record[0];
         
         $subn = new \Gedcom\Record\Subn();
-        $subn->refId = $identifier;
+        $subn->id = $identifier;
         
         $parser->getGedcom()->submission = &$subn;
         

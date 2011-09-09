@@ -11,6 +11,9 @@ namespace Gedcom\Record;
  */
 class Indi extends \Gedcom\Record
 {
+    protected $_id      = null;
+    protected $_chan    = null;
+    
     protected $_attr = array();
     protected $_even = array();
     

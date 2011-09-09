@@ -23,7 +23,7 @@ class Obje extends \Gedcom\Parser\Component
         $depth = (int)$record[0];
         
         $obje = new \Gedcom\Record\Obje();
-        $obje->refId = $identifier;
+        $obje->id = $identifier;
         
         $parser->getGedcom()->addObje($obje);
         

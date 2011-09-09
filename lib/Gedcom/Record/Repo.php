@@ -10,6 +10,8 @@ namespace Gedcom\Record;
  */
 class Repo extends \Gedcom\Record
 {
+    protected $_id    = null;
+    
     protected $_name = null;
     protected $_addr = null;
     protected $_rin = null;

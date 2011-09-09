@@ -11,16 +11,16 @@ namespace Gedcom;
  */
 class Gedcom
 {
-    protected $_head = null;
-    protected $_subn = null;
+    protected $_head    = null;
+    protected $_subn    = null;
     
-    protected $_sour = array();
-    protected $_indi = array();
-    protected $_fam = array();
-    protected $_note = array();
-    protected $_repos = array();
-    protected $_obje = array();
-    protected $_subm = array();
+    protected $_sour    = array();
+    protected $_indi    = array();
+    protected $_fam     = array();
+    protected $_note    = array();
+    protected $_repo    = array();
+    protected $_obje    = array();
+    protected $_subm    = array();
     
     /**
      *
@@ -35,7 +35,7 @@ class Gedcom
      */
     public function addSour(\Gedcom\Record\Sour &$sour)
     {
-        $this->_sour[$sour->refId] = &$sour;
+        $this->_sour[$sour->id] = &$sour;
     }
     
     /**
@@ -43,7 +43,7 @@ class Gedcom
      */
     public function addIndi(\Gedcom\Record\Indi &$indi)
     {
-        $this->_indi[$indi->refId] = &$indi;
+        $this->_indi[$indi->id] = &$indi;
     }
     
     /**
@@ -52,7 +52,7 @@ class Gedcom
      */
     public function addFam(\Gedcom\Record\Fam &$fam)
     {
-        $this->_fam[$fam->refId] = &$fam;
+        $this->_fam[$fam->id] = &$fam;
     }
     
     /**
@@ -61,7 +61,7 @@ class Gedcom
      */
     public function addNote(\Gedcom\Record\Note &$note)
     {
-        $this->_note[$note->refId] = &$note;
+        $this->_note[$note->id] = &$note;
     }
     
     /**
@@ -69,7 +69,7 @@ class Gedcom
      */
     public function addRepo(\Gedcom\Record\Repo &$repo)
     {
-        $this->_repo[$repo->refId] = &$repo;
+        $this->_repo[$repo->id] = &$repo;
     }
     
     /**
@@ -77,7 +77,7 @@ class Gedcom
      */
     public function addObje(\Gedcom\Record\Obje &$obje)
     {
-        $this->_obje[$obje->refId] = &$obje;
+        $this->_obje[$obje->id] = &$obje;
     }
     
     /**
@@ -85,7 +85,7 @@ class Gedcom
      */
     public function addSubm(\Gedcom\Record\Subm &$subm)
     {
-        $this->_subm[$subm->refId] = &$subm;
+        $this->_subm[$subm->id] = &$subm;
     }
     
     /**

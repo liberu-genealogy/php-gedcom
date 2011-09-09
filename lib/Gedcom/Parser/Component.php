@@ -13,8 +13,9 @@ abstract class Component
 {
     /**
      *
-     *
      */
-    //abstract public static function &parse(\Gedcom\Parser $parser);
-    
+    public static function &parse(\Gedcom\Parser &$parser)
+    {
+        
+    }
 }

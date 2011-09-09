@@ -220,6 +220,9 @@ class Parser
     {
         $this->_file = fopen($fileName, 'r'); #explode("\n", mb_convert_encoding($contents, 'UTF-8'));
         
+        if(!$this->_file)
+            return null;
+        
         $this->forward();
         
         while(!$this->eof())

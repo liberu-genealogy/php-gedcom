@@ -11,6 +11,9 @@ namespace Gedcom\Record;
  */
 class Fam extends \Gedcom\Record
 {
+    protected $_id      = null;
+    protected $_chan    = null;
+    
     public $husbandId = null;
     public $wifeId = null;
     

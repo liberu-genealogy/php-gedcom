@@ -10,20 +10,23 @@ namespace Gedcom\Record;
  */
 class Subm extends \Gedcom\Record
 {
-    public $name = null;
-    public $addr = null;
-    public $rin = null;
-    public $rfn = null;
+    protected $_id      = null;
+    protected $_chan    = null;
     
-    public $langs = array();
-    public $phon = array();
+    protected $_name    = null;
+    protected $_addr    = null;
+    protected $_rin     = null;
+    protected $_rfn     = null;
+    
+    protected $_lang    = array();
+    protected $_phon    = array();
     
     /**
      *
      */
-    public function addLanguage($lang)
+    public function addLang($lang)
     {
-        $this->langs[] = $lang;
+        $this->_lang[] = $lang;
     }
     
     /**
@@ -31,7 +34,15 @@ class Subm extends \Gedcom\Record
      */
     public function addPhon(\Gedcom\Record\Phon &$phon)
     {
-        $this->phon[] = $phon;
+        $this->_phon[] = $phon;
+    }
+    
+    /**
+     *
+     */
+    public function setAddr(\Gedcom\Record\Addr &$addr)
+    {
+        $this->_addr = &$addr;
     }
 }
 

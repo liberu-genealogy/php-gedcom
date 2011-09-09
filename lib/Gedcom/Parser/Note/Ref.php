@@ -19,7 +19,7 @@ class Ref extends \Gedcom\Parser\Component
         $identifier = $parser->normalizeIdentifier($record[2]);
         
         $ref = new \Gedcom\Record\Note\Ref();
-        $ref->refId = $identifier;
+        $ref->id = $identifier;
         
         $parser->forward();
         

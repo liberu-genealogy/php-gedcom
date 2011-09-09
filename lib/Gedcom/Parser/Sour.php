@@ -23,7 +23,7 @@ class Sour extends \Gedcom\Parser\Component
         $depth = (int)$record[0];
         
         $sour = new \Gedcom\Record\Sour();
-        $sour->refId = $identifier;
+        $sour->id = $identifier;
         
         $parser->getGedcom()->addSour($sour);
         

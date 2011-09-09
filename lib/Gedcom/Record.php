@@ -5,17 +5,11 @@
 
 namespace Gedcom;
 
-if(!class_exists('\Gedcom\Record')):
-
 /**
  *
  */
 abstract class Record
 {
-    protected $_refId = null;
-    
-    protected $_chan = null;
-    
     public $notes = array();
     public $noteRef = array();
     
@@ -123,6 +117,3 @@ abstract class Record
         $this->sourceCitationRef[] = $citation;
     }
 }
-
-endif;
-

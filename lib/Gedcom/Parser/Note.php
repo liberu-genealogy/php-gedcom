@@ -23,7 +23,7 @@ class Note extends \Gedcom\Parser\Component
         $depth = (int)$record[0];
         
         $note = new \Gedcom\Record\Note();
-        $note->refId = $identifier;
+        $note->id = $identifier;
         
         if(isset($record[3]))
             $note->note = $record[3];

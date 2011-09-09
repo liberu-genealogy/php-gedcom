@@ -25,7 +25,7 @@ class Fam extends \Gedcom\Parser\Component
         $depth = (int)$record[0];
         
         $fam = new \Gedcom\Record\Fam();
-        $fam->refId = $identifier;
+        $fam->id = $identifier;
         
         $parser->getGedcom()->addFam($fam);
         

@@ -21,10 +21,20 @@ class Even extends \Gedcom\Parser\Component
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
         
-        $event = new \Gedcom\Record\Even();
+        $even = null;
+        
+        if(strtoupper(trim($record[1])) != 'EVEN')
+        {
+            $className = '\\Gedcom\\Record\\Indi\\' . ucfirst(strtolower(trim($record[1])));
+            $even = new $className();
+        }
+        else
+        {
+            $even = new \Gedcom\Record\Even();
+        }
         
         if(isset($record[1]) && strtoupper(trim($record[1])) != 'EVEN')
-            $event->type = trim($record[1]);
+            $even->type = trim($record[1]);
         
         $parser->forward();
         
@@ -43,73 +53,79 @@ class Even extends \Gedcom\Parser\Component
             switch($recordType)
             {
                 case 'TYPE':
-                    $event->type = trim($record[2]);
+                    $even->type = trim($record[2]);
                 break;
                 
                 case 'DATE':
-                    $event->date = trim($record[2]);
+                    $even->date = trim($record[2]);
                 break;
                 
                 case 'PLAC':
                     $place = \Gedcom\Parser\Indi\Even\Place::parse($parser);
-                    $event->place = $place;
+                    $even->place = $place;
                 break;
                 
                 case 'ADDR':
-                    $event->addr = \Gedcom\Parser\Addr::parse($parser);
+                    $even->addr = \Gedcom\Parser\Addr::parse($parser);
                 break;
                 
                 case 'PHON':
                     $phone = \Gedcom\Parser\Phone::parse($parser);
-                    $event->addPhone($phone);
+                    $even->addPhone($phone);
                 break;
                 
                 case 'CAUS':
-                    $event->caus = trim($record[2]);
+                    $even->caus = trim($record[2]);
                 break;
                 
                 case 'AGE':
-                    $event->age = trim($record[2]);
+                    $even->age = trim($record[2]);
                 break;
                 
                 case 'AGNC':
-                    $event->agnc = trim($record[2]);
+                    $even->agnc = trim($record[2]);
                 break;
                 
                 case 'SOUR':
                     $citation = \Gedcom\Parser\SourceCitation::parse($parser);
                     
                     if(is_a($citation, '\Gedcom\Record\SourceCitation\Ref'))
-                        $event->addSourceCitationRef($citation);
+                        $even->addSourceCitationRef($citation);
                     else
-                        $event->addSourceCitation($citation);
+                        $even->addSourceCitation($citation);
                 break;
                 
                 case 'OBJE':
                     $object = \Gedcom\Parser\ObjeRef::parse($parser);
                     
                     if(is_a($object, '\Gedcom\Record\Obje\Refer'))
-                        $event->addObjeRef($object);
+                        $even->addObjeRef($object);
                     else
-                        $event->addObje($object);
+                        $even->addObje($object);
                 break;
                 
                 case 'NOTE':
                     $note = \Gedcom\Parser\NoteRef::parse($parser);
                     
                     if(is_a($note, '\Gedcom\Record\Note\Ref'))
-                        $event->addNoteRef($note);
+                        $even->addNoteRef($note);
                     else
-                        $event->addNote($note);
+                        $even->addNote($note);
                 break;
                 
                 default:
-                    $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
+                    $self = get_called_class();
+                    $method = 'parse' . $recordType;
+                    
+                    if(method_exists($self, $method))
+                        $self::$method($parser, $even);
+                    else
+                        $parser->logUnhandledRecord($self . ' @ ' . __LINE__);
             }
             
             $parser->forward();
         }
         
-        return $event;
+        return $even;
     }
 }
