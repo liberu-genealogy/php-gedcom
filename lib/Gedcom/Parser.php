@@ -189,7 +189,7 @@ class Parser
      */
     public function logUnhandledRecord($additionalInfo = '')
     {
-        $this->logError($this->_currentLine . ': (Unhandled) ' . trim(implode('|', $this->getCurrentLineRecord())) .
+        $this->logError($this->_linesParsed . ': (Unhandled) ' . trim(implode('|', $this->getCurrentLineRecord())) .
             (!empty($additionalInfo) ? ' - ' . $additionalInfo : ''));
     }
     
