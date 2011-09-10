@@ -74,12 +74,8 @@ class Note extends \Gedcom\Parser\Component
                 break;
                 
                 case 'SOUR':
-                    $citation = \Gedcom\Parser\SourceCitation::parse($parser);
-                    
-                    if(is_a($citation, '\Gedcom\Record\SourceCitation\Ref'))
-                        $note->addSourceCitationRef($citation);
-                    else
-                        $note->addSourceCitation($citation);
+                    $sour = \Gedcom\Parser\SourRef::parse($parser);
+                    $note->addSour($sour);
                 break;
                 
                 default:

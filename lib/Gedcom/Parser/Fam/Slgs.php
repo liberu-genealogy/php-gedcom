@@ -56,21 +56,13 @@ class Slgs extends \Gedcom\Parser\Component
                 break;
                 
                 case 'SOUR':
-                    $citation = \Gedcom\Parser\SourceCitation::parse($parser);
-                    
-                    if(is_a($citation, '\Gedcom\Record\SourceCitation\Ref'))
-                        $slgs->addSourceCitationRef($citation);
-                    else
-                        $slgs->addSourceCitation($citation);
+                    $sour = \Gedcom\Parser\SourRef::parse($parser);
+                    $slgs->addSour($sour);
                 break;
                 
                 case 'NOTE':
                     $note = \Gedcom\Parser\NoteRef::parse($parser);
-                    
-                    if(is_a($note, '\Gedcom\Record\Note\Ref'))
-                        $slgs->addNoteRef($note);
-                    else
-                        $slgs->addNote($note);
+                    $slgs->addNote($note);
                 break;
                 
                 default:

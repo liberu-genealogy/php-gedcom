@@ -87,30 +87,18 @@ class Even extends \Gedcom\Parser\Component
                 break;
                 
                 case 'SOUR':
-                    $citation = \Gedcom\Parser\SourceCitation::parse($parser);
-                    
-                    if(is_a($citation, '\Gedcom\Record\SourceCitation\Ref'))
-                        $even->addSourceCitationRef($citation);
-                    else
-                        $even->addSourceCitation($citation);
+                    $sour = \Gedcom\Parser\SourRef::parse($parser);
+                    $even->addSour($sour);
                 break;
                 
                 case 'OBJE':
-                    $object = \Gedcom\Parser\ObjeRef::parse($parser);
-                    
-                    if(is_a($object, '\Gedcom\Record\Obje\Refer'))
-                        $even->addObjeRef($object);
-                    else
-                        $even->addObje($object);
+                    $obje = \Gedcom\Parser\ObjeRef::parse($parser);
+                    $even->addObje($obje);
                 break;
                 
                 case 'NOTE':
                     $note = \Gedcom\Parser\NoteRef::parse($parser);
-                    
-                    if(is_a($note, '\Gedcom\Record\Note\Ref'))
-                        $even->addNoteRef($note);
-                    else
-                        $even->addNote($note);
+                    $even->addNote($note);
                 break;
                 
                 default:

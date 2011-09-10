@@ -65,21 +65,13 @@ class Name extends \Gedcom\Parser\Component
                 break;
                 
                 case 'SOUR':
-                    $citation = \Gedcom\Parser\SourceCitation::parse($parser);
-                    
-                    if(is_a($citation, '\Gedcom\Record\SourceCitation\Ref'))
-                        $name->addSourceCitationRef($citation);
-                    else
-                        $name->addSourceCitation($citation);
+                    $sour = \Gedcom\Parser\SourRef::parse($parser);
+                    $name->addSour($sour);
                 break;
                 
                 case 'NOTE':
                     $note = \Gedcom\Parser\NoteRef::parse($parser);
-                    
-                    if(is_a($note, '\Gedcom\Record\Note\Ref'))
-                        $name->addNoteRef($note);
-                    else
-                        $name->addNote($note);
+                    $name->addNote($note);
                 break;
                 
                 default:

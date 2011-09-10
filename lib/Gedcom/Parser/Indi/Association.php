@@ -45,21 +45,13 @@ class Association extends \Gedcom\Parser\Component
                 break;
                 
                 case 'SOUR':
-                    $citation = \Gedcom\Parser\SourceCitation::parse($parser);
-                    
-                    if(is_a($citation, '\Gedcom\Record\SourceCitation\Ref'))
-                        $asso->addSourceCitationRef($citation);
-                    else
-                        $asso->addSourceCitation($citation);
+                    $sour = \Gedcom\Parser\SourRef::parse($parser);
+                    $asso->addSour($sour);
                 break;
                 
                 case 'NOTE':
                     $note = \Gedcom\Parser\NoteRef::parse($parser);
-                    
-                    if(is_a($note, '\Gedcom\Record\Note\Ref'))
-                        $asso->addNoteRef($note);
-                    else
-                        $asso->addNote($note);
+                    $asso->addNote($note);
                 break;
                 
                 default:

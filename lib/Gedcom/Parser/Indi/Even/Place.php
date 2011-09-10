@@ -21,8 +21,8 @@ class Place extends \Gedcom\Parser\Component
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
         
-        $place = new \Gedcom\Record\Indi\Even\Place();
-        $place->place = isset($record[2]) ? trim($record[2]) : null;
+        $plac = new \Gedcom\Record\Indi\Even\Place();
+        $plac->place = isset($record[2]) ? trim($record[2]) : null;
         
         $parser->forward();
         
@@ -41,25 +41,17 @@ class Place extends \Gedcom\Parser\Component
             switch($recordType)
             {
                 case 'FORM':
-                    $place->form = trim($record[2]);
+                    $plac->form = trim($record[2]);
                 break;
                 
                 case 'NOTE':
                     $note = \Gedcom\Parser\NoteRef::parse($parser);
-                    
-                    if(is_a($note, '\Gedcom\Record\Note\Ref'))
-                        $place->addNoteRef($note);
-                    else
-                        $place->addNote($note);
+                    $plac->addNote($note);
                 break;
                 
                 case 'SOUR':
-                    $citation = \Gedcom\Parser\SourceCitation::parse($parser);
-                    
-                    if(is_a($citation, '\Gedcom\Record\SourceCitation\Ref'))
-                        $place->addSourceCitationRef($citation);
-                    else
-                        $place->addSourceCitation($citation);
+                    $sour = \Gedcom\Parser\SourRef::parse($parser);
+                    $plac->addSour($sour);
                 break;
                 
                 default:
@@ -69,6 +61,6 @@ class Place extends \Gedcom\Parser\Component
             $parser->forward();
         }
         
-        return $place;
+        return $plac;
     }
 }

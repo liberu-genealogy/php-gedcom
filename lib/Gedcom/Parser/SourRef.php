@@ -3,13 +3,13 @@
  *
  */
 
-namespace Gedcom\Parser\SourceCitation;
+namespace Gedcom\Parser;
 
 /**
  *
  *
  */
-class Embe extends \Gedcom\Parser\Component
+class SourRef extends \Gedcom\Parser\Component
 {
     
     /**
@@ -21,8 +21,8 @@ class Embe extends \Gedcom\Parser\Component
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
         
-        $embedded = new \Gedcom\Record\SourceCitation\Embe();
-        $embedded->source = $record[2];
+        $sour = new \Gedcom\Record\SourRef();
+        $sour->sour = $record[2];
         
         $parser->forward();
         
@@ -41,30 +41,43 @@ class Embe extends \Gedcom\Parser\Component
             switch($recordType)
             {
                 case 'CONT':
-                    $embedded->source .= "\n";
+                    $sour->sour .= "\n";
                     
                     if(isset($record[2]))
-                        $embedded->source .= trim($record[2]);
+                        $sour->sour .= trim($record[2]);
                 break;
                 
                 case 'CONC':
                     if(isset($record[2]))
-                        $embedded->source .= ' ' . trim($record[2]);
+                        $sour->sour .= ' ' . trim($record[2]);
                 break;
             
                 case 'TEXT':
-                    $embedded->text = $parser->parseMultiLineRecord();
+                    $sour->text = $parser->parseMultiLineRecord();
                 break;
                 
                 case 'NOTE':
                     $note = \Gedcom\Parser\NoteRef::parse($parser);
-                    
-                    if(is_a($note, '\Gedcom\Record\Note\Ref'))
-                        $embedded->addNoteRef($note);
-                    else
-                        $embedded->addNote($note);
+                    $sour->addNote($note);
                 break;
-            
+                
+                case 'DATA':
+                    $sour->data = \Gedcom\Parser\Source\Data::parse($parser);
+                break;
+                
+                case 'QUAY':
+                    $sour->quay = trim($record[2]);
+                break;
+                
+                case 'PAGE':
+                    $sour->page = trim($record[2]);
+                break;
+                
+                case 'EVEN':
+                    $even = \Gedcom\Parser\SourRef\Even::parse($parser);
+                    $sour->even = $even;
+                break;
+                
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }
@@ -72,6 +85,6 @@ class Embe extends \Gedcom\Parser\Component
             $parser->forward();
         }
         
-        return $embedded;
+        return $sour;
     }
 }

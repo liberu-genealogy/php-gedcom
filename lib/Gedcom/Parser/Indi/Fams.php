@@ -42,13 +42,10 @@ class Fams extends \Gedcom\Parser\Component
             
             switch($recordType)
             {
+                
                 case 'NOTE':
                     $note = \Gedcom\Parser\NoteRef::parse($parser);
-                    
-                    if(is_a($note, '\Gedcom\Record\Note\Ref'))
-                        $fam->addNoteRef($note);
-                    else
-                        $fam->addNote($note);
+                    $fam->addNote($note);
                 break;
                 
                 default:

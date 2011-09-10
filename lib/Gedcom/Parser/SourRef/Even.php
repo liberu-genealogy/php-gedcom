@@ -3,13 +3,13 @@
  *
  */
 
-namespace Gedcom\Parser\Obje;
+namespace Gedcom\Parser\SourRef;
 
 /**
  *
  *
  */
-class Embe extends \Gedcom\Parser\Component
+class Even extends \Gedcom\Parser\Component
 {
     
     /**
@@ -21,7 +21,8 @@ class Embe extends \Gedcom\Parser\Component
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
         
-        $embedded = new \Gedcom\Record\Obje\Embe();
+        $even = new \Gedcom\Record\SourRef\Even();
+        $even->even = trim($record[2]);
         
         $parser->forward();
         
@@ -39,25 +40,8 @@ class Embe extends \Gedcom\Parser\Component
             
             switch($recordType)
             {
-                case 'TITL':
-                    $embedded->title = trim($record[2]);
-                break;
-                
-                case 'FILE':
-                    $embedded->file = trim($record[2]);
-                break;
-                
-                case 'FORM':
-                    $embedded->form = trim($record[2]);
-                break;
-                
-                case 'NOTE':
-                    $note = \Gedcom\Parser\NoteRef::parse($parser);
-                    
-                    if(is_a($note, '\Gedcom\Record\Note\Ref'))
-                        $embedded->addNoteRef($note);
-                    else
-                        $embedded->addNote($note);
+                case 'ROLE':
+                    $even->role = trim($record[2]);
                 break;
                 
                 default:
@@ -67,6 +51,6 @@ class Embe extends \Gedcom\Parser\Component
             $parser->forward();
         }
         
-        return $embedded;
+        return $even;
     }
 }

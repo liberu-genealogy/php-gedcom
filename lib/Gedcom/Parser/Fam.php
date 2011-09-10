@@ -86,29 +86,17 @@ class Fam extends \Gedcom\Parser\Component
                 
                 case 'NOTE':
                     $note = \Gedcom\Parser\NoteRef::parse($parser);
-                    
-                    if(is_a($note, '\Gedcom\Record\Note\Ref'))
-                        $fam->addNoteRef($note);
-                    else
-                        $fam->addNote($note);
+                    $fam->addNote($note);
                 break;
                 
                 case 'SOUR':
-                    $citation = \Gedcom\Parser\SourceCitation::parse($parser);
-                    
-                    if(is_a($citation, '\Gedcom\Record\SourceCitation\Ref'))
-                        $fam->addSourceCitationRef($citation);
-                    else
-                        $fam->addSourceCitation($citation);
+                    $sour = \Gedcom\Parser\SourRef::parse($parser);
+                    $fam->addSour($sour);
                 break;
                 
                 case 'OBJE':
-                    $object = \Gedcom\Parser\ObjeRef::parse($parser);
-                    
-                    if(is_a($object, '\Gedcom\Record\Obje\Ref'))
-                        $fam->addObjeRef($object);
-                    else
-                        $fam->addObje($object);
+                    $obje = \Gedcom\Parser\ObjeRef::parse($parser);
+                    $fam->addObje($obje);
                 break;
                 
                 default:

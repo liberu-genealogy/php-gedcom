@@ -70,11 +70,7 @@ class Obje extends \Gedcom\Parser\Component
                 
                 case 'NOTE':
                     $note = \Gedcom\Parser\NoteRef::parse($parser);
-                    
-                    if(is_a($note, '\Gedcom\Record\Note\Ref'))
-                        $obje->addNoteRef($note);
-                    else
-                        $obje->addNote($note);
+                    $obje->addNote($note);
                 break;
                 
                 case 'CHAN':

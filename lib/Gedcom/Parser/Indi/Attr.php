@@ -76,30 +76,18 @@ class Attr extends \Gedcom\Parser\Component
                 break;
                 
                 case 'SOUR':
-                    $citation = \Gedcom\Parser\SourceCitation::parse($parser);
-                    
-                    if(is_a($citation, '\Gedcom\Record\SourceCitation\Ref'))
-                        $attr->addSourceCitationRef($citation);
-                    else
-                        $attr->addSourceCitation($citation);
+                    $sour = \Gedcom\Parser\SourRef::parse($parser);
+                    $attr->addSour($sour);
                 break;
                 
                 case 'OBJE':
-                    $object = \Gedcom\Parser\ObjeRef::parse($parser);
-                    
-                    if(is_a($object, '\Gedcom\Record\Obje\Ref'))
-                        $attr->addObjeRef($object);
-                    else
-                        $attr->addObje($object);
+                    $obje = \Gedcom\Parser\ObjeRef::parse($parser);
+                    $attr->addObje($obje);
                 break;
                 
                 case 'NOTE':
                     $note = \Gedcom\Parser\NoteRef::parse($parser);
-                    
-                    if(is_a($note, '\Gedcom\Record\Note\Ref'))
-                        $attr->addNoteRef($note);
-                    else
-                        $attr->addNote($note);
+                    $attr->addNote($note);
                 break;
                 
                 default:

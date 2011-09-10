@@ -64,23 +64,6 @@ class Indi extends \Gedcom\Parser\Component
                     $indi->sex = trim($record[2]);
                 break;
                 
-                /*
-                case 'BIRT':
-                    $birth = \Gedcom\Parser\Indi\Even\Birt::parse($parser);
-                    $indi->addEven($birth);
-                break;
-                
-                case 'ADOP':
-                    $adoption = \Gedcom\Parser\Indi\Even\Adop::parse($parser);
-                    $indi->addEven($adoption);
-                break;
-                
-                case 'CHR':
-                    $chr = \Gedcom\Parser\Indi\Even\Chr::parse($parser);
-                    $indi->addEven($chr);
-                break;
-                */
-                
                 case 'RIN':
                     $indi->rin = trim($record[2]);
                 break;
@@ -143,30 +126,18 @@ class Indi extends \Gedcom\Parser\Component
                 break;
                 
                 case 'OBJE':
-                    $object = \Gedcom\Parser\ObjeRef::parse($parser);
-                    
-                    if(is_a($object, '\Gedcom\Record\Obje\Ref'))
-                        $indi->addObjeRef($object);
-                    else
-                        $indi->addObje($object);
+                    $obje = \Gedcom\Parser\ObjeRef::parse($parser);
+                    $indi->addObje($obje);
                 break;
                 
                 case 'NOTE':
                     $note = \Gedcom\Parser\NoteRef::parse($parser);
-                    
-                    if(is_a($note, '\Gedcom\Record\Note\Ref'))
-                        $indi->addNoteRef($note);
-                    else
-                        $indi->addNote($note);
+                    $indi->addNote($note);
                 break;
                 
                 case 'SOUR':
-                    $citation = \Gedcom\Parser\SourceCitation::parse($parser);
-                    
-                    if(is_a($citation, '\Gedcom\Record\SourceCitation\Ref'))
-                        $indi->addSourceCitationRef($citation);
-                    else
-                        $indi->addSourceCitation($citation);
+                    $sour = \Gedcom\Parser\SourRef::parse($parser);
+                    $indi->addSour($sour);
                 break;
                 
                 case 'ADOP':

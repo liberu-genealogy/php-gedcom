@@ -59,11 +59,7 @@ class Repo extends \Gedcom\Parser\Component
                 
                 case 'NOTE':
                     $note = \Gedcom\Parser\NoteRef::parse($parser);
-                    
-                    if(is_a($note, '\Gedcom\Record\Note\Ref'))
-                        $repo->addNoteRef($note);
-                    else
-                        $repo->addNote($note);
+                    $repo->addNote($note);
                 break;
                 
                 case 'REFN':

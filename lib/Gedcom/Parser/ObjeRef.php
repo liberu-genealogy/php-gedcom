@@ -13,19 +13,64 @@ class ObjeRef extends \Gedcom\Parser\Component
 {
     /**
      *
-     *
      */
     public static function &parse(\Gedcom\Parser &$parser)
     {
         $record = $parser->getCurrentLineRecord();
+        $depth = (int)$record[0];
         
-        $object = null;
+        $obje = new \Gedcom\Record\ObjeRef();
         
-        if(isset($record[2]) && preg_match('/\@([A-Z0-9]*)\@/i', $record[2]) > 0)
-            $object = \Gedcom\Parser\Obje\Ref::parse($parser);
+        if(isset($record[2]))
+        {
+            $obje->setIsReference(true);
+            $obje->obje = $parser->normalizeIdentifier($record[2]);
+        }
         else
-            $object = \Gedcom\Parser\Obje\Embe::parse($parser);
+        {
+            $obje->setIsReference(false);
+        }
         
-        return $object;
+        $parser->forward();
+        
+        while(!$parser->eof())
+        {
+            $record = $parser->getCurrentLineRecord();
+            $recordType = strtoupper(trim($record[1]));
+            $currentDepth = (int)$record[0];
+            
+            if($currentDepth <= $depth)
+            {
+                $parser->back();
+                break;
+            }
+            
+            switch($recordType)
+            {
+                case 'TITL':
+                    $obje->title = trim($record[2]);
+                break;
+                
+                case 'FILE':
+                    $obje->file = trim($record[2]);
+                break;
+                
+                case 'FORM':
+                    $obje->form = trim($record[2]);
+                break;
+                
+                case 'NOTE':
+                    $note = \Gedcom\Parser\NoteRef::parse($parser);
+                    $obje->addNote($note);
+                break;
+                
+                default:
+                    $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
+            }
+            
+            $parser->forward();
+        }
+        
+        return $obje;
     }
 }

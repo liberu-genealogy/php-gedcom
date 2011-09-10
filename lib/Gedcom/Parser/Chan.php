@@ -49,11 +49,7 @@ class Chan extends \Gedcom\Parser\Component
                 
                 case 'NOTE':
                     $note = \Gedcom\Parser\NoteRef::parse($parser);
-                    
-                    if(is_a($note, '\Gedcom\Record\Note\Ref'))
-                        $chan->addNoteRef($note);
-                    else
-                        $chan->addNote($note);
+                    $chan->addNote($note);
                 break;
             
                 default:

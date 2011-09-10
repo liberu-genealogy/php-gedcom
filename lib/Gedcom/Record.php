@@ -10,15 +10,13 @@ namespace Gedcom;
  */
 abstract class Record
 {
-    public $notes = array();
-    public $noteRef = array();
+    protected $_note = array();
+    protected $_obje = array();
+    protected $_sour = array();
     
-    public $objects = array();
-    public $objectRef = array();
-    
-    public $sourceCitations = array();
-    public $sourceCitationRef = array();
-    
+    /**
+     *
+     */
     public function __set($var, $val)
     {
         if(!property_exists($this, '_' . $var))
@@ -27,6 +25,9 @@ abstract class Record
         $this->{'_' . $var} = $val;
     }
     
+    /**
+     *
+     */
     public function __get($var)
     {
         if(!property_exists($this, '_' . $var))
@@ -35,6 +36,9 @@ abstract class Record
         return $this->{'_' . $var};
     }
     
+    /**
+     *
+     */
     public function __call($method, $args)
     {
         if(substr($method, 0, 3) != 'add')
@@ -68,52 +72,27 @@ abstract class Record
         return property_exists($this, '_' . $var);
     }
     
-    
     /**
      *
      */
-    public function addNoteRef(\Gedcom\Record\Note\Ref &$ref)
+    public function addNote(\Gedcom\Record\NoteRef &$note)
     {
-        $this->noteRef[] = $ref;
+        $this->_note[] = &$note;
     }
     
     /**
      *
      */
-    public function addNote(\Gedcom\Record\Note\Text &$note)
+    public function addObje(\Gedcom\Record\ObjeRef &$obje)
     {
-        $this->notes[] = $note;
+        $this->_obje[] = &$obje;
     }
     
     /**
      *
      */
-    public function addObje(\Gedcom\Record\Obje\Embe &$object)
+    public function addSour(\Gedcom\Record\SourRef &$sour)
     {
-        $this->objects[] = $object;
-    }
-    
-    /**
-     *
-     */
-    public function addObjeRef(\Gedcom\Record\Obje\Ref &$object)
-    {
-        $this->objectRef[] = $object;
-    }
-    
-    /**
-     *
-     */
-    public function addSourceCitation(\Gedcom\Record\SourceCitation\Embe &$citation)
-    {
-        $this->sourceCitations[] = $citation;
-    }
-    
-    /**
-     *
-     */
-    public function addSourceCitationRef(\Gedcom\Record\SourceCitation\Ref &$citation)
-    {
-        $this->sourceCitationRef[] = $citation;
+        $this->_sour[] = &$sour;
     }
 }

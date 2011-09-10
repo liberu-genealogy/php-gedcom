@@ -53,11 +53,7 @@ class Data extends \Gedcom\Parser\Component
                 
                 case 'NOTE':
                     $note = \Gedcom\Parser\NoteRef::parse($parser);
-                    
-                    if(is_a($note, '\Gedcom\Record\Note\Ref'))
-                        $data->addNoteRef($note);
-                    else
-                        $data->addNote($note);
+                    $data->addNote($note);
                 break;
                 
                 case 'TEXT':

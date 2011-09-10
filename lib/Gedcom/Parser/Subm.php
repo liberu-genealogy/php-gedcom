@@ -59,20 +59,12 @@ class Subm extends \Gedcom\Parser\Component
                 
                 case 'NOTE':
                     $note = \Gedcom\Parser\NoteRef::parse($parser);
-                    
-                    if(is_a($note, '\Gedcom\Record\Note\Ref'))
-                        $subm->addNoteRef($note);
-                    else
-                        $subm->addNote($note);
+                    $subm->addNote($note);
                 break;
                 
                 case 'OBJE':
                     $obje = \Gedcom\Parser\ObjeRef::parse($parser);
-                    
-                    if(is_a($obje, '\Gedcom\Record\Obje\Ref'))
-                        $subm->addObjeRef($obje);
-                    else
-                        $subm->addObje($obje);
+                    $subm->addObje($obje);
                 break;
                 
                 case 'CHAN':

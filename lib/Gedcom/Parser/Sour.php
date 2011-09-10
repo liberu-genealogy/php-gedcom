@@ -73,11 +73,7 @@ class Sour extends \Gedcom\Parser\Component
                 
                 case 'NOTE':
                     $note = \Gedcom\Parser\NoteRef::parse($parser);
-                    
-                    if(is_a($note, '\Gedcom\Record\Note\Ref'))
-                        $sour->addNoteRef($note);
-                    else
-                        $sour->addNote($note);
+                    $sour->addNote($note);
                 break;
                 
                 case 'DATA':
@@ -85,12 +81,8 @@ class Sour extends \Gedcom\Parser\Component
                 break;
                 
                 case 'OBJE':
-                    $object = \Gedcom\Parser\ObjeRef::parse($parser);
-                    
-                    if(is_a($object, '\Gedcom\Record\Obje\Ref'))
-                        $sour->addObjeRef($object);
-                    else
-                        $sour->addObje($object);
+                    $obje = \Gedcom\Parser\ObjeRef::parse($parser);
+                    $sour->addObje($obje);
                 break;
                 
                 case 'REFN':
