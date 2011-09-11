@@ -10,7 +10,7 @@
  * @package         php-gedcom 
  * @license         http://php-gedcom.kristopherwilson.com/license
  * @link            http://php-gedcom.kristopherwilson.com
- * @version         SVN: $Id$
+ * @version         SVN: $Id: Place.php 76 2011-09-11 16:30:59Z kristopherwilson $
  */
 
 namespace Gedcom\Record\Indi\Even;
@@ -21,9 +21,9 @@ use \Gedcom\Record\Sourceable;
 /**
  *
  */
-class Place extends \Gedcom\Record implements Noteable, Sourceable
+class Plac extends \Gedcom\Record implements Noteable, Sourceable
 {
-    public $place = null;
+    public $plac = null;
     public $form = null;
     
     /**

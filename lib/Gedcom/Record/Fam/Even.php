@@ -22,7 +22,7 @@ use \Gedcom\Record\Noteable;
 /**
  *
  */
-class Even extends \Gedcom\Record\Even implements Objectable, Sourceable, Noteable
+class Even extends \Gedcom\Record\Indi\Even implements Objectable, Sourceable, Noteable
 {
     protected $_husb;
     protected $_wife;

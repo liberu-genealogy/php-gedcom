@@ -26,7 +26,7 @@ class Even extends \Gedcom\Record implements Objectable, Sourceable, Noteable
 {
     protected $_type = null;
     protected $_date = null;
-    protected $_place = null;
+    protected $_plac = null;
     protected $_caus = null;
     protected $_age = null;
     

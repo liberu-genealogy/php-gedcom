@@ -19,7 +19,7 @@ namespace Gedcom\Parser\Indi\Even;
  *
  *
  */
-class Place extends \Gedcom\Parser\Component
+class Plac extends \Gedcom\Parser\Component
 {
     
     /**
@@ -31,8 +31,8 @@ class Place extends \Gedcom\Parser\Component
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
         
-        $plac = new \Gedcom\Record\Indi\Even\Place();
-        $plac->place = isset($record[2]) ? trim($record[2]) : null;
+        $plac = new \Gedcom\Record\Indi\Even\Plac();
+        $plac->plac = isset($record[2]) ? trim($record[2]) : null;
         
         $parser->forward();
         

@@ -22,7 +22,7 @@ use \Gedcom\Record\Objectable;
 /**
  *
  */
-class Attr extends \Gedcom\Record\Even implements Sourceable, Noteable, Objectable
+class Attr extends \Gedcom\Record\Indi\Even implements Sourceable, Noteable, Objectable
 {
     protected $_type = null;
     protected $_attr = null;

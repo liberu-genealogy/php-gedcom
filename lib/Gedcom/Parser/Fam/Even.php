@@ -61,8 +61,8 @@ class Even extends \Gedcom\Parser\Component
                 break;
                 
                 case 'PLAC':
-                    $place = \Gedcom\Parser\Indi\Even\Place::parse($parser);
-                    $even->place = $place;
+                    $plac = \Gedcom\Parser\Indi\Even\Plac::parse($parser);
+                    $even->plac = $plac;
                 break;
                 
                 case 'ADDR':
