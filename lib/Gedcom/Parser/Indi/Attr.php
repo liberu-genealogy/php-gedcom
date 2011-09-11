@@ -9,7 +9,7 @@ namespace Gedcom\Parser\Indi;
  *
  *
  */
-class Attr extends \Gedcom\Parser\Component
+abstract class Attr extends \Gedcom\Parser\Component
 {
     
     /**
@@ -21,7 +21,9 @@ class Attr extends \Gedcom\Parser\Component
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
         
-        $attr = new \Gedcom\Record\Indi\Attr();
+        $className = '\\Gedcom\\Record\\Indi\\' . ucfirst(strtolower(trim($record[1])));
+        $attr = new $className();
+        
         $attr->type = trim($record[1]);
         $attr->attr = isset($record[2]) ? trim($record[2]) : null;
         

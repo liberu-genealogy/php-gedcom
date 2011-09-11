@@ -11,12 +11,6 @@ namespace Gedcom\Parser;
  */
 class Indi extends \Gedcom\Parser\Component
 {
-    /*
-    protected static $_eventTypes = array('ADOP','BIRT','BAPM','BARM','BASM','BLES','BURI',
-        'CENS','CHR','CHRA','CONF','CREM','DEAT','EMIG','FCOM','GRAD','IMMI','NATU','ORDN',
-        'RETI','PROB','WILL','EVEN');
-    */
-    
     protected static $_attrTypes = array('CAST','EDUC','NATI','OCCU','PROP','RELI','RESI',
         'TITL','SSN','IDNO','DSCR','NCHI','NMR');
     
@@ -57,7 +51,7 @@ class Indi extends \Gedcom\Parser\Component
                 break;
                 
                 case 'ALIA':
-                    $indi->addAlias($parser->normalizeIdentifier($record[2]));
+                    $indi->addAlia($parser->normalizeIdentifier($record[2]));
                 break;
                 
                 case 'SEX':
@@ -109,7 +103,7 @@ class Indi extends \Gedcom\Parser\Component
                 break;
                 
                 case 'SUBM':
-                    $indi->addSubmitter($parser->normalizeIdentifier($record[2]));
+                    $indi->addSubm($parser->normalizeIdentifier($record[2]));
                 break;
                 
                 case 'REFN':
@@ -170,17 +164,28 @@ class Indi extends \Gedcom\Parser\Component
                     $indi->addEven($event);
                     break;
                 
+                case 'CAST':
+                case 'DSCR':
+                case 'EDUC':
+                case 'IDNO':
+                case 'NATI':
+                case 'NCHI':
+                case 'NMR':
+                case 'OCCU':
+                case 'PROP':
+                case 'RELI':
+                case 'RESI':
+                case 'SSN':
+                case 'TITL':
+                    $className = ucfirst(strtolower($recordType));
+                    $class = '\\Gedcom\\Parser\\Indi\\' . $className;
+                    
+                    $att = $class::parse($parser);
+                    $indi->addAttr($att);
+                    break;
+                
                 default:
-                    if(in_array($recordType, self::$_attrTypes))
-                    {
-                        $att = \Gedcom\Parser\Indi\Attr::parse($parser);
-                        $indi->addAttr($att);
-                    }
-                    else
-                    {
-                        $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
-                    }
-                break;
+                    $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }
             
             $parser->forward();
