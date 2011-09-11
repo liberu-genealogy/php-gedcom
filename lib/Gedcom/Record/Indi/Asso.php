@@ -3,18 +3,18 @@
  *
  */
 
-namespace Gedcom\Record\Indi\Even;
+namespace Gedcom\Record\Indi;
 
-use \Gedcom\Record\Noteable;
 use \Gedcom\Record\Sourceable;
+use \Gedcom\Record\Noteable;
 
 /**
  *
  */
-class Place extends \Gedcom\Record implements Noteable, Sourceable
+class Asso extends \Gedcom\Record implements Sourceable, Noteable
 {
-    public $place = null;
-    public $form = null;
+    protected $_indi = null;
+    protected $_rela = null;
     
     /**
      *
@@ -42,4 +42,3 @@ class Place extends \Gedcom\Record implements Noteable, Sourceable
         $this->_sour[] = &$sour;
     }
 }
-

@@ -8,10 +8,10 @@ namespace Gedcom\Record;
 /**
  *
  */
-class Sour extends \Gedcom\Record
+class Sour extends \Gedcom\Record implements Noteable, Objectable
 {
-    protected $_id      = null;
-    protected $_chan    = null;
+    protected $_id   = null;
+    protected $_chan = null;
     
     protected $_titl = null;
     protected $_auth = null;
@@ -27,9 +27,34 @@ class Sour extends \Gedcom\Record
     /**
      *
      */
+    protected $_note = array();
+    
+    /**
+     *
+     */
+    protected $_obje = array();
+    
+    /**
+     *
+     */
     public function addRefn(\Gedcom\Record\Refn &$refn)
     {
         $this->_refn[] = $refn;
     }
+    
+    /**
+     *
+     */
+    public function addNote(\Gedcom\Record\NoteRef &$note)
+    {
+        $this->_note[] = &$note;
+    }
+    
+    /**
+     *
+     */
+    public function addObje(\Gedcom\Record\ObjeRef &$obje)
+    {
+        $this->_obje[] = &$obje;
+    }
 }
-

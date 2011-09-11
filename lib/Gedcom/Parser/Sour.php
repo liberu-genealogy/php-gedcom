@@ -68,7 +68,7 @@ class Sour extends \Gedcom\Parser\Component
                 break;
                 
                 case 'REPO':
-                    $sour->repo = \Gedcom\Parser\SourceRepositoryCitation::parse($parser);
+                    $sour->repo = \Gedcom\Parser\RepoRef::parse($parser);
                 break;
                 
                 case 'NOTE':

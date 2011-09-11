@@ -30,7 +30,7 @@ class Even extends \Gedcom\Parser\Component
         }
         else
         {
-            $even = new \Gedcom\Record\Even();
+            $even = new \Gedcom\Record\Indi\Even();
         }
         
         if(isset($record[1]) && strtoupper(trim($record[1])) != 'EVEN')

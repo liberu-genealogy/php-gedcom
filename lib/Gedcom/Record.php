@@ -9,11 +9,7 @@ namespace Gedcom;
  *
  */
 abstract class Record
-{
-    protected $_note = array();
-    protected $_obje = array();
-    protected $_sour = array();
-    
+{   
     /**
      *
      */
@@ -70,29 +66,5 @@ abstract class Record
     public function hasAttribute($var)
     {
         return property_exists($this, '_' . $var);
-    }
-    
-    /**
-     *
-     */
-    public function addNote(\Gedcom\Record\NoteRef &$note)
-    {
-        $this->_note[] = &$note;
-    }
-    
-    /**
-     *
-     */
-    public function addObje(\Gedcom\Record\ObjeRef &$obje)
-    {
-        $this->_obje[] = &$obje;
-    }
-    
-    /**
-     *
-     */
-    public function addSour(\Gedcom\Record\SourRef &$sour)
-    {
-        $this->_sour[] = &$sour;
     }
 }

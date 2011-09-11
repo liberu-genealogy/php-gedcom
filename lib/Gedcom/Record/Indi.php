@@ -9,13 +9,28 @@ namespace Gedcom\Record;
  *
  *
  */
-class Indi extends \Gedcom\Record
+class Indi extends \Gedcom\Record implements Noteable, Objectable, Sourceable
 {
-    protected $_id      = null;
-    protected $_chan    = null;
+    protected $_id   = null;
+    protected $_chan = null;
     
     protected $_attr = array();
     protected $_even = array();
+    
+    /**
+     *
+     */
+    protected $_note    = array();
+    
+    /**
+     *
+     */
+    protected $_obje    = array();
+    
+    /**
+     *
+     */
+    protected $_sour    = array();
     
     protected $_name = array();
     public $aliases = array();
@@ -28,17 +43,15 @@ class Indi extends \Gedcom\Record
     
     protected $_fams = array();
     protected $_famc = array();
-    public $associations = array();
+    protected $_asso = array();
     
     public $submitters = array();
     protected $_anci = array();
     protected $_desi = array();
     
-    public $objects = array();
-    
     public $ldsIndividualOrdinances = array();
 
-    public $refn = array();
+    protected $_refn = array();
 
     /**
      *
@@ -77,9 +90,9 @@ class Indi extends \Gedcom\Record
     /**
      *
      */
-    public function addAssociation(\Gedcom\Record\Indi\Association &$association)
+    public function addAsso(\Gedcom\Record\Indi\Asso &$asso)
     {
-        $this->associations[] = $association;
+        $this->_asso[] = $asso;
     }
     
     /**
@@ -113,7 +126,7 @@ class Indi extends \Gedcom\Record
      */
     public function addRefn(\Gedcom\Record\Refn &$ref)
     {
-        $this->refn[] = $ref;
+        $this->_refn[] = $ref;
     }
     
     /**
@@ -148,5 +161,29 @@ class Indi extends \Gedcom\Record
         }
         
         return $attrs;
+    }
+    
+    /**
+     *
+     */
+    public function addNote(\Gedcom\Record\NoteRef &$note)
+    {
+        $this->_note[] = &$note;
+    }
+    
+    /**
+     *
+     */
+    public function addObje(\Gedcom\Record\ObjeRef &$obje)
+    {
+        $this->_obje[] = &$obje;
+    }
+    
+    /**
+     *
+     */
+    public function addSour(\Gedcom\Record\SourRef &$sour)
+    {
+        $this->_sour[] = &$sour;
     }
 }

@@ -3,19 +3,16 @@
  *
  */
 
-namespace Gedcom\Record\Indi;
-
-use \Gedcom\Record\Noteable;
+namespace Gedcom\Record;
 
 /**
  *
  */
-class Fams extends \Gedcom\Record implements Noteable
+class RepoRef extends \Gedcom\Record implements Noteable
 {
-    /**
-     *
-     */
-    protected $_fams = null;
+    protected $_repo = null;
+    
+    protected $_caln = array();
     
     /**
      *

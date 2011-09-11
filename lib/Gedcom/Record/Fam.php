@@ -9,7 +9,7 @@ namespace Gedcom\Record;
  *
  *
  */
-class Fam extends \Gedcom\Record
+class Fam extends \Gedcom\Record implements Noteable, Sourceable, Objectable
 {
     protected $_id      = null;
     protected $_chan    = null;
@@ -23,8 +23,6 @@ class Fam extends \Gedcom\Record
     
     protected $_even = array();
     
-    public $notes = array();
-    
     protected $_slgs = array();
     
     public $submitters = array();
@@ -32,8 +30,22 @@ class Fam extends \Gedcom\Record
     public $refn = array();
     
     protected $_rin = null;
-
-
+    
+    /**
+     *
+     */
+    protected $_note = array();
+    
+    /**
+     *
+     */
+    protected $_sour = array();
+    
+    /**
+     *
+     */
+    protected $_obje = array();
+    
     /**
      *
      *
@@ -72,5 +84,29 @@ class Fam extends \Gedcom\Record
     public function addRefn(\Gedcom\Record\Refn &$refn)
     {
         $this->refn[] = $refn;
+    }
+    
+    /**
+     *
+     */
+    public function addNote(\Gedcom\Record\NoteRef &$note)
+    {
+        $this->_note[] = &$note;
+    }
+    
+    /**
+     *
+     */
+    public function addSour(\Gedcom\Record\SourRef &$sour)
+    {
+        $this->_sour[] = &$sour;
+    }
+    
+    /**
+     *
+     */
+    public function addObje(\Gedcom\Record\ObjeRef &$obje)
+    {
+        $this->_obje[] = &$obje;
     }
 }

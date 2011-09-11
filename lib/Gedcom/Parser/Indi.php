@@ -96,8 +96,8 @@ class Indi extends \Gedcom\Parser\Component
                 break;
                 
                 case 'ASSO':
-                    $asso = \Gedcom\Parser\Indi\Association::parse($parser);
-                    $indi->addAssociation($asso);
+                    $asso = \Gedcom\Parser\Indi\Asso::parse($parser);
+                    $indi->addAsso($asso);
                 break;
                 
                 case 'ANCI':

@@ -8,7 +8,7 @@ namespace Gedcom\Record;
 /**
  *
  */
-class Subm extends \Gedcom\Record
+class Subm extends \Gedcom\Record implements Objectable
 {
     protected $_id      = null;
     protected $_chan    = null;
@@ -20,6 +20,8 @@ class Subm extends \Gedcom\Record
     
     protected $_lang    = array();
     protected $_phon    = array();
+    
+    protected $_obje    = array();
     
     /**
      *
@@ -43,6 +45,14 @@ class Subm extends \Gedcom\Record
     public function setAddr(\Gedcom\Record\Addr &$addr)
     {
         $this->_addr = &$addr;
+    }
+    
+    /**
+     *
+     */
+    public function addObje(\Gedcom\Record\ObjeRef &$obje)
+    {
+        $this->_obje[] = &$obje;
     }
 }
 

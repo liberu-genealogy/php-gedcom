@@ -5,10 +5,12 @@
 
 namespace Gedcom\Record;
 
+use \Gedcom\Record\Sourceable;
+
 /**
  *
  */
-class NoteRef extends \Gedcom\Record
+class NoteRef extends \Gedcom\Record implements Sourceable
 {
     /**
      *
@@ -19,6 +21,11 @@ class NoteRef extends \Gedcom\Record
      *
      */
     protected $_note    = '';
+    
+    /**
+     *
+     */
+    protected $_sour = array();
     
     /**
      *
@@ -34,5 +41,13 @@ class NoteRef extends \Gedcom\Record
     public function getIsReference()
     {
         return $this->_isRef;
+    }
+    
+    /**
+     *
+     */
+    public function addSour(\Gedcom\Record\SourRef &$sour)
+    {
+        $this->_sour[] = &$sour;
     }
 }

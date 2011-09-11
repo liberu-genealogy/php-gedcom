@@ -8,7 +8,7 @@ namespace Gedcom\Record;
 /**
  *
  */
-class ObjeRef extends \Gedcom\Record
+class ObjeRef extends \Gedcom\Record implements Noteable
 {
     /**
      *
@@ -38,6 +38,11 @@ class ObjeRef extends \Gedcom\Record
     /**
      *
      */
+    protected $_note = array();
+    
+    /**
+     *
+     */
     public function setIsReference($isReference = true)
     {
         $this->_isRef = $isReference;
@@ -49,6 +54,14 @@ class ObjeRef extends \Gedcom\Record
     public function getIsReference()
     {
         return $this->_isRef;
+    }
+    
+    /**
+     *
+     */
+    public function addNote(\Gedcom\Record\NoteRef &$note)
+    {
+        $this->_note[] = &$note;
     }
 }
 

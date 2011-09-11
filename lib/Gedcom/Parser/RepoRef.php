@@ -3,13 +3,13 @@
  *
  */
 
-namespace Gedcom\Parser\Indi;
+namespace Gedcom\Parser;
 
 /**
  *
  *
  */
-class Association extends \Gedcom\Parser\Component
+class RepoRef extends \Gedcom\Parser\Component
 {
     
     /**
@@ -19,18 +19,20 @@ class Association extends \Gedcom\Parser\Component
     public static function &parse(\Gedcom\Parser &$parser)
     {
         $record = $parser->getCurrentLineRecord();
+        $identifier = $parser->normalizeIdentifier($record[2]);
+        
         $depth = (int)$record[0];
         
-        $asso = new \Gedcom\Record\Indi\Association();
-        $asso->individualId = $parser->normalizeIdentifier($record[2]);
+        $repo = new \Gedcom\Record\RepoRef();
+        $repo->repo = $identifier;
         
         $parser->forward();
         
         while(!$parser->eof())
         {
             $record = $parser->getCurrentLineRecord();
-            $recordType = strtoupper(trim($record[1]));
             $currentDepth = (int)$record[0];
+            $recordType = strtoupper(trim($record[1]));
             
             if($currentDepth <= $depth)
             {
@@ -40,18 +42,17 @@ class Association extends \Gedcom\Parser\Component
             
             switch($recordType)
             {
-                case 'RELA':
-                    $asso->rela = trim($record[2]);
-                break;
-                
-                case 'SOUR':
-                    $sour = \Gedcom\Parser\SourRef::parse($parser);
-                    $asso->addSour($sour);
+                case 'CALN': 
+                    $repo->addCaln(\Gedcom\Parser\Caln::parse($parser));
                 break;
                 
                 case 'NOTE':
                     $note = \Gedcom\Parser\NoteRef::parse($parser);
-                    $asso->addNote($note);
+                    
+                    if(is_a($note, '\Gedcom\Record\Note\Ref'))
+                        $repo->addNoteRef($note);
+                    else
+                        $repo->addNote($note);
                 break;
                 
                 default:
@@ -61,6 +62,6 @@ class Association extends \Gedcom\Parser\Component
             $parser->forward();
         }
         
-        return $asso;
+        return $repo;
     }
 }
