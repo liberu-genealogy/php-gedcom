@@ -89,13 +89,13 @@ class ParserTest extends PHPUnit_Framework_TestCase
         
         $secondSource = $sour['SR2'];
         
-        $this->assertEquals($secondSource->id, 'SR2');
-        $this->assertEquals($secondSource->titl, 'All I Know About GEDCOM, I Learned on the Internet');
-        $this->assertEquals($secondSource->abbr, 'What I Know About GEDCOM');
-        $this->assertEquals($secondSource->auth, 'Second Source Author');
-        $this->assertEquals($secondSource->chan->date, '11 Jan 2001');
-        $this->assertEquals($secondSource->chan->time, '16:21:39');
-        $this->assertEquals($secondSource->rin, '2');
+        $this->assertEquals($secondSource->getId(), 'SR2');
+        $this->assertEquals($secondSource->getTitl(), 'All I Know About GEDCOM, I Learned on the Internet');
+        $this->assertEquals($secondSource->getAbbr(), 'What I Know About GEDCOM');
+        $this->assertEquals($secondSource->getAuth(), 'Second Source Author');
+        $this->assertEquals($secondSource->getChan()->getDate(), '11 Jan 2001');
+        $this->assertEquals($secondSource->getChan()->getTime(), '16:21:39');
+        $this->assertEquals($secondSource->getRin(), '2');
     }
     
     /**
@@ -105,9 +105,9 @@ class ParserTest extends PHPUnit_Framework_TestCase
     {
         $firstNote = current($this->_gedcom->getNote());
         
-        $this->assertEquals($firstNote->note, 'Test link to a graphics file about the main Submitter of this file.');
+        $this->assertEquals($firstNote->getNote(), 'Test link to a graphics file about the main Submitter of this file.');
         
-        $this->assertEquals($firstNote->chan->date, '24 May 1999');
-        $this->assertEquals($firstNote->chan->time, '16:39:55');
+        $this->assertEquals($firstNote->getChan()->getDate(), '24 May 1999');
+        $this->assertEquals($firstNote->getChan()->getTime(), '16:39:55');
     }
 }
