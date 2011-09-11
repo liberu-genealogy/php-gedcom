@@ -11,9 +11,8 @@ use \Gedcom\Record\Noteable;
 /**
  *
  */
-class LdsIndividualOrdinance extends \Gedcom\Record implements Sourceable, Noteable
+abstract class Lds extends \Gedcom\Record implements Sourceable, Noteable
 {
-    protected $_type;
     protected $_stat;
     protected $_date;
     protected $_plac;

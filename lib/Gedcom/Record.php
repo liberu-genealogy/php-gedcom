@@ -37,23 +37,44 @@ abstract class Record
      */
     public function __call($method, $args)
     {
-        if(substr($method, 0, 3) != 'add')
-            throw new \Exception('Unknown method called: ' . $method);
-        
-        $arr = strtolower(substr($method, 3));
-        
-        if(!property_exists($this, '_' . $arr) || !is_array($this->{'_' . $arr}))
-            throw new \Exception('Unknown ' . get_class($this) . '::' . $arr);
-        
-        if(!is_array($args) || !isset($args[0]))
-            throw new \Exception('Incorrect arguments to ' . $method);
-        
-        if(is_object($args[0]))
+        if(substr($method, 0, 3) == 'add')
         {
-            // Type safety?
+            $arr = strtolower(substr($method, 3));
+            
+            if(!property_exists($this, '_' . $arr) || !is_array($this->{'_' . $arr}))
+                throw new \Exception('Unknown ' . get_class($this) . '::' . $arr);
+            
+            if(!is_array($args) || !isset($args[0]))
+                throw new \Exception('Incorrect arguments to ' . $method);
+            
+            if(is_object($args[0]))
+            {
+                // Type safety?
+            }
+            
+            $this->{'_' . $arr}[] = $args[0];
         }
-        
-        $this->{'_' . $arr}[] = $args[0];
+        else if(substr($method, 0, 3) == 'set')
+        {
+            $arr = strtolower(substr($method, 3));
+            
+            if(!property_exists($this, '_' . $arr))
+                throw new \Exception('Unknown ' . get_class($this) . '::' . $arr);
+            
+            if(!is_array($args) || !isset($args[0]))
+                throw new \Exception('Incorrect arguments to ' . $method);
+            
+            if(is_object($args[0]))
+            {
+                // Type safety?
+            }
+            
+            $this->{'_' . $arr} = $args[0];
+        }
+        else
+        {
+            throw new \Exception('Unknown method called: ' . $method);
+        }
     }
     
     /**

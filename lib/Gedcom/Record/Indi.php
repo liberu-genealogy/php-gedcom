@@ -119,7 +119,22 @@ class Indi extends \Gedcom\Record implements Noteable, Objectable, Sourceable
     /**
      *
      */
-    public $ldsIndividualOrdinances = array();
+    protected $_bapl = null;
+    
+    /**
+     *
+     */
+    protected $_conl = null;
+    
+    /**
+     *
+     */
+    protected $_endl = null;
+    
+    /**
+     *
+     */
+    protected $_slgc = null;
 
     /**
      *
@@ -159,14 +174,6 @@ class Indi extends \Gedcom\Record implements Noteable, Objectable, Sourceable
     public function addRefn(\Gedcom\Record\Refn &$ref)
     {
         $this->_refn[] = &$ref;
-    }
-    
-    /**
-     *
-     */
-    public function addLdsIndividualOrdinance(\Gedcom\Record\Indi\LdsIndividualOrdinance &$ordinance)
-    {
-        $this->ldsIndividualOrdinances[] = $ordinance;
     }
     
     /**

@@ -115,8 +115,12 @@ class Indi extends \Gedcom\Parser\Component
                 case 'CONL':
                 case 'ENDL':
                 case 'SLGC':
-                    $ordinance = \Gedcom\Parser\Indi\LdsIndividualOrdinance::parse($parser);
-                    $indi->addLdsIndividualOrdinance($ordinance);
+                    $className = ucfirst(strtolower($recordType));
+                    $class = '\\Gedcom\\Parser\\Indi\\' . $className;
+                    
+                    $lds = $class::parse($parser);
+                    $indi->{'set' . $recordType}($lds);
+                    break;
                 break;
                 
                 case 'OBJE':
