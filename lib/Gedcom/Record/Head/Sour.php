@@ -20,9 +20,64 @@ namespace Gedcom\Record\Head;
  */
 class Sour extends \Gedcom\Record
 {
+    /**
+     *
+     */
     protected $_sour = null;
+    
+    /**
+     *
+     */
     protected $_vers = null;
+    
+    /**
+     *
+     */
     protected $_name = null;
+    
+    /**
+     *
+     */
     protected $_corp = null;
+    
+    /**
+     *
+     */
     protected $_data = null;
+    
+    /**
+     * 
+     * @param \Gedcom\Record\Head\Sour\Corp $sour 
+     */
+    public function setCorp(\Gedcom\Record\Head\Sour\Corp &$corp)
+    {
+        $this->_corp = &$corp;
+    }
+    
+    /**
+     *
+     * @return \Gedcom\Record\Head\Sour\Corp
+     */
+    public function &getCorp()
+    {
+        return $this->_corp;
+    }
+    
+    /**
+     * 
+     * @param \Gedcom\Record\Head\Sour\Data $data 
+     */
+    public function setData(\Gedcom\Record\Head\Sour\Data &$data)
+    {
+        $this->_data = &$data;
+    }
+    
+    /**
+     *
+     * @return \Gedcom\Record\Head\Sour\Data
+     */
+    public function &getData()
+    {
+        return $this->_data;
+    }
 }

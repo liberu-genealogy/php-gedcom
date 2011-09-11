@@ -87,19 +87,23 @@ class Head extends \Gedcom\Parser\Component
                 break;
             
                 case 'DATE':
-                    $head->setDate(\Gedcom\Parser\Head\Date::parse($parser));
+                    $date = \Gedcom\Parser\Head\Date::parse($parser);
+                    $head->setDate($date);
                 break;
                 
                 case 'GEDC':
-                    $head->setGedc(\Gedcom\Parser\Head\Gedc::parse($parser));
+                    $gedc = \Gedcom\Parser\Head\Gedc::parse($parser);
+                    $head->setGedc($gedc);
                 break;
                 
                 case 'CHAR':
-                    $head->setChar(\Gedcom\Parser\Head\Char::parse($parser));
+                    $char = \Gedcom\Parser\Head\Char::parse($parser);
+                    $head->setChar($char);
                 break;
                 
                 case 'PLAC':
-                    $head->setPlac(\Gedcom\Parser\Head\Plac::parse($parser));
+                    $plac = \Gedcom\Parser\Head\Plac::parse($parser);
+                    $head->setPlac($plac);
                 break;
                 
                 case 'NOTE':
