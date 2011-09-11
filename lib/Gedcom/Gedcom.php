@@ -1,6 +1,16 @@
 <?php
 /**
+ * php-gedcom
  *
+ * php-gedcom is a library for parsing, manipulating, importing and exporting
+ * GEDCOM 5.5 files in PHP 5.3+.
+ *
+ * @author          Kristopher Wilson <kwilson@shuttlebox.net>
+ * @copyright       Copyright (c) 2010-2011, Kristopher Wilson
+ * @package         php-gedcom 
+ * @license         http://php-gedcom.kristopherwilson.com/license
+ * @link            http://php-gedcom.kristopherwilson.com
+ * @version         SVN: $Id$
  */
 
 namespace Gedcom;
@@ -11,16 +21,16 @@ namespace Gedcom;
  */
 class Gedcom
 {
-    protected $_head    = null;
-    protected $_subn    = null;
+    protected $_head = null;
+    protected $_subn = null;
     
-    protected $_sour    = array();
-    protected $_indi    = array();
-    protected $_fam     = array();
-    protected $_note    = array();
-    protected $_repo    = array();
-    protected $_obje    = array();
-    protected $_subm    = array();
+    protected $_sour = array();
+    protected $_indi = array();
+    protected $_fam  = array();
+    protected $_note = array();
+    protected $_repo = array();
+    protected $_obje = array();
+    protected $_subm = array();
     
     /**
      *
