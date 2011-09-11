@@ -22,10 +22,22 @@ use \Gedcom\Record\Noteable;
 /**
  *
  */
-class Even extends \Gedcom\Record\Indi\Even implements Objectable, Sourceable, Noteable
+class Even extends \Gedcom\Record implements Objectable, Sourceable, Noteable
 {
-    protected $_husb;
-    protected $_wife;
+    protected $_type = null;
+    protected $_date = null;
+    protected $_plac = null;
+    protected $_caus = null;
+    protected $_age  = null;
+    
+    protected $_addr = null;
+    
+    protected $_phon = array();
+    
+    protected $_agnc = null;
+    
+    protected $_husb = null;
+    protected $_wife = null;
     
     /**
      *
@@ -41,6 +53,14 @@ class Even extends \Gedcom\Record\Indi\Even implements Objectable, Sourceable, N
      *
      */
     protected $_note = array();
+    
+    /**
+     *
+     */
+    public function addPhon(\Gedcom\Record\Phon &$phon)
+    {
+        $this->_phon[] = $phon;
+    }
     
     /**
      *

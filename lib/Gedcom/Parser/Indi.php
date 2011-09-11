@@ -21,9 +21,6 @@ namespace Gedcom\Parser;
  */
 class Indi extends \Gedcom\Parser\Component
 {
-    protected static $_attrTypes = array('CAST','EDUC','NATI','OCCU','PROP','RELI','RESI',
-        'TITL','SSN','IDNO','DSCR','NCHI','NMR');
-    
     /**
      *
      *
@@ -131,7 +128,6 @@ class Indi extends \Gedcom\Parser\Component
                     $lds = $class::parse($parser);
                     $indi->{'set' . $recordType}($lds);
                     break;
-                break;
                 
                 case 'OBJE':
                     $obje = \Gedcom\Parser\ObjeRef::parse($parser);

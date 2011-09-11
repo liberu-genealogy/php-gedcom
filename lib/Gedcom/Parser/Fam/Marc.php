@@ -13,33 +13,13 @@
  * @version         SVN: $Id$
  */
 
-namespace Gedcom\Record;
+namespace Gedcom\Parser\Fam;
 
 /**
  *
+ *
  */
-class Even extends \Gedcom\Record
+class Marc extends \Gedcom\Parser\Fam\Even
 {
-    protected $_type = null;
-    protected $_date = null;
-    protected $_place = null;
-    protected $_caus = null;
-    protected $_age = null;
     
-    protected $_addr = null;
-    
-    protected $_phon = array();
-    
-    protected $_agnc = null;
-    
-    public $ref = array();
-    
-    /**
-     *
-     */
-    public function addPhon(\Gedcom\Record\Phon &$phon)
-    {
-        $this->_phon[] = $phon;
-    }
 }
-

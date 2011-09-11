@@ -109,17 +109,26 @@ class Fam extends \Gedcom\Parser\Component
                     $fam->addObje($obje);
                 break;
                 
+                case 'EVEN':
+                case 'ANUL':
+                case 'CENS':
+                case 'DIV':
+                case 'DIVF':
+                case 'ENGA':
+                case 'MARR':
+                case 'MARB':
+                case 'MARC':
+                case 'MARL':
+                case 'MARS':
+                    $className = ucfirst(strtolower($recordType));
+                    $class = '\\Gedcom\\Parser\\Fam\\' . $className;
+                    
+                    $even = $class::parse($parser);
+                    $fam->addEven($even);
+                    break;
+                
                 default:
-                    if($recordType == 'EVEN' || in_array($recordType, self::$_eventTypes))
-                    {
-                        $even = \Gedcom\Parser\Fam\Even::parse($parser);
-                        $fam->addEven($even);
-                    }
-                    else
-                    {
-                        $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
-                    }
-                break;
+                    $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }
             
             $parser->forward();
