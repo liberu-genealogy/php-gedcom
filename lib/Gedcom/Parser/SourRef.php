@@ -32,7 +32,7 @@ class SourRef extends \Gedcom\Parser\Component
         $depth = (int)$record[0];
         
         $sour = new \Gedcom\Record\SourRef();
-        $sour->sour = $record[2];
+        $sour->setSour($record[2]);
         
         $parser->forward();
         
@@ -51,19 +51,19 @@ class SourRef extends \Gedcom\Parser\Component
             switch($recordType)
             {
                 case 'CONT':
-                    $sour->sour .= "\n";
+                    $sour->setSour($sour->getSour() . "\n");
                     
                     if(isset($record[2]))
-                        $sour->sour .= trim($record[2]);
+                        $sour->setSour($sour->getSour() . $record[2]);
                 break;
                 
                 case 'CONC':
                     if(isset($record[2]))
-                        $sour->sour .= ' ' . trim($record[2]);
+                        $sour->setSour($sour->getSour() . $record[2]);
                 break;
             
                 case 'TEXT':
-                    $sour->text = $parser->parseMultiLineRecord();
+                    $sour->setText($parser->parseMultiLineRecord());
                 break;
                 
                 case 'NOTE':
@@ -72,20 +72,20 @@ class SourRef extends \Gedcom\Parser\Component
                 break;
                 
                 case 'DATA':
-                    $sour->data = \Gedcom\Parser\Source\Data::parse($parser);
+                    $sour->setData(\Gedcom\Parser\Sour\Data::parse($parser));
                 break;
                 
                 case 'QUAY':
-                    $sour->quay = trim($record[2]);
+                    $sour->setQuay(trim($record[2]));
                 break;
                 
                 case 'PAGE':
-                    $sour->page = trim($record[2]);
+                    $sour->setPage(trim($record[2]));
                 break;
                 
                 case 'EVEN':
                     $even = \Gedcom\Parser\SourRef\Even::parse($parser);
-                    $sour->even = $even;
+                    $sour->setEven($even);
                 break;
                 
                 default:

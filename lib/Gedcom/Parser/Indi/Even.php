@@ -44,7 +44,7 @@ class Even extends \Gedcom\Parser\Component
         }
         
         if(isset($record[1]) && strtoupper(trim($record[1])) != 'EVEN')
-            $even->type = trim($record[1]);
+            $even->setType(trim($record[1]));
         
         $parser->forward();
         
@@ -63,20 +63,20 @@ class Even extends \Gedcom\Parser\Component
             switch($recordType)
             {
                 case 'TYPE':
-                    $even->type = trim($record[2]);
+                    $even->setType(trim($record[2]));
                 break;
                 
                 case 'DATE':
-                    $even->date = trim($record[2]);
+                    $even->setDate(trim($record[2]));
                 break;
                 
                 case 'PLAC':
                     $plac = \Gedcom\Parser\Indi\Even\Plac::parse($parser);
-                    $even->plac = $plac;
+                    $even->setPlac($plac);
                 break;
                 
                 case 'ADDR':
-                    $even->addr = \Gedcom\Parser\Addr::parse($parser);
+                    $even->setAddr(\Gedcom\Parser\Addr::parse($parser));
                 break;
                 
                 case 'PHON':
@@ -85,15 +85,15 @@ class Even extends \Gedcom\Parser\Component
                 break;
                 
                 case 'CAUS':
-                    $even->caus = trim($record[2]);
+                    $even->setCaus(trim($record[2]));
                 break;
                 
                 case 'AGE':
-                    $even->age = trim($record[2]);
+                    $even->setAge(trim($record[2]));
                 break;
                 
                 case 'AGNC':
-                    $even->agnc = trim($record[2]);
+                    $even->setAgnc(trim($record[2]));
                 break;
                 
                 case 'SOUR':

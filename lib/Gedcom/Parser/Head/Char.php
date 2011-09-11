@@ -32,7 +32,7 @@ class Char extends \Gedcom\Parser\Component
         $depth = (int)$record[0];
         
         $char = new \Gedcom\Record\Head\Char();
-        $char->char = trim($record[2]);
+        $char->setChar(trim($record[2]));
         
         $parser->forward();
         
@@ -51,7 +51,7 @@ class Char extends \Gedcom\Parser\Component
             switch($recordType)
             {
                 case 'VERS':
-                    $char->version = trim($record[2]);
+                    $char->setVers(trim($record[2]));
                 break;
                 
                 default:

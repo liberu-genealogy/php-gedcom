@@ -13,7 +13,7 @@
  * @version         SVN: $Id$
  */
 
-namespace Gedcom\Record\Source;
+namespace Gedcom\Record\Sour;
 
 use \Gedcom\Record\Noteable;
 
@@ -22,7 +22,7 @@ use \Gedcom\Record\Noteable;
  */
 class Data extends \Gedcom\Record implements Noteable
 {
-    public $events = array();
+    protected $_even = array();
     protected $_agnc = null;
     protected $_date = null;
     

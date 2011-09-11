@@ -33,7 +33,7 @@ class Subm extends \Gedcom\Parser\Component
         $depth = (int)$record[0];
         
         $subm = new \Gedcom\Record\Subm();
-        $subm->id = $identifier;
+        $subm->setId($identifier);
         
         $parser->getGedcom()->addSubm($subm);
         
@@ -54,7 +54,7 @@ class Subm extends \Gedcom\Parser\Component
             switch($recordType)
             {
                 case 'NAME':
-                    $subm->name = trim($record[2]);
+                    $subm->setName(trim($record[2]));
                 break;
                 
                 case 'ADDR':
@@ -79,15 +79,15 @@ class Subm extends \Gedcom\Parser\Component
                 
                 case 'CHAN':
                     $chan = \Gedcom\Parser\Chan::parse($parser);
-                    $subm->chan = $chan;
+                    $subm->setChan($chan);
                 break;
                 
                 case 'RIN':
-                    $subm->rin = trim($record[2]);
+                    $subm->setRin(trim($record[2]));
                 break;
                 
                 case 'RFN':
-                    $subm->rfn = trim($record[2]);
+                    $subm->setRfn(trim($record[2]));
                 break;
                 
                 case 'LANG':

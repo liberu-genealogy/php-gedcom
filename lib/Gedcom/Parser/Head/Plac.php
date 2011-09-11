@@ -50,7 +50,7 @@ class Plac extends \Gedcom\Parser\Component
             switch($recordType)
             {
                 case 'FORM':
-                    $plac->form = trim($record[2]);
+                    $plac->setForm(trim($record[2]));
                 break;
                 
                 default:

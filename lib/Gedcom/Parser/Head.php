@@ -55,55 +55,55 @@ class Head extends \Gedcom\Parser\Component
             {
                 case 'SOUR':
                     $sour = \Gedcom\Parser\Head\Sour::parse($parser);
-                    $head->sour = $sour;
+                    $head->setSour($sour);
                 break;
                 
                 case 'DEST':
-                    $head->dest = trim($record[2]);
+                    $head->setDest(trim($record[2]));
                 break;
                 
                 case 'SUBM':
-                    $head->subm = $parser->normalizeIdentifier($record[2]);
+                    $head->setSubm($parser->normalizeIdentifier($record[2]));
                 break;
                 
                 case 'SUBN':
-                    $head->subn = $parser->normalizeIdentifier($record[2]);
+                    $head->setSubn($parser->normalizeIdentifier($record[2]));
                 break;
                 
                 case 'DEST':
-                    $head->dest = trim($record[2]);
+                    $head->setDest(trim($record[2]));
                 break;
                 
                 case 'FILE':
-                    $head->file = trim($record[2]);
+                    $head->setFile(trim($record[2]));
                 break;
                 
                 case 'COPR':
-                    $head->copr = trim($record[2]);
+                    $head->setCopr(trim($record[2]));
                 break;
                 
                 case 'LANG':
-                    $head->lang = trim($record[2]);
+                    $head->setLang(trim($record[2]));
                 break;
             
                 case 'DATE':
-                    $head->date = \Gedcom\Parser\Head\Date::parse($parser);
+                    $head->setDate(\Gedcom\Parser\Head\Date::parse($parser));
                 break;
                 
                 case 'GEDC':
-                    $head->gedc = \Gedcom\Parser\Head\Gedc::parse($parser);
+                    $head->setGedc(\Gedcom\Parser\Head\Gedc::parse($parser));
                 break;
                 
                 case 'CHAR':
-                    $head->char = \Gedcom\Parser\Head\Char::parse($parser);
+                    $head->setChar(\Gedcom\Parser\Head\Char::parse($parser));
                 break;
                 
                 case 'PLAC':
-                    $head->plac = \Gedcom\Parser\Head\Plac::parse($parser);
+                    $head->setPlac(\Gedcom\Parser\Head\Plac::parse($parser));
                 break;
                 
                 case 'NOTE':
-                    $head->note = $parser->parseMultiLineRecord();
+                    $head->setNote($parser->parseMultiLineRecord());
                 break;
                 
                 default:

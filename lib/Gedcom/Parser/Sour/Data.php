@@ -13,13 +13,13 @@
  * @version         SVN: $Id$
  */
 
-namespace Gedcom\Parser\Source\Data;
+namespace Gedcom\Parser\Sour;
 
 /**
  *
  *
  */
-class Event extends \Gedcom\Parser\Component
+class Data extends \Gedcom\Parser\Component
 {
     
     /**
@@ -31,7 +31,7 @@ class Event extends \Gedcom\Parser\Component
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
         
-        $event = new \Gedcom\Record\Source\Data\Event();
+        $data = new \Gedcom\Record\Sour\Data();
         
         $parser->forward();
         
@@ -49,12 +49,25 @@ class Event extends \Gedcom\Parser\Component
             
             switch($recordType)
             {
-                case 'DATE':
-                    $event->date = trim($record[2]);
+                case 'EVEN':
+                    $data->addEven(\Gedcom\Parser\Sour\Data\Even::parse($parser));
                 break;
-            
-                case 'PLAC':
-                    $event->place = trim($record[2]);
+                
+                case 'DATE':
+                    $data->setDate(trim($record[2]));
+                break;
+                
+                case 'AGNC':
+                    $data->setAgnc(trim($record[2]));
+                break;
+                
+                case 'NOTE':
+                    $note = \Gedcom\Parser\NoteRef::parse($parser);
+                    $data->addNote($note);
+                break;
+                
+                case 'TEXT':
+                    $data->setText($parser->parseMultiLineRecord());
                 break;
                 
                 default:
@@ -64,6 +77,6 @@ class Event extends \Gedcom\Parser\Component
             $parser->forward();
         }
         
-        return $event;
+        return $data;
     }
 }

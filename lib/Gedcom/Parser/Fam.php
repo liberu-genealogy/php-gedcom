@@ -35,7 +35,7 @@ class Fam extends \Gedcom\Parser\Component
         $depth = (int)$record[0];
         
         $fam = new \Gedcom\Record\Fam();
-        $fam->id = $identifier;
+        $fam->setId($identifier);
         
         $parser->getGedcom()->addFam($fam);
         
@@ -56,32 +56,32 @@ class Fam extends \Gedcom\Parser\Component
             switch($recordType)
             {
                 case 'HUSB':
-                    $fam->husbandId = $parser->normalizeIdentifier($record[2]);
+                    $fam->setHusb($parser->normalizeIdentifier($record[2]));
                 break;    
                 
                 case 'WIFE':
-                    $fam->wifeId = $parser->normalizeIdentifier($record[2]);
+                    $fam->setWife($parser->normalizeIdentifier($record[2]));
                 break;
                 
                 case 'CHIL':
-                    $fam->children[] = $parser->normalizeIdentifier($record[2]);
+                    $fam->addChil($parser->normalizeIdentifier($record[2]));
                 break;
                 
                 case 'NCHI':
-                    $fam->nchi = trim($record[2]);
+                    $fam->setNchi(trim($record[2]));
                 break;
                 
                 case 'SUBM':
-                    $fam->addSubmitter($parser->normalizeIdentifier($record[2]));
+                    $fam->addSubm($parser->normalizeIdentifier($record[2]));
                 break;
                 
                 case 'RIN':
-                    $fam->rin = trim($record[2]);
+                    $fam->setRin(trim($record[2]));
                 break;
                 
                 case 'CHAN':
                     $chan = \Gedcom\Parser\Chan::parse($parser);
-                    $fam->chan = $chan;
+                    $fam->setChan($chan);
                 break;
                 
                 case 'SLGS':

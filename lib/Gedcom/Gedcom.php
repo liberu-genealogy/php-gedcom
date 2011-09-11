@@ -45,7 +45,7 @@ class Gedcom
      */
     public function addSour(\Gedcom\Record\Sour &$sour)
     {
-        $this->_sour[$sour->id] = &$sour;
+        $this->_sour[$sour->getId()] = &$sour;
     }
     
     /**
@@ -53,25 +53,23 @@ class Gedcom
      */
     public function addIndi(\Gedcom\Record\Indi &$indi)
     {
-        $this->_indi[$indi->id] = &$indi;
+        $this->_indi[$indi->getId()] = &$indi;
     }
     
     /**
-     *
      *
      */
     public function addFam(\Gedcom\Record\Fam &$fam)
     {
-        $this->_fam[$fam->id] = &$fam;
+        $this->_fam[$fam->getId()] = &$fam;
     }
     
     /**
      *
-     *
      */
     public function addNote(\Gedcom\Record\Note &$note)
     {
-        $this->_note[$note->id] = &$note;
+        $this->_note[$note->getId()] = &$note;
     }
     
     /**
@@ -79,7 +77,7 @@ class Gedcom
      */
     public function addRepo(\Gedcom\Record\Repo &$repo)
     {
-        $this->_repo[$repo->id] = &$repo;
+        $this->_repo[$repo->getId()] = &$repo;
     }
     
     /**
@@ -87,7 +85,7 @@ class Gedcom
      */
     public function addObje(\Gedcom\Record\Obje &$obje)
     {
-        $this->_obje[$obje->id] = &$obje;
+        $this->_obje[$obje->getId()] = &$obje;
     }
     
     /**
@@ -95,7 +93,7 @@ class Gedcom
      */
     public function addSubm(\Gedcom\Record\Subm &$subm)
     {
-        $this->_subm[$subm->id] = &$subm;
+        $this->_subm[$subm->getId()] = &$subm;
     }
     
     /**

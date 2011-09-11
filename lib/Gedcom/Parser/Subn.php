@@ -33,9 +33,9 @@ class Subn extends \Gedcom\Parser\Component
         $depth = (int)$record[0];
         
         $subn = new \Gedcom\Record\Subn();
-        $subn->id = $identifier;
+        $subn->setId($identifier);
         
-        $parser->getGedcom()->submission = &$subn;
+        $parser->getGedcom()->subn = &$subn;
         
         $parser->forward();
         
@@ -54,31 +54,31 @@ class Subn extends \Gedcom\Parser\Component
             switch($recordType)
             {
                 case 'SUBM':
-                    $subn->subm = $parser->normalizeIdentifier($record[2]);
+                    $subn->setSubm($parser->normalizeIdentifier($record[2]));
                 break;
                 
                 case 'FAMF':
-                    $subn->famf = trim($record[2]);
+                    $subn->setFamf(trim($record[2]));
                 break;
                 
                 case 'TEMP':
-                    $subn->temp = trim($record[2]);
+                    $subn->setTemp(trim($record[2]));
                 break;
                 
                 case 'ANCE':
-                    $subn->ance = trim($record[2]);
+                    $subn->setAnce(trim($record[2]));
                 break;
                 
                 case 'DESC':
-                    $subn->desc = trim($record[2]);
+                    $subn->setDesc(trim($record[2]));
                 break;
                 
                 case 'ORDI':
-                    $subn->ordi = trim($record[2]);
+                    $subn->setOrdi(trim($record[2]));
                 break;
                 
                 case 'RIN':
-                    $subn->rin = trim($record[2]);
+                    $subn->setRin(trim($record[2]));
                 break;
                 
                 default:

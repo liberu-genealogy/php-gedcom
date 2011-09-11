@@ -32,7 +32,7 @@ class Corp extends \Gedcom\Parser\Component
         $depth = (int)$record[0];
         
         $corp = new \Gedcom\Record\Head\Sour\Corp();
-        $corp->corp = trim($record[2]);
+        $corp->setCorp(trim($record[2]));
         
         $parser->forward();
         
@@ -51,7 +51,7 @@ class Corp extends \Gedcom\Parser\Component
             switch($recordType)
             {
                 case 'ADDR':
-                    $corp->addr = \Gedcom\Parser\Addr::parse($parser);
+                    $corp->setAddr(\Gedcom\Parser\Addr::parse($parser));
                 break;
                 
                 case 'PHON':

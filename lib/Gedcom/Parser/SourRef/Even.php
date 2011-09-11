@@ -32,7 +32,7 @@ class Even extends \Gedcom\Parser\Component
         $depth = (int)$record[0];
         
         $even = new \Gedcom\Record\SourRef\Even();
-        $even->even = trim($record[2]);
+        $even->setEven(trim($record[2]));
         
         $parser->forward();
         
@@ -51,7 +51,7 @@ class Even extends \Gedcom\Parser\Component
             switch($recordType)
             {
                 case 'ROLE':
-                    $even->role = trim($record[2]);
+                    $even->setRole(trim($record[2]));
                 break;
                 
                 default:

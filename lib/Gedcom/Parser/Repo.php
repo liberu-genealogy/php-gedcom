@@ -33,7 +33,7 @@ class Repo extends \Gedcom\Parser\Component
         $depth = (int)$record[0];
         
         $repo = new \Gedcom\Record\Repo();
-        $repo->id = $identifier;
+        $repo->setId($identifier);
         
         $parser->getGedcom()->addRepo($repo);
         
@@ -54,12 +54,12 @@ class Repo extends \Gedcom\Parser\Component
             switch($recordType)
             {
                 case 'NAME':
-                    $repo->name = trim($record[2]);
+                    $repo->setName(trim($record[2]));
                 break;
                 
                 case 'ADDR':
                     $addr = \Gedcom\Parser\Addr::parse($parser);
-                    $repo->addr = $addr;
+                    $repo->setAddr($addr);
                 break;
                 
                 case 'PHON':
@@ -79,7 +79,7 @@ class Repo extends \Gedcom\Parser\Component
                 
                 case 'CHAN':
                     $chan = \Gedcom\Parser\Chan::parse($parser);
-                    $repo->chan = $chan;
+                    $repo->setChan($chan);
                 break;
                 
                 case 'RIN':

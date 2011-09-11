@@ -32,7 +32,9 @@ class Plac extends \Gedcom\Parser\Component
         $depth = (int)$record[0];
         
         $plac = new \Gedcom\Record\Indi\Even\Plac();
-        $plac->plac = isset($record[2]) ? trim($record[2]) : null;
+        
+        if(isset($record[2]))
+            $plac->setPlac(trim($record[2]));
         
         $parser->forward();
         
@@ -51,7 +53,7 @@ class Plac extends \Gedcom\Parser\Component
             switch($recordType)
             {
                 case 'FORM':
-                    $plac->form = trim($record[2]);
+                    $plac->setForm(trim($record[2]));
                 break;
                 
                 case 'NOTE':

@@ -51,19 +51,19 @@ abstract class Lds extends \Gedcom\Parser\Component
             switch($recordType)
             {
                 case 'STAT':
-                    $lds->stat = trim($record[2]);
+                    $lds->setStat(trim($record[2]));
                 break;
                 
                 case 'DATE':
-                    $lds->date = trim($record[2]);
+                    $lds->setDate(trim($record[2]));
                 break;
                 
                 case 'PLAC':
-                    $lds->plac = trim($record[2]);
+                    $lds->setPlac(trim($record[2]));
                 break;
                 
                 case 'TEMP':
-                    $lds->temp = trim($record[2]);
+                    $lds->setTemp(trim($record[2]));
                 break;
                 
                 case 'SOUR':

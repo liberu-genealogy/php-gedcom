@@ -50,11 +50,11 @@ class Gedc extends \Gedcom\Parser\Component
             switch($recordType)
             {
                 case 'VERS':
-                    $gedc->version = trim($record[2]);
+                    $gedc->setVers(trim($record[2]));
                 break;
                 
                 case 'FORM':
-                    $gedc->form = trim($record[2]);
+                    $gedc->setForm(trim($record[2]));
                 break;
                 
                 default:

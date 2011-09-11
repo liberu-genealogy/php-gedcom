@@ -32,7 +32,7 @@ class Data extends \Gedcom\Parser\Component
         $depth = (int)$record[0];
         
         $data = new \Gedcom\Record\Head\Sour\Data();
-        $data->data = trim($record[2]);
+        $data->setData(trim($record[2]));
         
         $parser->forward();
         
@@ -51,11 +51,11 @@ class Data extends \Gedcom\Parser\Component
             switch($recordType)
             {
                 case 'DATE':
-                    $data->date = trim($record[2]);
+                    $data->setDate(trim($record[2]));
                 break;
                 
                 case 'COPR':
-                    $data->copr = trim($record[2]);
+                    $data->setCopr(trim($record[2]));
                 break;
                 
                 default:
@@ -65,6 +65,6 @@ class Data extends \Gedcom\Parser\Component
             $parser->forward();
         }
         
-        return $corp;
+        return $data;
     }
 }

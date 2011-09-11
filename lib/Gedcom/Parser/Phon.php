@@ -32,7 +32,7 @@ class Phon extends \Gedcom\Parser\Component
         $depth = (int)$record[0];
         
         $phone = new \Gedcom\Record\Phon();
-        $phone->phon = trim($record[2]);
+        $phone->setPhon(trim($record[2]));
         
         $parser->forward();
         

@@ -32,7 +32,7 @@ class Sour extends \Gedcom\Parser\Component
         $depth = (int)$record[0];
         
         $source = new \Gedcom\Record\Head\Sour();
-        $source->sour = trim($record[2]);
+        $source->setSour(trim($record[2]));
         
         $parser->forward();
         
@@ -51,19 +51,21 @@ class Sour extends \Gedcom\Parser\Component
             switch($recordType)
             {
                 case 'VERS':
-                    $source->vers = trim($record[2]);
+                    $source->setVers(trim($record[2]));
                 break;
                 
                 case 'NAME':
-                    $source->name = trim($record[2]);
+                    $source->setName(trim($record[2]));
                 break;
                 
                 case 'CORP':
-                    $source->corp = \Gedcom\Parser\Head\Sour\Corp::parse($parser);
+                    $corp = \Gedcom\Parser\Head\Sour\Corp::parse($parser);
+                    $source->setCorp($corp);
                 break;
                 
                 case 'DATA':
-                    $source->data = \Gedcom\Parser\Head\Sour\Data::parse($parser);
+                    $data = \Gedcom\Parser\Head\Sour\Data::parse($parser);
+                    $source->setData($data);
                 break;
                 
                 default:

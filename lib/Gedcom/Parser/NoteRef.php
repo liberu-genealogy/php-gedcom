@@ -54,15 +54,15 @@ class NoteRef extends \Gedcom\Parser\Component
             switch($recordType)
             {
                 case 'CONT':
-                    $note->note .= "\n";
+                    $note->setNote($note->getNote() . "\n");
                     
                     if(isset($record[2]))
-                        $note->note .= trim($record[2]);
+                        $note->setNote($note->getNote() . $record[2]);
                 break;
                 
                 case 'CONC':
                     if(isset($record[2]))
-                        $note->note .= ' ' . trim($record[2]);
+                        $note->setNote($note->getNote() . $record[2]);
                 break;
                 
                 case 'SOUR':

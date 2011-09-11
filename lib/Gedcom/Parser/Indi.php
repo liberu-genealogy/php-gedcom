@@ -32,7 +32,7 @@ class Indi extends \Gedcom\Parser\Component
         $depth = (int)$record[0];
         
         $indi = new \Gedcom\Record\Indi();
-        $indi->id = $identifier;
+        $indi->setId($identifier);
         
         $parser->getGedcom()->addIndi($indi);
         
@@ -62,28 +62,28 @@ class Indi extends \Gedcom\Parser\Component
                 break;
                 
                 case 'SEX':
-                    $indi->sex = trim($record[2]);
+                    $indi->setSex(trim($record[2]));
                 break;
                 
                 case 'RIN':
-                    $indi->rin = trim($record[2]);
+                    $indi->setRin(trim($record[2]));
                 break;
                 
                 case 'RESN':
-                    $indi->resn = trim($record[2]);
+                    $indi->setResn(trim($record[2]));
                 break;
                 
                 case 'RFN':
-                    $indi->rfn = trim($record[2]);
+                    $indi->setRfn(trim($record[2]));
                 break;
                 
                 case 'AFN':
-                    $indi->afn = trim($record[2]);
+                    $indi->setAfn(trim($record[2]));
                 break;
                 
                 case 'CHAN':
                     $chan = \Gedcom\Parser\Chan::parse($parser);
-                    $indi->chan = $chan;
+                    $indi->setChan($chan);
                 break;
                 
                 case 'FAMS':

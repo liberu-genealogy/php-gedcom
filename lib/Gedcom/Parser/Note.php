@@ -33,10 +33,10 @@ class Note extends \Gedcom\Parser\Component
         $depth = (int)$record[0];
         
         $note = new \Gedcom\Record\Note();
-        $note->id = $identifier;
+        $note->setId($identifier);
         
         if(isset($record[3]))
-            $note->note = $record[3];
+            $note->setNote($record[3]);
         
         $parser->getGedcom()->addNote($note);
         
@@ -60,17 +60,19 @@ class Note extends \Gedcom\Parser\Component
             switch($recordType)
             {
                 case 'RIN':
-                    $note->rin = trim($record[2]);
+                    $note->setRin(trim($record[2]));
                 break;
                 
                 case 'CONT':
+                    $note->setNote($note->getNote() . "\n");
+                    
                     if(isset($record[2]))
-                        $note->note .= "\n" . $record[2];
+                        $note->setNote($note->getNote() . $record[2]);
                 break;
                 
                 case 'CONC':
                     if(isset($record[2]))
-                        $note->note .= $record[2];
+                        $note->setNote($note->getNote() . $record[2]);
                 break;
                
                 case 'REFN':
@@ -80,7 +82,7 @@ class Note extends \Gedcom\Parser\Component
                 
                 case 'CHAN':
                     $chan = \Gedcom\Parser\Chan::parse($parser);
-                    $note->chan = $chan;
+                    $note->setChan($chan);
                 break;
                 
                 case 'SOUR':

@@ -34,8 +34,10 @@ abstract class Attr extends \Gedcom\Parser\Component
         $className = '\\Gedcom\\Record\\Indi\\' . ucfirst(strtolower(trim($record[1])));
         $attr = new $className();
         
-        $attr->type = trim($record[1]);
-        $attr->attr = isset($record[2]) ? trim($record[2]) : null;
+        $attr->setType(trim($record[1]));
+        
+        if(isset($record[2]))
+            $attr->setAttr(trim($record[2]));
         
         $parser->forward();
         
@@ -54,20 +56,20 @@ abstract class Attr extends \Gedcom\Parser\Component
             switch($recordType)
             {
                 case 'TYPE':
-                    $attr->type = trim($record[2]);
+                    $attr->setType(trim($record[2]));
                 break;
                 
                 case 'DATE':
-                    $attr->date = trim($record[2]);
+                    $attr->setDate(trim($record[2]));
                 break;
                 
                 case 'PLAC':
                     $plac = \Gedcom\Parser\Indi\Even\Plac::parse($parser);
-                    $attr->plac = $plac;
+                    $attr->setPlac($plac);
                 break;
                 
                 case 'ADDR':
-                    $attr->addr = \Gedcom\Parser\Addr::parse($parser);
+                    $attr->setAddr(\Gedcom\Parser\Addr::parse($parser));
                 break;
                 
                 case 'PHON':
@@ -76,15 +78,15 @@ abstract class Attr extends \Gedcom\Parser\Component
                 break;
                 
                 case 'CAUS':
-                    $attr->caus = trim($record[2]);
+                    $attr->setCaus(trim($record[2]));
                 break;
                 
                 case 'AGE':
-                    $attr->age = trim($record[2]);
+                    $attr->setAge(trim($record[2]));
                 break;
                 
                 case 'AGNC':
-                    $attr->agnc = trim($record[2]);
+                    $attr->setAgnc(trim($record[2]));
                 break;
                 
                 case 'SOUR':

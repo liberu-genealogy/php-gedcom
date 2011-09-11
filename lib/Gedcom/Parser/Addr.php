@@ -33,7 +33,7 @@ class Addr extends \Gedcom\Parser\Component
         $line = isset($record[2]) ? trim($record[2]) : '';
         
         $addr = new \Gedcom\Record\Addr();
-        $addr->addr = $line;
+        $addr->setAddr($line);
         $parser->forward();
         
         while(!$parser->eof())
@@ -42,20 +42,20 @@ class Addr extends \Gedcom\Parser\Component
             $recordType = strtolower(trim($record[1]));
             $currentDepth = (int)$record[0];
             
-            if($currentDepth <= $depth)
+            if ($currentDepth <= $depth)
             {
                 $parser->back();
                 break;
             }
             
-            if($addr->hasAttribute($recordType))
-                $addr->$recordType = trim($record[2]);
+            if ($addr->hasAttribute($recordType))
+                $addr->{'set' . $recordType}(trim($record[2]));
             else if ($recordType == 'cont')
             {
                 // FIXME: Can have CONT on multiple attributes
-                $addr->addr .= "\n";
+                $addr->setAddr($addr->getAddr() . "\n");
                 if(isset($record[2]))
-                    $addr->addr .= trim($record[2]);
+                    $addr->setAddr($addr->getAddr() . trim($record[2]));
             }
             else
                 $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);

@@ -34,7 +34,7 @@ class Famc extends \Gedcom\Parser\Component
         $famc = $parser->normalizeIdentifier($record[2]);
         
         $fam = new \Gedcom\Record\Indi\Famc();
-        $fam->famc = $famc;
+        $fam->setFamc($famc);
         
         $parser->forward();
         
@@ -53,7 +53,7 @@ class Famc extends \Gedcom\Parser\Component
             switch($recordType)
             {
                 case 'PEDI':
-                    $fam->pedi = trim($record[2]);
+                    $fam->setPedi(trim($record[2]));
                 break;
                 
                 case 'NOTE':

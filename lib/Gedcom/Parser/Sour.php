@@ -33,7 +33,7 @@ class Sour extends \Gedcom\Parser\Component
         $depth = (int)$record[0];
         
         $sour = new \Gedcom\Record\Sour();
-        $sour->id = $identifier;
+        $sour->setId($identifier);
         
         $parser->getGedcom()->addSour($sour);
         
@@ -54,31 +54,31 @@ class Sour extends \Gedcom\Parser\Component
             switch($recordType)
             {
                 case 'TITL':
-                    $sour->titl = $parser->parseMultilineRecord();
+                    $sour->setTitl($parser->parseMultilineRecord());
                 break;
                 
                 case 'RIN':
-                    $sour->rin = trim($record[2]);
+                    $sour->setRin(trim($record[2]));
                 break;
                 
                 case 'AUTH':
-                    $sour->auth = $parser->parseMultilineRecord();
+                    $sour->setAuth($parser->parseMultilineRecord());
                 break;
                 
                 case 'TEXT':
-                    $sour->text = $parser->parseMultilineRecord();
+                    $sour->setText($parser->parseMultilineRecord());
                 break;
                 
                 case 'PUBL':
-                    $sour->publ = $parser->parseMultilineRecord();
+                    $sour->setPubl($parser->parseMultilineRecord());
                 break;
                 
                 case 'ABBR':
-                    $sour->abbr = trim($record[2]);
+                    $sour->setAbbr(trim($record[2]));
                 break;
                 
                 case 'REPO':
-                    $sour->repo = \Gedcom\Parser\RepoRef::parse($parser);
+                    $sour->setRepo(\Gedcom\Parser\RepoRef::parse($parser));
                 break;
                 
                 case 'NOTE':
@@ -87,7 +87,7 @@ class Sour extends \Gedcom\Parser\Component
                 break;
                 
                 case 'DATA':
-                    $sour->data = \Gedcom\Parser\Source\Data::parse($parser);
+                    $sour->setData(\Gedcom\Parser\Sour\Data::parse($parser));
                 break;
                 
                 case 'OBJE':
@@ -102,7 +102,7 @@ class Sour extends \Gedcom\Parser\Component
                 
                 case 'CHAN':
                     $chan = \Gedcom\Parser\Chan::parse($parser);
-                    $sour->chan = $chan;
+                    $sour->setChan($chan);
                 break;
                 
                 default:

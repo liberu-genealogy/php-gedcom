@@ -19,29 +19,7 @@ namespace Gedcom;
  *
  */
 abstract class Record
-{   
-    /**
-     *
-     */
-    public function __set($var, $val)
-    {
-        if(!property_exists($this, '_' . $var))
-            throw new \Exception('Unknown ' . get_class($this) . '::' . $var . ' in SET');
-        
-        $this->{'_' . $var} = $val;
-    }
-    
-    /**
-     *
-     */
-    public function __get($var)
-    {
-        if(!property_exists($this, '_' . $var))
-            throw new \Exception('Unknown ' . get_class($this) . '::' . $var . ' in GET');
-        
-        return $this->{'_' . $var};
-    }
-    
+{
     /**
      *
      */
@@ -80,6 +58,15 @@ abstract class Record
             }
             
             $this->{'_' . $arr} = $args[0];
+        }
+        else if(substr($method, 0, 3) == 'get')
+        {
+            $arr = strtolower(substr($method, 3));
+            
+            if(!property_exists($this, '_' . $arr))
+                throw new \Exception('Unknown ' . get_class($this) . '::' . $arr);
+            
+            return $this->{'_' . $arr};
         }
         else
         {

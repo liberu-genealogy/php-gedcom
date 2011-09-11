@@ -20,7 +20,7 @@ namespace Gedcom\Record\Head;
  */
 class Date extends \Gedcom\Record
 {
-    public $date = null;
-    public $time = null;
+    protected $_date = null;
+    protected $_time = null;
 }
 

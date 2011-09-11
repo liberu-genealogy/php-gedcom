@@ -32,7 +32,7 @@ class Refn extends \Gedcom\Parser\Component
         $depth = (int)$record[0];
         
         $refn = new \Gedcom\Record\Refn();
-        $refn->refn = trim($record[2]);
+        $refn->setRefn(trim($record[2]));
         
         $parser->forward();
         
@@ -51,7 +51,7 @@ class Refn extends \Gedcom\Parser\Component
             switch($recordType)
             {
                 case 'TYPE':
-                    $refn->type = trim($record[2]);
+                    $refn->setType(trim($record[2]));
                 break;
                 
                 default:

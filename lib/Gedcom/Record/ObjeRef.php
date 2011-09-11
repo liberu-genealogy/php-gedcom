@@ -38,7 +38,7 @@ class ObjeRef extends \Gedcom\Record implements Noteable
     /**
      *
      */
-    protected $_title   = null;
+    protected $_titl    = null;
     
     /**
      *

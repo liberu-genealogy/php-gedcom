@@ -27,6 +27,6 @@ class Slgc extends Lds
     public static function parseFamc(&$parser, &$slgc)
     {
         $record = $parser->getCurrentLineRecord();
-        $slgc->famc = $parser->normalizeIdentifier($record[2]);
+        $slgc->setFamc($parser->normalizeIdentifier($record[2]));
     }
 }

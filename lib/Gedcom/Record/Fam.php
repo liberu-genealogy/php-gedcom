@@ -21,25 +21,60 @@ namespace Gedcom\Record;
  */
 class Fam extends \Gedcom\Record implements Noteable, Sourceable, Objectable
 {
-    protected $_id      = null;
-    protected $_chan    = null;
+    /**
+     *
+     */
+    protected $_id   = null;
     
-    public $husbandId = null;
-    public $wifeId = null;
+    /**
+     *
+     */
+    protected $_chan = null;
     
-    public $nchi = null;
+    /**
+     *
+     */
+    protected $_husb = null;
     
-    public $children = array();
+    /**
+     *
+     */
+    protected $_wife = null;
     
+    /**
+     *
+     */
+    protected $_nchi = null;
+    
+    /**
+     *
+     */
+    protected $_chil = array();
+    
+    /**
+     *
+     */
     protected $_even = array();
     
+    /**
+     *
+     */
     protected $_slgs = array();
     
-    public $submitters = array();
+    /**
+     *
+     */
+    protected $_subm = array();
     
-    public $refn = array();
+    /**
+     *
+     */
+    protected $_refn = array();
     
-    protected $_rin = null;
+    /**
+     *
+     */
+    protected $_rin  = null;
     
     /**
      *
@@ -58,7 +93,6 @@ class Fam extends \Gedcom\Record implements Noteable, Sourceable, Objectable
     
     /**
      *
-     *
      */
     public function addEven(\Gedcom\Record\Fam\Even &$even)
     {
@@ -70,16 +104,7 @@ class Fam extends \Gedcom\Record implements Noteable, Sourceable, Objectable
      */
     public function addSlgs(\Gedcom\Record\Fam\Slgs &$slgs)
     {
-        $this->_slgs[] = $slgs;
-    }
-    
-    /**
-     *
-     *
-     */
-    public function addSubmitter($submitter)
-    {
-        $this->submitters[] = $submitter;
+        $this->_slgs[] = &$slgs;
     }
     
     /**
@@ -88,7 +113,7 @@ class Fam extends \Gedcom\Record implements Noteable, Sourceable, Objectable
      */
     public function addRefn(\Gedcom\Record\Refn &$refn)
     {
-        $this->refn[] = $refn;
+        $this->_refn[] = &$refn;
     }
     
     /**

@@ -13,13 +13,13 @@
  * @version         SVN: $Id$
  */
 
-namespace Gedcom\Parser\Source;
+namespace Gedcom\Parser\Sour\Data;
 
 /**
  *
  *
  */
-class Data extends \Gedcom\Parser\Component
+class Even extends \Gedcom\Parser\Component
 {
     
     /**
@@ -31,7 +31,7 @@ class Data extends \Gedcom\Parser\Component
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
         
-        $data = new \Gedcom\Record\Source\Data();
+        $even = new \Gedcom\Record\Sour\Data\Even();
         
         $parser->forward();
         
@@ -49,25 +49,12 @@ class Data extends \Gedcom\Parser\Component
             
             switch($recordType)
             {
-                case 'EVEN':
-                    $data->events[] = \Gedcom\Parser\Source\Data\Event::parse($parser);
-                break;
-                
                 case 'DATE':
-                    $data->date = trim($record[2]);
+                    $even->setDate(trim($record[2]));
                 break;
-                
-                case 'AGNC':
-                    $data->agnc = trim($record[2]);
-                break;
-                
-                case 'NOTE':
-                    $note = \Gedcom\Parser\NoteRef::parse($parser);
-                    $data->addNote($note);
-                break;
-                
-                case 'TEXT':
-                    $data->addText($parser->parseMultiLineRecord());
+            
+                case 'PLAC':
+                    $even->setPlac(trim($record[2]));
                 break;
                 
                 default:
@@ -77,6 +64,6 @@ class Data extends \Gedcom\Parser\Component
             $parser->forward();
         }
         
-        return $data;
+        return $even;
     }
 }

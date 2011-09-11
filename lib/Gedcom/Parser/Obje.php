@@ -33,7 +33,7 @@ class Obje extends \Gedcom\Parser\Component
         $depth = (int)$record[0];
         
         $obje = new \Gedcom\Record\Obje();
-        $obje->id = $identifier;
+        $obje->setId($identifier);
         
         $parser->getGedcom()->addObje($obje);
         
@@ -54,19 +54,19 @@ class Obje extends \Gedcom\Parser\Component
             switch($recordType)
             {
                 case 'FORM':
-                    $obje->form = trim($record[2]);
+                    $obje->setForm(trim($record[2]));
                 break;
                 
                 case 'TITL':
-                    $obje->titl = trim($record[2]);
+                    $obje->setTitl(trim($record[2]));
                 break;
                 
                 case 'OBJE':
-                    $obje->form = $this->normalizeIdentifier($record[2]);
+                    $obje->setForm($this->normalizeIdentifier($record[2]));
                 break;
                 
                 case 'RIN':
-                    $obje->rin = trim($record[2]);
+                    $obje->setRin(trim($record[2]));
                 break;
                 
                 case 'REFN':
@@ -75,7 +75,7 @@ class Obje extends \Gedcom\Parser\Component
                 break;
                 
                 case 'BLOB':
-                    $obje->blob = $parser->parseMultiLineRecord();
+                    $obje->setBlob($parser->parseMultiLineRecord());
                 break;
                 
                 case 'NOTE':
@@ -85,7 +85,7 @@ class Obje extends \Gedcom\Parser\Component
                 
                 case 'CHAN':
                     $chan = \Gedcom\Parser\Chan::parse($parser);
-                    $obje->chan = $chan;
+                    $obje->setChan($chan);
                 break;
                 
                 default:

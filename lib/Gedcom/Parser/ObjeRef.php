@@ -58,15 +58,15 @@ class ObjeRef extends \Gedcom\Parser\Component
             switch($recordType)
             {
                 case 'TITL':
-                    $obje->title = trim($record[2]);
+                    $obje->setTitl(trim($record[2]));
                 break;
                 
                 case 'FILE':
-                    $obje->file = trim($record[2]);
+                    $obje->setFile(trim($record[2]));
                 break;
                 
                 case 'FORM':
-                    $obje->form = trim($record[2]);
+                    $obje->setForm(trim($record[2]));
                 break;
                 
                 case 'NOTE':

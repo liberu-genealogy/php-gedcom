@@ -50,11 +50,11 @@ class Chan extends \Gedcom\Parser\Component
             switch($recordType)
             {
                 case 'DATE':
-                    $chan->date = trim($record[2]);
+                    $chan->setDate(trim($record[2]));
                 break;
                 
                 case 'TIME':
-                    $chan->time = trim($record[2]);
+                    $chan->setTime(trim($record[2]));
                 break;
                 
                 case 'NOTE':

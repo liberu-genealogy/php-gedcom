@@ -32,7 +32,7 @@ class Date extends \Gedcom\Parser\Component
         $depth = (int)$record[0];
         
         $date = new \Gedcom\Record\Head\Date();
-        $date->date = trim($record[2]);
+        $date->setDate(trim($record[2]));
         
         $parser->forward();
         
@@ -51,7 +51,7 @@ class Date extends \Gedcom\Parser\Component
             switch($recordType)
             {
                 case 'TIME':
-                    $date->time = trim($record[2]);
+                    $date->setTime(trim($record[2]));
                 break;
                 
                 default:

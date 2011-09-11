@@ -34,7 +34,7 @@ class Fams extends \Gedcom\Parser\Component
         $fams = $parser->normalizeIdentifier($record[2]);
         
         $fam = new \Gedcom\Record\Indi\Fams();
-        $fam->fams = $fams;
+        $fam->setFams($fams);
         
         $parser->forward();
         
@@ -52,7 +52,6 @@ class Fams extends \Gedcom\Parser\Component
             
             switch($recordType)
             {
-                
                 case 'NOTE':
                     $note = \Gedcom\Parser\NoteRef::parse($parser);
                     $fam->addNote($note);

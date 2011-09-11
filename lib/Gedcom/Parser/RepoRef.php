@@ -30,11 +30,10 @@ class RepoRef extends \Gedcom\Parser\Component
     {
         $record = $parser->getCurrentLineRecord();
         $identifier = $parser->normalizeIdentifier($record[2]);
-        
         $depth = (int)$record[0];
         
         $repo = new \Gedcom\Record\RepoRef();
-        $repo->repo = $identifier;
+        $repo->setRepo($identifier);
         
         $parser->forward();
         
@@ -58,11 +57,7 @@ class RepoRef extends \Gedcom\Parser\Component
                 
                 case 'NOTE':
                     $note = \Gedcom\Parser\NoteRef::parse($parser);
-                    
-                    if(is_a($note, '\Gedcom\Record\Note\Ref'))
-                        $repo->addNoteRef($note);
-                    else
-                        $repo->addNote($note);
+                    $repo->addNote($note);
                 break;
                 
                 default:

@@ -23,7 +23,7 @@ class Gedc extends \Gedcom\Record
     /**
      *
      */
-    public $version = null;
+    protected $_vers = null;
     
     /**
      *

@@ -23,8 +23,8 @@ use \Gedcom\Record\Sourceable;
  */
 class Plac extends \Gedcom\Record implements Noteable, Sourceable
 {
-    public $plac = null;
-    public $form = null;
+    protected $_plac = null;
+    protected $_form = null;
     
     /**
      *

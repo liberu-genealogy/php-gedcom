@@ -13,14 +13,13 @@
  * @version         SVN: $Id$
  */
 
-namespace Gedcom\Record\Source\Data;
+namespace Gedcom\Record\Sour\Data;
 
 /**
  *
  */
-class Event extends \Gedcom\Record
+class Even extends \Gedcom\Record
 {
-    public $date = null;
-    public $place = null;
+    protected $_date = null;
+    protected $_plac = null;
 }
-
