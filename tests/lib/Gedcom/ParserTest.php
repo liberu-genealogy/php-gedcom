@@ -6,7 +6,7 @@
 /**
  *
  */
-class ParserTest extends PHPUnit_Framework_TestCase
+class StressTestTGC551LF extends PHPUnit_Framework_TestCase
 {
     /**
      *
@@ -46,6 +46,120 @@ class ParserTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(count($this->_gedcom->getNote()), 33);
         $this->assertEquals(count($this->_gedcom->getObje()), 1);
         $this->assertEquals(count($this->_gedcom->getRepo()), 1);
+    }
+    
+    /**
+     *
+     */
+    public function testHead()
+    {
+        $head = $this->_gedcom->getHead();
+        
+        $this->assertEquals($head->getSour()->getSour(), 'GEDitCOM');
+        $this->assertEquals($head->getSour()->getName(), 'GEDitCOM');
+        $this->assertEquals($head->getSour()->getVers(), '2.9.4');
+        $this->assertEquals($head->getSour()->getCorp()->getCorp(), 'RSAC Software');
+        $this->assertEquals($head->getSour()->getCorp()->getAddr()->getAddr(), "7108 South Pine Cone Street\nSalt Lake City, UT 84121\nUSA");
+        $this->assertEquals($head->getSour()->getCorp()->getAddr()->getCity(), 'Salt Lake City');
+        $this->assertEquals($head->getSour()->getCorp()->getAddr()->getStae(), 'UT');
+        $this->assertEquals($head->getSour()->getCorp()->getAddr()->getPost(), '84121');
+        $this->assertEquals($head->getSour()->getCorp()->getAddr()->getCtry(), 'USA');
+        
+        $phon = $head->getSour()->getCorp()->getPhon();
+        
+        $this->assertEquals($phon[0], '+1-801-942-7768');
+        $this->assertEquals($phon[1], '+1-801-555-1212');
+        $this->assertEquals($phon[2], '+1-801-942-1148 (FAX) (last one!)');
+        
+        $this->assertEquals($head->getSour()->getData()->getData(), 'Name of source data');
+        $this->assertEquals($head->getSour()->getData()->getDate(), '1 JAN 1998');
+        $this->assertEquals($head->getSour()->getData()->getCopr(), 'Copyright of source data');
+        
+        $this->assertEquals($head->getSubm(), 'SUBMITTER');
+        $this->assertEquals($head->getSubn(), 'SUBMISSION');
+        
+        $this->assertEquals($head->getDest(), 'ANSTFILE');
+        
+        $this->assertEquals($head->getDate()->getDate(), '1 JAN 1998');
+        $this->assertEquals($head->getDate()->getTime(), '13:57:24.80');
+        
+        $this->assertEquals($head->getFile(), 'TGC55C.ged');
+        $this->assertEquals($head->getCopr(), 'Ã 1997 by H. Eichmann, parts Ã 1999-2000 by J. A. Nairn.');
+        
+        $this->assertEquals($head->getGedc()->getVers(), '5.5');
+        $this->assertEquals($head->getGedc()->getForm(), 'LINEAGE-LINKED');
+        
+        $this->assertEquals($head->getLang(), 'English');
+        
+        $this->assertEquals($head->getChar()->getChar(), 'ANSEL');
+        $this->assertEquals($head->getChar()->getVers(), 'ANSI Z39.47-1985');
+        
+        $this->assertEquals($head->getPlac()->getForm(), 'City, County, State, Country');
+        $this->assertEquals($head->getSubn(), 'SUBMISSION');
+        
+        // TODO handle custom tags
+        // 1 _HME @PERSON1@
+    }
+    
+    /**
+     *
+     */
+    public function testSubm()
+    {
+        $subm = $this->_gedcom->getSubm();
+        
+        $this->assertEquals($subm['SUBMITTER']->getId(), 'SUBMITTER');
+        $this->assertEquals($subm['SUBMITTER']->getName(), 'John A. Nairn');
+        $this->assertEquals($subm['SUBMITTER']->getAddr()->getAddr(), "Submitter address line 1\n" .
+            "Submitter address line 2\n" .
+            "Submitter address line 3\n" .
+            "Submitter address line 4");
+        $this->assertEquals($subm['SUBMITTER']->getAddr()->getAdr1(), 'Submitter address line 1');
+        $this->assertEquals($subm['SUBMITTER']->getAddr()->getAdr2(), 'Submitter address line 2');
+        $this->assertEquals($subm['SUBMITTER']->getAddr()->getCity(), 'Submitter address city');
+        $this->assertEquals($subm['SUBMITTER']->getAddr()->getStae(), 'Submitter address state');
+        $this->assertEquals($subm['SUBMITTER']->getAddr()->getPost(), 'Submitter address ZIP code');
+        $this->assertEquals($subm['SUBMITTER']->getAddr()->getCtry(), 'Submitter address country');
+        
+        $phon = $subm['SUBMITTER']->getPhon();
+        $this->assertEquals($phon[0]->getPhon(), 'Submitter phone number 1');
+        $this->assertEquals($phon[1]->getPhon(), 'Submitter phone number 2');
+        $this->assertEquals($phon[2]->getPhon(), 'Submitter phone number 3 (last one!)');
+        
+        $lang = $subm['SUBMITTER']->getLang();
+        $this->assertEquals($lang[0], 'English');
+        $this->assertEquals($subm['SUBMITTER']->getChan()->getDate(), '7 Sep 2000');
+        $this->assertEquals($subm['SUBMITTER']->getChan()->getTime(), '8:35:36');
+        $this->assertEquals($subm['SUBMITTER']->getRfn(), 'Submitter Registered RFN');
+        $this->assertEquals($subm['SUBMITTER']->getRin(), '1');
+        
+        $obje = current($subm['SUBMITTER']->getObje());
+        $this->assertEquals($obje->getForm(), 'jpeg');
+        $this->assertEquals($obje->getTitl(), 'Submitter Multimedia File');
+        $this->assertEquals($obje->getFile(), 'ImgFile.JPG');
+        
+        $note = current($obje->getNote());
+        $this->assertEquals($note->note, 'N1');
+        
+        
+        $this->assertEquals($subm['SM2']->getId(), 'SM2');
+        $this->assertEquals($subm['SM2']->getName(), 'Secondary Submitter');
+        $this->assertEquals($subm['SM2']->getAddr()->getAddr(), "Secondary Submitter Address 1\n" .
+            "Secondary Submitter Address 2");
+        $lang = $subm['SM2']->getLang();
+        $this->assertEquals($lang[0], 'English');
+        $this->assertEquals($subm['SM2']->getChan()->getDate(), '12 Mar 2000');
+        $this->assertEquals($subm['SM2']->getChan()->getTime(), '10:38:33');
+        $this->assertEquals($subm['SM2']->getRin(), '2');
+        
+        
+        $this->assertEquals($subm['SM3']->getId(), 'SM3');
+        $this->assertEquals($subm['SM3']->getName(), 'H. Eichmann');
+        $this->assertEquals($subm['SM3']->getAddr()->getAddr(), "email: h.eichmann@@mbox.iqo.uni-hannover.de\n" .
+            "or: heiner_eichmann@@h.maus.de (no more than 16k!!!!)");
+        $this->assertEquals($subm['SM3']->getChan()->getDate(), '13 Jun 2000');
+        $this->assertEquals($subm['SM3']->getChan()->getTime(), '17:07:32');
+        $this->assertEquals($subm['SM3']->getRin(), '3');
     }
     
     /**
