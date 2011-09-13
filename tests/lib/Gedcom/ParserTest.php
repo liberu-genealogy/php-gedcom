@@ -96,9 +96,23 @@ class StressTestTGC551LF extends PHPUnit_Framework_TestCase
         
         $this->assertEquals($head->getPlac()->getForm(), 'City, County, State, Country');
         $this->assertEquals($head->getSubn(), 'SUBMISSION');
+    }
+    
+    /**
+     *
+     */
+    public function testSubn()
+    {
+        $subn = $this->_gedcom->getSubn();
         
-        // TODO handle custom tags
-        // 1 _HME @PERSON1@
+        $this->assertEquals($subn->getId(), 'SUBMISSION');
+        $this->assertEquals($subn->getSubm(), 'SUBMITTER');
+        $this->assertEquals($subn->getFamf(), 'NameOfFamilyFile');
+        $this->assertEquals($subn->getTemp(), 'Abbreviated Temple Code');
+        $this->assertEquals($subn->getAnce(), '1');
+        $this->assertEquals($subn->getDesc(), '1');
+        $this->assertEquals($subn->getOrdi(), 'yes');
+        $this->assertEquals($subn->getRin(), '1');
     }
     
     /**
