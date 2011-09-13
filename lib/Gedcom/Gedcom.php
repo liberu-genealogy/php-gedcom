@@ -43,6 +43,14 @@ class Gedcom
     /**
      *
      */
+    public function setSubn(\Gedcom\Record\Subn &$subn)
+    {
+        $this->_subn = &$subn;
+    }
+    
+    /**
+     *
+     */
     public function addSour(\Gedcom\Record\Sour &$sour)
     {
         $this->_sour[$sour->getId()] = &$sour;
@@ -166,5 +174,28 @@ class Gedcom
     public function &getObje()
     {
         return $this->_obje;
+    }
+    
+    /**
+     *
+     * @throws Exception Whenever called
+     * @param string $name Ignored
+     * @param string $value Ignored
+     */
+    public function __set($name, $value)
+    {
+        // prevent setting undefined attributes and not reporting the error
+        throw new \Exception('Undefined property ' . $name . ' in __set');
+    }
+    
+    /**
+     * 
+     * @throws Exception Whenever called
+     * @param string $name Ignored
+     */
+    public function __get($name)
+    {
+        // prevent getting undefined attributes and not reporting the error
+        throw new \Exception('Undefined property ' . $name . ' in __get');
     }
 }

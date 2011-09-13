@@ -35,7 +35,7 @@ class Subn extends \Gedcom\Parser\Component
         $subn = new \Gedcom\Record\Subn();
         $subn->setId($identifier);
         
-        $parser->getGedcom()->subn = &$subn;
+        $parser->getGedcom()->setSubn($subn);
         
         $parser->forward();
         
