@@ -121,6 +121,7 @@ class Parser
     
     /**
      *
+     * @return string
      */
     public function parseMultiLineRecord()
     {
@@ -158,14 +159,23 @@ class Parser
                 break;
                 
                 default:
-                    $this->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
-                break;
+                    $this->back();
+                    break 2;
             }
             
             $this->forward();
         }
         
         return $data;
+    }
+    
+    /**
+     * 
+     * @return string The current line
+     */
+    public function getCurrentLine()
+    {
+        return $this->_line;
     }
     
     /**

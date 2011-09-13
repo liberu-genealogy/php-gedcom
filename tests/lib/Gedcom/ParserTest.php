@@ -139,7 +139,7 @@ class StressTestTGC551LF extends PHPUnit_Framework_TestCase
         $this->assertEquals($obje->getFile(), 'ImgFile.JPG');
         
         $note = current($obje->getNote());
-        $this->assertEquals($note->note, 'N1');
+        $this->assertEquals($note->getNote(), 'N1');
         
         
         $this->assertEquals($subm['SM2']->getId(), 'SM2');

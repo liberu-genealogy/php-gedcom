@@ -31,11 +31,16 @@ class NoteRef extends \Gedcom\Parser\Component
         $note = new \Gedcom\Record\NoteRef();
         
         if(preg_match('/^@(.*)@$/', trim($record[2])))
+        {
             $note->setIsReference(true);
+            $note->setNote($parser->normalizeIdentifier($record[2]));
+        }
         else
+        {
+            $before = $parser->getCurrentLine();
             $note->setIsReference(false);
-        
-        $note->note = $record[2];
+            $note->setNote($parser->parseMultiLineRecord());
+        }
         
         $parser->forward();
         
@@ -53,18 +58,6 @@ class NoteRef extends \Gedcom\Parser\Component
             
             switch($recordType)
             {
-                case 'CONT':
-                    $note->setNote($note->getNote() . "\n");
-                    
-                    if(isset($record[2]))
-                        $note->setNote($note->getNote() . $record[2]);
-                break;
-                
-                case 'CONC':
-                    if(isset($record[2]))
-                        $note->setNote($note->getNote() . $record[2]);
-                break;
-                
                 case 'SOUR':
                     $sour = \Gedcom\Parser\SourRef::parse($parser);
                     $note->addSour($sour);
