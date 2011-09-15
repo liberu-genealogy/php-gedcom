@@ -6,7 +6,7 @@
 /**
  *
  */
-class StressTestTGC551LF extends PHPUnit_Framework_TestCase
+class ParserTest extends PHPUnit_Framework_TestCase
 {
     /**
      *
