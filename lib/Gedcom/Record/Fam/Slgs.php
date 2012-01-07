@@ -41,16 +41,16 @@ class Slgs extends \Gedcom\Record implements Sourceable, Noteable
     /**
      *
      */
-    public function addSour(\Gedcom\Record\SourRef &$sour)
+    public function addSour(\Gedcom\Record\SourRef $sour)
     {
-        $this->_sour[] = &$sour;
+        $this->_sour[] = $sour;
     }
     
     /**
      *
      */
-    public function addNote(\Gedcom\Record\NoteRef &$note)
+    public function addNote(\Gedcom\Record\NoteRef $note)
     {
-        $this->_note[] = &$note;
+        $this->_note[] = $note;
     }
 }

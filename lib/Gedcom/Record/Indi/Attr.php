@@ -45,24 +45,24 @@ class Attr extends \Gedcom\Record\Indi\Even implements Sourceable, Noteable, Obj
     /**
      *
      */
-    public function addSour(\Gedcom\Record\SourRef &$sour)
+    public function addSour(\Gedcom\Record\SourRef $sour)
     {
-        $this->_sour[] = &$sour;
+        $this->_sour[] = $sour;
     }
     
     /**
      *
      */
-    public function addNote(\Gedcom\Record\NoteRef &$note)
+    public function addNote(\Gedcom\Record\NoteRef $note)
     {
-        $this->_note[] = &$note;
+        $this->_note[] = $note;
     }
     
     /**
      *
      */
-    public function addObje(\Gedcom\Record\ObjeRef &$obje)
+    public function addObje(\Gedcom\Record\ObjeRef $obje)
     {
-        $this->_obje[] = &$obje;
+        $this->_obje[] = $obje;
     }
 }

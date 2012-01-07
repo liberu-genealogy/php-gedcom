@@ -27,7 +27,7 @@ class Head extends \Gedcom\Parser\Component
      *
      * @param \Gedcom\Parser parser 
      */
-    public static function &parse(\Gedcom\Parser &$parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $identifier = $parser->normalizeIdentifier($record[1]);

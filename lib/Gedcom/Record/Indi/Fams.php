@@ -35,9 +35,9 @@ class Fams extends \Gedcom\Record implements Noteable
     /**
      *
      */
-    public function addNote(\Gedcom\Record\NoteRef &$note)
+    public function addNote(\Gedcom\Record\NoteRef $note)
     {
-        $this->_note[] = &$note;
+        $this->_note[] = $note;
     }
 }
 

@@ -56,8 +56,8 @@ class NoteRef extends \Gedcom\Record implements Sourceable
     /**
      *
      */
-    public function addSour(\Gedcom\Record\SourRef &$sour)
+    public function addSour(\Gedcom\Record\SourRef $sour)
     {
-        $this->_sour[] = &$sour;
+        $this->_sour[] = $sour;
     }
 }

@@ -23,5 +23,5 @@ interface Noteable
     /**
      *
      */
-    public function addNote(\Gedcom\Record\NoteRef &$note);
+    public function addNote(\Gedcom\Record\NoteRef $note);
 }

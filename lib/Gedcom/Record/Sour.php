@@ -47,7 +47,7 @@ class Sour extends \Gedcom\Record implements Noteable, Objectable
     /**
      *
      */
-    public function addRefn(\Gedcom\Record\Refn &$refn)
+    public function addRefn(\Gedcom\Record\Refn $refn)
     {
         $this->_refn[] = $refn;
     }
@@ -55,16 +55,16 @@ class Sour extends \Gedcom\Record implements Noteable, Objectable
     /**
      *
      */
-    public function addNote(\Gedcom\Record\NoteRef &$note)
+    public function addNote(\Gedcom\Record\NoteRef $note)
     {
-        $this->_note[] = &$note;
+        $this->_note[] = $note;
     }
     
     /**
      *
      */
-    public function addObje(\Gedcom\Record\ObjeRef &$obje)
+    public function addObje(\Gedcom\Record\ObjeRef $obje)
     {
-        $this->_obje[] = &$obje;
+        $this->_obje[] = $obje;
     }
 }

@@ -49,16 +49,16 @@ class Sour extends \Gedcom\Record
      * 
      * @param \Gedcom\Record\Head\Sour\Corp $sour 
      */
-    public function setCorp(\Gedcom\Record\Head\Sour\Corp &$corp)
+    public function setCorp(\Gedcom\Record\Head\Sour\Corp $corp)
     {
-        $this->_corp = &$corp;
+        $this->_corp = $corp;
     }
     
     /**
      *
      * @return \Gedcom\Record\Head\Sour\Corp
      */
-    public function &getCorp()
+    public function getCorp()
     {
         return $this->_corp;
     }
@@ -67,16 +67,16 @@ class Sour extends \Gedcom\Record
      * 
      * @param \Gedcom\Record\Head\Sour\Data $data 
      */
-    public function setData(\Gedcom\Record\Head\Sour\Data &$data)
+    public function setData(\Gedcom\Record\Head\Sour\Data $data)
     {
-        $this->_data = &$data;
+        $this->_data = $data;
     }
     
     /**
      *
      * @return \Gedcom\Record\Head\Sour\Data
      */
-    public function &getData()
+    public function getData()
     {
         return $this->_data;
     }

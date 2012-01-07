@@ -23,5 +23,5 @@ interface Objectable
     /**
      *
      */
-    public function addObje(\Gedcom\Record\ObjeRef &$obje);
+    public function addObje(\Gedcom\Record\ObjeRef $obje);
 }

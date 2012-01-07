@@ -23,5 +23,5 @@ interface Sourceable
     /**
      *
      */
-    public function addSour(\Gedcom\Record\SourRef &$sour);
+    public function addSour(\Gedcom\Record\SourRef $sour);
 }

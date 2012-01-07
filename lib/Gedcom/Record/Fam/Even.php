@@ -57,7 +57,7 @@ class Even extends \Gedcom\Record implements Objectable, Sourceable, Noteable
     /**
      *
      */
-    public function addPhon(\Gedcom\Record\Phon &$phon)
+    public function addPhon(\Gedcom\Record\Phon $phon)
     {
         $this->_phon[] = $phon;
     }
@@ -65,25 +65,25 @@ class Even extends \Gedcom\Record implements Objectable, Sourceable, Noteable
     /**
      *
      */
-    public function addObje(\Gedcom\Record\ObjeRef &$obje)
+    public function addObje(\Gedcom\Record\ObjeRef $obje)
     {
-        $this->_obje[] = &$obje;
+        $this->_obje[] = $obje;
     }
     
     /**
      *
      */
-    public function addSour(\Gedcom\Record\SourRef &$sour)
+    public function addSour(\Gedcom\Record\SourRef $sour)
     {
-        $this->_sour[] = &$sour;
+        $this->_sour[] = $sour;
     }
     
     /**
      *
      */
-    public function addNote(\Gedcom\Record\NoteRef &$note)
+    public function addNote(\Gedcom\Record\NoteRef $note)
     {
-        $this->_note[] = &$note;
+        $this->_note[] = $note;
     }
 }
 

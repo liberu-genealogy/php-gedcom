@@ -44,7 +44,7 @@ class Subm extends \Gedcom\Record implements Objectable
     /**
      *
      */
-    public function addPhon(\Gedcom\Record\Phon &$phon)
+    public function addPhon(\Gedcom\Record\Phon $phon)
     {
         $this->_phon[] = $phon;
     }
@@ -52,17 +52,17 @@ class Subm extends \Gedcom\Record implements Objectable
     /**
      *
      */
-    public function setAddr(\Gedcom\Record\Addr &$addr)
+    public function setAddr(\Gedcom\Record\Addr $addr)
     {
-        $this->_addr = &$addr;
+        $this->_addr = $addr;
     }
     
     /**
      *
      */
-    public function addObje(\Gedcom\Record\ObjeRef &$obje)
+    public function addObje(\Gedcom\Record\ObjeRef $obje)
     {
-        $this->_obje[] = &$obje;
+        $this->_obje[] = $obje;
     }
 }
 

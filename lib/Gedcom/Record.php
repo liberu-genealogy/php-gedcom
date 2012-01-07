@@ -75,6 +75,15 @@ abstract class Record
     }
     
     /**
+     *
+     */
+    public function __set($var, $val)
+    {
+        // this class does not have any public vars
+        throw new \Exception('Undefined property ' . get_class() . '::' . $var);
+    }
+    
+    /**
      * Checks if this GEDCOM object has the provided attribute (ie, if the provided
      * attribute exists below the current object in its tree).
      * 

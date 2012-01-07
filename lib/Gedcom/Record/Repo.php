@@ -38,7 +38,7 @@ class Repo extends \Gedcom\Record implements Noteable
     /**
      *
      */
-    public function addPhon(\Gedcom\Record\Phon &$phon)
+    public function addPhon(\Gedcom\Record\Phon $phon)
     {
         $this->_phon[] = $phon;
     }
@@ -46,7 +46,7 @@ class Repo extends \Gedcom\Record implements Noteable
     /**
      *
      */
-    public function addRefn(\Gedcom\Record\Refn &$refn)
+    public function addRefn(\Gedcom\Record\Refn $refn)
     {
         $this->_refn[] = $refn;
     }
@@ -54,8 +54,8 @@ class Repo extends \Gedcom\Record implements Noteable
     /**
      *
      */
-    public function addNote(\Gedcom\Record\NoteRef &$note)
+    public function addNote(\Gedcom\Record\NoteRef $note)
     {
-        $this->_note[] = &$note;
+        $this->_note[] = $note;
     }
 }

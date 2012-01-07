@@ -21,13 +21,13 @@ namespace Gedcom\Parser\Indi;
  */
 class Adop extends \Gedcom\Parser\Indi\Even
 {
-    public static function parseAdop(&$parser, &$even)
+    public static function parseAdop($parser, $even)
     {
         $record = $parser->getCurrentLineRecord();
         $even->setAdop(trim($record[2]));
     }
     
-    public static function parseFamc(&$parser, &$even)
+    public static function parseFamc($parser, $even)
     {
         $record = $parser->getCurrentLineRecord();
         $even->setFamc(trim($record[2]));

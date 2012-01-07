@@ -26,7 +26,7 @@ class Slgs extends \Gedcom\Parser\Component
      *
      *
      */
-    public static function &parse(\Gedcom\Parser &$parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
@@ -50,19 +50,19 @@ class Slgs extends \Gedcom\Parser\Component
             switch($recordType)
             {
                 case 'STAT':
-                    $slgs->stat = trim($record[2]);
+                    $slgs->setStat(trim($record[2]));
                 break;
                 
                 case 'DATE':
-                    $slgs->date = trim($record[2]);
+                    $slgs->setDate(trim($record[2]));
                 break;
                 
                 case 'PLAC':
-                    $slgs->plac = trim($record[2]);
+                    $slgs->setPlac(trim($record[2]));
                 break;
                 
                 case 'TEMP':
-                    $slgs->temp = trim($record[2]);
+                    $slgs->setTemp(trim($record[2]));
                 break;
                 
                 case 'SOUR':

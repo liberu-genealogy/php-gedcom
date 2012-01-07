@@ -84,16 +84,16 @@ class Head extends \Gedcom\Record
      * 
      * @param \Gedcom\Record\Head\Sour $sour 
      */
-    public function setSour(\Gedcom\Record\Head\Sour &$sour)
+    public function setSour(\Gedcom\Record\Head\Sour $sour)
     {
-        $this->_sour = &$sour;
+        $this->_sour = $sour;
     }
     
     /**
      *
      * @return \Gedcom\Record\Head\Sour
      */
-    public function &getSour()
+    public function getSour()
     {
         return $this->_sour;
     }
@@ -102,16 +102,16 @@ class Head extends \Gedcom\Record
      *
      * @param \Gedcom\Record\Head\Date $date 
      */
-    public function setDate(\Gedcom\Record\Head\Date &$date)
+    public function setDate(\Gedcom\Record\Head\Date $date)
     {
-        $this->_date = &$date;
+        $this->_date = $date;
     }
     
     /**
      *
      * @return \Gedcom\Record\Head\Date
      */
-    public function &getDate()
+    public function getDate()
     {
         return $this->_date;
     }
@@ -120,16 +120,16 @@ class Head extends \Gedcom\Record
      *
      * @param \Gedcom\Record\Head\Gedc $gedc 
      */
-    public function setGedc(\Gedcom\Record\Head\Gedc &$gedc)
+    public function setGedc(\Gedcom\Record\Head\Gedc $gedc)
     {
-        $this->_gedc = &$gedc;
+        $this->_gedc = $gedc;
     }
     
     /**
      *
      * @return \Gedcom\Record\Head\Gedc
      */
-    public function &getGedc()
+    public function getGedc()
     {
         return $this->_gedc;
     }
@@ -138,16 +138,16 @@ class Head extends \Gedcom\Record
      *
      * @param \Gedcom\Record\Head\Char $char 
      */
-    public function setChar(\Gedcom\Record\Head\Char &$char)
+    public function setChar(\Gedcom\Record\Head\Char $char)
     {
-        $this->_char = &$char;
+        $this->_char = $char;
     }
     
     /**
      *
      * @return \Gedcom\Record\Head\Char
      */
-    public function &getChar()
+    public function getChar()
     {
         return $this->_char;
     }
@@ -156,16 +156,16 @@ class Head extends \Gedcom\Record
      *
      * @param \Gedcom\Record\Head\Plac $plac 
      */
-    public function setPlac(\Gedcom\Record\Head\Plac &$plac)
+    public function setPlac(\Gedcom\Record\Head\Plac $plac)
     {
-        $this->_plac = &$plac;
+        $this->_plac = $plac;
     }
     
     /**
      *
      * @return \Gedcom\Record\Head\Plac
      */
-    public function &getPlac()
+    public function getPlac()
     {
         return $this->_plac;
     }

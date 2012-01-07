@@ -58,10 +58,10 @@ class Parser
     /**
      *
      */
-    public function __construct(\Gedcom\Gedcom &$gedcom = null)
+    public function __construct(\Gedcom\Gedcom $gedcom = null)
     {
         if(!is_null($gedcom))
-            $this->_gedcom = &$gedcom;
+            $this->_gedcom = $gedcom;
         else
             $this->_gedcom = new \gedcom\Gedcom();
     }
@@ -106,7 +106,7 @@ class Parser
     /**
      *
      */
-    public function &getGedcom()
+    public function getGedcom()
     {
         return $this->_gedcom;
     }
@@ -181,7 +181,7 @@ class Parser
     /**
      *
      */
-    public function &getCurrentLineRecord($pieces = 3)
+    public function getCurrentLineRecord($pieces = 3)
     {
         if(!is_null($this->_lineRecord))
             return $this->_lineRecord;

@@ -26,7 +26,7 @@ class Note extends \Gedcom\Parser\Component
      *
      *
      */
-    public static function &parse(\Gedcom\Parser &$parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord(4);
         $identifier = $parser->normalizeIdentifier($record[1]);
@@ -97,6 +97,6 @@ class Note extends \Gedcom\Parser\Component
             $parser->forward();
         }
         
-        return $source;
+        return $note;
     }
 }

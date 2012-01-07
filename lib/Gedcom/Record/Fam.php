@@ -94,49 +94,49 @@ class Fam extends \Gedcom\Record implements Noteable, Sourceable, Objectable
     /**
      *
      */
-    public function addEven(\Gedcom\Record\Fam\Even &$even)
+    public function addEven(\Gedcom\Record\Fam\Even $even)
     {
-        $this->_even[] = &$even;
+        $this->_even[] = $even;
     }
     
     /**
      *
      */
-    public function addSlgs(\Gedcom\Record\Fam\Slgs &$slgs)
+    public function addSlgs(\Gedcom\Record\Fam\Slgs $slgs)
     {
-        $this->_slgs[] = &$slgs;
+        $this->_slgs[] = $slgs;
     }
     
     /**
      *
      *
      */
-    public function addRefn(\Gedcom\Record\Refn &$refn)
+    public function addRefn(\Gedcom\Record\Refn $refn)
     {
-        $this->_refn[] = &$refn;
+        $this->_refn[] = $refn;
     }
     
     /**
      *
      */
-    public function addNote(\Gedcom\Record\NoteRef &$note)
+    public function addNote(\Gedcom\Record\NoteRef $note)
     {
-        $this->_note[] = &$note;
+        $this->_note[] = $note;
     }
     
     /**
      *
      */
-    public function addSour(\Gedcom\Record\SourRef &$sour)
+    public function addSour(\Gedcom\Record\SourRef $sour)
     {
-        $this->_sour[] = &$sour;
+        $this->_sour[] = $sour;
     }
     
     /**
      *
      */
-    public function addObje(\Gedcom\Record\ObjeRef &$obje)
+    public function addObje(\Gedcom\Record\ObjeRef $obje)
     {
-        $this->_obje[] = &$obje;
+        $this->_obje[] = $obje;
     }
 }

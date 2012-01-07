@@ -21,7 +21,7 @@ namespace Gedcom\Parser\Indi;
  */
 class Birt extends \Gedcom\Parser\Indi\Even
 {
-    public static function parseFamc(&$parser, &$even)
+    public static function parseFamc($parser, $even)
     {
         $record = $parser->getCurrentLineRecord();
         $even->setFamc(trim($record[2]));
