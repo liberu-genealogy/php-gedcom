@@ -60,10 +60,11 @@ class Parser
      */
     public function __construct(\PhpGedcom\Gedcom $gedcom = null)
     {
-        if(!is_null($gedcom))
+        if (!is_null($gedcom)) {
             $this->_gedcom = $gedcom;
-        else
+        } else {
             $this->_gedcom = new \PhpGedcom\Gedcom();
+        }
     }
     
     /**
@@ -75,13 +76,10 @@ class Parser
         // line and blank out the returnedLine variable, otherwise grab
         // the next line from the file
         
-        if(!empty($this->_returnedLine))
-        {
+        if (!empty($this->_returnedLine)) {
             $this->_line = $this->_returnedLine;
             $this->_returnedLine = '';
-        }
-        else
-        {
+        } else {
             $this->_line = fgets($this->_file);
             $this->_lineRecord = null;
             $this->_linesParsed++;
@@ -132,31 +130,28 @@ class Parser
         
         $this->forward();
         
-        while(!$this->eof())
-        {
+        while (!$this->eof()) {
             $record = $this->getCurrentLineRecord();
             $recordType = strtoupper(trim($record[1]));
             $currentDepth = (int)$record[0];
             
-            if($currentDepth <= $depth)
-            {
+            if ($currentDepth <= $depth) {
                 $this->back();
                 break;
             }
             
-            switch($recordType)
-            {
+            switch ($recordType) {
                 case 'CONT':
                     $data .= "\n";
                     
                     if(isset($record[2]))
                         $data .= trim($record[2]);
-                break;
+                    break;
                 
                 case 'CONC':
                     if(isset($record[2]))
                         $data .= ' ' . trim($record[2]);
-                break;
+                    break;
                 
                 default:
                     $this->back();
@@ -183,11 +178,13 @@ class Parser
      */
     public function getCurrentLineRecord($pieces = 3)
     {
-        if(!is_null($this->_lineRecord))
+        if (!is_null($this->_lineRecord)) {
             return $this->_lineRecord;
+        }
         
-        if(empty($this->_line))
+        if (empty($this->_line)) {
             return false;
+        }
         
         $line = trim($this->_line);
         
@@ -209,8 +206,10 @@ class Parser
      */
     public function logUnhandledRecord($additionalInfo = '')
     {
-        $this->logError($this->_linesParsed . ': (Unhandled) ' . trim(implode('|', $this->getCurrentLineRecord())) .
-            (!empty($additionalInfo) ? ' - ' . $additionalInfo : ''));
+        $this->logError(
+            $this->_linesParsed . ': (Unhandled) ' . trim(implode('|', $this->getCurrentLineRecord())) .
+            (!empty($additionalInfo) ? ' - ' . $additionalInfo : '')
+        );
     }
     
     /**
@@ -234,7 +233,8 @@ class Parser
     
     /**
      *
-     * @return \PhpGedcom\Gedcom
+     * @param string $fileName
+     * @return Gedcom
      */
     public function parse($fileName)
     {
@@ -245,71 +245,47 @@ class Parser
         
         $this->forward();
         
-        while(!$this->eof())
-        {
+        while (!$this->eof()) {
             $record = $this->getCurrentLineRecord();
             
-            if($record === false)
+            if ($record === false) {
                 continue;
+            }
             
             $depth = (int)$record[0];
             
             // We only process 0 level records here. Sub levels are processed
             // in methods for those data types (individuals, sources, etc)
             
-            if($depth == 0)
-            {
+            if ($depth == 0) {
                 // Although not always an identifier (HEAD,TRLR):
                 $identifier = $this->normalizeIdentifier($record[1]);
                
-                if(trim($record[1]) == 'HEAD')
-                {
+                if (trim($record[1]) == 'HEAD') {
                     Parser\Head::parse($this);
-                }
-                else if(isset($record[2]) && trim($record[2]) == 'SUBN')
-                {
+                } else if (isset($record[2]) && trim($record[2]) == 'SUBN') {
                     Parser\Subn::parse($this);
-                }
-                else if(isset($record[2]) && trim($record[2]) == 'SUBM')
-                {
+                } else if (isset($record[2]) && trim($record[2]) == 'SUBM') {
                     Parser\Subm::parse($this);
-                }
-                else if(isset($record[2]) && $record[2] == 'SOUR')
-                {
+                } else if (isset($record[2]) && $record[2] == 'SOUR') {
                     Parser\Sour::parse($this);
-                }
-                else if(isset($record[2]) && $record[2] == 'INDI')
-                {
+                } else if (isset($record[2]) && $record[2] == 'INDI') {
                     Parser\Indi::parse($this);
-                }
-                else if(isset($record[2]) && $record[2] == 'FAM')
-                {
+                } else if (isset($record[2]) && $record[2] == 'FAM') {
                     Parser\Fam::parse($this);
-                }
-                else if(isset($record[2]) && substr(trim($record[2]), 0, 4) == 'NOTE')
-                {
+                } else if (isset($record[2]) && substr(trim($record[2]), 0, 4) == 'NOTE') {
                     Parser\Note::parse($this);
-                }
-                else if(isset($record[2]) && $record[2] == 'REPO')
-                {
+                } else if (isset($record[2]) && $record[2] == 'REPO') {
                     Parser\Repo::parse($this);
-                }
-                else if(isset($record[2]) && $record[2] == 'OBJE')
-                {
+                } else if (isset($record[2]) && $record[2] == 'OBJE') {
                     Parser\Obje::parse($this);
-                }
-                else if(trim($record[1]) == 'TRLR')
-                {
+                } else if (trim($record[1]) == 'TRLR') {
                     // EOF
                     break;
-                }
-                else
-                {
+                } else {
                     $this->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
                 }
-            }
-            else
-            {
+            } else {
                 $this->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }
             

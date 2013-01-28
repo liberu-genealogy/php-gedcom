@@ -7,7 +7,7 @@
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2011, Kristopher Wilson
- * @package         php-gedcom 
+ * @package         php-gedcom
  * @license         http://php-gedcom.kristopherwilson.com/license
  * @link            http://php-gedcom.kristopherwilson.com
  * @version         SVN: $Id$
@@ -27,49 +27,43 @@ class NoteRef extends \PhpGedcom\Parser\Component
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
-        
+
         $note = new \PhpGedcom\Record\NoteRef();
-        
-        if(preg_match('/^@(.*)@$/', trim($record[2])))
-        {
+
+        if (preg_match('/^@(.*)@$/', trim($record[2]))) {
             $note->setIsReference(true);
             $note->setNote($parser->normalizeIdentifier($record[2]));
-        }
-        else
-        {
+        } else {
             $before = $parser->getCurrentLine();
             $note->setIsReference(false);
             $note->setNote($parser->parseMultiLineRecord());
         }
-        
+
         $parser->forward();
-        
-        while(!$parser->eof())
-        {
+
+        while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
             $recordType = strtoupper(trim($record[1]));
             $currentDepth = (int)$record[0];
-            
-            if($currentDepth <= $depth)
-            {
+
+            if ($currentDepth <= $depth) {
                 $parser->back();
                 break;
             }
-            
-            switch($recordType)
-            {
+
+            switch ($recordType) {
                 case 'SOUR':
                     $sour = \PhpGedcom\Parser\SourRef::parse($parser);
                     $note->addSour($sour);
-                break;
-                
+                    break;
+
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }
-            
+
             $parser->forward();
         }
-        
+
         return $note;
     }
 }

@@ -7,7 +7,7 @@
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2011, Kristopher Wilson
- * @package         php-gedcom 
+ * @package         php-gedcom
  * @license         http://php-gedcom.kristopherwilson.com/license
  * @link            http://php-gedcom.kristopherwilson.com
  * @version         SVN: $Id$
@@ -22,101 +22,99 @@ namespace PhpGedcom\Parser;
  */
 class Head extends \PhpGedcom\Parser\Component
 {
-    
+
     /**
      *
-     * @param \PhpGedcom\Parser parser
+     * @param \PhpGedcom\Parser $parser
+     * @return \PhpGedcom\Record\Head
      */
     public static function parse(\PhpGedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $identifier = $parser->normalizeIdentifier($record[1]);
         $depth = (int)$record[0];
-        
+
         $head = new \PhpGedcom\Record\Head();
-        
+
         $parser->getGedcom()->setHead($head);
-        
+
         $parser->forward();
-        
-        while(!$parser->eof())
-        {
+
+        while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
             $currentDepth = (int)$record[0];
             $recordType = strtoupper(trim($record[1]));
-            
-            if($currentDepth <= $depth)
-            {
+
+            if ($currentDepth <= $depth) {
                 $parser->back();
                 break;
             }
-            
-            switch($recordType)
-            {
+
+            switch ($recordType) {
                 case 'SOUR':
                     $sour = \PhpGedcom\Parser\Head\Sour::parse($parser);
                     $head->setSour($sour);
-                break;
-                
+                    break;
+
                 case 'DEST':
                     $head->setDest(trim($record[2]));
-                break;
-                
+                    break;
+
                 case 'SUBM':
                     $head->setSubm($parser->normalizeIdentifier($record[2]));
-                break;
-                
+                    break;
+
                 case 'SUBN':
                     $head->setSubn($parser->normalizeIdentifier($record[2]));
-                break;
-                
+                    break;
+
                 case 'DEST':
                     $head->setDest(trim($record[2]));
-                break;
-                
+                    break;
+
                 case 'FILE':
                     $head->setFile(trim($record[2]));
-                break;
-                
+                    break;
+
                 case 'COPR':
                     $head->setCopr(trim($record[2]));
-                break;
-                
+                    break;
+
                 case 'LANG':
                     $head->setLang(trim($record[2]));
-                break;
-            
+                    break;
+
                 case 'DATE':
                     $date = \PhpGedcom\Parser\Head\Date::parse($parser);
                     $head->setDate($date);
-                break;
-                
+                    break;
+
                 case 'GEDC':
                     $gedc = \PhpGedcom\Parser\Head\Gedc::parse($parser);
                     $head->setGedc($gedc);
-                break;
-                
+                    break;
+
                 case 'CHAR':
                     $char = \PhpGedcom\Parser\Head\Char::parse($parser);
                     $head->setChar($char);
-                break;
-                
+                    break;
+
                 case 'PLAC':
                     $plac = \PhpGedcom\Parser\Head\Plac::parse($parser);
                     $head->setPlac($plac);
-                break;
-                
+                    break;
+
                 case 'NOTE':
                     $head->setNote($parser->parseMultiLineRecord());
-                break;
-                
+                    break;
+
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }
-            
+
             $parser->forward();
         }
-        
+
         return $head;
     }
 }

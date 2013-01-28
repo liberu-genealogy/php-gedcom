@@ -7,7 +7,7 @@
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2011, Kristopher Wilson
- * @package         php-gedcom 
+ * @package         php-gedcom
  * @license         http://php-gedcom.kristopherwilson.com/license
  * @link            http://php-gedcom.kristopherwilson.com
  * @version         SVN: $Id$
@@ -21,7 +21,7 @@ namespace PhpGedcom\Parser\Fam;
  */
 class Even extends \PhpGedcom\Parser\Component
 {
-    
+
     /**
      *
      *
@@ -30,95 +30,93 @@ class Even extends \PhpGedcom\Parser\Component
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
-        
+
         $even = new \PhpGedcom\Record\Fam\Even();
-        
-        if(isset($record[1]) && strtoupper(trim($record[1])) != 'EVEN')
+
+        if (isset($record[1]) && strtoupper(trim($record[1])) != 'EVEN') {
             $even->setType(trim($record[1]));
-        
+        }
+
         $parser->forward();
-        
-        while(!$parser->eof())
-        {
+
+        while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
             $recordType = strtoupper(trim($record[1]));
             $currentDepth = (int)$record[0];
-            
-            if($currentDepth <= $depth)
-            {
+
+            if ($currentDepth <= $depth) {
                 $parser->back();
                 break;
             }
-            
-            switch($recordType)
-            {
+
+            switch ($recordType) {
                 case 'TYPE':
                     $even->setType(trim($record[2]));
-                break;
-                
+                    break;
+
                 case 'DATE':
                     $even->setDate(trim($record[2]));
-                break;
-                
+                    break;
+
                 case 'PLAC':
                     $plac = \PhpGedcom\Parser\Indi\Even\Plac::parse($parser);
                     $even->setPlac($plac);
-                break;
-                
+                    break;
+
                 case 'ADDR':
                     $addr = \PhpGedcom\Parser\Addr::parse($parser);
                     $even->setAddr($addr);
-                break;
-                
+                    break;
+
                 case 'PHON':
-                    $phone = \PhpGedcom\Parser\Phone::parse($parser);
+                    $phone = \PhpGedcom\Parser\Phon::parse($parser);
                     $even->addPhone($phone);
-                break;
-                
+                    break;
+
                 case 'CAUS':
                     $even->setCaus(trim($record[2]));
-                break;
-                
+                    break;
+
                 case 'AGE':
                     $even->setAge(trim($record[2]));
-                break;
-                
+                    break;
+
                 case 'AGNC':
                     $even->setAgnc(trim($record[2]));
-                break;
-                
+                    break;
+
                 case 'HUSB':
                     $husb = \PhpGedcom\Parser\Fam\Even\Husb::parse($parser);
                     $even->setHusb($husb);
-                break;
-                
+                    break;
+
                 case 'WIFE':
                     $wife = \PhpGedcom\Parser\Fam\Even\Wife::parse($parser);
                     $even->setWife($wife);
-                break;
-                
+                    break;
+
                 case 'SOUR':
                     $sour = \PhpGedcom\Parser\SourRef::parse($parser);
                     $even->addSour($sour);
-                break;
-                
+                    break;
+
                 case 'OBJE':
                     $obje = \PhpGedcom\Parser\ObjeRef::parse($parser);
                     $even->addObje($obje);
-                break;
-                
+                    break;
+
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
                     $even->addNote($note);
-                break;
-                
+                    break;
+
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }
-            
+
             $parser->forward();
         }
-        
+
         return $even;
     }
 }

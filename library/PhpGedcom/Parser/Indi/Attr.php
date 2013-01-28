@@ -7,7 +7,7 @@
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2011, Kristopher Wilson
- * @package         php-gedcom 
+ * @package         php-gedcom
  * @license         http://php-gedcom.kristopherwilson.com/license
  * @link            http://php-gedcom.kristopherwilson.com
  * @version         SVN: $Id$
@@ -21,7 +21,7 @@ namespace PhpGedcom\Parser\Indi;
  */
 abstract class Attr extends \PhpGedcom\Parser\Component
 {
-    
+
     /**
      *
      *
@@ -30,87 +30,85 @@ abstract class Attr extends \PhpGedcom\Parser\Component
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
-        
+
         $className = '\\PhpGedcom\\Record\\Indi\\' . ucfirst(strtolower(trim($record[1])));
         $attr = new $className();
-        
+
         $attr->setType(trim($record[1]));
-        
-        if(isset($record[2]))
+
+        if (isset($record[2])) {
             $attr->setAttr(trim($record[2]));
-        
+        }
+
         $parser->forward();
-        
-        while(!$parser->eof())
-        {
+
+        while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
             $recordType = strtoupper(trim($record[1]));
             $currentDepth = (int)$record[0];
-            
-            if($currentDepth <= $depth)
-            {
+
+            if ($currentDepth <= $depth) {
                 $parser->back();
                 break;
             }
-            
-            switch($recordType)
-            {
+
+            switch ($recordType) {
                 case 'TYPE':
                     $attr->setType(trim($record[2]));
-                break;
-                
+                    break;
+
                 case 'DATE':
                     $attr->setDate(trim($record[2]));
-                break;
-                
+                    break;
+
                 case 'PLAC':
                     $plac = \PhpGedcom\Parser\Indi\Even\Plac::parse($parser);
                     $attr->setPlac($plac);
-                break;
-                
+                    break;
+
                 case 'ADDR':
                     $attr->setAddr(\PhpGedcom\Parser\Addr::parse($parser));
-                break;
-                
+                    break;
+
                 case 'PHON':
                     $phone = \PhpGedcom\Parser\Phon::parse($parser);
                     $attr->addPhon($phone);
-                break;
-                
+                    break;
+
                 case 'CAUS':
                     $attr->setCaus(trim($record[2]));
-                break;
-                
+                    break;
+
                 case 'AGE':
                     $attr->setAge(trim($record[2]));
-                break;
-                
+                    break;
+
                 case 'AGNC':
                     $attr->setAgnc(trim($record[2]));
-                break;
-                
+                    break;
+
                 case 'SOUR':
                     $sour = \PhpGedcom\Parser\SourRef::parse($parser);
                     $attr->addSour($sour);
-                break;
-                
+                    break;
+
                 case 'OBJE':
                     $obje = \PhpGedcom\Parser\ObjeRef::parse($parser);
                     $attr->addObje($obje);
-                break;
-                
+                    break;
+
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
                     $attr->addNote($note);
-                break;
-                
+                    break;
+
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }
-            
+
             $parser->forward();
         }
-        
+
         return $attr;
     }
 }

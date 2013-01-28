@@ -7,7 +7,7 @@
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2011, Kristopher Wilson
- * @package         php-gedcom 
+ * @package         php-gedcom
  * @license         http://php-gedcom.kristopherwilson.com/license
  * @link            http://php-gedcom.kristopherwilson.com
  * @version         SVN: $Id$
@@ -21,7 +21,7 @@ namespace PhpGedcom\Parser;
  */
 class RepoRef extends \PhpGedcom\Parser\Component
 {
-    
+
     /**
      *
      *
@@ -31,42 +31,39 @@ class RepoRef extends \PhpGedcom\Parser\Component
         $record = $parser->getCurrentLineRecord();
         $identifier = $parser->normalizeIdentifier($record[2]);
         $depth = (int)$record[0];
-        
+
         $repo = new \PhpGedcom\Record\RepoRef();
         $repo->setRepo($identifier);
-        
+
         $parser->forward();
-        
-        while(!$parser->eof())
-        {
+
+        while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
             $currentDepth = (int)$record[0];
             $recordType = strtoupper(trim($record[1]));
-            
-            if($currentDepth <= $depth)
-            {
+
+            if ($currentDepth <= $depth) {
                 $parser->back();
                 break;
             }
-            
-            switch($recordType)
-            {
-                case 'CALN': 
+
+            switch ($recordType) {
+                case 'CALN':
                     $repo->addCaln(\PhpGedcom\Parser\Caln::parse($parser));
-                break;
-                
+                    break;
+
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
                     $repo->addNote($note);
-                break;
-                
+                    break;
+
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }
-            
+
             $parser->forward();
         }
-        
+
         return $repo;
     }
 }

@@ -7,7 +7,7 @@
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2011, Kristopher Wilson
- * @package         php-gedcom 
+ * @package         php-gedcom
  * @license         http://php-gedcom.kristopherwilson.com/license
  * @link            http://php-gedcom.kristopherwilson.com
  * @version         SVN: $Id$
@@ -30,41 +30,38 @@ class Corp extends \PhpGedcom\Parser\Component
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
-        
+
         $corp = new \PhpGedcom\Record\Head\Sour\Corp();
         $corp->setCorp(trim($record[2]));
-        
+
         $parser->forward();
-        
-        while(!$parser->eof())
-        {
+
+        while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
             $recordType = strtoupper(trim($record[1]));
             $currentDepth = (int)$record[0];
-            
-            if($currentDepth <= $depth)
-            {
+
+            if ($currentDepth <= $depth) {
                 $parser->back();
                 break;
             }
-            
-            switch($recordType)
-            {
+
+            switch ($recordType) {
                 case 'ADDR':
                     $corp->setAddr(\PhpGedcom\Parser\Addr::parse($parser));
-                break;
-                
+                    break;
+
                 case 'PHON':
                     $corp->addPhon(trim($record[2]));
-                break;
-                
+                    break;
+
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }
-            
+
             $parser->forward();
         }
-        
+
         return $corp;
     }
 }

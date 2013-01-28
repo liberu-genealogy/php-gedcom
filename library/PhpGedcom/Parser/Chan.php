@@ -7,7 +7,7 @@
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2011, Kristopher Wilson
- * @package         php-gedcom 
+ * @package         php-gedcom
  * @license         http://php-gedcom.kristopherwilson.com/license
  * @link            http://php-gedcom.kristopherwilson.com
  * @version         SVN: $Id$
@@ -21,7 +21,7 @@ namespace PhpGedcom\Parser;
  */
 class Chan extends \PhpGedcom\Parser\Component
 {
-    
+
     /**
      *
      *
@@ -30,45 +30,42 @@ class Chan extends \PhpGedcom\Parser\Component
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
-        
+
         $parser->forward();
-        
+
         $chan = new \PhpGedcom\Record\Chan();
-        
-        while(!$parser->eof())
-        {
+
+        while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
             $recordType = trim($record[1]);
             $currentDepth = (int)$record[0];
-            
-            if($currentDepth <= $depth)
-            {
+
+            if ($currentDepth <= $depth) {
                 $parser->back();
                 break;
             }
-            
-            switch($recordType)
-            {
+
+            switch ($recordType) {
                 case 'DATE':
                     $chan->setDate(trim($record[2]));
-                break;
-                
+                    break;
+
                 case 'TIME':
                     $chan->setTime(trim($record[2]));
-                break;
-                
+                    break;
+
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
                     $chan->addNote($note);
-                break;
-            
+                    break;
+
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }
-            
+
             $parser->forward();
         }
-        
+
         return $chan;
     }
 }

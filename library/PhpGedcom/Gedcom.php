@@ -178,7 +178,7 @@ class Gedcom
     
     /**
      *
-     * @throws Exception Whenever called
+     * @throws \Exception Whenever called
      * @param string $name Ignored
      * @param string $value Ignored
      */
@@ -190,7 +190,7 @@ class Gedcom
     
     /**
      * 
-     * @throws Exception Whenever called
+     * @throws \Exception Whenever called
      * @param string $name Ignored
      */
     public function __get($name)

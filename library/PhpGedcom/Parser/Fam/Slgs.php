@@ -7,7 +7,7 @@
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2011, Kristopher Wilson
- * @package         php-gedcom 
+ * @package         php-gedcom
  * @license         http://php-gedcom.kristopherwilson.com/license
  * @link            http://php-gedcom.kristopherwilson.com
  * @version         SVN: $Id$
@@ -30,58 +30,55 @@ class Slgs extends \PhpGedcom\Parser\Component
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
-        
+
         $slgs = new \PhpGedcom\Record\Fam\Slgs();
-        
+
         $parser->forward();
-        
-        while(!$parser->eof())
-        {
+
+        while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
             $recordType = strtoupper(trim($record[1]));
             $currentDepth = (int)$record[0];
-            
-            if($currentDepth <= $depth)
-            {
+
+            if ($currentDepth <= $depth) {
                 $parser->back();
                 break;
             }
-            
-            switch($recordType)
-            {
+
+            switch ($recordType) {
                 case 'STAT':
                     $slgs->setStat(trim($record[2]));
-                break;
-                
+                    break;
+
                 case 'DATE':
                     $slgs->setDate(trim($record[2]));
-                break;
-                
+                    break;
+
                 case 'PLAC':
                     $slgs->setPlac(trim($record[2]));
-                break;
-                
+                    break;
+
                 case 'TEMP':
                     $slgs->setTemp(trim($record[2]));
-                break;
-                
+                    break;
+
                 case 'SOUR':
                     $sour = \PhpGedcom\Parser\SourRef::parse($parser);
                     $slgs->addSour($sour);
-                break;
-                
+                    break;
+
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
                     $slgs->addNote($note);
-                break;
-                
+                    break;
+
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }
-            
+
             $parser->forward();
         }
-        
+
         return $slgs;
     }
 }

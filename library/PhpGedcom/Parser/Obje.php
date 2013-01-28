@@ -7,7 +7,7 @@
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2011, Kristopher Wilson
- * @package         php-gedcom 
+ * @package         php-gedcom
  * @license         http://php-gedcom.kristopherwilson.com/license
  * @link            http://php-gedcom.kristopherwilson.com
  * @version         SVN: $Id$
@@ -31,70 +31,67 @@ class Obje extends \PhpGedcom\Parser\Component
         $record = $parser->getCurrentLineRecord();
         $identifier = $parser->normalizeIdentifier($record[1]);
         $depth = (int)$record[0];
-        
+
         $obje = new \PhpGedcom\Record\Obje();
         $obje->setId($identifier);
-        
+
         $parser->getGedcom()->addObje($obje);
-        
+
         $parser->forward();
-        
-        while(!$parser->eof())
-        {
+
+        while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
             $currentDepth = (int)$record[0];
             $recordType = strtoupper(trim($record[1]));
-            
-            if($currentDepth <= $depth)
-            {
+
+            if ($currentDepth <= $depth) {
                 $parser->back();
                 break;
             }
-            
-            switch($recordType)
-            {
+
+            switch ($recordType) {
                 case 'FORM':
                     $obje->setForm(trim($record[2]));
-                break;
-                
+                    break;
+
                 case 'TITL':
                     $obje->setTitl(trim($record[2]));
-                break;
-                
+                    break;
+
                 case 'OBJE':
                     $obje->setForm($this->normalizeIdentifier($record[2]));
-                break;
-                
+                    break;
+
                 case 'RIN':
                     $obje->setRin(trim($record[2]));
-                break;
-                
+                    break;
+
                 case 'REFN':
                     $refn = \PhpGedcom\Parser\Refn::parse($parser);
                     $obje->addRefn($refn);
-                break;
-                
+                    break;
+
                 case 'BLOB':
                     $obje->setBlob($parser->parseMultiLineRecord());
-                break;
-                
+                    break;
+
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
                     $obje->addNote($note);
-                break;
-                
+                    break;
+
                 case 'CHAN':
                     $chan = \PhpGedcom\Parser\Chan::parse($parser);
                     $obje->setChan($chan);
-                break;
-                
+                    break;
+
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }
-            
+
             $parser->forward();
         }
-        
+
         return $obje;
     }
 }

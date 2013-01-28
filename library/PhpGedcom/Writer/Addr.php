@@ -19,12 +19,12 @@ namespace PhpGedcom\Writer;
  *
  */
 class Addr
-{   
+{
     /**
-     *
-     * @param \PhpGedcom\Gedcom $gedcom The GEDCOM object
-     * @param string $format The format to convert the GEDCOM object to
-     * @return string The contents of the document in the converted format
+     * @param \PhpGedcom\Record\Addr $addr
+     * @param string $format
+     * @param int $level
+     * @return string
      */
     public static function convert(\PhpGedcom\Record\Addr &$addr, $format = self::GEDCOM55, $level = 1)
     {

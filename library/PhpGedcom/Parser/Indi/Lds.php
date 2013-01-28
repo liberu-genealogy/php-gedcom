@@ -7,7 +7,7 @@
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2011, Kristopher Wilson
- * @package         php-gedcom 
+ * @package         php-gedcom
  * @license         http://php-gedcom.kristopherwilson.com/license
  * @link            http://php-gedcom.kristopherwilson.com
  * @version         SVN: $Id$
@@ -30,65 +30,63 @@ abstract class Lds extends \PhpGedcom\Parser\Component
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
-        
+
         $className = '\\PhpGedcom\\Record\\Indi\\' . ucfirst(strtolower(trim($record[1])));
         $lds = new $className();
-        
+
         $parser->forward();
-        
-        while(!$parser->eof())
-        {
+
+        while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
             $recordType = strtoupper(trim($record[1]));
             $currentDepth = (int)$record[0];
-            
-            if($currentDepth <= $depth)
-            {
+
+            if ($currentDepth <= $depth) {
                 $parser->back();
                 break;
             }
-            
-            switch($recordType)
-            {
+
+            switch ($recordType) {
                 case 'STAT':
                     $lds->setStat(trim($record[2]));
-                break;
-                
+                    break;
+
                 case 'DATE':
                     $lds->setDate(trim($record[2]));
-                break;
-                
+                    break;
+
                 case 'PLAC':
                     $lds->setPlac(trim($record[2]));
-                break;
-                
+                    break;
+
                 case 'TEMP':
                     $lds->setTemp(trim($record[2]));
-                break;
-                
+                    break;
+
                 case 'SOUR':
                     $sour = \PhpGedcom\Parser\SourRef::parse($parser);
                     $lds->addSour($sour);
-                break;
-                
+                    break;
+
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
                     $lds->addNote($note);
-                break;
-                
+                    break;
+
                 default:
                     $self = get_called_class();
                     $method = 'parse' . $recordType;
-                    
-                    if(method_exists($self, $method))
+
+                    if (method_exists($self, $method)) {
                         $self::$method($parser, $lds);
-                    else
+                    } else {
                         $parser->logUnhandledRecord($self . ' @ ' . __LINE__);
+                    }
             }
-            
+
             $parser->forward();
         }
-        
+
         return $lds;
     }
 }

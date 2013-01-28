@@ -19,12 +19,12 @@ namespace PhpGedcom\Writer\Head;
  *
  */
 class Sour
-{   
+{
     /**
-     *
-     * @param \PhpGedcom\Gedcom $gedcom The GEDCOM object
-     * @param string $format The format to convert the GEDCOM object to
-     * @return string The contents of the document in the converted format
+     * @param \PhpGedcom\Record\Head\Sour $sour
+     * @param string $format
+     * @param int $level
+     * @return string
      */
     public static function convert(\PhpGedcom\Record\Head\Sour &$sour, $format = self::GEDCOM55, $level = 0)
     {

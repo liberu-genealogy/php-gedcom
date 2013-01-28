@@ -7,7 +7,7 @@
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2011, Kristopher Wilson
- * @package         php-gedcom 
+ * @package         php-gedcom
  * @license         http://php-gedcom.kristopherwilson.com/license
  * @link            http://php-gedcom.kristopherwilson.com
  * @version         SVN: $Id$
@@ -16,12 +16,12 @@
 namespace PhpGedcom\Parser;
 
 /**
- * 
- * 
+ *
+ *
  */
 class Sour extends \PhpGedcom\Parser\Component
 {
-    
+
     /**
      *
      *
@@ -31,87 +31,84 @@ class Sour extends \PhpGedcom\Parser\Component
         $record = $parser->getCurrentLineRecord();
         $identifier = $parser->normalizeIdentifier($record[1]);
         $depth = (int)$record[0];
-        
+
         $sour = new \PhpGedcom\Record\Sour();
         $sour->setId($identifier);
-        
+
         $parser->getGedcom()->addSour($sour);
-        
+
         $parser->forward();
-        
-        while(!$parser->eof())
-        {
+
+        while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
             $currentDepth = (int)$record[0];
             $recordType = strtoupper(trim($record[1]));
-            
-            if($currentDepth <= $depth)
-            {
+
+            if ($currentDepth <= $depth) {
                 $parser->back();
                 break;
             }
-            
-            switch($recordType)
-            {
+
+            switch ($recordType) {
                 case 'TITL':
                     $sour->setTitl($parser->parseMultilineRecord());
-                break;
-                
+                    break;
+
                 case 'RIN':
                     $sour->setRin(trim($record[2]));
-                break;
-                
+                    break;
+
                 case 'AUTH':
                     $sour->setAuth($parser->parseMultilineRecord());
-                break;
-                
+                    break;
+
                 case 'TEXT':
                     $sour->setText($parser->parseMultilineRecord());
-                break;
-                
+                    break;
+
                 case 'PUBL':
                     $sour->setPubl($parser->parseMultilineRecord());
-                break;
-                
+                    break;
+
                 case 'ABBR':
                     $sour->setAbbr(trim($record[2]));
-                break;
-                
+                    break;
+
                 case 'REPO':
                     $sour->setRepo(\PhpGedcom\Parser\RepoRef::parse($parser));
-                break;
-                
+                    break;
+
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
                     $sour->addNote($note);
-                break;
-                
+                    break;
+
                 case 'DATA':
                     $sour->setData(\PhpGedcom\Parser\Sour\Data::parse($parser));
-                break;
-                
+                    break;
+
                 case 'OBJE':
                     $obje = \PhpGedcom\Parser\ObjeRef::parse($parser);
                     $sour->addObje($obje);
-                break;
-                
+                    break;
+
                 case 'REFN':
                     $refn = \PhpGedcom\Parser\Refn::parse($parser);
                     $sour->addRefn($refn);
-                break;
-                
+                    break;
+
                 case 'CHAN':
                     $chan = \PhpGedcom\Parser\Chan::parse($parser);
                     $sour->setChan($chan);
-                break;
-                
+                    break;
+
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }
-            
+
             $parser->forward();
         }
-        
+
         return $sour;
     }
 }

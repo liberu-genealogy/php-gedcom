@@ -44,10 +44,10 @@ class Sour extends \PhpGedcom\Record
      *
      */
     protected $_data = null;
-    
+
     /**
-     * 
-     * @param \PhpGedcom\Record\Head\Sour\Corp $sour
+     *
+     * @param Sour\Corp $corp
      */
     public function setCorp(\PhpGedcom\Record\Head\Sour\Corp $corp)
     {
@@ -56,7 +56,7 @@ class Sour extends \PhpGedcom\Record
     
     /**
      *
-     * @return \PhpGedcom\Record\Head\Sour\Corp
+     * @return Sour\Corp
      */
     public function getCorp()
     {
