@@ -32,37 +32,34 @@ class Asso extends \PhpGedcom\Parser\Component
         $depth = (int)$record[0];
         
         $asso = new \PhpGedcom\Record\Indi\Asso();
-        $asso->indi = $parser->normalizeIdentifier($record[2]);
+        $asso->setIndi($parser->normalizeIdentifier($record[2]));
         
         $parser->forward();
         
-        while(!$parser->eof())
-        {
+        while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
             $recordType = strtoupper(trim($record[1]));
             $currentDepth = (int)$record[0];
             
-            if($currentDepth <= $depth)
-            {
+            if ($currentDepth <= $depth) {
                 $parser->back();
                 break;
             }
             
-            switch($recordType)
-            {
+            switch ($recordType) {
                 case 'RELA':
                     $asso->setRela(trim($record[2]));
-                break;
+                    break;
                 
                 case 'SOUR':
                     $sour = \PhpGedcom\Parser\SourRef::parse($parser);
                     $asso->addSour($sour);
-                break;
+                    break;
                 
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
                     $asso->addNote($note);
-                break;
+                    break;
                 
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);

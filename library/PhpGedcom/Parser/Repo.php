@@ -39,52 +39,49 @@ class Repo extends \PhpGedcom\Parser\Component
         
         $parser->forward();
         
-        while(!$parser->eof())
-        {
+        while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
             $currentDepth = (int)$record[0];
             $recordType = strtoupper(trim($record[1]));
             
-            if($currentDepth <= $depth)
-            {
+            if ($currentDepth <= $depth) {
                 $parser->back();
                 break;
             }
             
-            switch($recordType)
-            {
+            switch ($recordType) {
                 case 'NAME':
                     $repo->setName(trim($record[2]));
-                break;
+                    break;
                 
                 case 'ADDR':
                     $addr = \PhpGedcom\Parser\Addr::parse($parser);
                     $repo->setAddr($addr);
-                break;
+                    break;
                 
                 case 'PHON':
                     $phon = \PhpGedcom\Parser\Phon::parse($parser);
                     $repo->addPhon($phon);
-                break;
+                    break;
                 
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
                     $repo->addNote($note);
-                break;
+                    break;
                 
                 case 'REFN':
                     $refn = \PhpGedcom\Parser\Refn::parse($parser);
                     $repo->addRefn($refn);
-                break;
+                    break;
                 
                 case 'CHAN':
                     $chan = \PhpGedcom\Parser\Chan::parse($parser);
                     $repo->setChan($chan);
-                break;
+                    break;
                 
                 case 'RIN':
-                    $repo->rin = trim($record[2]);
-                break;
+                    $repo->setRin(trim($record[2]));
+                    break;
                 
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);

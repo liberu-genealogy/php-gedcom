@@ -31,48 +31,42 @@ class ObjeRef extends \PhpGedcom\Parser\Component
         
         $obje = new \PhpGedcom\Record\ObjeRef();
         
-        if(isset($record[2]))
-        {
+        if (isset($record[2])) {
             $obje->setIsReference(true);
-            $obje->obje = $parser->normalizeIdentifier($record[2]);
-        }
-        else
-        {
+            $obje->setObje($parser->normalizeIdentifier($record[2]));
+        } else {
             $obje->setIsReference(false);
         }
         
         $parser->forward();
         
-        while(!$parser->eof())
-        {
+        while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
             $recordType = strtoupper(trim($record[1]));
             $currentDepth = (int)$record[0];
             
-            if($currentDepth <= $depth)
-            {
+            if ($currentDepth <= $depth) {
                 $parser->back();
                 break;
             }
             
-            switch($recordType)
-            {
+            switch ($recordType) {
                 case 'TITL':
                     $obje->setTitl(trim($record[2]));
-                break;
+                    break;
                 
                 case 'FILE':
                     $obje->setFile(trim($record[2]));
-                break;
+                    break;
                 
                 case 'FORM':
                     $obje->setForm(trim($record[2]));
-                break;
+                    break;
                 
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
                     $obje->addNote($note);
-                break;
+                    break;
                 
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);

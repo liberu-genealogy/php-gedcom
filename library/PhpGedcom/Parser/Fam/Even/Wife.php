@@ -35,23 +35,20 @@ class Wife extends \PhpGedcom\Parser\Component
         
         $parser->forward();
         
-        while(!$parser->eof())
-        {
+        while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
             $recordType = strtoupper(trim($record[1]));
             $currentDepth = (int)$record[0];
             
-            if($currentDepth <= $depth)
-            {
+            if ($currentDepth <= $depth) {
                 $parser->back();
                 break;
             }
             
-            switch($recordType)
-            {
+            switch ($recordType) {
                 case 'AGE':
-                    $wife->age = trim($record[2]);
-                break;
+                    $wife->setAge(trim($record[2]));
+                    break;
                 
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);

@@ -33,27 +33,26 @@ class Caln extends \PhpGedcom\Parser\Component
         $depth = (int)$record[0];
         
         $caln = new \PhpGedcom\Record\Caln();
-        $caln->caln = $identifier;
+        $caln->setCaln($identifier);
         
         $parser->forward();
         
-        while(!$parser->eof())
-        {
+        while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
             $recordType = strtolower(trim($record[1]));
             $lineDepth = (int)$record[0];
             
-            if($lineDepth <= $depth)
-            {
+            if ($lineDepth <= $depth) {
                 $parser->back();
                 break;
             }
             
-            if($caln->hasAttribute($recordType))
+            if ($caln->hasAttribute($recordType)) {
                 $caln->{'set' . $recordType}(trim($record[2]));
-            else
+            } else {
                 $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
-            
+            }
+
             $parser->forward();
         }
         
