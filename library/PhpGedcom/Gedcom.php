@@ -21,27 +21,62 @@ namespace PhpGedcom;
  */
 class Gedcom
 {
-    protected $_head = null;
-    protected $_subn = null;
-    
+    /**
+     * @var \PhpGedcom\Record\Head
+     */
+    protected $_head;
+
+    /**
+     * @var \PhpGedcom\Record\Subn
+     */
+    protected $_subn;
+
+    /**
+     * @var array
+     */
     protected $_sour = array();
+
+    /**
+     * @var array
+     */
     protected $_indi = array();
+
+    /**
+     * @var array
+     */
     protected $_fam  = array();
+
+    /**
+     * @var array
+     */
     protected $_note = array();
+
+    /**
+     * @var array
+     */
     protected $_repo = array();
+
+    /**
+     * @var array
+     */
     protected $_obje = array();
+
+    /**
+     * @var array
+     */
     protected $_subm = array();
-    
+
     /**
      *
+     * @param Record\Head $head
      */
     public function setHead(\PhpGedcom\Record\Head $head)
     {
         $this->_head = $head;
     }
-    
+
     /**
-     *
+     * @param Record\Subn $subn
      */
     public function setSubn(\PhpGedcom\Record\Subn $subn)
     {
@@ -103,73 +138,81 @@ class Gedcom
     {
         $this->_subm[$subm->getId()] = $subm;
     }
-    
+
     /**
      *
+     * @return Record\Head
      */
     public function getHead()
     {
         return $this->_head;
     }
-    
+
     /**
-     *
+     * @return Record\Subn
      */
     public function getSubn()
     {
         return $this->_subn;
     }
-    
+
     /**
      *
+     * @return array
      */
     public function getSubm()
     {
         return $this->_subm;
     }
-    
+
     /**
      *
+     * @return array
      */
     public function getIndi()
     {
         return $this->_indi;
     }
-    
+
     /**
      *
+     * @return array
      */
     public function getFam()
     {
         return $this->_fam;
     }
-    
+
     /**
      *
+     * @return array
      */
     public function getRepo()
     {
         return $this->_repo;
     }
-    
+
     /**
      *
+     * @return array
      */
     public function getSour()
     {
         return $this->_sour;
     }
-    
+
     /**
      *
+     * @return array
      */
     public function getNote()
     {
         return $this->_note;
     }
-    
+
     /**
      *
+     * @return array
      */
     public function getObje()
     {
