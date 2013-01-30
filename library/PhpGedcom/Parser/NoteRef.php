@@ -55,7 +55,6 @@ class NoteRef extends \PhpGedcom\Parser\Component
                     $sour = \PhpGedcom\Parser\SourRef::parse($parser);
                     $note->addSour($sour);
                     break;
-
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }

@@ -52,68 +52,53 @@ class Indi extends \PhpGedcom\Parser\Component
                     $name = \PhpGedcom\Parser\Indi\Name::parse($parser);
                     $indi->addName($name);
                     break;
-
                 case 'ALIA':
                     $indi->addAlia($parser->normalizeIdentifier($record[2]));
                     break;
-
                 case 'SEX':
                     $indi->setSex(trim($record[2]));
                     break;
-
                 case 'RIN':
                     $indi->setRin(trim($record[2]));
                     break;
-
                 case 'RESN':
                     $indi->setResn(trim($record[2]));
                     break;
-
                 case 'RFN':
                     $indi->setRfn(trim($record[2]));
                     break;
-
                 case 'AFN':
                     $indi->setAfn(trim($record[2]));
                     break;
-
                 case 'CHAN':
                     $chan = \PhpGedcom\Parser\Chan::parse($parser);
                     $indi->setChan($chan);
                     break;
-
                 case 'FAMS':
                     $fams = \PhpGedcom\Parser\Indi\Fams::parse($parser);
                     $indi->addFams($fams);
                     break;
-
                 case 'FAMC':
                     $famc = \PhpGedcom\Parser\Indi\Famc::parse($parser);
                     $indi->addFamc($famc);
                     break;
-
                 case 'ASSO':
                     $asso = \PhpGedcom\Parser\Indi\Asso::parse($parser);
                     $indi->addAsso($asso);
                     break;
-
                 case 'ANCI':
                     $indi->addAnci($parser->normalizeIdentifier($record[2]));
                     break;
-
                 case 'DESI':
                     $indi->addDesi($parser->normalizeIdentifier($record[2]));
                     break;
-
                 case 'SUBM':
                     $indi->addSubm($parser->normalizeIdentifier($record[2]));
                     break;
-
                 case 'REFN':
                     $ref = \PhpGedcom\Parser\Refn::parse($parser);
                     $indi->addRefn($ref);
                     break;
-
                 case 'BAPL':
                 case 'CONL':
                 case 'ENDL':
@@ -124,22 +109,18 @@ class Indi extends \PhpGedcom\Parser\Component
                     $lds = $class::parse($parser);
                     $indi->{'set' . $recordType}($lds);
                     break;
-
                 case 'OBJE':
                     $obje = \PhpGedcom\Parser\ObjeRef::parse($parser);
                     $indi->addObje($obje);
                     break;
-
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
                     $indi->addNote($note);
                     break;
-
                 case 'SOUR':
                     $sour = \PhpGedcom\Parser\SourRef::parse($parser);
                     $indi->addSour($sour);
                     break;
-
                 case 'ADOP':
                 case 'BIRT':
                 case 'BAPM':
@@ -169,7 +150,6 @@ class Indi extends \PhpGedcom\Parser\Component
                     $event = $class::parse($parser);
                     $indi->addEven($event);
                     break;
-
                 case 'CAST':
                 case 'DSCR':
                 case 'EDUC':
@@ -189,7 +169,6 @@ class Indi extends \PhpGedcom\Parser\Component
                     $att = $class::parse($parser);
                     $indi->addAttr($att);
                     break;
-
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }

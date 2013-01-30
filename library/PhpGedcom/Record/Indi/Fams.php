@@ -39,4 +39,3 @@ class Fams extends \PhpGedcom\Record implements Noteable
         $this->_note[] = $note;
     }
 }
-

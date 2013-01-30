@@ -52,7 +52,6 @@ class Fams extends \PhpGedcom\Parser\Component
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
                     $fam->addNote($note);
                     break;
-
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }

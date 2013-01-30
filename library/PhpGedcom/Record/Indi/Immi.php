@@ -19,5 +19,4 @@ namespace PhpGedcom\Record\Indi;
  */
 class Immi extends \PhpGedcom\Record\Indi\Even
 {
-    
 }

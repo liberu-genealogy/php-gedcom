@@ -19,5 +19,4 @@ namespace PhpGedcom\Record\Indi;
  */
 class Natu extends \PhpGedcom\Record\Indi\Even
 {
-    
 }

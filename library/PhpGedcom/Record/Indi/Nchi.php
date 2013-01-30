@@ -19,5 +19,4 @@ namespace PhpGedcom\Record\Indi;
  */
 class Nchi extends \PhpGedcom\Record\Indi\Attr
 {
-    
 }

@@ -52,17 +52,14 @@ class Plac extends \PhpGedcom\Parser\Component
                 case 'FORM':
                     $plac->setForm(trim($record[2]));
                     break;
-
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
                     $plac->addNote($note);
                     break;
-
                 case 'SOUR':
                     $sour = \PhpGedcom\Parser\SourRef::parse($parser);
                     $plac->addSour($sour);
                     break;
-
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }

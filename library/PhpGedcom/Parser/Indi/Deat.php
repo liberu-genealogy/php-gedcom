@@ -20,5 +20,4 @@ namespace PhpGedcom\Parser\Indi;
  */
 class Deat extends \PhpGedcom\Parser\Indi\Even
 {
-    
 }

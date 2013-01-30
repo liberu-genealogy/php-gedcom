@@ -49,29 +49,23 @@ abstract class Lds extends \PhpGedcom\Parser\Component
                 case 'STAT':
                     $lds->setStat(trim($record[2]));
                     break;
-
                 case 'DATE':
                     $lds->setDate(trim($record[2]));
                     break;
-
                 case 'PLAC':
                     $lds->setPlac(trim($record[2]));
                     break;
-
                 case 'TEMP':
                     $lds->setTemp(trim($record[2]));
                     break;
-
                 case 'SOUR':
                     $sour = \PhpGedcom\Parser\SourRef::parse($parser);
                     $lds->addSour($sour);
                     break;
-
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
                     $lds->addNote($note);
                     break;
-
                 default:
                     $self = get_called_class();
                     $method = 'parse' . $recordType;

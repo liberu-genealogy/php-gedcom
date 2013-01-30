@@ -20,5 +20,4 @@ namespace PhpGedcom\Parser\Indi;
  */
 class Emig extends \PhpGedcom\Parser\Indi\Even
 {
-    
 }

@@ -53,39 +53,31 @@ class SourRef extends \PhpGedcom\Parser\Component
                         $sour->setSour($sour->getSour() . $record[2]);
                     }
                     break;
-
                 case 'CONC':
                     if (isset($record[2])) {
                         $sour->setSour($sour->getSour() . $record[2]);
                     }
                     break;
-
                 case 'TEXT':
                     $sour->setText($parser->parseMultiLineRecord());
                     break;
-
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
                     $sour->addNote($note);
                     break;
-
                 case 'DATA':
                     $sour->setData(\PhpGedcom\Parser\Sour\Data::parse($parser));
                     break;
-
                 case 'QUAY':
                     $sour->setQuay(trim($record[2]));
                     break;
-
                 case 'PAGE':
                     $sour->setPage(trim($record[2]));
                     break;
-
                 case 'EVEN':
                     $even = \PhpGedcom\Parser\SourRef\Even::parse($parser);
                     $sour->setEven($even);
                     break;
-
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }

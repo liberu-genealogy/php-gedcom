@@ -19,5 +19,4 @@ namespace PhpGedcom\Record\Indi;
  */
 class Dscr extends \PhpGedcom\Record\Indi\Attr
 {
-    
 }

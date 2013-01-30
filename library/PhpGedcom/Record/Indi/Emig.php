@@ -18,5 +18,4 @@ namespace PhpGedcom\Record\Indi;
  */
 class Emig extends \PhpGedcom\Record\Indi\Even
 {
-    
 }

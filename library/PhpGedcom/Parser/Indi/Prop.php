@@ -19,5 +19,4 @@ namespace PhpGedcom\Parser\Indi;
  */
 class Prop extends \PhpGedcom\Parser\Indi\Attr
 {
-    
 }

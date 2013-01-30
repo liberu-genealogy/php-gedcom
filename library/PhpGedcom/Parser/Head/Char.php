@@ -49,7 +49,6 @@ class Char extends \PhpGedcom\Parser\Component
                 case 'VERS':
                     $char->setVers(trim($record[2]));
                     break;
-
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }

@@ -20,5 +20,4 @@ namespace PhpGedcom\Parser\Indi;
  */
 class Occu extends \PhpGedcom\Parser\Indi\Attr
 {
-    
 }

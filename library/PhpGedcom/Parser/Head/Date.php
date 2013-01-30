@@ -49,7 +49,6 @@ class Date extends \PhpGedcom\Parser\Component
                 case 'TIME':
                     $date->setTime(trim($record[2]));
                     break;
-
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }

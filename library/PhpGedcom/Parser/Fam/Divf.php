@@ -20,5 +20,4 @@ namespace PhpGedcom\Parser\Fam;
  */
 class Divf extends \PhpGedcom\Parser\Fam\Even
 {
-    
 }

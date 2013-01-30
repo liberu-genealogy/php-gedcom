@@ -48,16 +48,13 @@ class Chan extends \PhpGedcom\Parser\Component
                 case 'DATE':
                     $chan->setDate(trim($record[2]));
                     break;
-
                 case 'TIME':
                     $chan->setTime(trim($record[2]));
                     break;
-
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
                     $chan->addNote($note);
                     break;
-
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }

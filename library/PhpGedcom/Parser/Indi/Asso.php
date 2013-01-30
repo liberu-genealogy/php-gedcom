@@ -49,17 +49,14 @@ class Asso extends \PhpGedcom\Parser\Component
                 case 'RELA':
                     $asso->setRela(trim($record[2]));
                     break;
-                
                 case 'SOUR':
                     $sour = \PhpGedcom\Parser\SourRef::parse($parser);
                     $asso->addSour($sour);
                     break;
-                
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
                     $asso->addNote($note);
                     break;
-                
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }

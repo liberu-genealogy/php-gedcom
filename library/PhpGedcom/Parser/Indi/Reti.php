@@ -20,5 +20,4 @@ namespace PhpGedcom\Parser\Indi;
  */
 class Reti extends \PhpGedcom\Parser\Indi\Even
 {
-    
 }

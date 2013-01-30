@@ -37,4 +37,3 @@ class Famc extends \PhpGedcom\Record implements Noteable
         $this->_note[] = $note;
     }
 }
-

@@ -48,29 +48,23 @@ class Slgs extends \PhpGedcom\Parser\Component
                 case 'STAT':
                     $slgs->setStat(trim($record[2]));
                     break;
-
                 case 'DATE':
                     $slgs->setDate(trim($record[2]));
                     break;
-
                 case 'PLAC':
                     $slgs->setPlac(trim($record[2]));
                     break;
-
                 case 'TEMP':
                     $slgs->setTemp(trim($record[2]));
                     break;
-
                 case 'SOUR':
                     $sour = \PhpGedcom\Parser\SourRef::parse($parser);
                     $slgs->addSour($sour);
                     break;
-
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
                     $slgs->addNote($note);
                     break;
-
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }

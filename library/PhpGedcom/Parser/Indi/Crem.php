@@ -20,5 +20,4 @@ namespace PhpGedcom\Parser\Indi;
  */
 class Crem extends \PhpGedcom\Parser\Indi\Even
 {
-    
 }

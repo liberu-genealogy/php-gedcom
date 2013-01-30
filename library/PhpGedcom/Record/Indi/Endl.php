@@ -19,5 +19,4 @@ namespace PhpGedcom\Record\Indi;
  */
 class Endl extends Lds
 {
-    
 }

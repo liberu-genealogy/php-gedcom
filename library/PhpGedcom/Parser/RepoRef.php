@@ -50,12 +50,10 @@ class RepoRef extends \PhpGedcom\Parser\Component
                 case 'CALN':
                     $repo->addCaln(\PhpGedcom\Parser\Caln::parse($parser));
                     break;
-
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
                     $repo->addNote($note);
                     break;
-
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }

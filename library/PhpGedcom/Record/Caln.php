@@ -22,4 +22,3 @@ class Caln extends \PhpGedcom\Record
     protected $_caln = null;
     protected $_medi = null;
 }
-

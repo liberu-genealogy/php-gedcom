@@ -49,7 +49,6 @@ class Refn extends \PhpGedcom\Parser\Component
                 case 'TYPE':
                     $refn->setType(trim($record[2]));
                     break;
-
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }

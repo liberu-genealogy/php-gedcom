@@ -53,20 +53,16 @@ class ObjeRef extends \PhpGedcom\Parser\Component
                 case 'TITL':
                     $obje->setTitl(trim($record[2]));
                     break;
-                
                 case 'FILE':
                     $obje->setFile(trim($record[2]));
                     break;
-                
                 case 'FORM':
                     $obje->setForm(trim($record[2]));
                     break;
-                
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
                     $obje->addNote($note);
                     break;
-                
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }

@@ -54,59 +54,46 @@ class Head extends \PhpGedcom\Parser\Component
                     $sour = \PhpGedcom\Parser\Head\Sour::parse($parser);
                     $head->setSour($sour);
                     break;
-
                 case 'DEST':
                     $head->setDest(trim($record[2]));
                     break;
-
                 case 'SUBM':
                     $head->setSubm($parser->normalizeIdentifier($record[2]));
                     break;
-
                 case 'SUBN':
                     $head->setSubn($parser->normalizeIdentifier($record[2]));
                     break;
-
                 case 'DEST':
                     $head->setDest(trim($record[2]));
                     break;
-
                 case 'FILE':
                     $head->setFile(trim($record[2]));
                     break;
-
                 case 'COPR':
                     $head->setCopr(trim($record[2]));
                     break;
-
                 case 'LANG':
                     $head->setLang(trim($record[2]));
                     break;
-
                 case 'DATE':
                     $date = \PhpGedcom\Parser\Head\Date::parse($parser);
                     $head->setDate($date);
                     break;
-
                 case 'GEDC':
                     $gedc = \PhpGedcom\Parser\Head\Gedc::parse($parser);
                     $head->setGedc($gedc);
                     break;
-
                 case 'CHAR':
                     $char = \PhpGedcom\Parser\Head\Char::parse($parser);
                     $head->setChar($char);
                     break;
-
                 case 'PLAC':
                     $plac = \PhpGedcom\Parser\Head\Plac::parse($parser);
                     $head->setPlac($plac);
                     break;
-
                 case 'NOTE':
                     $head->setNote($parser->parseMultiLineRecord());
                     break;
-
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }

@@ -19,5 +19,4 @@ namespace PhpGedcom\Record\Indi;
  */
 class Reti extends \PhpGedcom\Record\Indi\Even
 {
-    
 }

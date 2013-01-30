@@ -19,5 +19,4 @@ namespace PhpGedcom\Record\Indi;
  */
 class Cast extends \PhpGedcom\Record\Indi\Attr
 {
-    
 }

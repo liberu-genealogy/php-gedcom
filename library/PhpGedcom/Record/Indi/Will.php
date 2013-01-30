@@ -19,5 +19,4 @@ namespace PhpGedcom\Record\Indi;
  */
 class Will extends \PhpGedcom\Record\Indi\Even
 {
-
 }

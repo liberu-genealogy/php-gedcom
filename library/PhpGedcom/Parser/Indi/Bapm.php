@@ -20,5 +20,4 @@ namespace PhpGedcom\Parser\Indi;
  */
 class Bapm extends \PhpGedcom\Parser\Indi\Even
 {
-    
 }

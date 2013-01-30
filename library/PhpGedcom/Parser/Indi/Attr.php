@@ -55,52 +55,41 @@ abstract class Attr extends \PhpGedcom\Parser\Component
                 case 'TYPE':
                     $attr->setType(trim($record[2]));
                     break;
-
                 case 'DATE':
                     $attr->setDate(trim($record[2]));
                     break;
-
                 case 'PLAC':
                     $plac = \PhpGedcom\Parser\Indi\Even\Plac::parse($parser);
                     $attr->setPlac($plac);
                     break;
-
                 case 'ADDR':
                     $attr->setAddr(\PhpGedcom\Parser\Addr::parse($parser));
                     break;
-
                 case 'PHON':
                     $phone = \PhpGedcom\Parser\Phon::parse($parser);
                     $attr->addPhon($phone);
                     break;
-
                 case 'CAUS':
                     $attr->setCaus(trim($record[2]));
                     break;
-
                 case 'AGE':
                     $attr->setAge(trim($record[2]));
                     break;
-
                 case 'AGNC':
                     $attr->setAgnc(trim($record[2]));
                     break;
-
                 case 'SOUR':
                     $sour = \PhpGedcom\Parser\SourRef::parse($parser);
                     $attr->addSour($sour);
                     break;
-
                 case 'OBJE':
                     $obje = \PhpGedcom\Parser\ObjeRef::parse($parser);
                     $attr->addObje($obje);
                     break;
-
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
                     $attr->addNote($note);
                     break;
-
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }

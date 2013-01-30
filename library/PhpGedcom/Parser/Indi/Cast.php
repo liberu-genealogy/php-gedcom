@@ -20,5 +20,4 @@ namespace PhpGedcom\Parser\Indi;
  */
 class Cast extends \PhpGedcom\Parser\Indi\Attr
 {
-    
 }

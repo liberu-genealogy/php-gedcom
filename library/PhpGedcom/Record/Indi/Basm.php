@@ -19,5 +19,4 @@ namespace PhpGedcom\Record\Indi;
  */
 class Basm extends \PhpGedcom\Record\Indi\Even
 {
-
 }

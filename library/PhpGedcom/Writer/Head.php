@@ -28,26 +28,26 @@ class Head
     {
         $output = "0 HEAD\n" .
             \PhpGedcom\Writer\Head\Sour::convert($head->sour, $format) .
-            "1 DEST " . $head->dest . "\n" . 
+            "1 DEST " . $head->dest . "\n" .
             "1 DATE " . date("d M Y") . "\n" .
             "2 TIME " . date("h:i:s") . "\n";
 
-/*        
-    +1 SUBM @<XREF:SUBM>@  {1:1}
-    +1 SUBN @<XREF:SUBN>@  {0:1}
-    +1 FILE <FILE_NAME>  {0:1}
-    +1 COPR <COPYRIGHT_GEDCOM_FILE>  {0:1}
-    +1 GEDC        {1:1}
-      +2 VERS <VERSION_NUMBER>  {1:1}
-      +2 FORM <GEDCOM_FORM>  {1:1}
-    +1 CHAR <CHARACTER_SET>  {1:1}
-      +2 VERS <VERSION_NUMBER>  {0:1}
-    +1 LANG <LANGUAGE_OF_TEXT>  {0:1}
-    +1 PLAC        {0:1}
-      +2 FORM <PLACE_HIERARCHY>  {1:1}
-    +1 NOTE <GEDCOM_CONTENT_DESCRIPTION>  {0:1}
-      +2 [CONT|CONC] <GEDCOM_CONTENT_DESCRIPTION>  {0:M}
-*/
+        /*
+            +1 SUBM @<XREF:SUBM>@  {1:1}
+            +1 SUBN @<XREF:SUBN>@  {0:1}
+            +1 FILE <FILE_NAME>  {0:1}
+            +1 COPR <COPYRIGHT_GEDCOM_FILE>  {0:1}
+            +1 GEDC        {1:1}
+              +2 VERS <VERSION_NUMBER>  {1:1}
+              +2 FORM <GEDCOM_FORM>  {1:1}
+            +1 CHAR <CHARACTER_SET>  {1:1}
+              +2 VERS <VERSION_NUMBER>  {0:1}
+            +1 LANG <LANGUAGE_OF_TEXT>  {0:1}
+            +1 PLAC        {0:1}
+              +2 FORM <PLACE_HIERARCHY>  {1:1}
+            +1 NOTE <GEDCOM_CONTENT_DESCRIPTION>  {0:1}
+              +2 [CONT|CONC] <GEDCOM_CONTENT_DESCRIPTION>  {0:M}
+        */
         
         return $output;
     }

@@ -19,6 +19,4 @@ namespace PhpGedcom\Record\Indi;
  */
 class Crem extends \PhpGedcom\Record\Indi\Even
 {
-    
 }
-

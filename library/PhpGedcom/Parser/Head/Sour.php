@@ -49,21 +49,17 @@ class Sour extends \PhpGedcom\Parser\Component
                 case 'VERS':
                     $source->setVers(trim($record[2]));
                     break;
-
                 case 'NAME':
                     $source->setName(trim($record[2]));
                     break;
-
                 case 'CORP':
                     $corp = \PhpGedcom\Parser\Head\Sour\Corp::parse($parser);
                     $source->setCorp($corp);
                     break;
-
                 case 'DATA':
                     $data = \PhpGedcom\Parser\Head\Sour\Data::parse($parser);
                     $source->setData($data);
                     break;
-
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }

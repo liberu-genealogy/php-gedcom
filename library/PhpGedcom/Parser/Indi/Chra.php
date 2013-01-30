@@ -20,5 +20,4 @@ namespace PhpGedcom\Parser\Indi;
  */
 class Chra extends \PhpGedcom\Parser\Indi\Even
 {
-    
 }

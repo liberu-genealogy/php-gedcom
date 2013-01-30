@@ -20,5 +20,4 @@ namespace PhpGedcom\Parser\Fam;
  */
 class Mars extends \PhpGedcom\Parser\Fam\Even
 {
-    
 }

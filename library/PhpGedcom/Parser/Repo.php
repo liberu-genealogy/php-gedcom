@@ -52,36 +52,29 @@ class Repo extends \PhpGedcom\Parser\Component
                 case 'NAME':
                     $repo->setName(trim($record[2]));
                     break;
-                
                 case 'ADDR':
                     $addr = \PhpGedcom\Parser\Addr::parse($parser);
                     $repo->setAddr($addr);
                     break;
-                
                 case 'PHON':
                     $phon = \PhpGedcom\Parser\Phon::parse($parser);
                     $repo->addPhon($phon);
                     break;
-                
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
                     $repo->addNote($note);
                     break;
-                
                 case 'REFN':
                     $refn = \PhpGedcom\Parser\Refn::parse($parser);
                     $repo->addRefn($refn);
                     break;
-                
                 case 'CHAN':
                     $chan = \PhpGedcom\Parser\Chan::parse($parser);
                     $repo->setChan($chan);
                     break;
-                
                 case 'RIN':
                     $repo->setRin(trim($record[2]));
                     break;
-                
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }

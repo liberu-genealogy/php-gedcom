@@ -19,5 +19,4 @@ namespace PhpGedcom\Record\Indi;
  */
 class Buri extends \PhpGedcom\Record\Indi\Even
 {
-    
 }

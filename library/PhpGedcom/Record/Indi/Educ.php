@@ -19,5 +19,4 @@ namespace PhpGedcom\Record\Indi;
  */
 class Educ extends \PhpGedcom\Record\Indi\Attr
 {
-    
 }

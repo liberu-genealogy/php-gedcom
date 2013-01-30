@@ -19,5 +19,4 @@ namespace PhpGedcom\Record\Indi;
  */
 class Ssn extends \PhpGedcom\Record\Indi\Attr
 {
-    
 }

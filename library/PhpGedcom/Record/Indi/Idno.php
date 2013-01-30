@@ -19,5 +19,4 @@ namespace PhpGedcom\Record\Indi;
  */
 class Idno extends \PhpGedcom\Record\Indi\Attr
 {
-    
 }

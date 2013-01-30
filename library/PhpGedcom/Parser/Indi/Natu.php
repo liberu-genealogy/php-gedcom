@@ -20,5 +20,4 @@ namespace PhpGedcom\Parser\Indi;
  */
 class Natu extends \PhpGedcom\Parser\Indi\Even
 {
-    
 }

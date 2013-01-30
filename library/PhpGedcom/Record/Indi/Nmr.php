@@ -19,5 +19,4 @@ namespace PhpGedcom\Record\Indi;
  */
 class Nmr extends \PhpGedcom\Record\Indi\Attr
 {
-    
 }

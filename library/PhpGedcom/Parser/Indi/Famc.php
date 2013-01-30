@@ -51,12 +51,10 @@ class Famc extends \PhpGedcom\Parser\Component
                 case 'PEDI':
                     $fam->setPedi(trim($record[2]));
                     break;
-
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
                     $fam->addNote($note);
                     break;
-
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }

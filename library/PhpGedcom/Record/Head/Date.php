@@ -22,4 +22,3 @@ class Date extends \PhpGedcom\Record
     protected $_date = null;
     protected $_time = null;
 }
-

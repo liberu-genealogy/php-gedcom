@@ -20,5 +20,4 @@ namespace PhpGedcom\Parser\Fam;
  */
 class Enga extends \PhpGedcom\Parser\Fam\Even
 {
-    
 }

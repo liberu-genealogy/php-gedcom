@@ -20,5 +20,4 @@ namespace PhpGedcom\Parser\Indi;
  */
 class Grad extends \PhpGedcom\Parser\Indi\Even
 {
-    
 }

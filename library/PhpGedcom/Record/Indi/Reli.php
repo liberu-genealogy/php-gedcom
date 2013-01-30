@@ -19,5 +19,4 @@ namespace PhpGedcom\Record\Indi;
  */
 class Reli extends \PhpGedcom\Record\Indi\Attr
 {
-    
 }

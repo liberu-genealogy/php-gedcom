@@ -30,4 +30,3 @@ class Subn extends \PhpGedcom\Record
     protected $_ordi    = null;
     protected $_rin     = null;
 }
-

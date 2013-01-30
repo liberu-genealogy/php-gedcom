@@ -20,5 +20,4 @@ namespace PhpGedcom\Parser\Indi;
  */
 class Prob extends \PhpGedcom\Parser\Indi\Even
 {
-    
 }

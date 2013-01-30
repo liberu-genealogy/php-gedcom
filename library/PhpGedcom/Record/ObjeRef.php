@@ -73,4 +73,3 @@ class ObjeRef extends \PhpGedcom\Record implements Noteable
         $this->_note[] = $note;
     }
 }
-

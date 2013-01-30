@@ -52,63 +52,50 @@ class Even extends \PhpGedcom\Parser\Component
                 case 'TYPE':
                     $even->setType(trim($record[2]));
                     break;
-
                 case 'DATE':
                     $even->setDate(trim($record[2]));
                     break;
-
                 case 'PLAC':
                     $plac = \PhpGedcom\Parser\Indi\Even\Plac::parse($parser);
                     $even->setPlac($plac);
                     break;
-
                 case 'ADDR':
                     $addr = \PhpGedcom\Parser\Addr::parse($parser);
                     $even->setAddr($addr);
                     break;
-
                 case 'PHON':
                     $phone = \PhpGedcom\Parser\Phon::parse($parser);
                     $even->addPhone($phone);
                     break;
-
                 case 'CAUS':
                     $even->setCaus(trim($record[2]));
                     break;
-
                 case 'AGE':
                     $even->setAge(trim($record[2]));
                     break;
-
                 case 'AGNC':
                     $even->setAgnc(trim($record[2]));
                     break;
-
                 case 'HUSB':
                     $husb = \PhpGedcom\Parser\Fam\Even\Husb::parse($parser);
                     $even->setHusb($husb);
                     break;
-
                 case 'WIFE':
                     $wife = \PhpGedcom\Parser\Fam\Even\Wife::parse($parser);
                     $even->setWife($wife);
                     break;
-
                 case 'SOUR':
                     $sour = \PhpGedcom\Parser\SourRef::parse($parser);
                     $even->addSour($sour);
                     break;
-
                 case 'OBJE':
                     $obje = \PhpGedcom\Parser\ObjeRef::parse($parser);
                     $even->addObje($obje);
                     break;
-
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
                     $even->addNote($note);
                     break;
-
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }

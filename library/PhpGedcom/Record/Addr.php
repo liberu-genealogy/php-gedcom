@@ -26,5 +26,4 @@ class Addr extends \PhpGedcom\Record
     protected $_stae = null;
     protected $_post = null;
     protected $_ctry = null;
-    
 }

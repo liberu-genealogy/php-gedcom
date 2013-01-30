@@ -30,5 +30,4 @@ class SourRef extends \PhpGedcom\Record
     
     protected $_obje    = array();
     protected $_note    = array();
-    
 }

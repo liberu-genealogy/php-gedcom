@@ -49,37 +49,29 @@ class Name extends \PhpGedcom\Parser\Component
                 case 'NPFX':
                     $name->setNpfx(trim($record[2]));
                     break;
-
                 case 'GIVN':
                     $name->setGivn(trim($record[2]));
                     break;
-
                 case 'NICK':
                     $name->setNick(trim($record[2]));
                     break;
-
                 case 'SPFX':
                     $name->setSpfx(trim($record[2]));
                     break;
-
                 case 'SURN':
                     $name->setSurn(trim($record[2]));
                     break;
-
                 case 'NSFX':
                     $name->setNsfx(trim($record[2]));
                     break;
-
                 case 'SOUR':
                     $sour = \PhpGedcom\Parser\SourRef::parse($parser);
                     $name->addSour($sour);
                     break;
-
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
                     $name->addNote($note);
                     break;
-
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }

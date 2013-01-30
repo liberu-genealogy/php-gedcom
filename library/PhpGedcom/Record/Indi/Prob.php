@@ -19,5 +19,4 @@ namespace PhpGedcom\Record\Indi;
  */
 class Prob extends \PhpGedcom\Record\Indi\Even
 {
-    
 }

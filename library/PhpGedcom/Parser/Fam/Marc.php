@@ -20,5 +20,4 @@ namespace PhpGedcom\Parser\Fam;
  */
 class Marc extends \PhpGedcom\Parser\Fam\Even
 {
-    
 }

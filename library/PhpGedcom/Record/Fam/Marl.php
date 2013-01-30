@@ -19,5 +19,4 @@ namespace PhpGedcom\Record\Fam;
  */
 class Marr extends \PhpGedcom\Record\Fam\Even
 {
-    
 }

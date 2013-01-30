@@ -49,11 +49,9 @@ class Corp extends \PhpGedcom\Parser\Component
                 case 'ADDR':
                     $corp->setAddr(\PhpGedcom\Parser\Addr::parse($parser));
                     break;
-
                 case 'PHON':
                     $corp->addPhon(trim($record[2]));
                     break;
-
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }

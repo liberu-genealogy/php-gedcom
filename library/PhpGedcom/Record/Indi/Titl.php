@@ -18,5 +18,4 @@ namespace PhpGedcom\Record\Indi;
  */
 class Titl extends \PhpGedcom\Record\Indi\Attr
 {
-    
 }

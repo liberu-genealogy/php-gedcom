@@ -21,5 +21,4 @@ class Refn extends \PhpGedcom\Record
 {
     protected $_refn = null;
     protected $_type = null;
-    
 }

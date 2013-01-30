@@ -20,5 +20,4 @@ namespace PhpGedcom\Parser\Indi;
  */
 class Titl extends \PhpGedcom\Parser\Indi\Attr
 {
-    
 }

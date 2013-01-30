@@ -64,57 +64,45 @@ class Fam extends \PhpGedcom\Parser\Component
                 case 'HUSB':
                     $fam->setHusb($parser->normalizeIdentifier($record[2]));
                     break;
-
                 case 'WIFE':
                     $fam->setWife($parser->normalizeIdentifier($record[2]));
                     break;
-
                 case 'CHIL':
                     $fam->addChil($parser->normalizeIdentifier($record[2]));
                     break;
-
                 case 'NCHI':
                     $fam->setNchi(trim($record[2]));
                     break;
-
                 case 'SUBM':
                     $fam->addSubm($parser->normalizeIdentifier($record[2]));
                     break;
-
                 case 'RIN':
                     $fam->setRin(trim($record[2]));
                     break;
-
                 case 'CHAN':
                     $chan = \PhpGedcom\Parser\Chan::parse($parser);
                     $fam->setChan($chan);
                     break;
-
                 case 'SLGS':
                     $slgs = \PhpGedcom\Parser\Fam\Slgs::parse($parser);
                     $fam->addSlgs($slgs);
                     break;
-
                 case 'REFN':
                     $ref = \PhpGedcom\Parser\Refn::parse($parser);
                     $fam->addRefn($ref);
                     break;
-
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
                     $fam->addNote($note);
                     break;
-
                 case 'SOUR':
                     $sour = \PhpGedcom\Parser\SourRef::parse($parser);
                     $fam->addSour($sour);
                     break;
-
                 case 'OBJE':
                     $obje = \PhpGedcom\Parser\ObjeRef::parse($parser);
                     $fam->addObje($obje);
                     break;
-
                 case 'EVEN':
                 case 'ANUL':
                 case 'CENS':
@@ -132,7 +120,6 @@ class Fam extends \PhpGedcom\Parser\Component
                     $even = $class::parse($parser);
                     $fam->addEven($even);
                     break;
-
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }

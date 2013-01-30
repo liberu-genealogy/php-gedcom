@@ -20,5 +20,4 @@ namespace PhpGedcom\Parser\Indi;
  */
 class Cens extends \PhpGedcom\Parser\Indi\Even
 {
-    
 }

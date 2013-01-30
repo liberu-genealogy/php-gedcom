@@ -22,4 +22,3 @@ class Data extends \PhpGedcom\Record
     protected $_text = null;
     protected $_date = null;
 }
-

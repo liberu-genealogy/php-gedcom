@@ -85,4 +85,3 @@ class Even extends \PhpGedcom\Record implements Objectable, Sourceable, Noteable
         $this->_note[] = $note;
     }
 }
-

@@ -33,13 +33,12 @@ class Sour
             // TODO DATA;
             "";
 
-/*        
-      +2 DATA <NAME_OF_SOURCE_DATA>  {0:1}
-        +3 DATE <PUBLICATION_DATE>  {0:1}
-        +3 COPR <COPYRIGHT_SOURCE_DATA>  {0:1}
-*/
+        /*
+              +2 DATA <NAME_OF_SOURCE_DATA>  {0:1}
+                +3 DATE <PUBLICATION_DATE>  {0:1}
+                +3 COPR <COPYRIGHT_SOURCE_DATA>  {0:1}
+        */
         
         return $output;
     }
 }
-

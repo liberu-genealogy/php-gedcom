@@ -19,5 +19,4 @@ namespace PhpGedcom\Record\Indi;
  */
 class Occu extends \PhpGedcom\Record\Indi\Attr
 {
-    
 }

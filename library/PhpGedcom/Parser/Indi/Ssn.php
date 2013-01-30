@@ -20,5 +20,4 @@ namespace PhpGedcom\Parser\Indi;
  */
 class Ssn extends \PhpGedcom\Parser\Indi\Attr
 {
-    
 }

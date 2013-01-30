@@ -21,4 +21,3 @@ class Husb extends \PhpGedcom\Record
 {
     protected $_age = null;
 }
-

@@ -19,5 +19,4 @@ namespace PhpGedcom\Record\Indi;
  */
 class Ordn extends \PhpGedcom\Record\Indi\Even
 {
-    
 }

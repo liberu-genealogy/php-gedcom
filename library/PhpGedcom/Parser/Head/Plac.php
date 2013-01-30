@@ -48,7 +48,6 @@ class Plac extends \PhpGedcom\Parser\Component
                 case 'FORM':
                     $plac->setForm(trim($record[2]));
                     break;
-
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }

@@ -33,4 +33,3 @@ class Corp extends \PhpGedcom\Record
         $this->_phon[] = $phon;
     }
 }
-

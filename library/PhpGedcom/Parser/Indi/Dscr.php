@@ -20,5 +20,4 @@ namespace PhpGedcom\Parser\Indi;
  */
 class Dscr extends \PhpGedcom\Parser\Indi\Attr
 {
-    
 }

@@ -33,14 +33,15 @@ class Addr
         
         array_shift($addrs);
         
-        foreach($addrs as $cont)
+        foreach ($addrs as $cont) {
             $output .= ($level+1) . " CONT " . $cont . "\n";
-        
-        $output .= ($level+1) . " ADR1 " . $addr->adr1 . "\n" . 
-            ($level+1) . " ADR2 " . $addr->adr2 . "\n" .    
-            ($level+1) . " CITY " . $addr->city . "\n" . 
-            ($level+1) . " STAE " . $addr->stae . "\n" . 
-            ($level+1) . " POST " . $addr->post . "\n" . 
+        }
+
+        $output .= ($level+1) . " ADR1 " . $addr->adr1 . "\n" .
+            ($level+1) . " ADR2 " . $addr->adr2 . "\n" .
+            ($level+1) . " CITY " . $addr->city . "\n" .
+            ($level+1) . " STAE " . $addr->stae . "\n" .
+            ($level+1) . " POST " . $addr->post . "\n" .
             ($level+1) . " CTRY " . $addr->ctry . "\n";
         
         return $output;

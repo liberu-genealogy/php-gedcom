@@ -19,5 +19,4 @@ namespace PhpGedcom\Record\Indi;
  */
 class Nati extends \PhpGedcom\Record\Indi\Attr
 {
-    
 }

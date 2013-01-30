@@ -53,4 +53,3 @@ class Name extends \PhpGedcom\Record implements \PhpGedcom\Record\Sourceable
         $this->_note[] = $note;
     }
 }
-

@@ -52,55 +52,43 @@ class Sour extends \PhpGedcom\Parser\Component
                 case 'TITL':
                     $sour->setTitl($parser->parseMultilineRecord());
                     break;
-
                 case 'RIN':
                     $sour->setRin(trim($record[2]));
                     break;
-
                 case 'AUTH':
                     $sour->setAuth($parser->parseMultilineRecord());
                     break;
-
                 case 'TEXT':
                     $sour->setText($parser->parseMultilineRecord());
                     break;
-
                 case 'PUBL':
                     $sour->setPubl($parser->parseMultilineRecord());
                     break;
-
                 case 'ABBR':
                     $sour->setAbbr(trim($record[2]));
                     break;
-
                 case 'REPO':
                     $sour->setRepo(\PhpGedcom\Parser\RepoRef::parse($parser));
                     break;
-
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
                     $sour->addNote($note);
                     break;
-
                 case 'DATA':
                     $sour->setData(\PhpGedcom\Parser\Sour\Data::parse($parser));
                     break;
-
                 case 'OBJE':
                     $obje = \PhpGedcom\Parser\ObjeRef::parse($parser);
                     $sour->addObje($obje);
                     break;
-
                 case 'REFN':
                     $refn = \PhpGedcom\Parser\Refn::parse($parser);
                     $sour->addRefn($refn);
                     break;
-
                 case 'CHAN':
                     $chan = \PhpGedcom\Parser\Chan::parse($parser);
                     $sour->setChan($chan);
                     break;
-
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }

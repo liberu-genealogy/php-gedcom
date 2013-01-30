@@ -19,5 +19,4 @@ namespace PhpGedcom\Record\Indi;
  */
 class Bapl extends Lds
 {
-    
 }

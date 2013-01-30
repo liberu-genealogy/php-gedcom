@@ -19,5 +19,4 @@ namespace PhpGedcom\Record\Indi;
  */
 class Prop extends \PhpGedcom\Record\Indi\Attr
 {
-    
 }

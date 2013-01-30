@@ -22,4 +22,3 @@ class Adop extends \PhpGedcom\Record\Indi\Even
     protected $_adop = null;
     protected $_famc = null;
 }
-

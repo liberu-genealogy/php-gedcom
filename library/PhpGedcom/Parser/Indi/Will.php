@@ -20,5 +20,4 @@ namespace PhpGedcom\Parser\Indi;
  */
 class Will extends \PhpGedcom\Parser\Indi\Even
 {
-    
 }

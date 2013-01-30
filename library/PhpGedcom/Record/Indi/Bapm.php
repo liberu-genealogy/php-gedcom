@@ -19,6 +19,4 @@ namespace PhpGedcom\Record\Indi;
  */
 class Bapm extends \PhpGedcom\Record\Indi\Even
 {
-
 }
-

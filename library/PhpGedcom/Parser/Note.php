@@ -60,7 +60,6 @@ class Note extends \PhpGedcom\Parser\Component
                 case 'RIN':
                     $note->setRin(trim($record[2]));
                     break;
-
                 case 'CONT':
                     $note->setNote($note->getNote() . "\n");
 
@@ -68,28 +67,23 @@ class Note extends \PhpGedcom\Parser\Component
                         $note->setNote($note->getNote() . $record[2]);
                     }
                     break;
-
                 case 'CONC':
                     if (isset($record[2])) {
                         $note->setNote($note->getNote() . $record[2]);
                     }
                     break;
-
                 case 'REFN':
                     $refn = \PhpGedcom\Parser\Refn::parse($parser);
                     $note->addRefn($refn);
                     break;
-
                 case 'CHAN':
                     $chan = \PhpGedcom\Parser\Chan::parse($parser);
                     $note->setChan($chan);
                     break;
-
                 case 'SOUR':
                     $sour = \PhpGedcom\Parser\SourRef::parse($parser);
                     $note->addSour($sour);
                     break;
-
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }

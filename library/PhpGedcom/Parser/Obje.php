@@ -52,38 +52,30 @@ class Obje extends \PhpGedcom\Parser\Component
                 case 'FORM':
                     $obje->setForm(trim($record[2]));
                     break;
-
                 case 'TITL':
                     $obje->setTitl(trim($record[2]));
                     break;
-
                 case 'OBJE':
                     $obje->setForm($this->normalizeIdentifier($record[2]));
                     break;
-
                 case 'RIN':
                     $obje->setRin(trim($record[2]));
                     break;
-
                 case 'REFN':
                     $refn = \PhpGedcom\Parser\Refn::parse($parser);
                     $obje->addRefn($refn);
                     break;
-
                 case 'BLOB':
                     $obje->setBlob($parser->parseMultiLineRecord());
                     break;
-
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
                     $obje->addNote($note);
                     break;
-
                 case 'CHAN':
                     $chan = \PhpGedcom\Parser\Chan::parse($parser);
                     $obje->setChan($chan);
                     break;
-
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }

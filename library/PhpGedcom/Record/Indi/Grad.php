@@ -19,5 +19,4 @@ namespace PhpGedcom\Record\Indi;
  */
 class Grad extends \PhpGedcom\Record\Indi\Even
 {
-    
 }

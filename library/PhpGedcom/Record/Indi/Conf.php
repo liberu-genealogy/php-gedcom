@@ -19,5 +19,4 @@ namespace PhpGedcom\Record\Indi;
  */
 class Conf extends \PhpGedcom\Record\Indi\Even
 {
-    
 }

@@ -15,5 +15,4 @@ namespace PhpGedcom\Record\Indi;
 
 class Note extends \PhpGedcom\Record\NoteRefAbstract
 {
-    
 }

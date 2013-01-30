@@ -52,44 +52,35 @@ class Subm extends \PhpGedcom\Parser\Component
                 case 'NAME':
                     $subm->setName(trim($record[2]));
                     break;
-
                 case 'ADDR':
                     $addr = \PhpGedcom\Parser\Addr::parse($parser);
                     $subm->setAddr($addr);
                     break;
-
                 case 'PHON':
                     $phone = \PhpGedcom\Parser\Phon::parse($parser);
                     $subm->addPhon($phone);
                     break;
-
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
                     $subm->addNote($note);
                     break;
-
                 case 'OBJE':
                     $obje = \PhpGedcom\Parser\ObjeRef::parse($parser);
                     $subm->addObje($obje);
                     break;
-
                 case 'CHAN':
                     $chan = \PhpGedcom\Parser\Chan::parse($parser);
                     $subm->setChan($chan);
                     break;
-
                 case 'RIN':
                     $subm->setRin(trim($record[2]));
                     break;
-
                 case 'RFN':
                     $subm->setRfn(trim($record[2]));
                     break;
-
                 case 'LANG':
                     $subm->addLang(trim($record[2]));
                     break;
-
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }

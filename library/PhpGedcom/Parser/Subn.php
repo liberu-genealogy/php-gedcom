@@ -52,31 +52,24 @@ class Subn extends \PhpGedcom\Parser\Component
                 case 'SUBM':
                     $subn->setSubm($parser->normalizeIdentifier($record[2]));
                     break;
-
                 case 'FAMF':
                     $subn->setFamf(trim($record[2]));
                     break;
-
                 case 'TEMP':
                     $subn->setTemp(trim($record[2]));
                     break;
-
                 case 'ANCE':
                     $subn->setAnce(trim($record[2]));
                     break;
-
                 case 'DESC':
                     $subn->setDesc(trim($record[2]));
                     break;
-
                 case 'ORDI':
                     $subn->setOrdi(trim($record[2]));
                     break;
-
                 case 'RIN':
                     $subn->setRin(trim($record[2]));
                     break;
-
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }

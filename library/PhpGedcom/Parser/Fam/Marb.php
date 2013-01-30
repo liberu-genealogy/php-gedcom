@@ -20,5 +20,4 @@ namespace PhpGedcom\Parser\Fam;
  */
 class Marb extends \PhpGedcom\Parser\Fam\Even
 {
-    
 }

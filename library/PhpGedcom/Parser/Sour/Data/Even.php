@@ -48,11 +48,9 @@ class Even extends \PhpGedcom\Parser\Component
                 case 'DATE':
                     $even->setDate(trim($record[2]));
                     break;
-
                 case 'PLAC':
                     $even->setPlac(trim($record[2]));
                     break;
-
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }

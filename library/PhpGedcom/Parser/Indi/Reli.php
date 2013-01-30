@@ -20,5 +20,4 @@ namespace PhpGedcom\Parser\Indi;
  */
 class Reli extends \PhpGedcom\Parser\Indi\Attr
 {
-    
 }

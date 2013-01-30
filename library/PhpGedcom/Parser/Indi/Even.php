@@ -59,52 +59,41 @@ class Even extends \PhpGedcom\Parser\Component
                 case 'TYPE':
                     $even->setType(trim($record[2]));
                     break;
-
                 case 'DATE':
                     $even->setDate(trim($record[2]));
                     break;
-
                 case 'PLAC':
                     $plac = \PhpGedcom\Parser\Indi\Even\Plac::parse($parser);
                     $even->setPlac($plac);
                     break;
-
                 case 'ADDR':
                     $even->setAddr(\PhpGedcom\Parser\Addr::parse($parser));
                     break;
-
                 case 'PHON':
                     $phone = \PhpGedcom\Parser\Phone::parse($parser);
                     $even->addPhone($phone);
                     break;
-
                 case 'CAUS':
                     $even->setCaus(trim($record[2]));
                     break;
-
                 case 'AGE':
                     $even->setAge(trim($record[2]));
                     break;
-
                 case 'AGNC':
                     $even->setAgnc(trim($record[2]));
                     break;
-
                 case 'SOUR':
                     $sour = \PhpGedcom\Parser\SourRef::parse($parser);
                     $even->addSour($sour);
                     break;
-
                 case 'OBJE':
                     $obje = \PhpGedcom\Parser\ObjeRef::parse($parser);
                     $even->addObje($obje);
                     break;
-
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
                     $even->addNote($note);
                     break;
-
                 default:
                     $self = get_called_class();
                     $method = 'parse' . $recordType;

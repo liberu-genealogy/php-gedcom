@@ -20,5 +20,4 @@ namespace PhpGedcom\Parser\Indi;
  */
 class Ordn extends \PhpGedcom\Parser\Indi\Even
 {
-    
 }

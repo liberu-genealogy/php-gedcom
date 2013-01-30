@@ -64,4 +64,3 @@ class Subm extends \PhpGedcom\Record implements Objectable
         $this->_obje[] = $obje;
     }
 }
-

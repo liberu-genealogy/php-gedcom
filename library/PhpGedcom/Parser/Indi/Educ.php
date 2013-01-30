@@ -20,5 +20,4 @@ namespace PhpGedcom\Parser\Indi;
  */
 class Educ extends \PhpGedcom\Parser\Indi\Attr
 {
-    
 }

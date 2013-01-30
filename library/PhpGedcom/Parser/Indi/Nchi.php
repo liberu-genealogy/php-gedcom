@@ -20,5 +20,4 @@ namespace PhpGedcom\Parser\Indi;
  */
 class Nchi extends \PhpGedcom\Parser\Indi\Attr
 {
-    
 }

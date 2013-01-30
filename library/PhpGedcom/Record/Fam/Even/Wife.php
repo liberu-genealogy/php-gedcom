@@ -21,4 +21,3 @@ class Wife extends \PhpGedcom\Record
 {
     protected $_age = null;
 }
-

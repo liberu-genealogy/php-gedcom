@@ -20,5 +20,4 @@ namespace PhpGedcom\Parser\Indi;
  */
 class Resi extends \PhpGedcom\Parser\Indi\Attr
 {
-    
 }

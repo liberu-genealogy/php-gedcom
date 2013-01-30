@@ -143,15 +143,15 @@ class Parser
                 case 'CONT':
                     $data .= "\n";
                     
-                    if(isset($record[2]))
+                    if (isset($record[2])) {
                         $data .= trim($record[2]);
+                    }
                     break;
-                
                 case 'CONC':
-                    if(isset($record[2]))
+                    if (isset($record[2])) {
                         $data .= ' ' . trim($record[2]);
+                    }
                     break;
-                
                 default:
                     $this->back();
                     break 2;
@@ -239,8 +239,9 @@ class Parser
     {
         $this->_file = fopen($fileName, 'r'); #explode("\n", mb_convert_encoding($contents, 'UTF-8'));
         
-        if(!$this->_file)
+        if (!$this->_file) {
             return null;
+        }
         
         $this->forward();
         

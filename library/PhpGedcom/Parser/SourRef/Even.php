@@ -49,7 +49,6 @@ class Even extends \PhpGedcom\Parser\Component
                 case 'ROLE':
                     $even->setRole(trim($record[2]));
                     break;
-
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }

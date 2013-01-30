@@ -19,5 +19,4 @@ namespace PhpGedcom\Record\Indi;
  */
 class Barm extends \PhpGedcom\Record\Indi\Even
 {
-
 }

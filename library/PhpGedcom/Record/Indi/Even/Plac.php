@@ -51,4 +51,3 @@ class Plac extends \PhpGedcom\Record implements Noteable, Sourceable
         $this->_sour[] = $sour;
     }
 }
-

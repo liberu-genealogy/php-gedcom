@@ -19,5 +19,4 @@ namespace PhpGedcom\Record\Indi;
  */
 class Chra extends \PhpGedcom\Record\Indi\Even
 {
-    
 }

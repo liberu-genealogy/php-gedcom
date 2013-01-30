@@ -20,5 +20,4 @@ namespace PhpGedcom\Parser\Indi;
  */
 class Idno extends \PhpGedcom\Parser\Indi\Attr
 {
-    
 }

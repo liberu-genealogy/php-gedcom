@@ -49,11 +49,9 @@ class Data extends \PhpGedcom\Parser\Component
                 case 'DATE':
                     $data->setDate(trim($record[2]));
                     break;
-
                 case 'COPR':
                     $data->setCopr(trim($record[2]));
                     break;
-
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }
