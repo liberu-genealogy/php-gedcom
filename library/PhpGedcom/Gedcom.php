@@ -15,8 +15,8 @@
 namespace PhpGedcom;
 
 /**
- *
- *
+ * Class Gedcom
+ * @package PhpGedcom
  */
 class Gedcom
 {
@@ -25,72 +25,72 @@ class Gedcom
      *
      * @var \PhpGedcom\Record\Head
      */
-    protected $_head;
+    protected $head;
 
     /**
      * Stores the submission information for the GEDCOM file.
      *
      * @var \PhpGedcom\Record\Subn
      */
-    protected $_subn;
+    protected $subn;
 
     /**
      * Stores sources cited throughout the GEDCOM file.
      *
      * @var array
      */
-    protected $_sour = array();
+    protected $sour = array();
 
     /**
      * Stores all the individuals contained within the GEDCOM file.
      *
      * @var array
      */
-    protected $_indi = array();
+    protected $indi = array();
 
     /**
      * Stores all the families contained within the GEDCOM file.
      *
      * @var array
      */
-    protected $_fam  = array();
+    protected $fam  = array();
 
     /**
      * Stores all the notes contained within the GEDCOM file that are not inline.
      *
      * @var array
      */
-    protected $_note = array();
+    protected $note = array();
 
     /**
      * Stores all repositories that are contained within the GEDCOM file and referenced by sources.
      *
      * @var array
      */
-    protected $_repo = array();
+    protected $repo = array();
 
     /**
      * Stores all the media objects that are contained within the GEDCOM file.
      *
      * @var array
      */
-    protected $_obje = array();
+    protected $obje = array();
 
     /**
      * Stores information about all the submitters to the GEDCOM file.
      *
      * @var array
      */
-    protected $_subm = array();
+    protected $subm = array();
 
     /**
      * Retrieves the header record of the GEDCOM file.
      *
      * @param Record\Head $head
      */
-    public function setHead(\PhpGedcom\Record\Head $head)
+    public function setHead(Record\Head $head)
     {
-        $this->_head = $head;
+        $this->head = $head;
     }
 
     /**
@@ -98,9 +98,9 @@ class Gedcom
      *
      * @param Record\Subn $subn
      */
-    public function setSubn(\PhpGedcom\Record\Subn $subn)
+    public function setSubn(Record\Subn $subn)
     {
-        $this->_subn = $subn;
+        $this->subn = $subn;
     }
 
     /**
@@ -108,9 +108,9 @@ class Gedcom
      *
      * @param Record\Sour $sour
      */
-    public function addSour(\PhpGedcom\Record\Sour $sour)
+    public function addSour(Record\Sour $sour)
     {
-        $this->_sour[$sour->getId()] = $sour;
+        $this->sour[$sour->getId()] = $sour;
     }
 
     /**
@@ -118,9 +118,9 @@ class Gedcom
      *
      * @param Record\Indi $indi
      */
-    public function addIndi(\PhpGedcom\Record\Indi $indi)
+    public function addIndi(Record\Indi $indi)
     {
-        $this->_indi[$indi->getId()] = $indi;
+        $this->indi[$indi->getId()] = $indi;
     }
 
     /**
@@ -128,9 +128,9 @@ class Gedcom
      *
      * @param Record\Fam $fam
      */
-    public function addFam(\PhpGedcom\Record\Fam $fam)
+    public function addFam(Record\Fam $fam)
     {
-        $this->_fam[$fam->getId()] = $fam;
+        $this->fam[$fam->getId()] = $fam;
     }
 
     /**
@@ -138,9 +138,9 @@ class Gedcom
      *
      * @param Record\Note $note
      */
-    public function addNote(\PhpGedcom\Record\Note $note)
+    public function addNote(Record\Note $note)
     {
-        $this->_note[$note->getId()] = $note;
+        $this->note[$note->getId()] = $note;
     }
 
     /**
@@ -148,9 +148,9 @@ class Gedcom
      *
      * @param Record\Repo $repo
      */
-    public function addRepo(\PhpGedcom\Record\Repo $repo)
+    public function addRepo(Record\Repo $repo)
     {
-        $this->_repo[$repo->getId()] = $repo;
+        $this->repo[$repo->getId()] = $repo;
     }
 
     /**
@@ -158,9 +158,9 @@ class Gedcom
      *
      * @param Record\Obje $obje
      */
-    public function addObje(\PhpGedcom\Record\Obje $obje)
+    public function addObje(Record\Obje $obje)
     {
-        $this->_obje[$obje->getId()] = $obje;
+        $this->obje[$obje->getId()] = $obje;
     }
 
     /**
@@ -168,9 +168,9 @@ class Gedcom
      *
      * @param Record\Subm $subm
      */
-    public function addSubm(\PhpGedcom\Record\Subm $subm)
+    public function addSubm(Record\Subm $subm)
     {
-        $this->_subm[$subm->getId()] = $subm;
+        $this->subm[$subm->getId()] = $subm;
     }
 
     /**
@@ -180,7 +180,7 @@ class Gedcom
      */
     public function getHead()
     {
-        return $this->_head;
+        return $this->head;
     }
 
     /**
@@ -190,7 +190,7 @@ class Gedcom
      */
     public function getSubn()
     {
-        return $this->_subn;
+        return $this->subn;
     }
 
     /**
@@ -200,7 +200,7 @@ class Gedcom
      */
     public function getSubm()
     {
-        return $this->_subm;
+        return $this->subm;
     }
 
     /**
@@ -210,7 +210,7 @@ class Gedcom
      */
     public function getIndi()
     {
-        return $this->_indi;
+        return $this->indi;
     }
 
     /**
@@ -220,7 +220,7 @@ class Gedcom
      */
     public function getFam()
     {
-        return $this->_fam;
+        return $this->fam;
     }
 
     /**
@@ -230,7 +230,7 @@ class Gedcom
      */
     public function getRepo()
     {
-        return $this->_repo;
+        return $this->repo;
     }
 
     /**
@@ -240,7 +240,7 @@ class Gedcom
      */
     public function getSour()
     {
-        return $this->_sour;
+        return $this->sour;
     }
 
     /**
@@ -250,7 +250,7 @@ class Gedcom
      */
     public function getNote()
     {
-        return $this->_note;
+        return $this->note;
     }
 
     /**
@@ -260,6 +260,6 @@ class Gedcom
      */
     public function getObje()
     {
-        return $this->_obje;
+        return $this->obje;
     }
 }

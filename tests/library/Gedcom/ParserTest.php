@@ -14,28 +14,31 @@
 
 namespace PhpGedcomTest;
 
+use PhpGedcom\Parser;
+
 /**
- *
+ * Class ParserTest
+ * @package PhpGedcomTest
  */
 class ParserTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var \PhpGedcom\Parser
      */
-    protected $_parser  = null;
+    protected $parser  = null;
     
     /**
      * @var \PhpGedcom\Gedcom
      */
-    protected $_gedcom  = null;
+    protected $gedcom  = null;
     
     /**
      *
      */
     public function setUp()
     {
-        $this->_parser = new \PhpGedcom\Parser();
-        $this->_gedcom = $this->_parser->parse(TEST_DIR . '/stresstestfiles/TGC551LF.ged');
+        $this->parser = new Parser();
+        $this->gedcom = $this->parser->parse(TEST_DIR . '/stresstestfiles/TGC551LF.ged');
     }
 
     /**
@@ -43,7 +46,7 @@ class ParserTest extends \PHPUnit_Framework_TestCase
      */
     public function testNoErrors()
     {
-        $this->assertEquals(1, count($this->_parser->getErrors()));
+        $this->assertEquals(1, count($this->parser->getErrors()));
     }
 
     /**
@@ -51,12 +54,12 @@ class ParserTest extends \PHPUnit_Framework_TestCase
      */
     public function testRecordCounts()
     {
-        $this->assertEquals(count($this->_gedcom->getIndi()), 15);
-        $this->assertEquals(count($this->_gedcom->getFam()), 7);
-        $this->assertEquals(count($this->_gedcom->getSour()), 2);
-        $this->assertEquals(count($this->_gedcom->getNote()), 33);
-        $this->assertEquals(count($this->_gedcom->getObje()), 1);
-        $this->assertEquals(count($this->_gedcom->getRepo()), 1);
+        $this->assertEquals(count($this->gedcom->getIndi()), 15);
+        $this->assertEquals(count($this->gedcom->getFam()), 7);
+        $this->assertEquals(count($this->gedcom->getSour()), 2);
+        $this->assertEquals(count($this->gedcom->getNote()), 33);
+        $this->assertEquals(count($this->gedcom->getObje()), 1);
+        $this->assertEquals(count($this->gedcom->getRepo()), 1);
     }
 
     /**
@@ -64,7 +67,7 @@ class ParserTest extends \PHPUnit_Framework_TestCase
      */
     public function testHead()
     {
-        $head = $this->_gedcom->getHead();
+        $head = $this->gedcom->getHead();
 
         $this->assertEquals($head->getSour()->getSour(), 'GEDitCOM');
         $this->assertEquals($head->getSour()->getName(), 'GEDitCOM');
@@ -116,7 +119,7 @@ class ParserTest extends \PHPUnit_Framework_TestCase
      */
     public function testSubn()
     {
-        $subn = $this->_gedcom->getSubn();
+        $subn = $this->gedcom->getSubn();
 
         $this->assertEquals($subn->getId(), 'SUBMISSION');
         $this->assertEquals($subn->getSubm(), 'SUBMITTER');
@@ -133,7 +136,7 @@ class ParserTest extends \PHPUnit_Framework_TestCase
      */
     public function testSubm()
     {
-        $subm = $this->_gedcom->getSubm();
+        $subm = $this->gedcom->getSubm();
 
         $this->assertEquals($subm['SUBMITTER']->getId(), 'SUBMITTER');
         $this->assertEquals($subm['SUBMITTER']->getName(), 'John A. Nairn');
@@ -237,7 +240,7 @@ class ParserTest extends \PHPUnit_Framework_TestCase
      */
     public function testSour()
     {
-        $sour = $this->_gedcom->getSour();
+        $sour = $this->gedcom->getSour();
 
         $secondSource = $sour['SR2'];
 
@@ -255,7 +258,7 @@ class ParserTest extends \PHPUnit_Framework_TestCase
      */
     public function testNote()
     {
-        $firstNote = current($this->_gedcom->getNote());
+        $firstNote = current($this->gedcom->getNote());
 
         $this->assertEquals(
             $firstNote->getNote(),

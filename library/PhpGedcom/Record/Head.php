@@ -104,6 +104,7 @@ class Head extends \PhpGedcom\Record
     public function setDate(\PhpGedcom\Record\Head\Date $date)
     {
         $this->_date = $date;
+        return $this;
     }
     
     /**

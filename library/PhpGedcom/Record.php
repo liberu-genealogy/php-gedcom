@@ -40,6 +40,8 @@ abstract class Record
             }
             
             $this->{'_' . $arr}[] = $args[0];
+
+            return $this;
         } else if (substr($method, 0, 3) == 'set') {
             $arr = strtolower(substr($method, 3));
             
@@ -56,6 +58,8 @@ abstract class Record
             }
             
             $this->{'_' . $arr} = $args[0];
+
+            return $this;
         } else if (substr($method, 0, 3) == 'get') {
             $arr = strtolower(substr($method, 3));
             
