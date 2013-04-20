@@ -32,7 +32,7 @@ class Sour extends \PhpGedcom\Parser\Component
         $depth = (int)$record[0];
 
         $sour = new \PhpGedcom\Record\Sour();
-        $sour->setId($identifier);
+        $sour->setSour($identifier);
 
         $parser->getGedcom()->addSour($sour);
 

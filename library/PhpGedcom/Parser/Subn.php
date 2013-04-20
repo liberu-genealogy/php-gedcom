@@ -32,7 +32,7 @@ class Subn extends \PhpGedcom\Parser\Component
         $depth = (int)$record[0];
 
         $subn = new \PhpGedcom\Record\Subn();
-        $subn->setId($identifier);
+        $subn->setSubn($identifier);
 
         $parser->getGedcom()->setSubn($subn);
 

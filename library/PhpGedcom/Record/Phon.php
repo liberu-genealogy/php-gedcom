@@ -14,13 +14,34 @@
 
 namespace PhpGedcom\Record;
 
+use PhpGedcom\Record;
+
 /**
- *
+ * Class Phon
+ * @package PhpGedcom\Record
  */
-class Phon extends \PhpGedcom\Record
+class Phon extends Record
 {
     /**
-     *
+     * @var string
      */
-    protected $_phon = null;
+    protected $phon = null;
+
+    /**
+     * @param $phon
+     * @return Phon
+     */
+    public function setPhon($phon)
+    {
+        $this->phon = $phon;
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getPhon()
+    {
+        return $this->phon;
+    }
 }

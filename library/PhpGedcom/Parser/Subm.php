@@ -32,7 +32,7 @@ class Subm extends \PhpGedcom\Parser\Component
         $depth = (int)$record[0];
 
         $subm = new \PhpGedcom\Record\Subm();
-        $subm->setId($identifier);
+        $subm->setSubm($identifier);
 
         $parser->getGedcom()->addSubm($subm);
 

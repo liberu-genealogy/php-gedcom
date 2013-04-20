@@ -42,7 +42,7 @@ abstract class Record
             $this->{'_' . $arr}[] = $args[0];
 
             return $this;
-        } else if (substr($method, 0, 3) == 'set') {
+        } elseif (substr($method, 0, 3) == 'set') {
             $arr = strtolower(substr($method, 3));
             
             if (!property_exists($this, '_' . $arr)) {
@@ -60,7 +60,7 @@ abstract class Record
             $this->{'_' . $arr} = $args[0];
 
             return $this;
-        } else if (substr($method, 0, 3) == 'get') {
+        } elseif (substr($method, 0, 3) == 'get') {
             $arr = strtolower(substr($method, 3));
             
             if (!property_exists($this, '_' . $arr)) {
@@ -91,6 +91,6 @@ abstract class Record
      */
     public function hasAttribute($var)
     {
-        return property_exists($this, '_' . $var);
+        return property_exists($this, '_' . $var) || property_Exists($this, $var);
     }
 }

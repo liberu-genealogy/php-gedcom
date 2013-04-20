@@ -14,11 +14,57 @@
 
 namespace PhpGedcom\Record;
 
+use PhpGedcom\Record;
+
 /**
- *
+ * Class Caln
+ * @package PhpGedcom\Record
  */
-class Caln extends \PhpGedcom\Record
+class Caln extends Record
 {
-    protected $_caln = null;
-    protected $_medi = null;
+    /**
+     * @var string
+     */
+    protected $caln;
+
+    /**
+     * @var string
+     */
+    protected $medi;
+
+    /**
+     * @param string $caln
+     * @return Caln
+     */
+    public function setCaln($caln)
+    {
+        $this->caln = $caln;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCaln()
+    {
+        return $this->caln;
+    }
+
+    /**
+     * @param string $medi
+     * @return Caln
+     */
+    public function setMedi($medi)
+    {
+        $this->medi = $medi;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMedi()
+    {
+        return $this->medi;
+    }
 }

@@ -14,40 +14,103 @@
 
 namespace PhpGedcom\Record\Indi\Even;
 
-use \PhpGedcom\Record\Noteable;
-use \PhpGedcom\Record\Sourceable;
+use \PhpGedcom\Record;
 
 /**
- *
+ * Class Plac
+ * @package PhpGedcom\Record\Indi\Even
  */
-class Plac extends \PhpGedcom\Record implements Noteable, Sourceable
+class Plac extends Record implements Record\Noteable, Record\Sourceable
 {
-    protected $_plac = null;
-    protected $_form = null;
+    /**
+     * @var string
+     */
+    protected $plac;
+
+    /**
+     * @var string
+     */
+    protected $form;
     
     /**
-     *
+     * @var array
      */
-    protected $_note = array();
+    protected $note = array();
     
     /**
-     *
+     * @var array
      */
-    protected $_sour = array();
-    
+    protected $sour = array();
+
     /**
-     *
+     * @param string $form
+     * @return Plac
      */
-    public function addNote(\PhpGedcom\Record\NoteRef $note)
+    public function setForm($form)
     {
-        $this->_note[] = $note;
+        $this->form = $form;
+        return $this;
     }
-    
+
     /**
-     *
+     * @return string
      */
-    public function addSour(\PhpGedcom\Record\SourRef $sour)
+    public function getForm()
     {
-        $this->_sour[] = $sour;
+        return $this->form;
+    }
+
+    /**
+     * @param string $plac
+     * @return Plac
+     */
+    public function setPlac($plac)
+    {
+        $this->plac = $plac;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPlac()
+    {
+        return $this->plac;
+    }
+
+    /**
+     * @return array
+     */
+    public function getNote()
+    {
+        return $this->note;
+    }
+
+    /**
+     * @param Record\NoteRef $note
+     * @return Plac
+     */
+    public function addNote(Record\NoteRef $note)
+    {
+        $this->note[] = $note;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getSour()
+    {
+        return $this->sour;
+    }
+
+    /**
+     * @param Record\SourRef $sour
+     * @return Plac
+     */
+    public function addSour(Record\SourRef $sour)
+    {
+        $this->sour[] = $sour;
+        return $this;
     }
 }

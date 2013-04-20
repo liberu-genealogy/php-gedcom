@@ -14,159 +14,286 @@
 
 namespace PhpGedcom\Record;
 
+use PhpGedcom\Record;
+
 /**
  * Stores the data from the HEAD section of a GEDCOM 5.5 file.
  */
-class Head extends \PhpGedcom\Record
+class Head extends Record
 {
     /**
-     * 
+     * @var Head\Sour
      */
-    protected $_sour = null;
+    protected $sour = null;
     
     /**
-     *
+     * @var string
      */
-    protected $_dest = null;
+    protected $dest = null;
     
     /**
-     *
+     * @var Head\Date
      */
-    protected $_date = null;
+    protected $date = null;
     
     /**
-     *
+     * @var string
      */
-    protected $_subm = null;
+    protected $subm = null;
     
     /**
-     *
+     * @var string
      */
-    protected $_subn = null;
+    protected $subn = null;
     
     /**
-     *
+     * @var string
      */
-    protected $_file = null;
+    protected $file = null;
     
     /**
-     *
+     * @var string
      */
-    protected $_copr = null;
+    protected $copr = null;
     
     /**
-     *
+     * @var Head\Gedc
      */
-    protected $_gedc = null;
+    protected $gedc = null;
     
     /**
-     *
+     * @var Head\Char
      */
-    protected $_char = null;
+    protected $char = null;
     
     /**
-     *
+     * @var string
      */
-    protected $_lang = null;
+    protected $lang = null;
     
     /**
-     *
+     * @var Head\Plac
      */
-    protected $_plac = null;
+    protected $plac = null;
     
     /**
-     *
+     * @var string
      */
-    protected $_note = null;
+    protected $note = null;
     
     /**
-     * 
      * @param \PhpGedcom\Record\Head\Sour $sour
+     * @return Head
      */
-    public function setSour(\PhpGedcom\Record\Head\Sour $sour)
+    public function setSour(Head\Sour $sour)
     {
-        $this->_sour = $sour;
-    }
-    
-    /**
-     *
-     * @return \PhpGedcom\Record\Head\Sour
-     */
-    public function getSour()
-    {
-        return $this->_sour;
-    }
-    
-    /**
-     *
-     * @param \PhpGedcom\Record\Head\Date $date
-     */
-    public function setDate(\PhpGedcom\Record\Head\Date $date)
-    {
-        $this->_date = $date;
+        $this->sour = $sour;
         return $this;
     }
     
     /**
-     *
+     * @return \PhpGedcom\Record\Head\Sour
+     */
+    public function getSour()
+    {
+        return $this->sour;
+    }
+    
+    /**
+     * @param \PhpGedcom\Record\Head\Date $date
+     * @return Head
+     */
+    public function setDate(Head\Date $date)
+    {
+        $this->date = $date;
+        return $this;
+    }
+    
+    /**
      * @return \PhpGedcom\Record\Head\Date
      */
     public function getDate()
     {
-        return $this->_date;
+        return $this->date;
     }
     
     /**
-     *
      * @param \PhpGedcom\Record\Head\Gedc $gedc
+     * @return Head
      */
-    public function setGedc(\PhpGedcom\Record\Head\Gedc $gedc)
+    public function setGedc(Head\Gedc $gedc)
     {
-        $this->_gedc = $gedc;
+        $this->gedc = $gedc;
+        return $this;
     }
     
     /**
-     *
      * @return \PhpGedcom\Record\Head\Gedc
      */
     public function getGedc()
     {
-        return $this->_gedc;
+        return $this->gedc;
     }
     
     /**
-     *
      * @param \PhpGedcom\Record\Head\Char $char
+     * @return Head
      */
-    public function setChar(\PhpGedcom\Record\Head\Char $char)
+    public function setChar(Head\Char $char)
     {
-        $this->_char = $char;
+        $this->char = $char;
+        return $this;
     }
     
     /**
-     *
      * @return \PhpGedcom\Record\Head\Char
      */
     public function getChar()
     {
-        return $this->_char;
+        return $this->char;
     }
     
     /**
-     *
      * @param \PhpGedcom\Record\Head\Plac $plac
+     * @return Head
      */
-    public function setPlac(\PhpGedcom\Record\Head\Plac $plac)
+    public function setPlac(Head\Plac $plac)
     {
-        $this->_plac = $plac;
+        $this->plac = $plac;
+        return $this;
     }
     
     /**
-     *
      * @return \PhpGedcom\Record\Head\Plac
      */
     public function getPlac()
     {
-        return $this->_plac;
+        return $this->plac;
+    }
+
+    /**
+     * @param string $subm
+     * @return Head
+     */
+    public function setSubm($subm)
+    {
+        $this->subm = $subm;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSubm()
+    {
+        return $this->subm;
+    }
+
+    /**
+     * @param string $subn
+     * @return Head
+     */
+    public function setSubn($subn)
+    {
+        $this->subn = $subn;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSubn()
+    {
+        return $this->subn;
+    }
+
+    /**
+     * @param string $lang
+     * @return Head
+     */
+    public function setLang($lang)
+    {
+        $this->lang = $lang;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLang()
+    {
+        return $this->lang;
+    }
+
+    /**
+     * @param string $file
+     * @return Head
+     */
+    public function setFile($file)
+    {
+        $this->file = $file;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * @param string $dest
+     * @return Head
+     */
+    public function setDest($dest)
+    {
+        $this->dest = $dest;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDest()
+    {
+        return $this->dest;
+    }
+
+    /**
+     * @param string $copr
+     * @return Head
+     */
+    public function setCopr($copr)
+    {
+        $this->copr = $copr;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCopr()
+    {
+        return $this->copr;
+    }
+
+    /**
+     * @param string $note
+     * @return Head
+     */
+    public function setNote($note)
+    {
+        $this->note = $note;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNote()
+    {
+        return $this->note;
     }
 }

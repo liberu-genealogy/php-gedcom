@@ -23,30 +23,30 @@ use \PhpGedcom\Record\Objectable;
  */
 class Attr extends \PhpGedcom\Record\Indi\Even implements Sourceable, Noteable, Objectable
 {
-    protected $_type = null;
+    protected $type = null;
     protected $_attr = null;
     
     /**
      *
      */
-    protected $_sour = array();
+    protected $sour = array();
     
     /**
      *
      */
-    protected $_note = array();
+    protected $note = array();
     
     /**
      *
      */
-    protected $_obje = array();
+    protected $obje = array();
     
     /**
      *
      */
     public function addSour(\PhpGedcom\Record\SourRef $sour)
     {
-        $this->_sour[] = $sour;
+        $this->sour[] = $sour;
     }
     
     /**
@@ -54,7 +54,7 @@ class Attr extends \PhpGedcom\Record\Indi\Even implements Sourceable, Noteable, 
      */
     public function addNote(\PhpGedcom\Record\NoteRef $note)
     {
-        $this->_note[] = $note;
+        $this->note[] = $note;
     }
     
     /**
@@ -62,6 +62,6 @@ class Attr extends \PhpGedcom\Record\Indi\Even implements Sourceable, Noteable, 
      */
     public function addObje(\PhpGedcom\Record\ObjeRef $obje)
     {
-        $this->_obje[] = $obje;
+        $this->obje[] = $obje;
     }
 }

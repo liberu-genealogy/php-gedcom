@@ -14,53 +14,228 @@
 
 namespace PhpGedcom\Record;
 
+use PhpGedcom\Record;
+
 /**
- *
+ * Class Subm
+ * @package PhpGedcom\Record
  */
-class Subm extends \PhpGedcom\Record implements Objectable
+class Subm extends Record implements Objectable
 {
-    protected $_id      = null;
-    protected $_chan    = null;
-    
-    protected $_name    = null;
-    protected $_addr    = null;
-    protected $_rin     = null;
-    protected $_rfn     = null;
-    
-    protected $_lang    = array();
-    protected $_phon    = array();
-    
-    protected $_obje    = array();
-    
     /**
-     *
+     * @var string
+     */
+    protected $subm;
+
+    /**
+     * @var Record\Chan
+     */
+    protected $chan;
+
+    /**
+     * @var string
+     */
+    protected $name;
+
+    /**
+     * @var Record\Addr
+     */
+    protected $addr;
+
+    /**
+     * @var string
+     */
+    protected $rin;
+
+    /**
+     * @var string
+     */
+    protected $rfn;
+
+    /**
+     * @var array
+     */
+    protected $lang = array();
+
+    /**
+     * @var array
+     */
+    protected $phon = array();
+
+    /**
+     * @var array
+     */
+    protected $obje = array();
+
+    /**
+     * @param string $subm
+     * @return Subm
+     */
+    public function setSubm($subm)
+    {
+        $this->subm = $subm;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSubm()
+    {
+        return $this->subm;
+    }
+
+    /**
+     * @param string $name
+     * @return Subm
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param array $phon
+     * @return Subm
+     */
+    public function setPhon($phon)
+    {
+        $this->phon = $phon;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getPhon()
+    {
+        return $this->phon;
+    }
+
+    /**
+     * @param string $rfn
+     * @return Subm
+     */
+    public function setRfn($rfn)
+    {
+        $this->rfn = $rfn;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRfn()
+    {
+        return $this->rfn;
+    }
+
+    /**
+     * @param string $rin
+     * @return Subm
+     */
+    public function setRin($rin)
+    {
+        $this->rin = $rin;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRin()
+    {
+        return $this->rin;
+    }
+
+    /**
+     * @param \PhpGedcom\Record\Chan $chan
+     * @return Subm
+     */
+    public function setChan($chan)
+    {
+        $this->chan = $chan;
+        return $this;
+    }
+
+    /**
+     * @return \PhpGedcom\Record\Chan
+     */
+    public function getChan()
+    {
+        return $this->chan;
+    }
+
+    /**
+     * @return array
+     */
+    public function getLang()
+    {
+        return $this->lang;
+    }
+
+    /**
+     * @param string $lang
+     * @return Subm
      */
     public function addLang($lang)
     {
-        $this->_lang[] = $lang;
+        $this->lang[] = $lang;
+        return $this;
     }
-    
+
     /**
-     *
+     * @param Record\Phon $phon
+     * @return Subm
      */
-    public function addPhon(\PhpGedcom\Record\Phon $phon)
+    public function addPhon(Record\Phon $phon)
     {
-        $this->_phon[] = $phon;
+        $this->phon[] = $phon;
+        return $this;
     }
-    
+
     /**
-     *
+     * @return Addr
      */
-    public function setAddr(\PhpGedcom\Record\Addr $addr)
+    public function getAddr()
     {
-        $this->_addr = $addr;
+        return $this->addr;
     }
-    
+
     /**
-     *
+     * @param Addr $addr
+     * @return Subm
      */
-    public function addObje(\PhpGedcom\Record\ObjeRef $obje)
+    public function setAddr(Record\Addr $addr)
     {
-        $this->_obje[] = $obje;
+        $this->addr = $addr;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getObje()
+    {
+        return $this->obje;
+    }
+
+    /**
+     * @param Record\ObjeRef $obje
+     * @return Subm
+     */
+    public function addObje(Record\ObjeRef $obje)
+    {
+        $this->obje[] = $obje;
+        return $this;
     }
 }

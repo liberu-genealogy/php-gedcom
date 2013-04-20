@@ -27,10 +27,11 @@ class Head
     public static function convert(\PhpGedcom\Record\Head &$head, $format = self::GEDCOM55)
     {
         $output = "0 HEAD\n" .
-            \PhpGedcom\Writer\Head\Sour::convert($head->sour, $format) .
-            "1 DEST " . $head->dest . "\n" .
+
+            ($head->getSour() ? Head\Sour::convert($head->getSour(), $format) : '') .
+            //"1 DEST " . $head-> . "\n" .
             "1 DATE " . date("d M Y") . "\n" .
-            "2 TIME " . date("h:i:s") . "\n";
+            "2 TIME " . date("H:i:s") . "\n";
 
         /*
             +1 SUBM @<XREF:SUBM>@  {1:1}

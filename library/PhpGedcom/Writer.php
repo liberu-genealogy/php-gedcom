@@ -14,6 +14,9 @@
 
 namespace PhpGedcom;
 
+use \PhpGedcom\Gedcom;
+use \PhpGedcom\Writer\Head;
+
 /**
  *
  */
@@ -29,11 +32,11 @@ class Writer
      * @param string $format The format to convert the GEDCOM object to
      * @return string The contents of the document in the converted format
      */
-    public static function convert(\PhpGedcom\Gedcom &$gedcom, $format = self::GEDCOM55)
+    public static function convert(Gedcom $gedcom, $format = self::GEDCOM55)
     {
         $head = $gedcom->getHead();
-        
-        $output = \PhpGedcom\Writer\Head::convert($head, $format);
+
+        $output = Head::convert($head, $format);
         
         return $output;
     }

@@ -32,7 +32,7 @@ class Repo extends \PhpGedcom\Parser\Component
         $depth = (int)$record[0];
         
         $repo = new \PhpGedcom\Record\Repo();
-        $repo->setId($identifier);
+        $repo->setRepo($identifier);
         
         $parser->getGedcom()->addRepo($repo);
         

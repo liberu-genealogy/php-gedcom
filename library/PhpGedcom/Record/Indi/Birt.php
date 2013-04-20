@@ -14,10 +14,34 @@
 
 namespace PhpGedcom\Record\Indi;
 
+use PhpGedcom\Record\Indi\Even;
+
 /**
- *
+ * Class Birt
+ * @package PhpGedcom\Record\Indi
  */
-class Birt extends \PhpGedcom\Record\Indi\Even
+class Birt extends Even
 {
-    protected $_famc = null;
+    /**
+     * @var string
+     */
+    protected $famc;
+
+    /**
+     * @param string $famc
+     * @return Birt
+     */
+    public function setFamc($famc)
+    {
+        $this->famc = $famc;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFamc()
+    {
+        return $this->famc;
+    }
 }
