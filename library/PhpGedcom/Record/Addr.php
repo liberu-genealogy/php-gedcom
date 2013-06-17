@@ -59,7 +59,7 @@ class Addr extends Record
 
     /**
      * @param string $addr
-     * return Addr
+     * @return Addr
      */
     public function setAddr($addr)
     {
@@ -77,7 +77,7 @@ class Addr extends Record
 
     /**
      * @param string $adr1
-     * return Addr
+     * @return Addr
      */
     public function setAdr1($adr1)
     {
@@ -95,7 +95,7 @@ class Addr extends Record
 
     /**
      * @param string $adr2
-     * return Addr
+     * @return Addr
      */
     public function setAdr2($adr2)
     {
@@ -113,7 +113,7 @@ class Addr extends Record
 
     /**
      * @param string $city
-     * return Addr
+     * @return Addr
      */
     public function setCity($city)
     {
@@ -131,7 +131,7 @@ class Addr extends Record
 
     /**
      * @param string $stae
-     * return Addr
+     * @return Addr
      */
     public function setStae($stae)
     {
@@ -149,7 +149,7 @@ class Addr extends Record
 
     /**
      * @param string $post
-     * return Addr
+     * @return Addr
      */
     public function setPost($post)
     {
@@ -167,7 +167,7 @@ class Addr extends Record
 
     /**
      * @param string $ctry
-     * return Addr
+     * @return Addr
      */
     public function setCtry($ctry)
     {
