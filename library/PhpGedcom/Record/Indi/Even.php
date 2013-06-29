@@ -205,7 +205,6 @@ class Even extends Record implements Record\Objectable, Record\Sourceable, Recor
      */
     public function getAgnc()
     {
-        return $this;
         return $this->agnc;
     }
 
