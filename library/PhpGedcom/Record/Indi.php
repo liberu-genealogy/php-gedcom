@@ -355,7 +355,7 @@ class Indi extends Record implements Noteable, Objectable, Sourceable
      */
     public function addFams(Indi\Fams $fams)
     {
-        $this->famc[] = $fams;
+        $this->fams[] = $fams;
         return $this;
     }
 
