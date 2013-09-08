@@ -24,7 +24,7 @@ To install php-gedcom in your project using composer, simply add the following r
 
 If you are not using composer, you can download an archive of the source from GitHub and extract it into your project. You'll need to setup an autoloader for the files, unless you go through the painstaking process if requiring all the needed files one-by-one. Something like the following should suffice:
 
-```php:
+```php
 spl_autoload_register(function ($class) {
     $pathToPhpGedcom = __DIR__ . '/library/'; // TODO FIXME
 
@@ -43,7 +43,7 @@ spl_autoload_register(function ($class) {
 
 To parse a GEDCOM file and load it into a collection of PHP Objects, simply instantiate a new Parser object and pass it the file name to parse. The resulting Gedcom object will contain all the information stored within the supplied GEDCOM file:
 
-```php:
+```php
 $parser = new \PhpGedcom\Parser();
 $gedcom = $parser->parse('tmp\gedcom.ged');
 
