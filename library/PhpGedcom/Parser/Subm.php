@@ -50,7 +50,7 @@ class Subm extends \PhpGedcom\Parser\Component
 
             switch ($recordType) {
                 case 'NAME':
-                    $subm->setName(trim($record[2]));
+                    $subm->setName(isset($record[2]) ? trim($record[2]) : '');
                     break;
                 case 'ADDR':
                     $addr = \PhpGedcom\Parser\Addr::parse($parser);
@@ -73,13 +73,13 @@ class Subm extends \PhpGedcom\Parser\Component
                     $subm->setChan($chan);
                     break;
                 case 'RIN':
-                    $subm->setRin(trim($record[2]));
+                    $subm->setRin(isset($record[2]) ? trim($record[2]) : '');
                     break;
                 case 'RFN':
-                    $subm->setRfn(trim($record[2]));
+                    $subm->setRfn(isset($record[2]) ? trim($record[2]) : '');
                     break;
                 case 'LANG':
-                    $subm->addLang(trim($record[2]));
+                    $subm->addLang(isset($record[2]) ? trim($record[2]) : '');
                     break;
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
