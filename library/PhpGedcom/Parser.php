@@ -99,7 +99,26 @@ class Parser
         
         return $this;
     }
-    
+
+    /**
+     * Jump to the next level in the GEDCOM that is <= $level. This will leave the parser at the line above
+     * this level, such that calling $parser->forward() will result in landing at the correct level.
+     *
+     * @param int $level
+     */
+    public function skipToNextLevel($level)
+    {
+        $currentDepth = 999;
+
+        while ($currentDepth > $level) {
+            $this->forward();
+            $record = $this->getCurrentLineRecord();
+            $currentDepth = (int)$record[0];
+        }
+
+        $this->back();
+    }
+
     /**
      *
      */

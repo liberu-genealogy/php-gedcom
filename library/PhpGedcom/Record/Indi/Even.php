@@ -83,6 +83,11 @@ class Even extends Record implements Record\Objectable, Record\Sourceable, Recor
     protected $note = array();
 
     /**
+     * @var Record\Chan
+     */
+    protected $chan;
+
+    /**
      * @return array
      */
     public function getPhon()
@@ -296,5 +301,23 @@ class Even extends Record implements Record\Objectable, Record\Sourceable, Recor
     public function getRef()
     {
         return $this->ref;
+    }
+
+    /**
+     * @return Record\Chan
+     */
+    public function getChan()
+    {
+        return $this->chan;
+    }
+
+    /**
+     * @param Record\Chan $chan
+     * @return $this
+     */
+    public function setChan($chan)
+    {
+        $this->chan = $chan;
+        return $this;
     }
 }

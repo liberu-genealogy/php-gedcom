@@ -14,6 +14,8 @@
 
 namespace PhpGedcom\Parser\Indi;
 
+use PhpGedcom\Parser\Chan;
+
 /**
  *
  *
@@ -94,6 +96,10 @@ class Even extends \PhpGedcom\Parser\Component
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
                     $even->addNote($note);
                     break;
+                case 'CHAN':
+                    $change = Chan::parse($parser);
+                    $even->setChan($change);
+                    break;
                 default:
                     $self = get_called_class();
                     $method = 'parse' . $recordType;
@@ -102,6 +108,7 @@ class Even extends \PhpGedcom\Parser\Component
                         $self::$method($parser, $even);
                     } else {
                         $parser->logUnhandledRecord($self . ' @ ' . __LINE__);
+                        $parser->skipToNextLevel($currentDepth);
                     }
             }
 
