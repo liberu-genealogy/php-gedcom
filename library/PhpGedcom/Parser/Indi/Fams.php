@@ -30,6 +30,12 @@ class Fams extends \PhpGedcom\Parser\Component
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
 
+        if (count($record) < 3) {
+            $parser->logSkippedRecord('Missing family information; ' . get_class(), ' @ ' . __LINE__);
+            $parser->skipToNextLevel($depth);
+            return null;
+        }
+
         $fams = $parser->normalizeIdentifier($record[2]);
 
         $fam = new \PhpGedcom\Record\Indi\Fams();

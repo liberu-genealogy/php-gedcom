@@ -76,11 +76,15 @@ class Indi extends \PhpGedcom\Parser\Component
                     break;
                 case 'FAMS':
                     $fams = \PhpGedcom\Parser\Indi\Fams::parse($parser);
-                    $indi->addFams($fams);
+                    if ($fams) {
+                        $indi->addFams($fams);
+                    }
                     break;
                 case 'FAMC':
                     $famc = \PhpGedcom\Parser\Indi\Famc::parse($parser);
-                    $indi->addFamc($famc);
+                    if ($famc) {
+                        $indi->addFamc($famc);
+                    }
                     break;
                 case 'ASSO':
                     $asso = \PhpGedcom\Parser\Indi\Asso::parse($parser);

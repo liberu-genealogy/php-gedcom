@@ -30,6 +30,12 @@ class Famc extends \PhpGedcom\Parser\Component
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
 
+        if (count($record) < 3) {
+            $parser->logSkippedRecord('Missing family information; ' . get_class(), ' @ ' . __LINE__);
+            $parser->skipToNextLevel($depth);
+            return null;
+        }
+
         $famc = $parser->normalizeIdentifier($record[2]);
 
         $fam = new \PhpGedcom\Record\Indi\Famc();
