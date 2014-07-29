@@ -52,7 +52,9 @@ class RepoRef extends \PhpGedcom\Parser\Component
                     break;
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
-                    $repo->addNote($note);
+                    if ($note) {
+                        $repo->addNote($note);
+                    }
                     break;
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);

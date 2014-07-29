@@ -55,7 +55,9 @@ class Asso extends \PhpGedcom\Parser\Component
                     break;
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
-                    $asso->addNote($note);
+                    if ($note) {
+                        $asso->addNote($note);
+                    }
                     break;
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);

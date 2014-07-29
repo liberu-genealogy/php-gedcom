@@ -93,7 +93,9 @@ class Fam extends \PhpGedcom\Parser\Component
                     break;
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
-                    $fam->addNote($note);
+                    if ($note) {
+                        $fam->addNote($note);
+                    }
                     break;
                 case 'SOUR':
                     $sour = \PhpGedcom\Parser\SourRef::parse($parser);

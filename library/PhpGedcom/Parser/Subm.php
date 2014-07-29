@@ -62,7 +62,9 @@ class Subm extends \PhpGedcom\Parser\Component
                     break;
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
-                    $subm->addNote($note);
+                    if ($note) {
+                        $subm->addNote($note);
+                    }
                     break;
                 case 'OBJE':
                     $obje = \PhpGedcom\Parser\ObjeRef::parse($parser);

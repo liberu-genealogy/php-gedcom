@@ -88,7 +88,9 @@ abstract class Attr extends \PhpGedcom\Parser\Component
                     break;
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
-                    $attr->addNote($note);
+                    if ($note) {
+                        $attr->addNote($note);
+                    }
                     break;
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);

@@ -64,7 +64,9 @@ abstract class Lds extends \PhpGedcom\Parser\Component
                     break;
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
-                    $lds->addNote($note);
+                    if ($note) {
+                        $lds->addNote($note);
+                    }
                     break;
                 default:
                     $self = get_called_class();

@@ -115,7 +115,9 @@ class Indi extends \PhpGedcom\Parser\Component
                     break;
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
-                    $indi->addNote($note);
+                    if ($note) {
+                        $indi->addNote($note);
+                    }
                     break;
                 case 'SOUR':
                     $sour = \PhpGedcom\Parser\SourRef::parse($parser);

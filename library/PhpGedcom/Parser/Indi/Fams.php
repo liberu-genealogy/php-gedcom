@@ -50,7 +50,9 @@ class Fams extends \PhpGedcom\Parser\Component
             switch ($recordType) {
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
-                    $fam->addNote($note);
+                    if ($note) {
+                        $fam->addNote($note);
+                    }
                     break;
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);

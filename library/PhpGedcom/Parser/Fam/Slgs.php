@@ -63,7 +63,9 @@ class Slgs extends \PhpGedcom\Parser\Component
                     break;
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
-                    $slgs->addNote($note);
+                    if ($note) {
+                        $slgs->addNote($note);
+                    }
                     break;
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);

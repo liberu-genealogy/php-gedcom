@@ -229,6 +229,14 @@ class Parser
             (!empty($additionalInfo) ? ' - ' . $additionalInfo : '')
         );
     }
+
+    public function logSkippedRecord($additionalInfo = '')
+    {
+        $this->logError(
+            $this->_linesParsed . ': (Skipping) ' . trim(implode('|', $this->getCurrentLineRecord())) .
+            (!empty($additionalInfo) ? ' - ' . $additionalInfo : '')
+        );
+    }
     
     /**
      *

@@ -54,7 +54,9 @@ class Plac extends \PhpGedcom\Parser\Component
                     break;
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
-                    $plac->addNote($note);
+                    if ($note) {
+                        $plac->addNote($note);
+                    }
                     break;
                 case 'SOUR':
                     $sour = \PhpGedcom\Parser\SourRef::parse($parser);

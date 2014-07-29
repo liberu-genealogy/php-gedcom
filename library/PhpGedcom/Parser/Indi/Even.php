@@ -94,7 +94,9 @@ class Even extends \PhpGedcom\Parser\Component
                     break;
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
-                    $even->addNote($note);
+                    if ($note) {
+                        $even->addNote($note);
+                    }
                     break;
                 case 'CHAN':
                     $change = Chan::parse($parser);

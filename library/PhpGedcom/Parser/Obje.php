@@ -56,7 +56,7 @@ class Obje extends \PhpGedcom\Parser\Component
                     $obje->setTitl(trim($record[2]));
                     break;
                 case 'OBJE':
-                    $obje->setForm($this->normalizeIdentifier($record[2]));
+                    $obje->setForm($parser->normalizeIdentifier($record[2]));
                     break;
                 case 'RIN':
                     $obje->setRin(trim($record[2]));
@@ -70,7 +70,9 @@ class Obje extends \PhpGedcom\Parser\Component
                     break;
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
-                    $obje->addNote($note);
+                    if ($note) {
+                        $obje->addNote($note);
+                    }
                     break;
                 case 'CHAN':
                     $chan = \PhpGedcom\Parser\Chan::parse($parser);

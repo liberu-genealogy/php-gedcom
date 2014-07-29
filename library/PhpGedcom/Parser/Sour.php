@@ -72,7 +72,9 @@ class Sour extends \PhpGedcom\Parser\Component
                     break;
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
-                    $sour->addNote($note);
+                    if ($note) {
+                        $sour->addNote($note);
+                    }
                     break;
                 case 'DATA':
                     $sour->setData(\PhpGedcom\Parser\Sour\Data::parse($parser));

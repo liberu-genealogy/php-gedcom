@@ -56,7 +56,9 @@ class Data extends \PhpGedcom\Parser\Component
                     break;
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
-                    $data->addNote($note);
+                    if ($note) {
+                        $data->addNote($note);
+                    }
                     break;
                 case 'TEXT':
                     $data->setText($parser->parseMultiLineRecord());

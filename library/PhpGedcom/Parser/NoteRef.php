@@ -29,6 +29,12 @@ class NoteRef extends \PhpGedcom\Parser\Component
 
         $note = new \PhpGedcom\Record\NoteRef();
 
+        if (count($record) < 3) {
+            $parser->logSkippedRecord('Missing note information; ' . get_class(), ' @ ' . __LINE__);
+            $parser->skipToNextLevel($depth);
+            return null;
+        }
+
         if (preg_match('/^@(.*)@$/', trim($record[2]))) {
             $note->setIsReference(true);
             $note->setNote($parser->normalizeIdentifier($record[2]));
