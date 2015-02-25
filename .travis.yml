@@ -1,15 +1,24 @@
 language: php
 
 php:
-    - "5.3"
-    - "5.4"
+  - 5.6
+  - 5.5
+  - 5.4
+  - 7
+  - hhvm
+  - hhvm-nightly
+
+matrix:
+  fast_finish: true
+  allow_failures:
+    - php: 7
+    - php: hhvm
+    - php: hhvm-nightly
 
 before_script:
-    - curl -s https://getcomposer.org/installer | php
-    - php composer.phar install --prefer-source --dev
-
+  - curl -s https://getcomposer.org/installer | php
+  - php composer.phar install --prefer-source --dev
 
 script:
-    - vendor/bin/phpunit -c tests/phpunit.xml tests/
-    - vendor/bin/phpcs --standard=PSR2 -n library/ tests/
-
+  - vendor/bin/phpunit -c tests/phpunit.xml tests/
+  - vendor/bin/phpcs --standard=PSR2 -n library/ tests/
