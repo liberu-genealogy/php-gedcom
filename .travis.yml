@@ -16,8 +16,7 @@ matrix:
     - php: hhvm-nightly
 
 before_script:
-  - curl -s https://getcomposer.org/installer | php
-  - php composer.phar install --prefer-source --dev
+  - composer install --prefer-dist --dev
 
 script:
   - vendor/bin/phpunit -c tests/phpunit.xml tests/
