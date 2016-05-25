@@ -1,5 +1,7 @@
 # php-gedcom
 
+## This project is no longer actively maintained. I may pick it back up in the future, but right now I have no need.
+
 [![Build Status](https://secure.travis-ci.org/mrkrstphr/php-gedcom.png?branch=master)](https://travis-ci.org/mrkrstphr/php-gedcom)
 
 ## Requirements
