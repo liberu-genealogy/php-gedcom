@@ -7,7 +7,7 @@
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
- * @package         php-gedcom 
+ * @package         php-gedcom
  * @license         GPL-3.0
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
@@ -20,20 +20,21 @@ namespace PhpGedcom\Record;
 class Obje extends \PhpGedcom\Record implements Noteable
 {
     protected $_id   = null;
-    
+
     protected $_form = null;
     protected $_titl = null;
     protected $_blob = null;
     protected $_rin  = null;
     protected $_chan = null;
-    
+    protected $_file = null;
+
     protected $_refn = array();
-    
+
     /**
      *
      */
     protected $_note = array();
-    
+
     /**
      *
      */
@@ -41,7 +42,7 @@ class Obje extends \PhpGedcom\Record implements Noteable
     {
         $this->_refn[] = $refn;
     }
-    
+
     /**
      *
      */

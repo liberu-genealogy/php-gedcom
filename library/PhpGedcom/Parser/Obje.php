@@ -29,7 +29,7 @@ class Obje extends \PhpGedcom\Parser\Component
     {
         $record = $parser->getCurrentLineRecord();
         $identifier = $parser->normalizeIdentifier($record[1]);
-        $depth = (int)$record[0];
+        $depth = (int) $record[0];
 
         $obje = new \PhpGedcom\Record\Obje();
         $obje->setId($identifier);
@@ -40,7 +40,7 @@ class Obje extends \PhpGedcom\Parser\Component
 
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
-            $currentDepth = (int)$record[0];
+            $currentDepth = (int) $record[0];
             $recordType = strtoupper(trim($record[1]));
 
             if ($currentDepth <= $depth) {
@@ -77,6 +77,9 @@ class Obje extends \PhpGedcom\Parser\Component
                 case 'CHAN':
                     $chan = \PhpGedcom\Parser\Chan::parse($parser);
                     $obje->setChan($chan);
+                    break;
+                case 'FILE':
+                    $obje->setFile(trim($record[2]));
                     break;
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
