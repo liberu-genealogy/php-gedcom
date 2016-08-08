@@ -1,9 +1,5 @@
 # php-gedcom
 
-## This project is no longer actively maintained. I may pick it back up in the future, but right now I have no need.
-
-[![Build Status](https://secure.travis-ci.org/mrkrstphr/php-gedcom.png?branch=master)](https://travis-ci.org/mrkrstphr/php-gedcom)
-
 ## Requirements
 
 * php-gedcom 1.0+ requires PHP 5.3 (or later).
@@ -18,7 +14,7 @@ To install php-gedcom in your project using composer, simply add the following r
 
     {
         "require": {
-            "mrkrstphr/php-gedcom": "1.0.*"
+            "geneanet/php-gedcom": "1.0.*"
         }
     }
 
