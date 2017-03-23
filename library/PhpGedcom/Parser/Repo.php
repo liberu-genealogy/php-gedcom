@@ -61,8 +61,9 @@ class Repo extends \PhpGedcom\Parser\Component
                     $repo->addPhon($phon);
                     break;
                 case 'NOTE':
-                    $note = \PhpGedcom\Parser\NoteRef::parse($parser);
-                    $repo->addNote($note);
+                    if ($note = \PhpGedcom\Parser\NoteRef::parse($parser)) {
+                        $repo->addNote($note);
+                    }
                     break;
                 case 'REFN':
                     $refn = \PhpGedcom\Parser\Refn::parse($parser);
