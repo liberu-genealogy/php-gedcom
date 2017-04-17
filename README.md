@@ -14,7 +14,7 @@ To install php-gedcom in your project using composer, simply add the following r
 
     {
         "require": {
-            "geneanet/php-gedcom": "1.0.*"
+            "skypal/php-gedcom": "1.0.*"
         }
     }
 
