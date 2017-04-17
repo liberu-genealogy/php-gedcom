@@ -37,14 +37,14 @@ class Gedcom
     /**
      * Stores sources cited throughout the GEDCOM file.
      *
-     * @var array
+     * @var \PhpGedcom\Record\Sour[]
      */
     protected $sour = array();
 
     /**
      * Stores all the individuals contained within the GEDCOM file.
      *
-     * @var array
+     * @var \PhpGedcom\Record\Indi[]
      */
     protected $indi = array();
 
@@ -58,28 +58,28 @@ class Gedcom
     /**
      * Stores all the notes contained within the GEDCOM file that are not inline.
      *
-     * @var array
+     * @var \PhpGedcom\Record\Note[]
      */
     protected $note = array();
 
     /**
      * Stores all repositories that are contained within the GEDCOM file and referenced by sources.
      *
-     * @var array
+     * @var \PhpGedcom\Record\Repo[]
      */
     protected $repo = array();
 
     /**
      * Stores all the media objects that are contained within the GEDCOM file.
      *
-     * @var array
+     * @var \PhpGedcom\Record\Obje[]
      */
     protected $obje = array();
 
     /**
      * Stores information about all the submitters to the GEDCOM file.
      *
-     * @var array
+     * @var \PhpGedcom\Record\Subm[]
      */
     protected $subm = array();
 
@@ -196,7 +196,7 @@ class Gedcom
     /**
      * Gets the collection of submitters to the GEDCOM file.
      *
-     * @return array
+     * @return \PhpGedcom\Record\Subm[]
      */
     public function getSubm()
     {
@@ -206,7 +206,7 @@ class Gedcom
     /**
      * Gets the collection of individuals stored in the GEDCOM file.
      *
-     * @return array
+     * @return \PhpGedcom\Record\Indi[]
      */
     public function getIndi()
     {
@@ -216,7 +216,7 @@ class Gedcom
     /**
      * Gets the collection of families stored in the GEDCOM file.
      *
-     * @return array
+     * @return \PhpGedcom\Record\Fam[]
      */
     public function getFam()
     {
@@ -226,7 +226,7 @@ class Gedcom
     /**
      * Gets the collection of repositories stored in the GEDCOM file.
      *
-     * @return array
+     * @return \PhpGedcom\Record\Repo[]
      */
     public function getRepo()
     {
@@ -236,7 +236,7 @@ class Gedcom
     /**
      * Gets the collection of sources stored in the GEDCOM file.
      *
-     * @return array
+     * @return \PhpGedcom\Record\Sour[]
      */
     public function getSour()
     {
@@ -246,7 +246,7 @@ class Gedcom
     /**
      * Gets the collection of note stored in the GEDCOM file.
      *
-     * @return array
+     * @return \PhpGedcom\Record\Note[]
      */
     public function getNote()
     {
@@ -256,7 +256,7 @@ class Gedcom
     /**
      * Gets the collection of objects stored in the GEDCOM file.
      *
-     * @return array
+     * @return \PhpGedcom\Record\Obje[]
      */
     public function getObje()
     {

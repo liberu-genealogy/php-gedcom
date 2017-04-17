@@ -30,104 +30,104 @@ class Indi extends Record implements Noteable, Objectable, Sourceable
      * @var string
      */
     protected $id;
-    
+
     /**
      * @var string
      */
     protected $chan;
     
     /**
-     * @var array
+     * @var Indi\Attr[]
      */
     protected $attr = array();
     
     /**
-     * @var array
+     * @var Indi\Even[]
      */
     protected $even = array();
     
     /**
-     * @var array
+     * @var Indi\Note[]
      */
     protected $note = array();
     
     /**
-     * @var array
+     * @var Obje[]
      */
     protected $obje = array();
     
     /**
-     * @var array
+     * @var Sour[]
      */
     protected $sour = array();
     
     /**
-     * @var array
+     * @var Indi\Name[]
      */
     protected $name = array();
     
     /**
-     * @var array
+     * @var string[]
      */
     protected $alia = array();
     
     /**
-     *
+     * @var string
      */
     protected $sex;
     
     /**
-     *
+     * @var string
      */
     protected $rin;
     
     /**
-     *
+     * @var string
      */
     protected $resn;
     
     /**
-     *
+     * @var string
      */
     protected $rfn;
     
     /**
-     *
+     * @var string
      */
     protected $afn;
     
     /**
-     * @var array
+     * @var Indi\Fams[]
      */
     protected $fams = array();
     
     /**
-     * @var array
+     * @var Indi\Famc[]
      */
     protected $famc = array();
     
     /**
-     * @var array
+     * @var Indi\Asso[]
      */
     protected $asso = array();
     
     /**
-     * @var array
+     * @var string[]
      */
     protected $subm = array();
     
     /**
-     * @var array
+     * @var string[]
      */
     protected $anci = array();
     
     /**
-     * @var array
+     * @var string[]
      */
     protected $desi = array();
     
     /**
-     * @var array
+     * @var Refn[]
      */
     protected $refn = array();
     
@@ -180,7 +180,7 @@ class Indi extends Record implements Noteable, Objectable, Sourceable
     }
 
     /**
-     * @return array
+     * @return Indi\Name[]
      */
     public function getName()
     {
@@ -252,7 +252,7 @@ class Indi extends Record implements Noteable, Objectable, Sourceable
     }
 
     /**
-     * @return array
+     * @return Refn[]
      */
     public function getRefn()
     {
@@ -378,7 +378,7 @@ class Indi extends Record implements Noteable, Objectable, Sourceable
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getAnci()
     {
@@ -396,7 +396,7 @@ class Indi extends Record implements Noteable, Objectable, Sourceable
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getDesi()
     {
@@ -414,7 +414,7 @@ class Indi extends Record implements Noteable, Objectable, Sourceable
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getSubm()
     {
