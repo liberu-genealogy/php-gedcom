@@ -49,9 +49,16 @@ class Gedcom
     protected $indi = array();
 
     /**
-     * Stores all the families contained within the GEDCOM file.
+     * Stores all the individuals contained within the GEDCOM file.
      *
      * @var array
+     */
+    protected $uid2indi = array();
+
+    /**
+     * Stores all the families contained within the GEDCOM file.
+     *
+     * @var \PhpGedcom\Record\Fam[]
      */
     protected $fam  = array();
 
@@ -121,6 +128,9 @@ class Gedcom
     public function addIndi(Record\Indi $indi)
     {
         $this->indi[$indi->getId()] = $indi;
+        if ($indi->getUid()) {
+            $this->uid2indi[$indi->getUid()] = $indi;
+        }
     }
 
     /**

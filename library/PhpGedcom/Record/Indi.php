@@ -34,6 +34,11 @@ class Indi extends Record implements Noteable, Objectable, Sourceable
     /**
      * @var string
      */
+    protected $uid;
+
+    /**
+     * @var string
+     */
     protected $chan;
     
     /**
@@ -167,6 +172,24 @@ class Indi extends Record implements Noteable, Objectable, Sourceable
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @param string $uid
+     * @return Indi
+     */
+    public function setUid($uid)
+    {
+        $this->uid = $uid;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUid()
+    {
+        return $this->uid;
     }
 
     /**

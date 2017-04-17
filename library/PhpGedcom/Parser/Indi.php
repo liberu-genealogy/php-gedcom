@@ -48,6 +48,9 @@ class Indi extends \PhpGedcom\Parser\Component
             }
 
             switch ($recordType) {
+                case '_UID':
+                    $indi->setUid(trim($record[2]));
+                    break;
                 case 'NAME':
                     $name = \PhpGedcom\Parser\Indi\Name::parse($parser);
                     $indi->addName($name);
