@@ -43,12 +43,17 @@ class Parser
      *
      */
     protected $_line            = '';
-    
+
     /**
      *
      */
     protected $_lineRecord      = null;
-    
+
+    /**
+     *
+     */
+    protected $_linePices      = 0;
+
     /**
      *
      */
@@ -197,7 +202,9 @@ class Parser
     public function getCurrentLineRecord($pieces = 3)
     {
         if (!is_null($this->_lineRecord)) {
-            return $this->_lineRecord;
+            if ($this->_linePieces == $pieces) {
+                return $this->_lineRecord;
+            }
         }
         
         if (empty($this->_line)) {
@@ -207,6 +214,7 @@ class Parser
         $line = trim($this->_line);
         
         $this->_lineRecord = explode(' ', $line, $pieces);
+        $this->_linePieces = $pieces;
         
         return $this->_lineRecord;
     }

@@ -40,10 +40,6 @@ class Note extends \PhpGedcom\Parser\Component
 
         $parser->getGedcom()->addNote($note);
 
-        if (isset($record[3])) {
-            $note->note = $record[3];
-        }
-
         $parser->forward();
 
         while (!$parser->eof()) {
