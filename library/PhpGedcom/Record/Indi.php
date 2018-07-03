@@ -233,7 +233,7 @@ class Indi extends Record implements Noteable, Objectable, Sourceable
    */
   public function getAttr($key = '')
   {
-    if($this->attr[strtoupper($key)])
+    if(isset($this->attr[strtoupper($key)]))
     return $this->attr[strtoupper($key)];
   }
 
