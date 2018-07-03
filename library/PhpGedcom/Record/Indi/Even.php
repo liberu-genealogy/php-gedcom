@@ -7,7 +7,7 @@
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
- * @package         php-gedcom 
+ * @package         php-gedcom
  * @license         GPL-3.0
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
@@ -66,17 +66,17 @@ class Even extends Record implements Record\Objectable, Record\Sourceable, Recor
      * @var array
      */
     public $ref = array();
-    
+
     /**
      * @var array
      */
     protected $obje = array();
-    
+
     /**
      * @var array
      */
     protected $sour = array();
-    
+
     /**
      * @var array
      */
@@ -99,7 +99,7 @@ class Even extends Record implements Record\Objectable, Record\Sourceable, Recor
      * @param Record\Phon $phon
      * @return Even
      */
-    public function addPhon(Record\Phon $phon)
+    public function addPhon($phon = new Record\Phon)
     {
         $this->phon[] = $phon;
         return $this;
@@ -117,7 +117,7 @@ class Even extends Record implements Record\Objectable, Record\Sourceable, Recor
      * @param Record\ObjeRef $obje
      * @return Even
      */
-    public function addObje(Record\ObjeRef $obje)
+    public function addObje($obje = new Record\ObjeRef)
     {
         $this->obje[] = $obje;
         return $this;
@@ -135,7 +135,7 @@ class Even extends Record implements Record\Objectable, Record\Sourceable, Recor
      * @param Record\SourRef $sour
      * @return Even
      */
-    public function addSour(Record\SourRef $sour)
+    public function addSour($sour = new Record\SourRef)
     {
         $this->sour[] = $sour;
         return $this;
@@ -153,7 +153,7 @@ class Even extends Record implements Record\Objectable, Record\Sourceable, Recor
      * @param Record\NoteRef $note
      * @return Even
      */
-    public function addNote(Record\NoteRef $note)
+    public function addNote($note = new Record\NoteRef)
     {
         $this->note[] = $note;
         return $this;
@@ -163,7 +163,7 @@ class Even extends Record implements Record\Objectable, Record\Sourceable, Recor
      * @param \PhpGedcom\Record\Addr $addr
      * @return Even
      */
-    public function setAddr(Record\Addr $addr)
+    public function setAddr($addr = new Record\Addr)
     {
         $this->addr = $addr;
         return $this;
@@ -181,7 +181,7 @@ class Even extends Record implements Record\Objectable, Record\Sourceable, Recor
      * @param string $age
      * @return Even
      */
-    public function setAge($age)
+    public function setAge($age = '')
     {
         $this->age = $age;
         return $this;
@@ -199,7 +199,7 @@ class Even extends Record implements Record\Objectable, Record\Sourceable, Recor
      * @param string $agnc
      * @return Even
      */
-    public function setAgnc($agnc)
+    public function setAgnc($agnc = '')
     {
         $this->agnc = $agnc;
         return $this;
@@ -217,7 +217,7 @@ class Even extends Record implements Record\Objectable, Record\Sourceable, Recor
      * @param string $caus
      * @return Even
      */
-    public function setCaus($caus)
+    public function setCaus($caus = '')
     {
         $this->caus = $caus;
         return $this;
@@ -235,7 +235,7 @@ class Even extends Record implements Record\Objectable, Record\Sourceable, Recor
      * @param string $date
      * @return Even
      */
-    public function setDate($date)
+    public function setDate($date = '')
     {
         $this->date = $date;
         return $this;
@@ -253,7 +253,7 @@ class Even extends Record implements Record\Objectable, Record\Sourceable, Recor
      * @param \PhpGedcom\Record\Indi\Even\Plac $plac
      * @return Even
      */
-    public function setPlac(Record\Indi\Even\Plac $plac)
+    public function setPlac($plac = new Record\Indi\Even\Plac)
     {
         $this->plac = $plac;
         return $this;
@@ -271,7 +271,7 @@ class Even extends Record implements Record\Objectable, Record\Sourceable, Recor
      * @param string $type
      * @return Even
      */
-    public function setType($type)
+    public function setType($type = '')
     {
         $this->type = $type;
         return $this;
@@ -289,7 +289,7 @@ class Even extends Record implements Record\Objectable, Record\Sourceable, Recor
      * @param array $ref
      * @return Even
      */
-    public function setRef($ref)
+    public function setRef($ref = '')
     {
         $this->ref = $ref;
         return $this;
@@ -315,7 +315,7 @@ class Even extends Record implements Record\Objectable, Record\Sourceable, Recor
      * @param Record\Chan $chan
      * @return $this
      */
-    public function setChan($chan)
+    public function setChan($chan = new Record\Chan)
     {
         $this->chan = $chan;
         return $this;

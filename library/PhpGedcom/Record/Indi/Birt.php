@@ -7,7 +7,7 @@
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
- * @package         php-gedcom 
+ * @package         php-gedcom
  * @license         GPL-3.0
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
@@ -31,7 +31,7 @@ class Birt extends Even
      * @param string $famc
      * @return Birt
      */
-    public function setFamc($famc)
+    public function setFamc($famc = '')
     {
         $this->famc = $famc;
         return $this;

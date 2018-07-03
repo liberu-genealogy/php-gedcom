@@ -7,7 +7,7 @@
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
- * @package         php-gedcom 
+ * @package         php-gedcom
  * @license         GPL-3.0
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
@@ -36,7 +36,7 @@ class Data extends Record
      * @param string $text
      * @return Data
      */
-    public function setText($text)
+    public function setText($text = '')
     {
         $this->text = $text;
         return $this;
@@ -54,7 +54,7 @@ class Data extends Record
      * @param string $date
      * @return Data
      */
-    public function setDate($date)
+    public function setDate($date = '')
     {
         $this->date = $date;
         return $this;

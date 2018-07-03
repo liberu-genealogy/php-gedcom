@@ -93,7 +93,7 @@ class Fam extends \PhpGedcom\Record implements Noteable, Sourceable, Objectable
     /**
      *
      */
-    public function addEven(\PhpGedcom\Record\Fam\Even $even)
+    public function addEven($even = [])
     {
         $this->_even[$even->getType()] = $even;
     }
@@ -109,7 +109,7 @@ class Fam extends \PhpGedcom\Record implements Noteable, Sourceable, Objectable
   /**
    * @return array
    */
-  public function getEven(string $key)
+  public function getEven($key = '')
   {
     return $this->_even[strtoupper($key)];
   }
@@ -117,7 +117,7 @@ class Fam extends \PhpGedcom\Record implements Noteable, Sourceable, Objectable
   /**
      *
      */
-    public function addSlgs(\PhpGedcom\Record\Fam\Slgs $slgs)
+    public function addSlgs($slgs = [])
     {
         $this->_slgs[] = $slgs;
     }
@@ -126,7 +126,7 @@ class Fam extends \PhpGedcom\Record implements Noteable, Sourceable, Objectable
      *
      *
      */
-    public function addRefn(\PhpGedcom\Record\Refn $refn)
+    public function addRefn($refn = [])
     {
         $this->_refn[] = $refn;
     }
@@ -134,7 +134,7 @@ class Fam extends \PhpGedcom\Record implements Noteable, Sourceable, Objectable
     /**
      *
      */
-    public function addNote(\PhpGedcom\Record\NoteRef $note)
+    public function addNote($note = [])
     {
         $this->_note[] = $note;
     }
@@ -142,7 +142,7 @@ class Fam extends \PhpGedcom\Record implements Noteable, Sourceable, Objectable
     /**
      *
      */
-    public function addSour(\PhpGedcom\Record\SourRef $sour)
+    public function addSour($sour = [])
     {
         $this->_sour[] = $sour;
     }
@@ -150,7 +150,7 @@ class Fam extends \PhpGedcom\Record implements Noteable, Sourceable, Objectable
     /**
      *
      */
-    public function addObje(\PhpGedcom\Record\ObjeRef $obje)
+    public function addObje($obje = [])
     {
         $this->_obje[] = $obje;
     }

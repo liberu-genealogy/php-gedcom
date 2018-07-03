@@ -7,7 +7,7 @@
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
- * @package         php-gedcom 
+ * @package         php-gedcom
  * @license         GPL-3.0
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
@@ -31,7 +31,7 @@ class Phon extends Record
      * @param $phon
      * @return Phon
      */
-    public function setPhon($phon)
+    public function setPhon($phon = [])
     {
         $this->phon = $phon;
         return $this;

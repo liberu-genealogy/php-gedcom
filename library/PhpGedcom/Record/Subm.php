@@ -7,7 +7,7 @@
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
- * @package         php-gedcom 
+ * @package         php-gedcom
  * @license         GPL-3.0
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
@@ -71,7 +71,7 @@ class Subm extends Record implements Objectable
      * @param string $subm
      * @return Subm
      */
-    public function setSubm($subm)
+    public function setSubm($subm = '')
     {
         $this->subm = $subm;
         return $this;
@@ -89,7 +89,7 @@ class Subm extends Record implements Objectable
      * @param string $name
      * @return Subm
      */
-    public function setName($name)
+    public function setName($name = '')
     {
         $this->name = $name;
         return $this;
@@ -107,7 +107,7 @@ class Subm extends Record implements Objectable
      * @param array $phon
      * @return Subm
      */
-    public function setPhon($phon)
+    public function setPhon($phon = [])
     {
         $this->phon = $phon;
         return $this;
@@ -125,7 +125,7 @@ class Subm extends Record implements Objectable
      * @param string $rfn
      * @return Subm
      */
-    public function setRfn($rfn)
+    public function setRfn($rfn = '')
     {
         $this->rfn = $rfn;
         return $this;
@@ -143,7 +143,7 @@ class Subm extends Record implements Objectable
      * @param string $rin
      * @return Subm
      */
-    public function setRin($rin)
+    public function setRin($rin = '')
     {
         $this->rin = $rin;
         return $this;
@@ -161,7 +161,7 @@ class Subm extends Record implements Objectable
      * @param \PhpGedcom\Record\Chan $chan
      * @return Subm
      */
-    public function setChan($chan)
+    public function setChan($chan = [])
     {
         $this->chan = $chan;
         return $this;
@@ -187,7 +187,7 @@ class Subm extends Record implements Objectable
      * @param string $lang
      * @return Subm
      */
-    public function addLang($lang)
+    public function addLang($lang = '')
     {
         $this->lang[] = $lang;
         return $this;
@@ -197,7 +197,7 @@ class Subm extends Record implements Objectable
      * @param Record\Phon $phon
      * @return Subm
      */
-    public function addPhon(Record\Phon $phon)
+    public function addPhon($phon = [])
     {
         $this->phon[] = $phon;
         return $this;
@@ -215,7 +215,7 @@ class Subm extends Record implements Objectable
      * @param Addr $addr
      * @return Subm
      */
-    public function setAddr(Record\Addr $addr)
+    public function setAddr($addr = [])
     {
         $this->addr = $addr;
         return $this;
@@ -233,7 +233,7 @@ class Subm extends Record implements Objectable
      * @param Record\ObjeRef $obje
      * @return Subm
      */
-    public function addObje(Record\ObjeRef $obje)
+    public function addObje($obje = [])
     {
         $this->obje[] = $obje;
         return $this;

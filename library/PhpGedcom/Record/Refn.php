@@ -7,7 +7,7 @@
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
- * @package         php-gedcom 
+ * @package         php-gedcom
  * @license         GPL-3.0
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
@@ -36,7 +36,7 @@ class Refn extends Record
      * @param string $refn
      * @return Refn
      */
-    public function setRefn($refn)
+    public function setRefn($refn = '')
     {
         $this->refn = $refn;
         return $this;
@@ -54,7 +54,7 @@ class Refn extends Record
      * @param string $type
      * @return Refn
      */
-    public function setType($type)
+    public function setType($type = '')
     {
         $this->type = $type;
         return $this;

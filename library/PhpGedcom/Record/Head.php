@@ -7,7 +7,7 @@
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
- * @package         php-gedcom 
+ * @package         php-gedcom
  * @license         GPL-3.0
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
@@ -25,72 +25,72 @@ class Head extends Record
      * @var Head\Sour
      */
     protected $sour = null;
-    
+
     /**
      * @var string
      */
     protected $dest = null;
-    
+
     /**
      * @var Head\Date
      */
     protected $date = null;
-    
+
     /**
      * @var string
      */
     protected $subm = null;
-    
+
     /**
      * @var string
      */
     protected $subn = null;
-    
+
     /**
      * @var string
      */
     protected $file = null;
-    
+
     /**
      * @var string
      */
     protected $copr = null;
-    
+
     /**
      * @var Head\Gedc
      */
     protected $gedc = null;
-    
+
     /**
      * @var Head\Char
      */
     protected $char = null;
-    
+
     /**
      * @var string
      */
     protected $lang = null;
-    
+
     /**
      * @var Head\Plac
      */
     protected $plac = null;
-    
+
     /**
      * @var string
      */
     protected $note = null;
-    
+
     /**
      * @param \PhpGedcom\Record\Head\Sour $sour
      * @return Head
      */
-    public function setSour(Head\Sour $sour)
+    public function setSour($sour = new Head\Sour)
     {
         $this->sour = $sour;
         return $this;
     }
-    
+
     /**
      * @return \PhpGedcom\Record\Head\Sour
      */
@@ -98,17 +98,17 @@ class Head extends Record
     {
         return $this->sour;
     }
-    
+
     /**
      * @param \PhpGedcom\Record\Head\Date $date
      * @return Head
      */
-    public function setDate(Head\Date $date)
+    public function setDate($date = new Head\Date)
     {
         $this->date = $date;
         return $this;
     }
-    
+
     /**
      * @return \PhpGedcom\Record\Head\Date
      */
@@ -116,17 +116,17 @@ class Head extends Record
     {
         return $this->date;
     }
-    
+
     /**
      * @param \PhpGedcom\Record\Head\Gedc $gedc
      * @return Head
      */
-    public function setGedc(Head\Gedc $gedc)
+    public function setGedc($gedc = new Head\Gedc)
     {
         $this->gedc = $gedc;
         return $this;
     }
-    
+
     /**
      * @return \PhpGedcom\Record\Head\Gedc
      */
@@ -134,17 +134,17 @@ class Head extends Record
     {
         return $this->gedc;
     }
-    
+
     /**
      * @param \PhpGedcom\Record\Head\Char $char
      * @return Head
      */
-    public function setChar(Head\Char $char)
+    public function setChar($char = new Head\Char)
     {
         $this->char = $char;
         return $this;
     }
-    
+
     /**
      * @return \PhpGedcom\Record\Head\Char
      */
@@ -152,17 +152,17 @@ class Head extends Record
     {
         return $this->char;
     }
-    
+
     /**
      * @param \PhpGedcom\Record\Head\Plac $plac
      * @return Head
      */
-    public function setPlac(Head\Plac $plac)
+    public function setPlac($plac = new Head\Plac)
     {
         $this->plac = $plac;
         return $this;
     }
-    
+
     /**
      * @return \PhpGedcom\Record\Head\Plac
      */
@@ -175,7 +175,7 @@ class Head extends Record
      * @param string $subm
      * @return Head
      */
-    public function setSubm($subm)
+    public function setSubm($subm = '')
     {
         $this->subm = $subm;
         return $this;
@@ -193,7 +193,7 @@ class Head extends Record
      * @param string $subn
      * @return Head
      */
-    public function setSubn($subn)
+    public function setSubn($subn = '')
     {
         $this->subn = $subn;
         return $this;
@@ -211,7 +211,7 @@ class Head extends Record
      * @param string $lang
      * @return Head
      */
-    public function setLang($lang)
+    public function setLang($lang = '')
     {
         $this->lang = $lang;
         return $this;
@@ -229,7 +229,7 @@ class Head extends Record
      * @param string $file
      * @return Head
      */
-    public function setFile($file)
+    public function setFile($file = '')
     {
         $this->file = $file;
         return $this;
@@ -247,7 +247,7 @@ class Head extends Record
      * @param string $dest
      * @return Head
      */
-    public function setDest($dest)
+    public function setDest($dest = '')
     {
         $this->dest = $dest;
         return $this;
@@ -265,7 +265,7 @@ class Head extends Record
      * @param string $copr
      * @return Head
      */
-    public function setCopr($copr)
+    public function setCopr($copr = '')
     {
         $this->copr = $copr;
         return $this;
@@ -283,7 +283,7 @@ class Head extends Record
      * @param string $note
      * @return Head
      */
-    public function setNote($note)
+    public function setNote($note = '')
     {
         $this->note = $note;
         return $this;

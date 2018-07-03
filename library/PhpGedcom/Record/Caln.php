@@ -7,7 +7,7 @@
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
- * @package         php-gedcom 
+ * @package         php-gedcom
  * @license         GPL-3.0
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
@@ -36,7 +36,7 @@ class Caln extends Record
      * @param string $caln
      * @return Caln
      */
-    public function setCaln($caln)
+    public function setCaln($caln = '')
     {
         $this->caln = $caln;
         return $this;
@@ -54,7 +54,7 @@ class Caln extends Record
      * @param string $medi
      * @return Caln
      */
-    public function setMedi($medi)
+    public function setMedi($medi = '')
     {
         $this->medi = $medi;
         return $this;

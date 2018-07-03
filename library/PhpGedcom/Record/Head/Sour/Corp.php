@@ -7,7 +7,7 @@
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
- * @package         php-gedcom 
+ * @package         php-gedcom
  * @license         GPL-3.0
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
@@ -21,14 +21,14 @@ class Corp extends \PhpGedcom\Record
 {
     protected $_corp = null;
     protected $_addr = null;
-    
+
     protected $_phon = array();
-    
+
     /**
      *
      *
      */
-    public function addPhon($phon)
+    public function addPhon($phon = [])
     {
         $this->_phon[] = $phon;
     }

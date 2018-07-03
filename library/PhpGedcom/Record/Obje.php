@@ -38,7 +38,7 @@ class Obje extends \PhpGedcom\Record implements Noteable
     /**
      *
      */
-    public function addRefn(\PhpGedcom\Record\Refn $refn)
+    public function addRefn($refn = [])
     {
         $this->_refn[] = $refn;
     }
@@ -46,7 +46,7 @@ class Obje extends \PhpGedcom\Record implements Noteable
     /**
      *
      */
-    public function addNote(\PhpGedcom\Record\NoteRef $note)
+    public function addNote($note = [])
     {
         $this->_note[] = $note;
     }

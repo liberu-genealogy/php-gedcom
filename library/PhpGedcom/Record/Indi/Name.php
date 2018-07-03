@@ -7,7 +7,7 @@
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
- * @package         php-gedcom 
+ * @package         php-gedcom
  * @license         GPL-3.0
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
@@ -26,29 +26,29 @@ class Name extends \PhpGedcom\Record implements \PhpGedcom\Record\Sourceable
     protected $_spfx = null;
     protected $_surn = null;
     protected $_nsfx = null;
-    
+
     /**
      *
      */
     protected $_note = array();
-    
+
     /**
      *
      */
     protected $_sour = array();
-    
+
     /**
      *
      */
-    public function addSour(\PhpGedcom\Record\SourRef $sour)
+    public function addSour($sour = [])
     {
         $this->_sour[] = $sour;
     }
-    
+
     /**
      *
      */
-    public function addNote(\PhpGedcom\Record\NoteRef $note)
+    public function addNote($note = [])
     {
         $this->_note[] = $note;
     }

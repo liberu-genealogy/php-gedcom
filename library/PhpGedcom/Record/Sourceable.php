@@ -7,7 +7,7 @@
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
- * @package         php-gedcom 
+ * @package         php-gedcom
  * @license         GPL-3.0
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
@@ -22,5 +22,5 @@ interface Sourceable
     /**
      *
      */
-    public function addSour(\PhpGedcom\Record\SourRef $sour);
+    public function addSour($sour = []);
 }

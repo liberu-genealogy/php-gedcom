@@ -7,7 +7,7 @@
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
- * @package         php-gedcom 
+ * @package         php-gedcom
  * @license         GPL-3.0
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
@@ -66,7 +66,7 @@ class Subn extends Record
      * @param string $subn
      * @return Subn
      */
-    public function setSubn($subn)
+    public function setSubn($subn = '')
     {
         $this->subn = $subn;
         return $this;
@@ -84,7 +84,7 @@ class Subn extends Record
      * @param string $subm
      * @return Subn
      */
-    public function setSubm($subm)
+    public function setSubm($subm = '')
     {
         $this->subm = $subm;
         return $this;
@@ -102,7 +102,7 @@ class Subn extends Record
      * @param string $famf
      * @return Subn
      */
-    public function setFamf($famf)
+    public function setFamf($famf = '')
     {
         $this->famf = $famf;
         return $this;
@@ -120,7 +120,7 @@ class Subn extends Record
      * @param string $temp
      * @return Subn
      */
-    public function setTemp($temp)
+    public function setTemp($temp = '')
     {
         $this->temp = $temp;
         return $this;
@@ -138,7 +138,7 @@ class Subn extends Record
      * @param string $ance
      * @return Subn
      */
-    public function setAnce($ance)
+    public function setAnce($ance = '')
     {
         $this->ance = $ance;
         return $this;
@@ -156,7 +156,7 @@ class Subn extends Record
      * @param string $desc
      * @return Subn
      */
-    public function setDesc($desc)
+    public function setDesc($desc = '')
     {
         $this->desc = $desc;
         return $this;
@@ -174,7 +174,7 @@ class Subn extends Record
      * @param string $ordi
      * @return Subn
      */
-    public function setOrdi($ordi)
+    public function setOrdi($ordi = '')
     {
         $this->ordi = $ordi;
         return $this;
@@ -192,7 +192,7 @@ class Subn extends Record
      * @param string $rin
      * @return Subn
      */
-    public function setRin($rin)
+    public function setRin($rin = '')
     {
         $this->rin = $rin;
         return $this;

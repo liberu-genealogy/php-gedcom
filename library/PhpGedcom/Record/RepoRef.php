@@ -31,7 +31,7 @@ class RepoRef extends \PhpGedcom\Record implements Noteable
     /**
      *
      */
-    public function addNote(\PhpGedcom\Record\NoteRef $note)
+    public function addNote($note = [])
     {
         $this->_note[] = $note;
     }

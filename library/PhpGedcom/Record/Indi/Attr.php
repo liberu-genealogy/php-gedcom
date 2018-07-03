@@ -7,7 +7,7 @@
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
- * @package         php-gedcom 
+ * @package         php-gedcom
  * @license         GPL-3.0
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
@@ -25,42 +25,42 @@ class Attr extends \PhpGedcom\Record\Indi\Even implements Sourceable, Noteable, 
 {
     protected $type = null;
     protected $_attr = null;
-    
+
     /**
      *
      */
     protected $sour = array();
-    
+
     /**
      *
      */
     protected $note = array();
-    
+
     /**
      *
      */
     protected $obje = array();
-    
+
     /**
      *
      */
-    public function addSour(\PhpGedcom\Record\SourRef $sour)
+    public function addSour($sour = [])
     {
         $this->sour[] = $sour;
     }
-    
+
     /**
      *
      */
-    public function addNote(\PhpGedcom\Record\NoteRef $note)
+    public function addNote($note = [])
     {
         $this->note[] = $note;
     }
-    
+
     /**
      *
      */
-    public function addObje(\PhpGedcom\Record\ObjeRef $obje)
+    public function addObje($obje = [])
     {
         $this->obje[] = $obje;
     }

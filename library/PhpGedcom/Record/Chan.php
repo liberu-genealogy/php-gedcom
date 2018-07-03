@@ -7,7 +7,7 @@
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
- * @package         php-gedcom 
+ * @package         php-gedcom
  * @license         GPL-3.0
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
@@ -41,7 +41,7 @@ class Chan extends Record
      * @param string $date
      * @return Chan
      */
-    public function setDate($date)
+    public function setDate($date = '')
     {
         $this->date = $date;
         return $this;
@@ -59,7 +59,7 @@ class Chan extends Record
      * @param Record\NoteRef $note
      * @return Chan
      */
-    public function addNote(Record\NoteRef $note)
+    public function addNote($note = [])
     {
         $this->note[] = $note;
         return $this;
@@ -77,7 +77,7 @@ class Chan extends Record
      * @param string $time
      * @return Chan
      */
-    public function setTime($time)
+    public function setTime($time = '')
     {
         $this->time = $time;
         return $this;

@@ -7,7 +7,7 @@
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
- * @package         php-gedcom 
+ * @package         php-gedcom
  * @license         GPL-3.0
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
@@ -24,26 +24,26 @@ class Data extends \PhpGedcom\Record implements Noteable
     protected $_even = array();
     protected $_agnc = null;
     protected $_date = null;
-    
+
     protected $_text = array();
-    
+
     /**
      *
      */
     protected $_note = array();
-    
+
     /**
      *
      */
-    public function addText($text)
+    public function addText($text = [])
     {
         $this->_text[] = $text;
     }
-    
+
     /**
      *
      */
-    public function addNote(\PhpGedcom\Record\NoteRef $note)
+    public function addNote($note = [])
     {
         $this->_note[] = $note;
     }

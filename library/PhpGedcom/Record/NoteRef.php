@@ -7,7 +7,7 @@
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
- * @package         php-gedcom 
+ * @package         php-gedcom
  * @license         GPL-3.0
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
@@ -25,17 +25,17 @@ class NoteRef extends \PhpGedcom\Record implements Sourceable
      *
      */
     protected $_isRef   = false;
-    
+
     /**
      *
      */
     protected $_note    = '';
-    
+
     /**
      *
      */
     protected $_sour = array();
-    
+
     /**
      *
      */
@@ -43,7 +43,7 @@ class NoteRef extends \PhpGedcom\Record implements Sourceable
     {
         $this->_isRef = $isReference;
     }
-    
+
     /**
      *
      */
@@ -51,11 +51,11 @@ class NoteRef extends \PhpGedcom\Record implements Sourceable
     {
         return $this->_isRef;
     }
-    
+
     /**
      *
      */
-    public function addSour(\PhpGedcom\Record\SourRef $sour)
+    public function addSour($sour = [])
     {
         $this->_sour[] = $sour;
     }

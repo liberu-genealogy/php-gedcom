@@ -7,7 +7,7 @@
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
- * @package         php-gedcom 
+ * @package         php-gedcom
  * @license         GPL-3.0
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
@@ -31,12 +31,12 @@ class Plac extends Record implements Record\Noteable, Record\Sourceable
      * @var string
      */
     protected $form;
-    
+
     /**
      * @var array
      */
     protected $note = array();
-    
+
     /**
      * @var array
      */
@@ -46,7 +46,7 @@ class Plac extends Record implements Record\Noteable, Record\Sourceable
      * @param string $form
      * @return Plac
      */
-    public function setForm($form)
+    public function setForm($form = '')
     {
         $this->form = $form;
         return $this;
@@ -64,7 +64,7 @@ class Plac extends Record implements Record\Noteable, Record\Sourceable
      * @param string $plac
      * @return Plac
      */
-    public function setPlac($plac)
+    public function setPlac($plac = '')
     {
         $this->plac = $plac;
         return $this;
@@ -90,7 +90,7 @@ class Plac extends Record implements Record\Noteable, Record\Sourceable
      * @param Record\NoteRef $note
      * @return Plac
      */
-    public function addNote(Record\NoteRef $note)
+    public function addNote($note = [])
     {
         $this->note[] = $note;
         return $this;
@@ -108,7 +108,7 @@ class Plac extends Record implements Record\Noteable, Record\Sourceable
      * @param Record\SourRef $sour
      * @return Plac
      */
-    public function addSour(Record\SourRef $sour)
+    public function addSour($sour = [])
     {
         $this->sour[] = $sour;
         return $this;
