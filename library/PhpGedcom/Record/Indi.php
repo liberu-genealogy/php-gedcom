@@ -260,6 +260,7 @@ class Indi extends Record implements Noteable, Objectable, Sourceable
    */
   public function getEven($key = '')
   {
+    if(isset($this->even[strtoupper($key)]))
     return $this->even[strtoupper($key)];
   }
 
