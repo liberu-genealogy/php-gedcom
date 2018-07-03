@@ -111,6 +111,7 @@ class Fam extends \PhpGedcom\Record implements Noteable, Sourceable, Objectable
    */
   public function getEven($key = '')
   {
+    if(isset($this->_even[strtoupper($key)]))
     return $this->_even[strtoupper($key)];
   }
 
