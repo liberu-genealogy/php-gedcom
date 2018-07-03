@@ -29,9 +29,15 @@ abstract class Lds extends \PhpGedcom\Parser\Component
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
+        if(isset($record[1])){
+          $className = '\\PhpGedcom\\Record\\Indi\\' . ucfirst(strtolower(trim($record[1])));
+          $lds = new $className();
+        }
+        else{
+           $parser->skipToNextLevel($depth);
+           return null;
+        }
 
-        $className = '\\PhpGedcom\\Record\\Indi\\' . ucfirst(strtolower(trim($record[1])));
-        $lds = new $className();
 
         $parser->forward();
 

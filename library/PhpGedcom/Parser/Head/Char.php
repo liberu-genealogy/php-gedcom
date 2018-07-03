@@ -29,9 +29,15 @@ class Char extends \PhpGedcom\Parser\Component
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
+        if(isset($record[2])){
+          $char = new \PhpGedcom\Record\Head\Char();
+          $char->setChar(trim($record[2]));
+        }
+        else{
+           $parser->skipToNextLevel($depth);
+           return null;
+        }
 
-        $char = new \PhpGedcom\Record\Head\Char();
-        $char->setChar(trim($record[2]));
 
         $parser->forward();
 

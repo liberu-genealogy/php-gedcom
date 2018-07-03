@@ -29,11 +29,17 @@ abstract class Attr extends \PhpGedcom\Parser\Component
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
+        if(isset($record[1])){
+          $className = '\\PhpGedcom\\Record\\Indi\\' . ucfirst(strtolower(trim($record[1])));
+          $attr = new $className();
 
-        $className = '\\PhpGedcom\\Record\\Indi\\' . ucfirst(strtolower(trim($record[1])));
-        $attr = new $className();
+          $attr->setType(trim($record[1]));
+        }
+        else{
+           $parser->skipToNextLevel($depth);
+           return null;
+        }
 
-        $attr->setType(trim($record[1]));
 
         if (isset($record[2])) {
             $attr->setAttr(trim($record[2]));

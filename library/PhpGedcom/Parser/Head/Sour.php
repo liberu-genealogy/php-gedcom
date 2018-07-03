@@ -29,9 +29,14 @@ class Sour extends \PhpGedcom\Parser\Component
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
-
-        $source = new \PhpGedcom\Record\Head\Sour();
-        $source->setSour(trim($record[2]));
+        if(isset($record[2])){
+          $source = new \PhpGedcom\Record\Head\Sour();
+          $source->setSour(trim($record[2]));
+        }
+        else{
+           $parser->skipToNextLevel($depth);
+           return null;
+        }
 
         $parser->forward();
 

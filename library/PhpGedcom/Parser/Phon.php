@@ -29,9 +29,15 @@ class Phon extends \PhpGedcom\Parser\Component
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
+        if(isset($record[2])){
+          $phone = new \PhpGedcom\Record\Phon();
+          $phone->setPhon(trim($record[2]));
+        }
+        else{
+           $parser->skipToNextLevel($depth);
+           return null;
+        }
 
-        $phone = new \PhpGedcom\Record\Phon();
-        $phone->setPhon(trim($record[2]));
 
         $parser->forward();
 

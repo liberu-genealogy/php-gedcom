@@ -29,9 +29,14 @@ class Data extends \PhpGedcom\Parser\Component
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
-
-        $data = new \PhpGedcom\Record\Head\Sour\Data();
-        $data->setData(trim($record[2]));
+        if(isset($record[2])){
+          $data = new \PhpGedcom\Record\Head\Sour\Data();
+          $data->setData(trim($record[2]));
+        }
+        else{
+           $parser->skipToNextLevel($depth);
+           return null;
+        }
 
         $parser->forward();
 

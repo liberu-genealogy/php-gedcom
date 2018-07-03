@@ -29,9 +29,15 @@ class Refn extends \PhpGedcom\Parser\Component
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
+        if(isset($record[2])){
+          $refn = new \PhpGedcom\Record\Refn();
+          $refn->setRefn(trim($record[2]));
+        }
+        else{
+           $parser->skipToNextLevel($depth);
+           return null;
+        }
 
-        $refn = new \PhpGedcom\Record\Refn();
-        $refn->setRefn(trim($record[2]));
 
         $parser->forward();
 

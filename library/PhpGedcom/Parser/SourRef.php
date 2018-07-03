@@ -29,9 +29,14 @@ class SourRef extends \PhpGedcom\Parser\Component
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
-
-        $sour = new \PhpGedcom\Record\SourRef();
-        $sour->setSour($record[2]);
+        if(isset($record[2])){
+          $sour = new \PhpGedcom\Record\SourRef();
+          $sour->setSour($record[2]);
+        }
+        else{
+           $parser->skipToNextLevel($depth);
+           return null;
+        }        
 
         $parser->forward();
 

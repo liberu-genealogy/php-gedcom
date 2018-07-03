@@ -7,7 +7,7 @@
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
- * @package         php-gedcom 
+ * @package         php-gedcom
  * @license         GPL-3.0
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
@@ -23,12 +23,14 @@ class Adop extends \PhpGedcom\Parser\Indi\Even
     public static function parseAdop($parser, $even)
     {
         $record = $parser->getCurrentLineRecord();
+        if(isset($record[1]))
         $even->setAdop(trim($record[2]));
     }
-    
+
     public static function parseFamc($parser, $even)
     {
         $record = $parser->getCurrentLineRecord();
+        if(isset($record[1]))
         $even->setFamc(trim($record[2]));
     }
 }

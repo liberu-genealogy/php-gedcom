@@ -29,9 +29,15 @@ class Corp extends \PhpGedcom\Parser\Component
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
+        if(isset($record[2])){
+          $corp = new \PhpGedcom\Record\Head\Sour\Corp();
+          $corp->setCorp(trim($record[2]));
+        }
+        else{
+           $parser->skipToNextLevel($depth);
+           return null;
+        }
 
-        $corp = new \PhpGedcom\Record\Head\Sour\Corp();
-        $corp->setCorp(trim($record[2]));
 
         $parser->forward();
 

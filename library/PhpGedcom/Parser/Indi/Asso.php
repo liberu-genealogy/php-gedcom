@@ -7,7 +7,7 @@
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
- * @package         php-gedcom 
+ * @package         php-gedcom
  * @license         GPL-3.0
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
@@ -20,7 +20,7 @@ namespace PhpGedcom\Parser\Indi;
  */
 class Asso extends \PhpGedcom\Parser\Component
 {
-    
+
     /**
      *
      *
@@ -29,22 +29,28 @@ class Asso extends \PhpGedcom\Parser\Component
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
-        
-        $asso = new \PhpGedcom\Record\Indi\Asso();
-        $asso->setIndi($parser->normalizeIdentifier($record[2]));
-        
+        if(isset($record[2])){
+          $asso = new \PhpGedcom\Record\Indi\Asso();
+          $asso->setIndi($parser->normalizeIdentifier($record[2]));
+        }
+        else{
+           $parser->skipToNextLevel($depth);
+           return null;
+        }
+
+
         $parser->forward();
-        
+
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
             $recordType = strtoupper(trim($record[1]));
             $currentDepth = (int)$record[0];
-            
+
             if ($currentDepth <= $depth) {
                 $parser->back();
                 break;
             }
-            
+
             switch ($recordType) {
                 case 'RELA':
                     $asso->setRela(trim($record[2]));
@@ -62,10 +68,10 @@ class Asso extends \PhpGedcom\Parser\Component
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }
-            
+
             $parser->forward();
         }
-        
+
         return $asso;
     }
 }

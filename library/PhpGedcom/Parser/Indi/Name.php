@@ -29,9 +29,15 @@ class Name extends \PhpGedcom\Parser\Component
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
+        if(isset($record[2])){
+          $name = new \PhpGedcom\Record\Indi\Name();
+          $name->setName(trim($record[2]));
+        }
+        else{
+           $parser->skipToNextLevel($depth);
+           return null;
+        }
 
-        $name = new \PhpGedcom\Record\Indi\Name();
-        $name->setName(trim($record[2]));
 
         $parser->forward();
 

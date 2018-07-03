@@ -29,9 +29,14 @@ class Even extends \PhpGedcom\Parser\Component
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
-
-        $even = new \PhpGedcom\Record\SourRef\Even();
-        $even->setEven(trim($record[2]));
+        if(isset($record[2])){
+          $even = new \PhpGedcom\Record\SourRef\Even();
+          $even->setEven(trim($record[2]));
+        }
+        else{
+           $parser->skipToNextLevel($depth);
+           return null;
+        }
 
         $parser->forward();
 

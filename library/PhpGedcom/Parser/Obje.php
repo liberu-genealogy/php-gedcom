@@ -28,8 +28,14 @@ class Obje extends \PhpGedcom\Parser\Component
     public static function parse(\PhpGedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
-        $identifier = $parser->normalizeIdentifier($record[1]);
         $depth = (int) $record[0];
+        if(isset($record[1])){
+          $identifier = $parser->normalizeIdentifier($record[1]);
+        }
+        else{
+           $parser->skipToNextLevel($depth);
+           return null;
+        }
 
         $obje = new \PhpGedcom\Record\Obje();
         $obje->setId($identifier);
