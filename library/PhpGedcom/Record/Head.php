@@ -85,7 +85,7 @@ class Head extends Record
      * @param \PhpGedcom\Record\Head\Sour $sour
      * @return Head
      */
-    public function setSour($sour = new Head\Sour)
+    public function setSour($sour = [])
     {
         $this->sour = $sour;
         return $this;
@@ -103,7 +103,7 @@ class Head extends Record
      * @param \PhpGedcom\Record\Head\Date $date
      * @return Head
      */
-    public function setDate($date = new Head\Date)
+    public function setDate($date = [])
     {
         $this->date = $date;
         return $this;
@@ -121,7 +121,7 @@ class Head extends Record
      * @param \PhpGedcom\Record\Head\Gedc $gedc
      * @return Head
      */
-    public function setGedc($gedc = new Head\Gedc)
+    public function setGedc($gedc = [])
     {
         $this->gedc = $gedc;
         return $this;
@@ -139,7 +139,7 @@ class Head extends Record
      * @param \PhpGedcom\Record\Head\Char $char
      * @return Head
      */
-    public function setChar($char = new Head\Char)
+    public function setChar($char = [])
     {
         $this->char = $char;
         return $this;
@@ -157,7 +157,7 @@ class Head extends Record
      * @param \PhpGedcom\Record\Head\Plac $plac
      * @return Head
      */
-    public function setPlac($plac = new Head\Plac)
+    public function setPlac($plac = [])
     {
         $this->plac = $plac;
         return $this;

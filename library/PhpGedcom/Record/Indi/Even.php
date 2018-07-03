@@ -99,7 +99,7 @@ class Even extends Record implements Record\Objectable, Record\Sourceable, Recor
      * @param Record\Phon $phon
      * @return Even
      */
-    public function addPhon($phon = new Record\Phon)
+    public function addPhon($phon = [])
     {
         $this->phon[] = $phon;
         return $this;
@@ -117,7 +117,7 @@ class Even extends Record implements Record\Objectable, Record\Sourceable, Recor
      * @param Record\ObjeRef $obje
      * @return Even
      */
-    public function addObje($obje = new Record\ObjeRef)
+    public function addObje($obje = [])
     {
         $this->obje[] = $obje;
         return $this;
@@ -135,7 +135,7 @@ class Even extends Record implements Record\Objectable, Record\Sourceable, Recor
      * @param Record\SourRef $sour
      * @return Even
      */
-    public function addSour($sour = new Record\SourRef)
+    public function addSour($sour = [])
     {
         $this->sour[] = $sour;
         return $this;
@@ -153,7 +153,7 @@ class Even extends Record implements Record\Objectable, Record\Sourceable, Recor
      * @param Record\NoteRef $note
      * @return Even
      */
-    public function addNote($note = new Record\NoteRef)
+    public function addNote($note = [])
     {
         $this->note[] = $note;
         return $this;
@@ -163,7 +163,7 @@ class Even extends Record implements Record\Objectable, Record\Sourceable, Recor
      * @param \PhpGedcom\Record\Addr $addr
      * @return Even
      */
-    public function setAddr($addr = new Record\Addr)
+    public function setAddr($addr = [])
     {
         $this->addr = $addr;
         return $this;
@@ -253,7 +253,7 @@ class Even extends Record implements Record\Objectable, Record\Sourceable, Recor
      * @param \PhpGedcom\Record\Indi\Even\Plac $plac
      * @return Even
      */
-    public function setPlac($plac = new Record\Indi\Even\Plac)
+    public function setPlac($plac = [])
     {
         $this->plac = $plac;
         return $this;
@@ -315,7 +315,7 @@ class Even extends Record implements Record\Objectable, Record\Sourceable, Recor
      * @param Record\Chan $chan
      * @return $this
      */
-    public function setChan($chan = new Record\Chan)
+    public function setChan($chan = [])
     {
         $this->chan = $chan;
         return $this;
