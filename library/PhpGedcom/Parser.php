@@ -294,10 +294,15 @@ class Parser
 
             if ($depth == 0) {
                 // Although not always an identifier (HEAD,TRLR):
-                if(isset($record[1]))
-                $identifier = $this->normalizeIdentifier($record[1]);
+                if(isset($record[1])){
+                  $identifier = $this->normalizeIdentifier($record[1]);
+                  $rec = $record[1];
+                }
+                else {
+                  $rec = '';
+                }
 
-                if (trim($record[1]) == 'HEAD') {
+                if (trim($rec) == 'HEAD') {
                     Parser\Head::parse($this);
                 } else if (isset($record[2]) && trim($record[2]) == 'SUBN') {
                     Parser\Subn::parse($this);
