@@ -6,8 +6,7 @@
     "homepage": "http://github.com/oguz463/php-gedcom",
     "license": "GPL-3.0",
     "require": {
-        "php": ">=5.3",
-        "monolog/monolog": "dev-bugfix"
+        "php": ">=5.3"
     },
     "require-dev": {
         "phpunit/PHPUnit": "3.7.*",
@@ -17,15 +16,5 @@
         "psr-0": {
             "PhpGedcom\\": "library/"
         }
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/skypal/php-gedcom"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/mrkrstphr/php-gedcom"
-        }
-    ]
+    }
 }
