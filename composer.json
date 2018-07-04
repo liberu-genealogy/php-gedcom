@@ -6,7 +6,8 @@
     "homepage": "http://github.com/oguz463/php-gedcom",
     "license": "GPL-3.0",
     "require": {
-        "php": ">=5.3"
+        "php": ">=5.3",
+        "monolog/monolog": "dev-bugfix"
     },
     "require-dev": {
         "phpunit/PHPUnit": "3.7.*",
