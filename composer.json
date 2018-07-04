@@ -1,9 +1,9 @@
 {
-    "name": "skypal/php-gedcom",
+    "name": "oguz463/php-gedcom",
     "description": "A GEDCOM file parser (read + write) for PHP 5.3+",
     "type": "library",
     "keywords": ["gedcom","parser"],
-    "homepage": "http://github.com/skypal/php-gedcom",
+    "homepage": "http://github.com/oguz463/php-gedcom",
     "license": "GPL-3.0",
     "require": {
         "php": ">=5.3"
@@ -16,5 +16,15 @@
         "psr-0": {
             "PhpGedcom\\": "library/"
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/skypal/php-gedcom"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/mrkrstphr/php-gedcom"
+        }
+    ]
 }
