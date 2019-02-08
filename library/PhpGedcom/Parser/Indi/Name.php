@@ -51,6 +51,10 @@ class Name extends \PhpGedcom\Parser\Component
                 break;
             }
 
+            if (!isset($record[2])) {
+                $record[2] = '';
+            }
+
             switch ($recordType) {
                 case 'NPFX':
                     $name->setNpfx(trim($record[2]));
