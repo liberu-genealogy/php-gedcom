@@ -216,7 +216,13 @@ class Indi extends Record implements Noteable, Objectable, Sourceable
      */
     public function addAttr($attr = [])
     {
-        $this->attr[$attr->getType()] = $attr;
+        $attrName = $attr->getType();
+
+        if (!array_key_exists($attrName, $this->attr)) {
+            $this->attr[$attrName] = [];
+        }
+
+        $this->attr[$attrName][] = $attr;
         return $this;
     }
 
@@ -243,8 +249,14 @@ class Indi extends Record implements Noteable, Objectable, Sourceable
      */
     public function addEven($even = [])
     {
-        $this->even[$even->getType()] = $even;
-        return $this;
+        $evenName = $even->getType();
+
+        if (!array_key_exists($evenName, $this->even)) {
+            $this->even[$evenName] = [];
+        }
+
+        $this->even[$evenName][] = $even;
+        return $thi
     }
 
   /**
