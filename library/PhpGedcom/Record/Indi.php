@@ -227,7 +227,7 @@ class Indi extends Record implements Noteable, Objectable, Sourceable
     }
 
   /**
-   * @return Indi\Attr[]
+   * @return array
    */
   public function getAllAttr()
   {
