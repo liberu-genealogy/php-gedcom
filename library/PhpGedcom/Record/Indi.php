@@ -256,7 +256,7 @@ class Indi extends Record implements Noteable, Objectable, Sourceable
         }
 
         $this->even[$evenName][] = $even;
-        return $thi
+        return $this;
     }
 
   /**
