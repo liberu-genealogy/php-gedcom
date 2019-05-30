@@ -30,6 +30,11 @@ class Even extends Record implements Record\Objectable, Record\Sourceable, Recor
     /**
      * @var string
      */
+    protected $_attr;
+
+    /**
+     * @var string
+     */
     protected $date;
 
     /**

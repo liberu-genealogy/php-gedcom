@@ -49,6 +49,11 @@ class Even extends \PhpGedcom\Parser\Component
             $even->setType(trim($record[1]));
         }
 
+        // ensures we capture any data following the EVEN type
+        if (isset($record[2]) && !empty($record[2])) {
+            $even->setAttr(trim($record[2]));
+        }
+
         $parser->forward();
 
         while (!$parser->eof()) {
