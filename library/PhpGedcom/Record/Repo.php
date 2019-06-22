@@ -66,7 +66,7 @@ class Repo extends Record implements Noteable
      * @param Phon $phon
      * @return Repo
      */
-    public function addPhon($phon = new Phon)
+    public function addPhon($phon)
     {
         $this->phon[] = $phon;
         return $this;
@@ -84,7 +84,7 @@ class Repo extends Record implements Noteable
      * @param Refn $refn
      * @return Repo
      */
-    public function addRefn($refn = new Refn)
+    public function addRefn($refn)
     {
         $this->refn[] = $refn;
         return $this;
@@ -102,7 +102,7 @@ class Repo extends Record implements Noteable
      * @param NoteRef $note
      * @return Repo
      */
-    public function addNote($note =  new NoteRef)
+    public function addNote($note = array())
     {
         $this->note[] = $note;
         return $this;
@@ -156,7 +156,7 @@ class Repo extends Record implements Noteable
      * @param \PhpGedcom\Record\Addr $addr
      * @return Repo
      */
-    public function setAddr($addr = new Addr)
+    public function setAddr($addr)
     {
         $this->addr = $addr;
         return $this;
