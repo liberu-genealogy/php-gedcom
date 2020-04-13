@@ -14,74 +14,74 @@
 
 namespace PhpGedcom\Record\Fam;
 
+use \PhpGedcom\Record\Noteable;
 use \PhpGedcom\Record\Objectable;
 use \PhpGedcom\Record\Sourceable;
-use \PhpGedcom\Record\Noteable;
 
 /**
  *
+ * Event record.
+ *
+ * @method mixed getType()
+ * @method \PhpGedcom\Record\Date getDate()
+ * @method string getPlac()
  */
-class Even extends \PhpGedcom\Record implements Objectable, Sourceable, Noteable
-{
-    protected $_type = null;
-    protected $_date = null;
-    protected $_plac = null;
-    protected $_caus = null;
-    protected $_age  = null;
+class Even extends \PhpGedcom\Record implements Objectable, Sourceable, Noteable {
+	protected $_type = null;
+	protected $_date = null;
+	protected $_plac = null;
+	protected $_caus = null;
+	protected $_age = null;
 
-    protected $_addr = null;
+	protected $_addr = null;
 
-    protected $_phon = array();
+	protected $_phon = array();
 
-    protected $_agnc = null;
+	protected $_agnc = null;
 
-    protected $_husb = null;
-    protected $_wife = null;
+	protected $_husb = null;
+	protected $_wife = null;
 
-    /**
-     *
-     */
-    protected $_obje = array();
+	/**
+	 *
+	 */
+	protected $_obje = array();
 
-    /**
-     *
-     */
-    protected $_sour = array();
+	/**
+	 *
+	 */
+	protected $_sour = array();
 
-    /**
-     *
-     */
-    protected $_note = array();
+	/**
+	 *
+	 */
+	protected $_note = array();
 
-    /**
-     *
-     */
-    public function addPhon($phon = [])
-    {
-        $this->_phon[] = $phon;
-    }
+	/**
+	 *
+	 */
+	public function addPhon($phon = []) {
+		$this->_phon[] = $phon;
+	}
 
-    /**
-     *
-     */
-    public function addObje($obje = [])
-    {
-        $this->_obje[] = $obje;
-    }
+	/**
+	 *
+	 */
+	public function addObje($obje = []) {
+		$this->_obje[] = $obje;
+	}
 
-    /**
-     *
-     */
-    public function addSour($sour = [])
-    {
-        $this->_sour[] = $sour;
-    }
+	/**
+	 *
+	 */
+	public function addSour($sour = []) {
+		$this->_sour[] = $sour;
+	}
 
-    /**
-     *
-     */
-    public function addNote($note = [])
-    {
-        $this->_note[] = $note;
-    }
+	/**
+	 *
+	 */
+	public function addNote($note = []) {
+		$this->_note[] = $note;
+	}
 }

@@ -7,7 +7,7 @@
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
- * @package         php-gedcom 
+ * @package         php-gedcom
  * @license         GPL-3.0
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
@@ -17,15 +17,46 @@ namespace PhpGedcom\Record\Head;
 /**
  *
  */
-class Gedc extends \PhpGedcom\Record
-{
-    /**
-     *
-     */
-    protected $_vers = null;
-    
-    /**
-     *
-     */
-    protected $_form = null;
+class Gedc extends \PhpGedcom\Record {
+	/**
+	 *
+	 */
+	protected $_vers = null;
+
+	/**
+	 *
+	 */
+	protected $_form = null;
+
+	/**
+	 *
+	 * @return Gedc/version
+	 */
+	public function getVersion() {
+		return $this->_vers;
+	}
+
+	/**
+	 *
+	 * @param Gedc/version
+	 */
+	public function setVersion($vers = []) {
+		$this->_vers = $vers;
+	}
+
+	/**
+	 *
+	 * @return Gedc/form
+	 */
+	public function getForm() {
+		return $this->_form;
+	}
+
+	/**
+	 *
+	 * @param Gedc/version
+	 */
+	public function setForm($form = []) {
+		$this->_form = $form;
+	}
 }
