@@ -213,7 +213,7 @@ class Parser
 
         $line = trim($this->_line);
 
-        $this->_lineRecord = explode(' ', $line, $pieces);
+        $this->_lineRecord = array_pad(explode(' ', $line, $pieces), 3, '');
         $this->_linePieces = $pieces;
 
         return $this->_lineRecord;
