@@ -40,7 +40,6 @@ abstract class Attr extends \PhpGedcom\Parser\Component
            return null;
         }
 
-
         if (isset($record[2])) {
             $attr->setAttr(trim($record[2]));
         }
