@@ -14,7 +14,7 @@ To install php-gedcom in your project using composer, simply add the following r
 
     {
         "require": {
-            "tlesseli/php-gedcom": "1.0.*"
+            "modularsoftware/php-gedcom": "1.0.*"
         }
     }
 
