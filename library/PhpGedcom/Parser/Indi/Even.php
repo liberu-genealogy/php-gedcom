@@ -20,112 +20,116 @@ use PhpGedcom\Parser\Chan;
  *
  *
  */
-class Even extends \PhpGedcom\Parser\Component
-{
+class Even extends \PhpGedcom\Parser\Component {
 
-    /**
-     *
-     *
-     */
-    public static function parse(\PhpGedcom\Parser $parser)
-    {
-        $record = $parser->getCurrentLineRecord();
-        $depth = (int)$record[0];
-        if(empty($record[1])){
-          $parser->skipToNextLevel($depth);
-          return null;
-        }
+	/**
+	 *
+	 *
+	 */
+	public static function parse(\PhpGedcom\Parser $parser) {
+		$record = $parser->getCurrentLineRecord();
+		$depth = (int) $record[0];
+		if (empty($record[1])) {
+			$parser->skipToNextLevel($depth);
+			return null;
+		}
 
-        $even = null;
+		$even = null;
 
-        if (strtoupper(trim($record[1])) != 'EVEN') {
-            $className = '\\PhpGedcom\\Record\\Indi\\' . ucfirst(strtolower(trim($record[1])));
-            $even = new $className();
-        } else {
-            $even = new \PhpGedcom\Record\Indi\Even();
-        }
+		if (strtoupper(trim($record[1])) != 'EVEN') {
+			$className = '\\PhpGedcom\\Record\\Indi\\' . ucfirst(strtolower(trim($record[1])));
+			$even = new $className();
+		} else {
+			$even = new \PhpGedcom\Record\Indi\Even();
+		}
 
-        if (isset($record[1]) && strtoupper(trim($record[1])) != 'EVEN') {
-            $even->setType(trim($record[1]));
-        }
+		if (isset($record[1]) && strtoupper(trim($record[1])) != 'EVEN') {
+			$even->setType(trim($record[1]));
+		}
 
+<<<<<<< HEAD
         // ensures we capture any data following the EVEN type
         if (isset($record[2]) && !empty($record[2])) {
             $even->setAttr(trim($record[2]));
         }
 
         $parser->forward();
+=======
+		$parser->forward();
+>>>>>>> origin/pr/5
 
-        while (!$parser->eof()) {
-            $record = $parser->getCurrentLineRecord();
-            $recordType = strtoupper(trim($record[1]));
-            $currentDepth = (int)$record[0];
+		while (!$parser->eof()) {
+			$record = $parser->getCurrentLineRecord();
+			$recordType = strtoupper(trim($record[1]));
+			$currentDepth = (int) $record[0];
 
-            if ($currentDepth <= $depth) {
-                $parser->back();
-                break;
-            }
+			if ($currentDepth <= $depth) {
+				$parser->back();
+				break;
+			}
 
-            switch ($recordType) {
-                case 'TYPE':
-                    $even->setType(trim($record[2]));
-                    break;
-                case 'DATE':
-                    $even->setDate(trim($record[2]));
-                    break;
-                case 'PLAC':
-                    $plac = \PhpGedcom\Parser\Indi\Even\Plac::parse($parser);
-                    $even->setPlac($plac);
-                    break;
-                case 'ADDR':
-                    $even->setAddr(\PhpGedcom\Parser\Addr::parse($parser));
-                    break;
-                case 'PHON':
-                    $phone = \PhpGedcom\Parser\Phone::parse($parser);
-                    $even->addPhone($phone);
-                    break;
-                case 'CAUS':
-                    $even->setCaus(trim($record[2]));
-                    break;
-                case 'AGE':
-                    $even->setAge(trim($record[2]));
-                    break;
-                case 'AGNC':
-                    $even->setAgnc(trim($record[2]));
-                    break;
-                case 'SOUR':
-                    $sour = \PhpGedcom\Parser\SourRef::parse($parser);
-                    $even->addSour($sour);
-                    break;
-                case 'OBJE':
-                    $obje = \PhpGedcom\Parser\ObjeRef::parse($parser);
-                    $even->addObje($obje);
-                    break;
-                case 'NOTE':
-                    $note = \PhpGedcom\Parser\NoteRef::parse($parser);
-                    if ($note) {
-                        $even->addNote($note);
-                    }
-                    break;
-                case 'CHAN':
-                    $change = Chan::parse($parser);
-                    $even->setChan($change);
-                    break;
-                default:
-                    $self = get_called_class();
-                    $method = 'parse' . $recordType;
+			switch ($recordType) {
+			case 'TYPE':
+				$even->setType(trim($record[2]));
+				break;
+			case 'DATE':
+				$dat = \PhpGedcom\Parser\Date::parse($parser);
+				$even->setDate($dat);
+				//$even->setDate(trim($record[2]))
+				break;
+			case 'PLAC':
+				$plac = \PhpGedcom\Parser\Indi\Even\Plac::parse($parser);
+				$even->setPlac($plac);
+				break;
+			case 'ADDR':
+				$even->setAddr(\PhpGedcom\Parser\Addr::parse($parser));
+				break;
+			case 'PHON':
+				$phone = \PhpGedcom\Parser\Phon::parse($parser);
+				$even->addPhone($phone);
+				break;
+			case 'CAUS':
+				$even->setCaus(trim($record[2]));
+				break;
+			case 'AGE':
+				$even->setAge(trim($record[2]));
+				break;
+			case 'AGNC':
+				$even->setAgnc(trim($record[2]));
+				break;
+			case 'SOUR':
+				$sour = \PhpGedcom\Parser\SourRef::parse($parser);
+				$even->addSour($sour);
+				break;
+			case 'OBJE':
+				$obje = \PhpGedcom\Parser\ObjeRef::parse($parser);
+				$even->addObje($obje);
+				break;
+			case 'NOTE':
+				$note = \PhpGedcom\Parser\NoteRef::parse($parser);
+				if ($note) {
+					$even->addNote($note);
+				}
+				break;
+			case 'CHAN':
+				$change = Chan::parse($parser);
+				$even->setChan($change);
+				break;
+			default:
+				$self = get_called_class();
+				$method = 'parse' . $recordType;
 
-                    if (method_exists($self, $method)) {
-                        $self::$method($parser, $even);
-                    } else {
-                        $parser->logUnhandledRecord($self . ' @ ' . __LINE__);
-                        $parser->skipToNextLevel($currentDepth);
-                    }
-            }
+				if (method_exists($self, $method)) {
+					$self::$method($parser, $even);
+				} else {
+					$parser->logUnhandledRecord($self . ' @ ' . __LINE__);
+					$parser->skipToNextLevel($currentDepth);
+				}
+			}
 
-            $parser->forward();
-        }
+			$parser->forward();
+		}
 
-        return $even;
-    }
+		return $even;
+	}
 }

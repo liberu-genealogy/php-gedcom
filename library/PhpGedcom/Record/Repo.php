@@ -20,6 +20,7 @@ use PhpGedcom\Record;
  * Class Repo
  * @package PhpGedcom\Record
  */
+<<<<<<< HEAD
 class Repo extends Record implements Noteable
 {
     /**
@@ -205,4 +206,186 @@ class Repo extends Record implements Noteable
     {
         return $this->chan;
     }
+=======
+class Repo extends Record implements Noteable {
+	/**
+	 * @var string
+	 */
+	protected $repo;
+
+	/**
+	 * @var string
+	 */
+	protected $name;
+
+	/**
+	 * @var Addr
+	 */
+	protected $addr;
+
+	/**
+	 * @var string
+	 */
+	protected $rin;
+
+	/**
+	 * @var Chan
+	 */
+	protected $chan;
+
+	/**
+	 * @var array
+	 */
+	protected $phon = array();
+
+	/**
+	 * @var array
+	 */
+	protected $refn = array();
+
+	/**
+	 * @var array
+	 */
+	protected $note = array();
+
+	/**
+	 * @param null|\PhpGedcom\Record\Phon $phons
+	 * @return Repo
+	 */
+	public function addPhon($phon = null) {
+		if (empty($phon)) {
+			$phon = new \PhpGedcom\Record\Phon();
+		}
+		$this->phon[] = $phon;
+		return $this;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getPhon() {
+		return $this->phon;
+	}
+
+	/**
+	 * @param null|\PhpGedcom\Record\Refn $refn
+	 * @return Repo
+	 */
+	public function addRefn($refn = null) {
+		if (empty($refn)) {
+			$refn = new \PhpGedcom\Record\Refn();
+		}
+		$this->refn[] = $refn;
+		return $this;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getRefn() {
+		return $this->refn;
+	}
+
+	/**
+	 * @param null|\PhpGedcom\Record\NoteRef $note
+	 * @return Repo
+	 */
+	public function addNote($note = null) {
+		if (empty($node)) {
+			$note = new \PhpGedcom\Record\NoteRef();
+		}
+		$this->note[] = $note;
+		return $this;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getNote() {
+		return $this->note;
+	}
+
+	/**
+	 * @param string $repo
+	 * @return Repo
+	 */
+	public function setRepo($repo = '') {
+		$this->repo = $repo;
+		return $this;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getRepo() {
+		return $this->repo;
+	}
+
+	/**
+	 * @param string $name
+	 * @return Repo
+	 */
+	public function setName($name = '') {
+		$this->name = $name;
+		return $this;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getName() {
+		return $this->name;
+	}
+
+	/**
+	 * @param null|\PhpGedcom\Record\Addr $addr
+	 * @return Repo
+	 */
+	public function setAddr($addr = null) {
+		if (empty($addr)) {
+			$addr = new \PhpGedcom\Record\Addr();
+		}
+		$this->addr = $addr;
+		return $this;
+	}
+
+	/**
+	 * @return \PhpGedcom\Record\Addr
+	 */
+	public function getAddr() {
+		return $this->addr;
+	}
+
+	/**
+	 * @param string $rin
+	 * @return Repo
+	 */
+	public function setRin($rin = '') {
+		$this->rin = $rin;
+		return $this;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getRin() {
+		return $this->rin;
+	}
+
+	/**
+	 * @param \PhpGedcom\Record\Chan $chan
+	 * @return Repo
+	 */
+	public function setChan($chan = []) {
+		$this->chan = $chan;
+		return $this;
+	}
+
+	/**
+	 * @return \PhpGedcom\Record\Chan
+	 */
+	public function getChan() {
+		return $this->chan;
+	}
+>>>>>>> origin/pr/5
 }
