@@ -1,5 +1,5 @@
 {
-    "name": "tlesseli/php-gedcom",
+    "name": "modularsoftware/php-gedcom",
     "description": "A GEDCOM file parser (read + write) for PHP 5.3+",
     "type": "library",
     "keywords": ["gedcom","parser"],
