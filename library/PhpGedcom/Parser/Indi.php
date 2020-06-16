@@ -77,7 +77,8 @@ class Indi extends \PhpGedcom\Parser\Component {
 				$indi->setAfn(trim($record[2]));
 				break;
 			case 'CHAN':
-				$chan = \PhpGedcom\Parser\Chan::parse($parser);
+				// $chan = \PhpGedcom\Parser\Chan::parse($parser);
+				$chan =isset($record[2]) ? trim($record[2]) : '';
 				$indi->setChan($chan);
 				break;
 			case 'FAMS':

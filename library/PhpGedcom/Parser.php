@@ -315,5 +315,4 @@ class Parser {
 
 		return $this->getGedcom();
 	}
->>>>>>> origin/pr/5
 }
