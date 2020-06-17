@@ -12,41 +12,39 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace PhpGedcom\Writer;
+namespace PhpGedcom\Writer\Indi;
 
 /**
  *
  */
-class Chan
+class Fams
 {
     /**
-     * @param \PhpGedcom\Record\Chan $note
+     * @param \PhpGedcom\Record\Indi\Fams $attr
      * @param int $level
      * @return string
      */
-    public static function convert(\PhpGedcom\Record\Chan &$chan, $level)
+    public static function convert(\PhpGedcom\Record\Indi\Fams &$fams, $level = 0)
     {
-        $output = $level." CHAN \n";
+        $output = '';
+        // NAME
+        $_fams = $fams->getFams();
+        if(empty($_fams)){
+            return $output;
+        }
+        $output.= $level." NAME ".$_fams."\n";
         // level up
         $level++;
-        // DATE
-        $_date = $chan->getDate();
-        if(!empty($_date)){
-            $output.=$level." DATE ".$_date."\n";
-        }
-        // TIME
-        $_time = $chan->getDate();
-        if(!empty($_time)){
-            $output.=$level." DATE ".$_time."\n";
-        }
-        // $_note = array()
-        $_note = $chan->getNote();
-        if(!empty($_note) && count($_note) > 0){
-            foreach($_note as $item){
+        
+        // note
+        $note = $fams->getSour();
+        if(!empty($note) && count($note) > 0){
+            foreach($note as $item){
                 $_convert = \PhpGedcom\Writer\NoteRef::convert($item, $level);
                 $output.=$_convert;
             }
         }
+
         return $output;
     }
 }

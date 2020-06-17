@@ -68,10 +68,11 @@ class Indi
         }
 
         // $note
+
         $note = $indi->getNote();
         if(!empty($note) && count($note) > 0){
             foreach($note as $item){
-                $_convert = \PhpGedcom\Writer\Indi\Note::convert($item, $level);
+                $_convert = \PhpGedcom\Writer\NoteRef::convert($item, $level);
                 $output.=$_convert;
             }
         }
@@ -80,7 +81,7 @@ class Indi
         $obje = $indi->getObje();
         if(!empty($obje) && count($obje) > 0){
             foreach($obje as $item){
-                $_convert = \PhpGedcom\Writer\Indi\Obje::convert($item, $level);
+                $_convert = \PhpGedcom\Writer\ObjeRef::convert($item, $level);
                 $output.=$_convert;
             }
         }
@@ -89,7 +90,7 @@ class Indi
         $sour = $indi->getSour();
         if(!empty($sour) && count($sour) > 0){
             foreach($sour as $item){
-                $_convert = \PhpGedcom\Writer\Indi\Sour::convert($item, $level);
+                $_convert = \PhpGedcom\Writer\SourRef::convert($item, $level);
                 $output.=$_convert;
             }
         }
@@ -107,8 +108,10 @@ class Indi
         $alia = $indi->getAlia();
         if(!empty($alia) && count($alia) > 0){
             foreach($alia as $item){
-                $_convert = \PhpGedcom\Writer\Indi\Alia::convert($item, $level);
-                $output.=$_convert;
+                if(!empty($item)){
+                    $_convert = $level." ALIA ".$item."\n";
+                    $output.=$_convert;
+                }
             }
         }
         
@@ -173,16 +176,18 @@ class Indi
         $subm = $indi->getSubm();
         if(!empty($subm) && count($subm) > 0){
             foreach($subm as $item){
-                $_convert = \PhpGedcom\Writer\Indi\Subm::convert($item, $level);
-                $output.=$_convert;
+                if(!empty($item)){
+                    $_convert = $level." SUBM ".$item."\n";
+                    $output.=$_convert;
+                }
             }
         }
 
         // $anci
         $anci = $indi->getAnci();
         if(!empty($anci) && count($anci) > 0){
-            foreach($subm as $item){
-                $_convert = \PhpGedcom\Writer\Indi\Anci::convert($item, $level);
+            foreach($anci as $item){
+                $_convert = $level." ANCI ".$item."\n";
                 $output.=$_convert;
             }
         }
@@ -190,8 +195,8 @@ class Indi
         // $desi
         $desi = $indi->getDesi();
         if(!empty($desi) && count($desi) > 0){
-            foreach($subm as $item){
-                $_convert = \PhpGedcom\Writer\Indi\Desi::convert($item, $level);
+            foreach($desi as $item){
+                $_convert = $level." DESI ".$item."\n";
                 $output.=$_convert;
             }
         }
@@ -199,39 +204,43 @@ class Indi
         // Refn[]
         $refn = $indi->getRefn();
         if(!empty($refn) && count($refn) > 0){
-            foreach($subm as $item){
-                $_convert = \PhpGedcom\Writer\Indi\Refn::convert($item, $level);
+            foreach($refn as $item){
+                $_convert = \PhpGedcom\Writer\Refn::convert($item, $level);
                 $output.=$_convert;
             }
         }
 
         // Bapl
-        $bapl = $indi->getBapl();
-        if(!empty($bapl)){
-            $_convert = \PhpGedcom\Writer\Indi\Bapl::convert($bapl, $level);
-            $output.=$_convert;
-        }
+        // Currently Bapl is empty
+        // $bapl = $indi->getBapl();
+        // if(!empty($bapl)){
+        //     $_convert = \PhpGedcom\Writer\Indi\Bapl::convert($bapl, $level);
+        //     $output.=$_convert;
+        // }
         
         // Conl
-        $conl = $indi->getConl();
-        if(!empty($conl)){
-            $_convert = \PhpGedcom\Writer\Indi\Conl::convert($conl, $level);
-            $output.=$_convert;
-        }
+        // Currently Conl is empty
+        // $conl = $indi->getConl();
+        // if(!empty($conl)){
+        //     $_convert = \PhpGedcom\Writer\Indi\Conl::convert($conl, $level);
+        //     $output.=$_convert;
+        // }
 
         // Endl
-        $endl = $indi->getEndl();
-        if(!empty($endl)){
-            $_convert = \PhpGedcom\Writer\Indi\Endl::convert($endl, $level);
-            $output.=$_convert;
-        }
+        // Currently Endl is empty
+        // $endl = $indi->getEndl();
+        // if(!empty($endl)){
+        //     $_convert = \PhpGedcom\Writer\Indi\Endl::convert($endl, $level);
+        //     $output.=$_convert;
+        // }
 
         // Slgc
-        $slgc = $indi->getSlgc();
-        if(!empty($slgc)){
-            $_convert = \PhpGedcom\Writer\Indi\Slgc::convert($slgc, $level);
-            $output.=$_convert;
-        }
+        // Currently Endl is empty
+        // $slgc = $indi->getSlgc();
+        // if(!empty($slgc)){
+        //     $_convert = \PhpGedcom\Writer\Indi\Slgc::convert($slgc, $level);
+        //     $output.=$_convert;
+        // }
 
         return $output;
     }
