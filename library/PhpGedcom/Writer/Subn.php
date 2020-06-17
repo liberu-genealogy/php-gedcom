@@ -28,8 +28,8 @@ class Subn
     {
         $level = 0;
         $output = "";
-        $_subn = $refn->getSubn();
-        if(empty($_refn)){
+        $_subn = $subn->getSubn();
+        if(empty($_subn)){
             return $output;
         }else{
             $output.=$level." SUBN ".$_subn."\n";
