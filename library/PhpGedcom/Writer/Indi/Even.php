@@ -93,13 +93,35 @@ class Even
         // This is not in parser
 
         // $obje = array();
-
+        $obje = $even->getObje();
+        if(!empty($obje) && count($obje) > 0){
+            foreach($obje as $item){
+                $_convert = \PhpGedcom\Writer\ObjeRef::convert($item, $level);
+                $output.=$_convert;
+            }
+        }
         // $sour = array();
-
+        $sour = $even->getSour();
+        if(!empty($sour) && count($sour) > 0){
+            foreach($sour as $item){
+                $_convert = \PhpGedcom\Writer\SourRef::convert($item, $level);
+                $output.=$_convert;
+            }
+        }
         // $note = array();
-
+        $note = $even->getSour();
+        if(!empty($note) && count($note) > 0){
+            foreach($note as $item){
+                $_convert = \PhpGedcom\Writer\NoteRef::convert($item, $level);
+                $output.=$_convert;
+            }
+        }
         // Record\Chan
-
+        $chan = $even->getChan();
+        if(!empty($chan) ){
+            $_convert = \PhpGedcom\Writer\Chan::convert($item, $level);
+            $output.=$_convert;
+        }
         return $output;
     }
 }
