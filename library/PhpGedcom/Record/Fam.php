@@ -112,8 +112,6 @@ class Fam extends \PhpGedcom\Record implements Noteable, Sourceable, Objectable 
 
 	}
 	/**
-
-	/**
 	 *
 	 */
 	public function addSlgs($slgs = []) {

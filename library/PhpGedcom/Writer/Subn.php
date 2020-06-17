@@ -32,7 +32,7 @@ class Subn
         if(empty($_subn)){
             return $output;
         }else{
-            $output.=$level." SUBN ".$_subn."\n";
+            $output.=$level." ".$_subn." SUBN \n";
         }
         // level up
         $level++;

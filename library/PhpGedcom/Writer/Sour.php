@@ -32,7 +32,7 @@ class Sour
         if(empty($_sour)){
             return $output;
         }else{
-            $output.=$level." SOUR ".$_sour."\n";
+            $output.=$level." ".$_sour." SOUR "."\n";
         }
         // level up
         $level++;

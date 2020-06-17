@@ -20,7 +20,7 @@ use \PhpGedcom\Writer\Subn;
 use \PhpGedcom\Writer\Subm;
 use \PhpGedcom\Writer\Sour;
 use \PhpGedcom\Writer\Indi;
-
+use \PhpGedcom\Writer\Fam;
 /**
  *
  */
