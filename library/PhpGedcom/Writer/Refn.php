@@ -32,7 +32,7 @@ class Refn
         if(empty($_refn)){
             return $output;
         }else{
-            $output.=$level." REFN \n";
+            $output.=$level." REFN ".$_refn."\n";
         }
         // level up
         $level++;

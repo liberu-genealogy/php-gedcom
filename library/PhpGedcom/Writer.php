@@ -16,6 +16,10 @@ namespace PhpGedcom;
 
 use \PhpGedcom\Gedcom;
 use \PhpGedcom\Writer\Head;
+use \PhpGedcom\Writer\Subn;
+use \PhpGedcom\Writer\Subm;
+use \PhpGedcom\Writer\Sour;
+use \PhpGedcom\Writer\Indi;
 
 /**
  *
@@ -35,9 +39,82 @@ class Writer
     public static function convert(Gedcom $gedcom, $format = self::GEDCOM55)
     {
         $head = $gedcom->getHead();
-
-        $output = Head::convert($head, $format);
+        $subn = $gedcom->getSubn();
+        $subms = $gedcom->getSubm();    // array()
+        $sours = $gedcom->getSour();    // array()
+        $indis = $gedcom->getIndi();    // array()
+        $fams = $gedcom->getFam();      // array()
+        $notes = $gedcom->getNote();    // array()
+        $repos = $gedcom->getRepo();    // array()
+        $objes = $gedcom->getObje();    // array()
         
+        // head
+        $output = Head::convert($head, $format);
+
+        // subn
+        $output .= Subn::convert($subn);
+
+        // subms
+        if(!empty($subms) && count($subms) > 0){
+            foreach($subms as $item){
+                if($item){
+                    $output .= Subm::convert($item);
+                }
+            }
+        }
+        
+        // sours
+        if(!empty($sours) && count($sours) > 0){
+            foreach($sours as $item){
+                if($item){
+                    $output .= Sour::convert($item);
+                }
+            }
+        }
+
+        // indis
+        if(!empty($indis) && count($indis) > 0){
+            foreach($indis as $item){
+                if($item){
+                    $output .= Indi::convert($item);
+                }
+            }
+        }
+
+        // fams
+        if(!empty($fams) && count($fams) > 0){
+            foreach($fams as $item){
+                if($item){
+                    $output .= Fam::convert($item);
+                }
+            }
+        }
+        // notes
+        if(!empty($notes) && count($notes) > 0){
+            foreach($notes as $item){
+                if($item){
+                    $output .= Note::convert($item);
+                }
+            }
+        }
+        // repos
+        if(!empty($repos) && count($repos) > 0){
+            foreach($repos as $item){
+                if($item){
+                    $output .= Repo::convert($item);
+                }
+            }
+        }
+        // Objes
+        if(!empty($objes) && count($objes) > 0){
+            foreach($objes as $item){
+                if($item){
+                    $output .= Obje::convert($item);
+                }
+            }
+        }
+        // EOF
+        $output .= "0 TRLR\n";
         return $output;
     }
 }
