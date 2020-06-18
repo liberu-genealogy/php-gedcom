@@ -21,6 +21,10 @@ use \PhpGedcom\Writer\Subm;
 use \PhpGedcom\Writer\Sour;
 use \PhpGedcom\Writer\Indi;
 use \PhpGedcom\Writer\Fam;
+use \PhpGedcom\Writer\Note;
+use \PhpGedcom\Writer\Repo;
+use \PhpGedcom\Writer\Obje;
+
 /**
  *
  */
@@ -97,6 +101,7 @@ class Writer
                 }
             }
         }
+
         // repos
         if(!empty($repos) && count($repos) > 0){
             foreach($repos as $item){

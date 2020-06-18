@@ -5,8 +5,8 @@
  * php-gedcom is a library for parsing, manipulating, importing and exporting
  * GEDCOM 5.5 files in PHP 5.3+.
  *
- * @author          Kristopher Wilson <kristopherwilson@gmail.com>
- * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
+ * @author          Xiang Ming <wenqiangliu344@gmail.com>
+ * @copyright       Copyright (c) 2010-2013, Xiang Ming
  * @package         php-gedcom 
  * @license         GPL-3.0
  * @link            http://github.com/mrkrstphr/php-gedcom
@@ -17,17 +17,17 @@ namespace PhpGedcom\Writer;
 /**
  *
  */
-class Phon
+class Obje
 {
     /**
-     * @param string $phon
-     * @param string $format
+     * @param \PhpGedcom\Record\Obje $sour
      * @param int $level
      * @return string
      */
-    public static function convert($phon, $level = 1)
+    public static function convert(\PhpGedcom\Record\Obje &$obje)
     {
-        $output = "{$level} PHON " . $phon . "\n";
+        $level = 0;
+        $output = "";
         
         return $output;
     }
