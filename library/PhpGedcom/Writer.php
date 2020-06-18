@@ -52,11 +52,17 @@ class Writer
         $repos = $gedcom->getRepo();    // array()
         $objes = $gedcom->getObje();    // array()
         
-        // head
-        $output = Head::convert($head, $format);
+        $output = $level." FORMAT ".$format."\n";
 
+        // head
+        if($head){
+            $output = Head::convert($head, $format);
+        }
+        
         // subn
-        $output .= Subn::convert($subn);
+        if($subn){
+            $output .= Subn::convert($subn);
+        }
 
         // subms
         if(!empty($subms) && count($subms) > 0){

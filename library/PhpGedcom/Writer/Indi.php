@@ -50,7 +50,7 @@ class Indi
         // $attr
         // PhpGedcom/Record/Attr extend PhpGedcom/Record/Even and there is no change.
         // So used convert Even
-        $attr = $indi->getAttr();
+        $attr = $indi->getAllAttr();
         if(!empty($attr) && count($attr) > 0){
             foreach($attr as $item){
                 $_convert = \PhpGedcom\Writer\Indi\Even::convert($item, $level);
@@ -59,7 +59,7 @@ class Indi
         }
 
         // $even
-        $even = $indi->getEven();
+        $even = $indi->getAllEven();
         if(!empty($even) && count($even) > 0){
             foreach($even as $item){
                 $_convert = \PhpGedcom\Writer\Indi\Even::convert($item, $level);
