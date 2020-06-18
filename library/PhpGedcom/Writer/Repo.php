@@ -30,7 +30,7 @@ class Repo
         $output = "";
         $_repo = $repo->getRepo();
         if($_repo){
-            $output.=$level." ".$id." REPO\n";
+            $output.=$level." ".$_repo." REPO\n";
         }else{
             return $output;
         }
