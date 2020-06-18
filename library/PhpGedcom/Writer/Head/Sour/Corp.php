@@ -25,13 +25,35 @@ class Corp
      * @param int $level
      * @return string
      */
-    public static function convert(\PhpGedcom\Record\Head\Sour\Corp &$corp, $format = self::GEDCOM55, $level = 2)
+    public static function convert(\PhpGedcom\Record\Head\Sour\Corp &$corp, $level)
     {
-        $output = "{$level} CORP " . $corp->corp . "\n" .
-            \PhpGedcom\Writer\Addr::convert($corp->addr, $format, $level + 1);
-        
-        foreach ($corp->phon as $phon) {
-            $output .= \PhpGedcom\Writer\Phon::convert($phon, $format, $level + 1);
+        $output = "";
+        $_corp = $corp->getCorp();
+        if($_corp){
+            $output.=$level." CORP ".$_corp."\n";
+        }else{
+            return $output;
+        }
+
+        // level up
+        $level++;
+
+        // ADDR
+        $addr = $corp->getAddr();
+        if($addr){
+            $_convert = \PhpGedcom\Writer\Addr::convert($addr, $level);
+            $output.=$_convert;
+        }
+
+        // phon
+        $phon = $corp->getPhon();
+        if($phon && count($phon) > 0){
+            foreach($phon as $item){
+                if($item){
+                    $_convert = \PhpGedcom\Writer\Phon::convert($item, $level);
+                    $output.=$_convert;
+                }
+            }
         }
 
         return $output;
