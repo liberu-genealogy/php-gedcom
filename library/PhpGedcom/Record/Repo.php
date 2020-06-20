@@ -66,7 +66,7 @@ class Repo extends Record implements Noteable {
 	 * @return Repo
 	 */
 	public function addPhon($phon = null) {
-		if (empty($phon)) {
+		if(empty($phon)) {
 			$phon = new \PhpGedcom\Record\Phon();
 		}
 		$this->phon[] = $phon;

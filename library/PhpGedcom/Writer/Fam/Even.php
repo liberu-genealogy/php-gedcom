@@ -130,12 +130,7 @@ class Even
                 $output.=$_convert;
             }
         }
-        // Record\Chan
-        $chan = $even->getChan();
-        if(!empty($chan) ){
-            $_convert = \PhpGedcom\Writer\Chan::convert($item, $level);
-            $output.=$_convert;
-        }
+
         return $output;
     }
 }
