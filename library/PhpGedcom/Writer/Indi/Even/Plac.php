@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace PhpGedcom\Writer\Indi;
+namespace PhpGedcom\Writer\Indi\Even;
 
 /**
  *
