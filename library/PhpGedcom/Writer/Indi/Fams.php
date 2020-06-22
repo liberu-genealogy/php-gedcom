@@ -32,7 +32,7 @@ class Fams
         if(empty($_fams)){
             return $output;
         }
-        $output.= $level." NAME ".$_fams."\n";
+        $output.= $level." FAMS @".$_fams."@\n";
         // level up
         $level++;
         

@@ -32,7 +32,7 @@ class Famc
         if(empty($_fams)){
             return $output;
         }
-        $output.= $level." NAME ".$_famc."\n";
+        $output.= $level." FAMC @".$_famc."@\n";
         // level up
         $level++;
         

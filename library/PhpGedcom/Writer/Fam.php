@@ -40,13 +40,13 @@ class Fam
         // HUSB
         $husb = $fam->getHusb();
         if(!empty($husb)){
-            $output.=$level." HUSB ".$husb."\n";
+            $output.=$level." HUSB @".$husb."@\n";
         }
         
         // WIFE
         $wife = $fam->getWife();
         if(!empty($wife)){
-            $output.=$level." WIFE ".$wife."\n";
+            $output.=$level." WIFE @".$wife."@\n";
         }
 
         // CHIL
@@ -54,7 +54,7 @@ class Fam
         if(!empty($chil) && count($chil) > 0){
             foreach($chil as $item){
                 if($item){
-                    $_convert = $level." CHIL ".$item."\n";
+                    $_convert = $level." CHIL @".$item."@\n";
                     $output.=$_convert;
                 }
             }
