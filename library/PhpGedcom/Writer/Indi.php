@@ -24,7 +24,7 @@ class Indi
      * @param string $format
      * @return string
      */
-    public static function convert(\PhpGedcom\Record\Indi &$indi, $format = self::GEDCOM55)
+    public static function convert(\PhpGedcom\Record\Indi &$indi)
     {
         $level = 0;
 

@@ -52,7 +52,7 @@ class Writer
         $repos = $gedcom->getRepo();    // array()
         $objes = $gedcom->getObje();    // array()
         
-        $output = $level." FORMAT ".$format."\n";
+        $output = "0 FORMAT ".$format."\n";
 
         // head
         if($head){

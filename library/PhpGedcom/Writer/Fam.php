@@ -24,7 +24,7 @@ class Fam
      * @param int $level
      * @return string
      */
-    public static function convert(\PhpGedcom\Record\Fam &$fam, $level)
+    public static function convert(\PhpGedcom\Record\Fam &$fam, $level=0)
     {
         
         $output = "";
@@ -32,7 +32,7 @@ class Fam
         if(empty($id)){
             return $output;
         }else{
-            $output.=$level." ".$id." FAM "."\n";
+            $output.=$level." @".$id."@ FAM "."\n";
         }
         // level up
         $level++;
@@ -54,7 +54,7 @@ class Fam
         if(!empty($chil) && count($chil) > 0){
             foreach($chil as $item){
                 if($item){
-                    $_convert = $level.' CHIL '.$item.'\n';
+                    $_convert = $level." CHIL ".$item."\n";
                     $output.=$_convert;
                 }
             }

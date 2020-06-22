@@ -37,7 +37,7 @@ class Fams
         $level++;
         
         // note
-        $note = $fams->getSour();
+        $note = $fams->getNote();
         if(!empty($note) && count($note) > 0){
             foreach($note as $item){
                 $_convert = \PhpGedcom\Writer\NoteRef::convert($item, $level);
