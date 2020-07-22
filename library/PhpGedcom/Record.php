@@ -73,6 +73,14 @@ abstract class Record
         } elseif (substr($method, 0, 3) == 'get') {
             $arr = strtolower(substr($method, 3));
 
+            // hotfix getData
+            if ('data' == $arr) {
+                if (!property_exists($this, '_text')) {
+                    throw new \Exception('Unknown ' . get_class($this) . '::' . $arr);
+                }
+                return $this->{'_text'};
+            }
+            
             if (!property_exists($this, '_' . $arr)) {
                 throw new \Exception('Unknown ' . get_class($this) . '::' . $arr);
             }
