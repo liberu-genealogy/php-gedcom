@@ -18,7 +18,7 @@ namespace PhpGedcom\Parser;
  *
  *
  */
-class SourRef extends \PhpGedcom\Parser\Component
+class Plac extends \PhpGedcom\Parser\Component
 {
 
     /**
@@ -30,20 +30,22 @@ class SourRef extends \PhpGedcom\Parser\Component
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
         if(isset($record[2])){
-          $sour = new \PhpGedcom\Record\SourRef();
-          $sour->setSour($record[2]);
+          $_plac = trim($record[2]);
         }
         else{
            $parser->skipToNextLevel($depth);
            return null;
-        }        
+        }
+
+        $plac = new \PhpGedcom\Record\Plac();
+        $plac->setPlac($_plac);
 
         $parser->forward();
 
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
-            $recordType = strtoupper(trim($record[1]));
             $currentDepth = (int)$record[0];
+            $recordType = strtoupper(trim($record[1]));
 
             if ($currentDepth <= $depth) {
                 $parser->back();
@@ -51,39 +53,25 @@ class SourRef extends \PhpGedcom\Parser\Component
             }
 
             switch ($recordType) {
-                case 'CONT':
-                    $sour->setSour($sour->getSour() . "\n");
-
-                    if (isset($record[2])) {
-                        $sour->setSour($sour->getSour() . $record[2]);
-                    }
+                case 'FORM':
+                    $plac->setForm(trim($record[2]));
                     break;
-                case 'CONC':
-                    if (isset($record[2])) {
-                        $sour->setSour($sour->getSour() . $record[2]);
-                    }
+                case 'FONE':
+                    $fone = \PhpGedcom\Parser\Plac\Fone::parse($parser);
+                    $plac->setFone($fone);
                     break;
-                case 'TEXT':
-                    $sour->setText($parser->parseMultiLineRecord());
+                case 'ROMN':
+                    $romn = \PhpGedcom\Parser\Plac\Romn::parse($parser);
+                    $plac->setRomn($romn);
                     break;
                 case 'NOTE':
-                    $note = \PhpGedcom\Parser\NoteRef::parse($parser);
-                    if ($note) {
-                        $sour->addNote($note);
+                    if ($note = \PhpGedcom\Parser\NoteRef::parse($parser)) {
+                        $plac->addNote($note);
                     }
                     break;
-                case 'DATA':
-                    $sour->setData(\PhpGedcom\Parser\SourRef\Data::parse($parser));
-                    break;
-                case 'QUAY':
-                    $sour->setQuay(trim($record[2]));
-                    break;
-                case 'PAGE':
-                    $sour->setPage(trim($record[2]));
-                    break;
-                case 'EVEN':
-                    $even = \PhpGedcom\Parser\SourRef\Even::parse($parser);
-                    $sour->setEven($even);
+                case 'MAP':
+                    $map = \PhpGedcom\Parser\Plac\Map::parse($parser);
+                    $plac->setMap($map);
                     break;
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
@@ -92,6 +80,6 @@ class SourRef extends \PhpGedcom\Parser\Component
             $parser->forward();
         }
 
-        return $sour;
+        return $plac;
     }
 }

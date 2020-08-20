@@ -74,7 +74,7 @@ class Sour extends \PhpGedcom\Parser\Component
                     $sour->setAbbr(trim($record[2]));
                     break;
                 case 'REPO':
-                    $sour->setRepo(\PhpGedcom\Parser\RepoRef::parse($parser));
+                    $sour->setRepo(\PhpGedcom\Parser\Sour\Repo::parse($parser));
                     break;
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);

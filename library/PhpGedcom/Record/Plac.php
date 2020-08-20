@@ -20,6 +20,10 @@ use \PhpGedcom\Record\Noteable;
 class Plac extends \PhpGedcom\Record implements Noteable
 {
     /**
+     * string plac
+     */
+    protected $_plac = null;
+    /**
      * string place_hierarchy
      */
     protected $_form = null;

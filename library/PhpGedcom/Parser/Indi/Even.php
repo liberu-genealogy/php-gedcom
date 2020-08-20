@@ -74,7 +74,7 @@ class Even extends \PhpGedcom\Parser\Component {
 				//$even->setDate(trim($record[2]))
 				break;
 			case 'PLAC':
-				$plac = \PhpGedcom\Parser\Indi\Even\Plac::parse($parser);
+				$plac = \PhpGedcom\Parser\Plac::parse($parser);
 				$even->setPlac($plac);
 				break;
 			case 'ADDR':

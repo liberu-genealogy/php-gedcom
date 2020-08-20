@@ -21,6 +21,7 @@ use \PhpGedcom\Record\Noteable;
  */
 class Repo extends \PhpGedcom\Record implements Noteable
 {
+    protected $_repo = null;
     /**
      * array PhpGedcom\Record\Sour\Repo\Caln
      */

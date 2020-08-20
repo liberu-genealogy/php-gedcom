@@ -31,7 +31,9 @@ class Name extends \PhpGedcom\Record implements \PhpGedcom\Record\Sourceable {
 	protected $_spfx = null;
 	protected $_surn = null;
 	protected $_nsfx = null;
-
+	protected $_fone = null; // PhpGedcom/
+	protected $_romn = null;
+	protected $_type = null;
 	/**
 	 *
 	 */

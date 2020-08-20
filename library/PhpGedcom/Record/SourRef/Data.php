@@ -24,7 +24,7 @@ class Data extends \PhpGedcom\Record
      */
     protected $_date    = null;
     /**
-     * PhpGedcom\Record\SourRef\Data\Text text_from_source
+     * string text_from_source
      */
     protected $_text    = null;
 }

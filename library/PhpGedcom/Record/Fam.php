@@ -92,7 +92,7 @@ class Fam extends \PhpGedcom\Record implements Noteable, Sourceable, Objectable 
 	/**
 	 *
 	 */
-	public function addEven($even = []) {
+	public function addEven($even) {
 		$this->_even[$even->getType()] = $even;
 	}
 

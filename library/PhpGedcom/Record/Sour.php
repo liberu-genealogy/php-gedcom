@@ -181,7 +181,7 @@ class Sour extends Record implements Noteable, Objectable
      * @param \PhpGedcom\Record\Repo $repo
      * @return Sour
      */
-    public function setRepo($repo = [])
+    public function setRepo($repo)
     {
         $this->repo = $repo;
         return $this;

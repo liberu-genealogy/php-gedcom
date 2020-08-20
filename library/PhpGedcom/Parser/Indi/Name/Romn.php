@@ -12,13 +12,13 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace PhpGedcom\Parser;
+namespace PhpGedcom\Parser\Indi\Name;
 
 /**
  *
  *
  */
-class SourRef extends \PhpGedcom\Parser\Component
+class Romn extends \PhpGedcom\Parser\Component
 {
 
     /**
@@ -30,13 +30,14 @@ class SourRef extends \PhpGedcom\Parser\Component
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
         if(isset($record[2])){
-          $sour = new \PhpGedcom\Record\SourRef();
-          $sour->setSour($record[2]);
+          $romn = new \PhpGedcom\Record\Indi\Name\Romn();
+          $romn->setRomn(trim($record[2]));
         }
         else{
            $parser->skipToNextLevel($depth);
            return null;
-        }        
+        }
+
 
         $parser->forward();
 
@@ -50,40 +51,31 @@ class SourRef extends \PhpGedcom\Parser\Component
                 break;
             }
 
-            switch ($recordType) {
-                case 'CONT':
-                    $sour->setSour($sour->getSour() . "\n");
+            if (!isset($record[2])) {
+                $record[2] = '';
+            }
 
-                    if (isset($record[2])) {
-                        $sour->setSour($sour->getSour() . $record[2]);
-                    }
+            switch ($recordType) {
+                case 'TYPE':
+                    $romn->setRomn(trim($record[2]));
                     break;
-                case 'CONC':
-                    if (isset($record[2])) {
-                        $sour->setSour($sour->getSour() . $record[2]);
-                    }
+                case 'NPFX':
+                    $romn->setNpfx(trim($record[2]));
                     break;
-                case 'TEXT':
-                    $sour->setText($parser->parseMultiLineRecord());
+                case 'GIVN':
+                    $romn->setGivn(trim($record[2]));
                     break;
-                case 'NOTE':
-                    $note = \PhpGedcom\Parser\NoteRef::parse($parser);
-                    if ($note) {
-                        $sour->addNote($note);
-                    }
+                case 'NICK':
+                    $romn->setNick(trim($record[2]));
                     break;
-                case 'DATA':
-                    $sour->setData(\PhpGedcom\Parser\SourRef\Data::parse($parser));
+                case 'SPFX':
+                    $romn->setSpfx(trim($record[2]));
                     break;
-                case 'QUAY':
-                    $sour->setQuay(trim($record[2]));
+                case 'SURN':
+                    $romn->setSurn(trim($record[2]));
                     break;
-                case 'PAGE':
-                    $sour->setPage(trim($record[2]));
-                    break;
-                case 'EVEN':
-                    $even = \PhpGedcom\Parser\SourRef\Even::parse($parser);
-                    $sour->setEven($even);
+                case 'NSFX':
+                    $romn->setNsfx(trim($record[2]));
                     break;
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
@@ -92,6 +84,6 @@ class SourRef extends \PhpGedcom\Parser\Component
             $parser->forward();
         }
 
-        return $sour;
+        return $romn;
     }
 }

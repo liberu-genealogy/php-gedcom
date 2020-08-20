@@ -25,10 +25,10 @@ class Fone extends Record
     /**
      * @var string phonetic_variation
      */
-    protected $fone;
+    protected $_fone;
 
     /**
      * @var string phonetic_type
      */
-    protected $type;
+    protected $_type;
 }

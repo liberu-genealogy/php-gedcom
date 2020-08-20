@@ -12,13 +12,13 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace PhpGedcom\Parser\Fam;
+namespace PhpGedcom\Parser\Plac;
 
 /**
  *
  *
  */
-class Slgs extends \PhpGedcom\Parser\Component
+class Fone extends \PhpGedcom\Parser\Component
 {
 
     /**
@@ -29,15 +29,23 @@ class Slgs extends \PhpGedcom\Parser\Component
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
+        if(isset($record[2])){
+          $_fone = trim($record[2]);
+        }
+        else{
+           $parser->skipToNextLevel($depth);
+           return null;
+        }
 
-        $slgs = new \PhpGedcom\Record\Fam\Slgs();
+        $fone = new \PhpGedcom\Record\Plac\Fone();
+        $fone->setPlac($_fone);
 
         $parser->forward();
 
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
-            $recordType = strtoupper(trim($record[1]));
             $currentDepth = (int)$record[0];
+            $recordType = strtoupper(trim($record[1]));
 
             if ($currentDepth <= $depth) {
                 $parser->back();
@@ -45,28 +53,8 @@ class Slgs extends \PhpGedcom\Parser\Component
             }
 
             switch ($recordType) {
-                case 'STAT':
-                    $stat = \PhpGedcom\Parser\Fam\Slgs\Stat::parse($parser);
-                    $slgs->setStat($stat);
-                    break;
-                case 'DATE':
-                    $slgs->setDate(trim($record[2]));
-                    break;
-                case 'PLAC':
-                    $slgs->setPlac(trim($record[2]));
-                    break;
-                case 'TEMP':
-                    $slgs->setTemp(trim($record[2]));
-                    break;
-                case 'SOUR':
-                    $sour = \PhpGedcom\Parser\SourRef::parse($parser);
-                    $slgs->addSour($sour);
-                    break;
-                case 'NOTE':
-                    $note = \PhpGedcom\Parser\NoteRef::parse($parser);
-                    if ($note) {
-                        $slgs->addNote($note);
-                    }
+                case 'TYPE':
+                    $fone->setType(trim($record[2]));
                     break;
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
@@ -75,6 +63,6 @@ class Slgs extends \PhpGedcom\Parser\Component
             $parser->forward();
         }
 
-        return $slgs;
+        return $fone;
     }
 }

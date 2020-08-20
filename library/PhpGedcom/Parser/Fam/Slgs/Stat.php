@@ -7,20 +7,20 @@
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
- * @package         php-gedcom
+ * @package         php-gedcom 
  * @license         GPL-3.0
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace PhpGedcom\Parser\Fam;
+namespace PhpGedcom\Parser\Fam\Slgs;
 
 /**
  *
  *
  */
-class Slgs extends \PhpGedcom\Parser\Component
+class Stat extends \PhpGedcom\Parser\Component
 {
-
+    
     /**
      *
      *
@@ -28,53 +28,40 @@ class Slgs extends \PhpGedcom\Parser\Component
     public static function parse(\PhpGedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
-        $depth = (int)$record[0];
+		$depth = (int) $record[0];
+		if (isset($record[2])) {
+			$_stat = $record[2];
+		} else {
+			$parser->skipToNextLevel($depth);
+			return null;
+		}
 
-        $slgs = new \PhpGedcom\Record\Fam\Slgs();
+        $stat = new \PhpGedcom\Record\Fam\Slgs\Stat();
+        $stat->setStat($_stat);
 
         $parser->forward();
-
+        
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
             $recordType = strtoupper(trim($record[1]));
             $currentDepth = (int)$record[0];
-
+            
             if ($currentDepth <= $depth) {
                 $parser->back();
                 break;
             }
-
+            
             switch ($recordType) {
-                case 'STAT':
-                    $stat = \PhpGedcom\Parser\Fam\Slgs\Stat::parse($parser);
-                    $slgs->setStat($stat);
-                    break;
                 case 'DATE':
-                    $slgs->setDate(trim($record[2]));
-                    break;
-                case 'PLAC':
-                    $slgs->setPlac(trim($record[2]));
-                    break;
-                case 'TEMP':
-                    $slgs->setTemp(trim($record[2]));
-                    break;
-                case 'SOUR':
-                    $sour = \PhpGedcom\Parser\SourRef::parse($parser);
-                    $slgs->addSour($sour);
-                    break;
-                case 'NOTE':
-                    $note = \PhpGedcom\Parser\NoteRef::parse($parser);
-                    if ($note) {
-                        $slgs->addNote($note);
-                    }
+                    $stat->setDate(trim($record[2]));
                     break;
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }
-
+            
             $parser->forward();
         }
-
-        return $slgs;
+        
+        return $stat;
     }
 }

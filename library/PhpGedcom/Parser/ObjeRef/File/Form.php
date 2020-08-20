@@ -12,31 +12,30 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace PhpGedcom\Parser;
+namespace PhpGedcom\Parser\ObjeRef\File;
 
 /**
  *
  *
  */
-class ObjeRef extends \PhpGedcom\Parser\Component
+class Form extends \PhpGedcom\Parser\Component
 {
+    
     /**
+     *
      *
      */
     public static function parse(\PhpGedcom\Parser $parser)
     {
+        $form = new \PhpGedcom\Record\ObjeRef\File\Form();
         $record = $parser->getCurrentLineRecord();
-        $depth = (int)$record[0];
-        
-        $obje = new \PhpGedcom\Record\ObjeRef();
-        
-        if (isset($record[2])) {
-            $obje->setIsReference(true);
-            $obje->setObje($parser->normalizeIdentifier($record[2]));
+		$depth = (int) $record[0];
+        if(isset($record[2])) {
+            $form->setForm($record[2]);
         } else {
-            $obje->setIsReference(false);
+            $parser->skipToNextLevel($depth);
+            return null;
         }
-        
         $parser->forward();
         
         while (!$parser->eof()) {
@@ -50,20 +49,8 @@ class ObjeRef extends \PhpGedcom\Parser\Component
             }
             
             switch ($recordType) {
-                case 'TITL':
-                    $obje->setTitl(trim($record[2]));
-                    break;
-                case 'FILE':
-                    $obje->setFile(\PhpGedcom\Parser\ObjeRef\File::parse($parser));
-                    break;
-                case 'FORM':
-                    $obje->setForm(trim($record[2]));
-                    break;
-                case 'NOTE':
-                    $note = \PhpGedcom\Parser\NoteRef::parse($parser);
-                    if ($note) {
-                        $obje->addNote($note);
-                    }
+                case 'MEDI':
+                    $form->setDate(trim($record[2]));
                     break;
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
@@ -72,6 +59,6 @@ class ObjeRef extends \PhpGedcom\Parser\Component
             $parser->forward();
         }
         
-        return $obje;
+        return $form;
     }
 }

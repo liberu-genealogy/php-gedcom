@@ -12,13 +12,13 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace PhpGedcom\Parser\Indi;
+namespace PhpGedcom\Parser\Indi\Name;
 
 /**
  *
  *
  */
-class Name extends \PhpGedcom\Parser\Component
+class Fone extends \PhpGedcom\Parser\Component
 {
 
     /**
@@ -30,11 +30,10 @@ class Name extends \PhpGedcom\Parser\Component
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
         if(isset($record[2])){
-          $name = new \PhpGedcom\Record\Indi\Name();
-          $name->setName(trim($record[2]));
+          $fone = new \PhpGedcom\Record\Indi\Name\Fone();
+          $fone->setFone(trim($record[2]));
         }
         else{
-           $parser->skipToNextLevel($depth);
            return null;
         }
 
@@ -57,41 +56,25 @@ class Name extends \PhpGedcom\Parser\Component
 
             switch ($recordType) {
                 case 'TYPE':
-                    $name->setType(trim($record[2]));
-                    break;
+                    $fone->setType(trim($record[2]));
+                    break;                
                 case 'NPFX':
-                    $name->setNpfx(trim($record[2]));
+                    $fone->setNpfx(trim($record[2]));
                     break;
                 case 'GIVN':
-                    $name->setGivn(trim($record[2]));
+                    $fone->setGivn(trim($record[2]));
                     break;
                 case 'NICK':
-                    $name->setNick(trim($record[2]));
+                    $fone->setNick(trim($record[2]));
                     break;
                 case 'SPFX':
-                    $name->setSpfx(trim($record[2]));
+                    $fone->setSpfx(trim($record[2]));
                     break;
                 case 'SURN':
-                    $name->setSurn(trim($record[2]));
+                    $fone->setSurn(trim($record[2]));
                     break;
                 case 'NSFX':
-                    $name->setNsfx(trim($record[2]));
-                    break;
-                case 'SOUR':
-                    $sour = \PhpGedcom\Parser\SourRef::parse($parser);
-                    $name->addSour($sour);
-                    break;
-                case 'NOTE':
-                    $note = \PhpGedcom\Parser\NoteRef::parse($parser);
-                    if ($note) {
-                        $name->addNote($note);
-                    }
-                    break;
-                case 'FONE':
-                    $name->setFone(\PhpGedcom\Parser\Indi\Name\Fone::parse($parser));
-                    break;
-                case 'ROMN':
-                    $name->setRomn(\PhpGedcom\Parser\Indi\Name\Romn::parse($parser));
+                    $fone->setNsfx(trim($record[2]));
                     break;
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
@@ -100,6 +83,6 @@ class Name extends \PhpGedcom\Parser\Component
             $parser->forward();
         }
 
-        return $name;
+        return $fone;
     }
 }

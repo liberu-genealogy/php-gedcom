@@ -12,13 +12,13 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace PhpGedcom\Parser\Fam;
+namespace PhpGedcom\Parser\Sour;
 
 /**
  *
  *
  */
-class Slgs extends \PhpGedcom\Parser\Component
+class Repo extends \PhpGedcom\Parser\Component
 {
 
     /**
@@ -27,10 +27,13 @@ class Slgs extends \PhpGedcom\Parser\Component
      */
     public static function parse(\PhpGedcom\Parser $parser)
     {
+        $repo = new \PhpGedcom\Record\Sour\Repo();
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
-
-        $slgs = new \PhpGedcom\Record\Fam\Slgs();
+        if (isset($record[2])) {
+            $_repo = $record[2];
+            $repo->setRepo($_repo);
+		}
 
         $parser->forward();
 
@@ -45,28 +48,11 @@ class Slgs extends \PhpGedcom\Parser\Component
             }
 
             switch ($recordType) {
-                case 'STAT':
-                    $stat = \PhpGedcom\Parser\Fam\Slgs\Stat::parse($parser);
-                    $slgs->setStat($stat);
-                    break;
-                case 'DATE':
-                    $slgs->setDate(trim($record[2]));
-                    break;
-                case 'PLAC':
-                    $slgs->setPlac(trim($record[2]));
-                    break;
-                case 'TEMP':
-                    $slgs->setTemp(trim($record[2]));
-                    break;
-                case 'SOUR':
-                    $sour = \PhpGedcom\Parser\SourRef::parse($parser);
-                    $slgs->addSour($sour);
-                    break;
                 case 'NOTE':
-                    $note = \PhpGedcom\Parser\NoteRef::parse($parser);
-                    if ($note) {
-                        $slgs->addNote($note);
-                    }
+                    $repo->addNote(\PhpGedcom\Parser\NoteRef::parse($parser));
+                    break;
+                case 'CALN':
+                    $repo->addCaln(\PhpGedcom\Parser\Sour\Repo\Caln::parse($parser));
                     break;
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
@@ -75,6 +61,6 @@ class Slgs extends \PhpGedcom\Parser\Component
             $parser->forward();
         }
 
-        return $slgs;
+        return $repo;
     }
 }
