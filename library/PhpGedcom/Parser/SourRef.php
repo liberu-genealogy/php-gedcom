@@ -31,7 +31,7 @@ class SourRef extends \PhpGedcom\Parser\Component
         $depth = (int)$record[0];
         if(isset($record[2])){
           $sour = new \PhpGedcom\Record\SourRef();
-          $sour->setSour($record[2]);
+          $sour->setSour($parser->normalizeIdentifier($record[2]));
         }
         else{
            $parser->skipToNextLevel($depth);
@@ -51,18 +51,6 @@ class SourRef extends \PhpGedcom\Parser\Component
             }
 
             switch ($recordType) {
-                case 'CONT':
-                    $sour->setSour($sour->getSour() . "\n");
-
-                    if (isset($record[2])) {
-                        $sour->setSour($sour->getSour() . $record[2]);
-                    }
-                    break;
-                case 'CONC':
-                    if (isset($record[2])) {
-                        $sour->setSour($sour->getSour() . $record[2]);
-                    }
-                    break;
                 case 'TEXT':
                     $sour->setText($parser->parseMultiLineRecord());
                     break;

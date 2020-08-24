@@ -17,7 +17,7 @@ namespace PhpGedcom\Record;
 /**
  *
  */
-class ObjeRef extends \PhpGedcom\Record implements Noteable
+class ObjeRef extends \PhpGedcom\Record
 {
     /**
      *
@@ -32,11 +32,6 @@ class ObjeRef extends \PhpGedcom\Record implements Noteable
     /**
      *
      */
-    protected $_form    = null;
-
-    /**
-     *
-     */
     protected $_titl    = null;
 
     /**
@@ -44,10 +39,6 @@ class ObjeRef extends \PhpGedcom\Record implements Noteable
      */
     protected $_file    = null;
 
-    /**
-     *
-     */
-    protected $_note = array();
 
     /**
      *
@@ -63,13 +54,5 @@ class ObjeRef extends \PhpGedcom\Record implements Noteable
     public function getIsReference()
     {
         return $this->_isRef;
-    }
-
-    /**
-     *
-     */
-    public function addNote($note = [])
-    {
-        $this->_note[] = $note;
     }
 }
