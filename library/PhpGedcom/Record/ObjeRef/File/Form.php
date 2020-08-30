@@ -29,6 +29,13 @@ class Form extends Record
 
     /**
      * @var string source_media_type
+     * for only obje 
+     */
+    protected $type;
+
+    /**
+     * @var string source_media_type
+     * for only objeref
      */
     protected $medi;
 }

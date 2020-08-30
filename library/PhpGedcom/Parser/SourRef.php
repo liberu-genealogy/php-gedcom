@@ -51,8 +51,24 @@ class SourRef extends \PhpGedcom\Parser\Component
             }
 
             switch ($recordType) {
+                case 'PAGE':
+                    $sour->setPage(trim($record[2]));
+                    break;
+                case 'EVEN':
+                    $even = \PhpGedcom\Parser\SourRef\Even::parse($parser);
+                    $sour->setEven($even);
+                    break;
+                case 'DATA':
+                    $sour->setData(\PhpGedcom\Parser\SourRef\Data::parse($parser));
+                    break;
                 case 'TEXT':
                     $sour->setText($parser->parseMultiLineRecord());
+                    break;
+                case 'OBJE':
+                    $obje = \PhpGedcom\Parser\ObjeRef::parse($parser);
+                    if ($obje) {
+                        $sour->addNote($obje);
+                    }
                     break;
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);
@@ -60,18 +76,8 @@ class SourRef extends \PhpGedcom\Parser\Component
                         $sour->addNote($note);
                     }
                     break;
-                case 'DATA':
-                    $sour->setData(\PhpGedcom\Parser\SourRef\Data::parse($parser));
-                    break;
                 case 'QUAY':
                     $sour->setQuay(trim($record[2]));
-                    break;
-                case 'PAGE':
-                    $sour->setPage(trim($record[2]));
-                    break;
-                case 'EVEN':
-                    $even = \PhpGedcom\Parser\SourRef\Even::parse($parser);
-                    $sour->setEven($even);
                     break;
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);

@@ -51,6 +51,8 @@ class File extends \PhpGedcom\Parser\Component
                 case 'FORM':
                     $file->setDate(\PhpGedcom\Parser\ObjeRef\File\Form::parse($parser));
                     break;
+                case 'TITL':
+                    $file->setTitl(trim($record[2]));
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }

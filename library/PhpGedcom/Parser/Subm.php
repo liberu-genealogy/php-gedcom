@@ -63,8 +63,20 @@ class Subm extends \PhpGedcom\Parser\Component
                     $subm->setAddr($addr);
                     break;
                 case 'PHON':
-                    $phone = \PhpGedcom\Parser\Phon::parse($parser);
+                    $phone = isset($record[2]) ? trim($record[2]): '';
                     $subm->addPhon($phone);
+                    break;
+                case 'EMAIL':
+                    $email = isset($record[2]) ? trim($record[2]): '';
+                    $subm->addEmail($email);
+                    break;
+                case 'FAX':
+                    $fax = isset($record[2]) ? trim($record[2]): '';
+                    $subm->addFax($fax);
+                    break;
+                case 'WWW':
+                    $www = isset($record[2]) ? trim($record[2]): '';
+                    $subm->addWww($www);
                     break;
                 case 'NOTE':
                     $note = \PhpGedcom\Parser\NoteRef::parse($parser);

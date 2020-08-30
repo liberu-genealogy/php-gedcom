@@ -50,7 +50,10 @@ class Form extends \PhpGedcom\Parser\Component
             
             switch ($recordType) {
                 case 'MEDI':
-                    $form->setDate(trim($record[2]));
+                    $form->setMedi(trim($record[2]));
+                    break;
+                case 'TYPE':
+                    $form->setType(trim($record[2]));
                     break;
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);

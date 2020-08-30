@@ -76,6 +76,16 @@ class Subn extends \PhpGedcom\Parser\Component
                 case 'RIN':
                     $subn->setRin(trim($record[2]));
                     break;
+                case 'NOTE': 
+                    $note = \PhpGedcom\Parser\NoteRef::parse($parser);
+                    if ($note) {
+                        $subn->addNote($note);
+                    }
+                    break;
+                case 'CHAN':
+                    $chan = \PhpGedcom\Parser\Chan::parse($parser);
+                    $subn->setChan($chan);
+                    break;
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }

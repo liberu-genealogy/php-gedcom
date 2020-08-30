@@ -63,6 +63,34 @@ class Subn extends Record
     protected $rin;
 
     /**
+     * @var array
+     */
+    protected $_note = array();
+
+    /**
+     * @var \PhpGedcom\Record\Chan
+     */
+    protected $_chan = null;
+
+    public function setChan($chan) {
+        $this->_chan = $chan;
+        return $this;
+    }
+
+    public function getChan() {
+        return $this->_chan;
+    }
+
+    public function addNote($note) {
+        $this->_note[] = $note;
+        return $this;
+    }
+
+    public function getNote() {
+        return $this->_note;
+    }
+
+    /**
      * @param string $subn
      * @return Subn
      */

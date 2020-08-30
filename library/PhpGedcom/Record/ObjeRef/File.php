@@ -31,4 +31,6 @@ class File extends Record
      * @var PhpGedcom\Record\ObjeRef\File\Form
      */
     protected $form;
+    protected $titl;
+
 }

@@ -64,6 +64,21 @@ class Subm extends Record implements Objectable {
 	/**
 	 * @var array
 	 */
+	protected $email = array();
+
+	/**
+	 * @var array
+	 */
+	protected $fax = array();
+
+	/**
+	 * @var array
+	 */
+	protected $www = array();
+
+	/**
+	 * @var array
+	 */
 	protected $obje = array();
 
 	/**
@@ -117,6 +132,67 @@ class Subm extends Record implements Objectable {
 	 */
 	public function getPhon() {
 		return $this->phon;
+	}
+
+
+	/**
+	 * @param Record\Phon $phon
+	 * @return Subm
+	 */
+	public function addPhon($phon = []) {
+		$this->phon[] = $phon;
+		return $this;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getEmail() {
+		return $this->email;
+	}
+
+
+	/**
+	 * @param Record\Phon $phon
+	 * @return Subm
+	 */
+	public function addEmail($email) {
+		$this->email[] = $email;
+		return $this;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getFax() {
+		return $this->fax;
+	}
+
+
+	/**
+	 * @param Record\Phon $phon
+	 * @return Subm
+	 */
+	public function addFax($fax) {
+		$this->fax[] = $fax;
+		return $this;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getWww() {
+		return $this->www;
+	}
+
+
+	/**
+	 * @param Record\Phon $phon
+	 * @return Subm
+	 */
+	public function addWww($www) {
+		$this->www[] = $www;
+		return $this;
 	}
 
 	/**
@@ -180,15 +256,6 @@ class Subm extends Record implements Objectable {
 	 */
 	public function addLang($lang = '') {
 		$this->lang[] = $lang;
-		return $this;
-	}
-
-	/**
-	 * @param Record\Phon $phon
-	 * @return Subm
-	 */
-	public function addPhon($phon = []) {
-		$this->phon[] = $phon;
 		return $this;
 	}
 
