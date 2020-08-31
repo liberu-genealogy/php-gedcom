@@ -37,6 +37,22 @@ class Repo extends Record implements Noteable {
 	protected $addr;
 
 	/**
+	 * @var array
+	 */
+	protected $phon = array();
+	/**
+	 * @var array
+	 */
+	protected $email = array();
+	/**
+	 * @var array
+	 */
+	protected $fax = array();
+	/**
+	 * @var array
+	 */
+	protected $www = array();				
+	/**
 	 * @var string
 	 */
 	protected $rin;
@@ -46,10 +62,7 @@ class Repo extends Record implements Noteable {
 	 */
 	protected $chan;
 
-	/**
-	 * @var array
-	 */
-	protected $phon = array();
+
 
 	/**
 	 * @var array
@@ -62,13 +75,10 @@ class Repo extends Record implements Noteable {
 	protected $note = array();
 
 	/**
-	 * @param null|\PhpGedcom\Record\Phon $phons
+	 * @param null
 	 * @return Repo
 	 */
 	public function addPhon($phon = null) {
-		if(empty($phon)) {
-			$phon = new \PhpGedcom\Record\Phon();
-		}
 		$this->phon[] = $phon;
 		return $this;
 	}
@@ -78,6 +88,53 @@ class Repo extends Record implements Noteable {
 	 */
 	public function getPhon() {
 		return $this->phon;
+	}
+
+	/**
+	 * @param null
+	 * @return Repo
+	 */
+	public function addEmail($email = null) {
+		$this->email[] = $email;
+		return $this;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getEmail() {
+		return $this->email;
+	}
+
+	/**
+	 * @param null
+	 * @return Repo
+	 */
+	public function addFax($fax = null) {
+		$this->fax[] = $fax;
+		return $this;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getFax() {
+		return $this->fax;
+	}
+	/**
+	 * @param null
+	 * @return Repo
+	 */
+	public function addWww($www = null) {
+		$this->www[] = $www;
+		return $this;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getWww() {
+		return $this->www;
 	}
 
 	/**

@@ -21,9 +21,8 @@ namespace PhpGedcom\Record;
 class Note extends \PhpGedcom\Record implements Sourceable
 {
     protected $_id   = null;
-    protected $_chan = null;
-
     protected $_note = null;
+
     protected $_even = null;
     protected $_refn = array();
     protected $_rin  = null;
@@ -32,6 +31,7 @@ class Note extends \PhpGedcom\Record implements Sourceable
      *
      */
     protected $_sour = array();
+    protected $_chan = null;
 
     /**
      *

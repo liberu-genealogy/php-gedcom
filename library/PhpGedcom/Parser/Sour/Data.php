@@ -48,7 +48,7 @@ class Data extends \PhpGedcom\Parser\Component
                 case 'EVEN':
                     $data->addEven(\PhpGedcom\Parser\Sour\Data\Even::parse($parser));
                     break;
-                case 'DATE':
+                case 'DATE': // not in 5.5.1
                     $data->setDate(trim($record[2]));
                     break;
                 case 'AGNC':
@@ -60,7 +60,7 @@ class Data extends \PhpGedcom\Parser\Component
                         $data->addNote($note);
                     }
                     break;
-                case 'TEXT':
+                case 'TEXT': // not in 5.5.1
                     $data->setText($parser->parseMultiLineRecord());
                     break;
                 default:

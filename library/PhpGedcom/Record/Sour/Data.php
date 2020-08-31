@@ -25,20 +25,12 @@ class Data extends \PhpGedcom\Record implements Noteable
     protected $_agnc = null;
     protected $_date = null;
 
-    protected $_text = array();
+    protected $_text = null;
 
     /**
      *
      */
     protected $_note = array();
-
-    /**
-     *
-     */
-    public function addText($text = [])
-    {
-        $this->_text[] = $text;
-    }
 
     /**
      *

@@ -28,14 +28,9 @@ class Sour extends Record implements Noteable, Objectable
     protected $sour;
 
     /**
-     * @var Chan
+     * @var Data
      */
-    protected $chan;
-
-    /**
-     * @var string
-     */
-    protected $titl;
+    protected $data;
 
     /**
      * @var string
@@ -45,22 +40,7 @@ class Sour extends Record implements Noteable, Objectable
     /**
      * @var string
      */
-    protected $data;
-
-    /**
-     * @var string
-     */
-    protected $text;
-
-    /**
-     * @var string
-     */
-    protected $publ;
-
-    /**
-     * @var Repo
-     */
-    protected $repo;
+    protected $titl;
 
     /**
      * @var string
@@ -70,12 +50,32 @@ class Sour extends Record implements Noteable, Objectable
     /**
      * @var string
      */
-    protected $rin;
+    protected $publ;
+
+    /**
+     * @var string
+     */
+    protected $text;
+
+    /**
+     * @var Repo
+     */
+    protected $repo;
 
     /**
      * @var array
      */
     protected $refn = array();
+
+    /**
+     * @var string
+     */
+    protected $rin;
+
+    /**
+     * @var Chan
+     */
+    protected $chan;
 
     /**
      * @var array
