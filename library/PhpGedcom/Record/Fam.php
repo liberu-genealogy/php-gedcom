@@ -27,7 +27,13 @@ class Fam extends \PhpGedcom\Record implements Noteable, Sourceable, Objectable 
 	/**
 	 *
 	 */
-	protected $_chan = null;
+	protected $_resn = null;	
+	
+	/**
+	 *
+	 */
+	protected $_even = array();
+
 
 	/**
 	 *
@@ -42,27 +48,20 @@ class Fam extends \PhpGedcom\Record implements Noteable, Sourceable, Objectable 
 	/**
 	 *
 	 */
-	protected $_nchi = null;
-
-	/**
-	 *
-	 */
 	protected $_chil = array();
-
 	/**
 	 *
 	 */
-	protected $_even = array();
+	protected $_nchi = null;
+	/**
+	 *
+	 */
+	protected $_subm = array();
 
 	/**
 	 *
 	 */
 	protected $_slgs = array();
-
-	/**
-	 *
-	 */
-	protected $_subm = array();
 
 	/**
 	 *
@@ -73,6 +72,10 @@ class Fam extends \PhpGedcom\Record implements Noteable, Sourceable, Objectable 
 	 *
 	 */
 	protected $_rin = null;
+	/**
+	*
+	*/
+	protected $_chan = null;
 
 	/**
 	 *

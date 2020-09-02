@@ -38,17 +38,90 @@ class Indi extends Record implements Noteable, Objectable, Sourceable {
 	/**
 	 * @var string
 	 */
-	protected $chan;
-
+	protected $resn;
 	/**
-	 * @var Indi\Attr[]
+	 * @var Indi\Name[]
 	 */
-	protected $attr = array();
+	protected $name = array();
+	/**
+	 * @var string
+	 */
+	protected $sex;
 
 	/**
 	 * @var Indi\Even[]
 	 */
 	protected $even = array();
+	/**
+	 * @var Indi\Attr[]
+	 */
+	protected $attr = array();
+	/**
+	 * @var Indi\Bapl
+	 */
+	protected $bapl = array();
+
+	/**
+	 * @var Indi\Conl
+	 */
+	protected $conl = array();
+
+	/**
+	 * @var Indi\Endl
+	 */
+	protected $endl = array();
+
+	/**
+	 * @var Indi\Slgc
+	 */
+	protected $slgc = array();
+
+	/**
+	 * @var Indi\Famc[]
+	 */
+	protected $famc = array();
+	/**
+	 * @var Indi\Fams[]
+	 */
+	protected $fams = array();
+	/**
+	 * @var string[]
+	 */
+	protected $subm = array();
+	/**
+	 * @var string[]
+	 */
+	protected $alia = array();
+	/**
+	 * @var string[]
+	 */
+	protected $anci = array();
+	/**
+	 * @var string[]
+	 */
+	protected $desi = array();
+	/**
+	 * @var string
+	 */
+	protected $rfn;	
+	/**
+	 * @var string
+	 */
+	protected $afn;
+	/**
+	 * @var Refn[]
+	 */
+	protected $refn = array();
+	/**
+	 * @var string
+	 */
+	protected $rin;
+
+	/**
+	 * @var string
+	 */
+	protected $chan;
+
 
 	/**
 	 * @var Indi\Note[]
@@ -65,95 +138,13 @@ class Indi extends Record implements Noteable, Objectable, Sourceable {
 	 */
 	protected $sour = array();
 
-	/**
-	 * @var Indi\Name[]
-	 */
-	protected $name = array();
-
-	/**
-	 * @var string[]
-	 */
-	protected $alia = array();
-
-	/**
-	 * @var string
-	 */
-	protected $sex;
-
-	/**
-	 * @var string
-	 */
-	protected $rin;
-
-	/**
-	 * @var string
-	 */
-	protected $resn;
-
-	/**
-	 * @var string
-	 */
-	protected $rfn;
-
-	/**
-	 * @var string
-	 */
-	protected $afn;
-
-	/**
-	 * @var Indi\Fams[]
-	 */
-	protected $fams = array();
-
-	/**
-	 * @var Indi\Famc[]
-	 */
-	protected $famc = array();
 
 	/**
 	 * @var Indi\Asso[]
 	 */
 	protected $asso = array();
 
-	/**
-	 * @var string[]
-	 */
-	protected $subm = array();
 
-	/**
-	 * @var string[]
-	 */
-	protected $anci = array();
-
-	/**
-	 * @var string[]
-	 */
-	protected $desi = array();
-
-	/**
-	 * @var Refn[]
-	 */
-	protected $refn = array();
-
-	/**
-	 * @var Indi\Bapl
-	 */
-	protected $bapl;
-
-	/**
-	 * @var Indi\Conl
-	 */
-	protected $conl;
-
-	/**
-	 * @var Indi\Endl
-	 */
-	protected $endl;
-
-	/**
-	 * @var Indi\Slgc
-	 */
-	protected $slgc;
 
 	/**
 	 * @param string $id
@@ -509,7 +500,7 @@ class Indi extends Record implements Noteable, Objectable, Sourceable {
 	 * @param string $chan
 	 * @return Indi
 	 */
-	public function setChan($chan = '') {
+	public function setChan($chan = null) {
 		$this->chan = $chan;
 		return $this;
 	}
@@ -545,7 +536,14 @@ class Indi extends Record implements Noteable, Objectable, Sourceable {
 		$this->bapl = $bapl;
 		return $this;
 	}
-
+	/**
+	 * @param Indi\Bapl $bapl
+	 * @return Indi
+	 */
+	public function addBapl($bapl = []) {
+		$this->bapl[] = $bapl;
+		return $this;
+	}
 	/**
 	 * @return Indi\Bapl
 	 */
@@ -559,6 +557,14 @@ class Indi extends Record implements Noteable, Objectable, Sourceable {
 	 */
 	public function setConl($conl = []) {
 		$this->conl = $conl;
+		return $this;
+	}
+	/**
+	 * @param Indi\Conl $conl
+	 * @return Indi
+	 */
+	public function addConl($conl) {
+		$this->conl[] = $conl;
 		return $this;
 	}
 
@@ -577,6 +583,14 @@ class Indi extends Record implements Noteable, Objectable, Sourceable {
 		$this->endl = $endl;
 		return $this;
 	}
+	/**
+	 * @param Indi\Endl $endl
+	 * @return Indi
+	 */
+	public function addEndl($endl) {
+		$this->endl[] = $endl;
+		return $this;
+	}
 
 	/**
 	 * @return Indi\Endl
@@ -591,6 +605,15 @@ class Indi extends Record implements Noteable, Objectable, Sourceable {
 	 */
 	public function setSlgc($slgc = []) {
 		$this->slgc = $slgc;
+		return $this;
+	}
+
+	/**
+	 * @param Indi\Slgc $slgc
+	 * @return Indi
+	 */
+	public function addSlgc($slgc) {
+		$this->slgc[] = $slgc;
 		return $this;
 	}
 

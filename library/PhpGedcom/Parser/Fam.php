@@ -67,49 +67,8 @@ class Fam extends \PhpGedcom\Parser\Component
             }
 
             switch ($recordType) {
-                case 'HUSB':
-                    $fam->setHusb($parser->normalizeIdentifier($record[2]));
-                    break;
-                case 'WIFE':
-                    $fam->setWife($parser->normalizeIdentifier($record[2]));
-                    break;
-                case 'CHIL':
-                    $fam->addChil($parser->normalizeIdentifier($record[2]));
-                    break;
-                case 'NCHI':
-                    $fam->setNchi(trim($record[2]));
-                    break;
-                case 'SUBM':
-                    $fam->addSubm($parser->normalizeIdentifier($record[2]));
-                    break;
-                case 'RIN':
-                    $fam->setRin(trim($record[2]));
-                    break;
-                case 'CHAN':
-                    $chan = \PhpGedcom\Parser\Chan::parse($parser);
-                    $fam->setChan($chan);
-                    break;
-                case 'SLGS':
-                    $slgs = \PhpGedcom\Parser\Fam\Slgs::parse($parser);
-                    $fam->addSlgs($slgs);
-                    break;
-                case 'REFN':
-                    $ref = \PhpGedcom\Parser\Refn::parse($parser);
-                    $fam->addRefn($ref);
-                    break;
-                case 'NOTE':
-                    $note = \PhpGedcom\Parser\NoteRef::parse($parser);
-                    if ($note) {
-                        $fam->addNote($note);
-                    }
-                    break;
-                case 'SOUR':
-                    $sour = \PhpGedcom\Parser\SourRef::parse($parser);
-                    $fam->addSour($sour);
-                    break;
-                case 'OBJE':
-                    $obje = \PhpGedcom\Parser\ObjeRef::parse($parser);
-                    $fam->addObje($obje);
+                case 'RESN':
+                    $fam->setResn(trim($record[2]));
                     break;
                 case 'EVEN':
                 case 'ANUL':
@@ -127,7 +86,52 @@ class Fam extends \PhpGedcom\Parser\Component
 
                     $even = $class::parse($parser);
                     $fam->addEven($even);
+                    break;                    
+                case 'HUSB':
+                    $fam->setHusb($parser->normalizeIdentifier($record[2]));
                     break;
+                case 'WIFE':
+                    $fam->setWife($parser->normalizeIdentifier($record[2]));
+                    break;
+                case 'CHIL':
+                    $fam->addChil($parser->normalizeIdentifier($record[2]));
+                    break;
+                case 'NCHI':
+                    $fam->setNchi(trim($record[2]));
+                    break;
+                case 'SUBM':
+                    $fam->addSubm($parser->normalizeIdentifier($record[2]));
+                    break;
+                case 'SLGS':
+                    $slgs = \PhpGedcom\Parser\Fam\Slgs::parse($parser);
+                    $fam->addSlgs($slgs);
+                    break;
+                case 'REFN':
+                    $ref = \PhpGedcom\Parser\Refn::parse($parser);
+                    $fam->addRefn($ref);
+                    break;                    
+                case 'RIN':
+                    $fam->setRin(trim($record[2]));
+                    break;
+                case 'CHAN':
+                    $chan = \PhpGedcom\Parser\Chan::parse($parser);
+                    $fam->setChan($chan);
+                    break;
+                case 'NOTE':
+                    $note = \PhpGedcom\Parser\NoteRef::parse($parser);
+                    if ($note) {
+                        $fam->addNote($note);
+                    }
+                    break;
+                case 'SOUR':
+                    $sour = \PhpGedcom\Parser\SourRef::parse($parser);
+                    $fam->addSour($sour);
+                    break;
+                case 'OBJE':
+                    $obje = \PhpGedcom\Parser\ObjeRef::parse($parser);
+                    $fam->addObje($obje);
+                    break;
+
                 default:
                     $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
             }
