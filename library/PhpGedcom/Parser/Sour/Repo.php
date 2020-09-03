@@ -31,7 +31,7 @@ class Repo extends \PhpGedcom\Parser\Component
         $record = $parser->getCurrentLineRecord();
         $depth = (int)$record[0];
         if (isset($record[2])) {
-            $_repo = $record[2];
+            $_repo = $parser->normalizeIdentifier($record[2]);
             $repo->setRepo($_repo);
 		}
 

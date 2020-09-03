@@ -540,7 +540,7 @@ class Indi extends Record implements Noteable, Objectable, Sourceable {
 	 * @param Indi\Bapl $bapl
 	 * @return Indi
 	 */
-	public function addBapl($bapl = []) {
+	public function addBapl($bapl = null) {
 		$this->bapl[] = $bapl;
 		return $this;
 	}
