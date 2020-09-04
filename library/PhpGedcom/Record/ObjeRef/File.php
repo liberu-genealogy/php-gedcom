@@ -25,12 +25,12 @@ class File extends Record
     /**
      * @var string multimedia_file_refn
      */
-    protected $file;
+    protected $_file;
 
     /**
      * @var PhpGedcom\Record\ObjeRef\File\Form
      */
-    protected $form;
-    protected $titl;
+    protected $_form;
+    protected $_titl;
 
 }
