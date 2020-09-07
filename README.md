@@ -3,7 +3,7 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/modularsoftware/php-gedcom/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/modularsoftware/php-gedcom/?branch=master)
 [![Build Status](https://scrutinizer-ci.com/g/modularsoftware/php-gedcom/badges/build.png?b=master)](https://scrutinizer-ci.com/g/modularsoftware/php-gedcom/build-status/master)
 [![Code Intelligence Status](https://scrutinizer-ci.com/g/modularsoftware/php-gedcom/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
-[![StyleCI](https://github.styleci.io/repos/135390590/shield?branch=master)](https://github.styleci.io/repos/135390590)
+[![StyleCI](https://github.styleci.io/repos/262784020/shield?branch=master)](https://github.styleci.io/repos/135390590)
 [![CodeFactor](https://www.codefactor.io/repository/github/modularsoftware/php-gedcom/badge/master)](https://www.codefactor.io/repository/github/modularsoftware/php-gedcom/overview/master)
 [![codebeat badge](https://codebeat.co/badges/911f9e33-212a-4dfa-a860-751cdbbacff7)](https://codebeat.co/projects/github-com-modularphp-gedcom-php-gedcom-master)
 [![Build Status](https://travis-ci.org/modularsoftware/php-gedcom.svg?branch=master)](https://travis-ci.org/modularsoftware/php-gedcom)
