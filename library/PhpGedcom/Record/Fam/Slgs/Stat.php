@@ -8,7 +8,7 @@
  * @author          Xiang Ming wenqiangliu344@gmail.com
  * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
  * @package         php-gedcom
- * @license         GPL-3.0
+ * @license         MIT
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
