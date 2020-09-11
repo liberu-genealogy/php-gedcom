@@ -1,37 +1,35 @@
 <?php
 /**
- * php-gedcom
+ * php-gedcom.
  *
  * php-gedcom is a library for parsing, manipulating, importing and exporting
  * GEDCOM 5.5 files in PHP 5.3+.
  *
  * @author          Xiang Ming <wenqiangliu344@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Xiang Ming
- * @package         php-gedcom 
  * @license         MIT
+ *
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
 namespace PhpGedcom\Writer;
 
-/**
- *
- */
 class Caln
 {
     /**
      * @param \PhpGedcom\Record\Caln $note
-     * @param int $level
+     * @param int                    $level
+     *
      * @return string
      */
     public static function convert(\PhpGedcom\Record\Caln &$caln, $level)
     {
-        $output = "";
+        $output = '';
         $_caln = $caln->getCaln();
-        if(empty($_caln)){
+        if (empty($_caln)) {
             return $output;
-        }else{
-            $output.=$level." CALN ".$_caln."\n";
+        } else {
+            $output .= $level.' CALN '.$_caln."\n";
         }
 
         // level up
@@ -39,9 +37,10 @@ class Caln
 
         // medi
         $medi = $caln->getMedi();
-        if(!empty($medi)){
-            $output.=$level." MEDI ".$medi."\n";
+        if (!empty($medi)) {
+            $output .= $level.' MEDI '.$medi."\n";
         }
+
         return $output;
     }
 }

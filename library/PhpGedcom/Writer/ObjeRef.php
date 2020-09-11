@@ -1,68 +1,67 @@
 <?php
 /**
- * php-gedcom
+ * php-gedcom.
  *
  * php-gedcom is a library for parsing, manipulating, importing and exporting
  * GEDCOM 5.5 files in PHP 5.3+.
  *
  * @author          Xiang Ming <wenqiangliu344@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Xiang Ming
- * @package         php-gedcom 
  * @license         MIT
+ *
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
 namespace PhpGedcom\Writer;
 
-/**
- *
- */
 class ObjeRef
 {
     /**
      * @param \PhpGedcom\Record\ObjeRef $note
-     * @param int $level
+     * @param int                       $level
+     *
      * @return string
      */
     public static function convert(\PhpGedcom\Record\ObjeRef &$obje, $level)
     {
-        $output = "";
+        $output = '';
 
         // $_note
         $_obje = $obje->getObje();
-        if(!empty($_note)){
-            $output.=$level." OBJE ".$_obje."\n";
-        }else{
-            $output.=$level." OBJE \n";
+        if (!empty($_note)) {
+            $output .= $level.' OBJE '.$_obje."\n";
+        } else {
+            $output .= $level." OBJE \n";
         }
 
         $level++;
         // _form
         $_form = $obje->getForm();
-        if(!empty($_form)){
-            $output.=$level." FORM ".$_form."\n";
+        if (!empty($_form)) {
+            $output .= $level.' FORM '.$_form."\n";
         }
 
         // _titl
         $_titl = $obje->getTitl();
-        if(!empty($_titl)){
-            $output.=$level." TITL ".$_titl."\n";
+        if (!empty($_titl)) {
+            $output .= $level.' TITL '.$_titl."\n";
         }
 
         // _file
         $_file = $obje->getFile();
-        if(!empty($_file)){
-            $output.=$level." FILE ".$_file."\n";
+        if (!empty($_file)) {
+            $output .= $level.' FILE '.$_file."\n";
         }
 
         // $_note = array()
         $_note = $obje->getNote();
-        if(!empty($_note) && count($_note) > 0){
-            foreach($_note as $item){
+        if (!empty($_note) && count($_note) > 0) {
+            foreach ($_note as $item) {
                 $_convert = \PhpGedcom\Writer\NoteRef::convert($item, $level);
-                $output.=$_convert;
+                $output .= $_convert;
             }
         }
+
         return $output;
     }
 }

@@ -1,27 +1,25 @@
 <?php
 /**
- * php-gedcom
+ * php-gedcom.
  *
  * php-gedcom is a library for parsing, manipulating, importing and exporting
  * GEDCOM 5.5 files in PHP 5.3+.
  *
  * @author          Xiang Ming <wenqiangliu344@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Xiang Ming
- * @package         php-gedcom 
  * @license         MIT
+ *
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
 namespace PhpGedcom\Writer;
 
-/**
- *
- */
 class Chan
 {
     /**
      * @param \PhpGedcom\Record\Chan $note
-     * @param int $level
+     * @param int                    $level
+     *
      * @return string
      */
     public static function convert(\PhpGedcom\Record\Chan &$chan, $level)
@@ -31,22 +29,23 @@ class Chan
         $level++;
         // DATE
         $_date = $chan->getDate();
-        if(!empty($_date)){
-            $output.=$level." DATE ".$_date."\n";
+        if (!empty($_date)) {
+            $output .= $level.' DATE '.$_date."\n";
         }
         // TIME
         $_time = $chan->getDate();
-        if(!empty($_time)){
-            $output.=$level." DATE ".$_time."\n";
+        if (!empty($_time)) {
+            $output .= $level.' DATE '.$_time."\n";
         }
         // $_note = array()
         $_note = $chan->getNote();
-        if(!empty($_note) && count($_note) > 0){
-            foreach($_note as $item){
+        if (!empty($_note) && count($_note) > 0) {
+            foreach ($_note as $item) {
                 $_convert = \PhpGedcom\Writer\NoteRef::convert($item, $level);
-                $output.=$_convert;
+                $output .= $_convert;
             }
         }
+
         return $output;
     }
 }

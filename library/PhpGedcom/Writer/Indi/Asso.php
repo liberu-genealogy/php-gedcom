@@ -1,27 +1,25 @@
 <?php
 /**
- * php-gedcom
+ * php-gedcom.
  *
  * php-gedcom is a library for parsing, manipulating, importing and exporting
  * GEDCOM 5.5 files in PHP 5.3+.
  *
  * @author          Xiang Ming <wenqiangliu344@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Xiang Ming
- * @package         php-gedcom 
  * @license         MIT
+ *
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
 namespace PhpGedcom\Writer\Indi;
 
-/**
- *
- */
 class Asso
 {
     /**
      * @param \PhpGedcom\Record\Indi\Asso $attr
-     * @param int $level
+     * @param int                         $level
+     *
      * @return string
      */
     public static function convert(\PhpGedcom\Record\Indi\Asso &$asso, $level = 0)
@@ -29,33 +27,33 @@ class Asso
         $output = '';
         // _indi
         $_indi = $asso->getIndi();
-        if(empty($_indi)){
+        if (empty($_indi)) {
             return $output;
         }
-        $output.= $level." ASSO ".$_indi."\n";
+        $output .= $level.' ASSO '.$_indi."\n";
         // level up
         $level++;
-        
+
         // RELA
         $rela = $asso->getRela();
-        if(!empty($rela)){
-            $output.=$level." RELA ".$rela."\n";
+        if (!empty($rela)) {
+            $output .= $level.' RELA '.$rela."\n";
         }
         // sour
         $sour = $asso->getSour();
-        if(!empty($sour) && count($sour) > 0){
-            foreach($sour as $item){
+        if (!empty($sour) && count($sour) > 0) {
+            foreach ($sour as $item) {
                 $_convert = \PhpGedcom\Writer\SourRef::convert($item, $level);
-                $output.=$_convert;
+                $output .= $_convert;
             }
         }
 
         // note
         $note = $asso->getSour();
-        if(!empty($note) && count($note) > 0){
-            foreach($note as $item){
+        if (!empty($note) && count($note) > 0) {
+            foreach ($note as $item) {
                 $_convert = \PhpGedcom\Writer\NoteRef::convert($item, $level);
-                $output.=$_convert;
+                $output .= $_convert;
             }
         }
 

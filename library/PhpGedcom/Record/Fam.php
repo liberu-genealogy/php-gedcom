@@ -1,152 +1,96 @@
 <?php
 /**
- * php-gedcom
+ * php-gedcom.
  *
  * php-gedcom is a library for parsing, manipulating, importing and exporting
  * GEDCOM 5.5 files in PHP 5.3+.
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
- * @package         php-gedcom
  * @license         MIT
+ *
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
 namespace PhpGedcom\Record;
 
-/**
- *
- *
- */
-class Fam extends \PhpGedcom\Record implements Noteable, Sourceable, Objectable {
-	/**
-	 *
-	 */
-	protected $_id = null;
+class Fam extends \PhpGedcom\Record implements Noteable, Sourceable, Objectable
+{
+    protected $_id = null;
 
-	/**
-	 *
-	 */
-	protected $_resn = null;	
-	
-	/**
-	 *
-	 */
-	protected $_even = array();
+    protected $_resn = null;
 
+    protected $_even = [];
 
-	/**
-	 *
-	 */
-	protected $_husb = null;
+    protected $_husb = null;
 
-	/**
-	 *
-	 */
-	protected $_wife = null;
+    protected $_wife = null;
 
-	/**
-	 *
-	 */
-	protected $_chil = array();
-	/**
-	 *
-	 */
-	protected $_nchi = null;
-	/**
-	 *
-	 */
-	protected $_subm = array();
+    protected $_chil = [];
 
-	/**
-	 *
-	 */
-	protected $_slgs = array();
+    protected $_nchi = null;
 
-	/**
-	 *
-	 */
-	protected $_refn = array();
+    protected $_subm = [];
 
-	/**
-	 *
-	 */
-	protected $_rin = null;
-	/**
-	*
-	*/
-	protected $_chan = null;
+    protected $_slgs = [];
 
-	/**
-	 *
-	 */
-	protected $_note = array();
+    protected $_refn = [];
 
-	/**
-	 *
-	 */
-	protected $_sour = array();
+    protected $_rin = null;
 
-	/**
-	 *
-	 */
-	protected $_obje = array();
+    protected $_chan = null;
 
-	/**
-	 *
-	 */
-	public function addEven($even) {
-		$this->_even[$even->getType()] = $even;
-	}
+    protected $_note = [];
 
-	/**
-	 * @return array
-	 */
-	public function getAllEven() {
-		return $this->_even;
-	}
-	/**
-	 * @return void|\PhpGedcom\Record\Fam\Even
-	 */
-	public function getEven($key = '') {
-		if (isset($this->_even[strtoupper($key)])) {
-			return $this->_even[strtoupper($key)];
-		}
+    protected $_sour = [];
 
-	}
-	/**
-	 *
-	 */
-	public function addSlgs($slgs = []) {
-		$this->_slgs[] = $slgs;
-	}
+    protected $_obje = [];
 
-	/**
-	 *
-	 *
-	 */
-	public function addRefn($refn = []) {
-		$this->_refn[] = $refn;
-	}
+    public function addEven($even)
+    {
+        $this->_even[$even->getType()] = $even;
+    }
 
-	/**
-	 *
-	 */
-	public function addNote($note = []) {
-		$this->_note[] = $note;
-	}
+    /**
+     * @return array
+     */
+    public function getAllEven()
+    {
+        return $this->_even;
+    }
 
-	/**
-	 *
-	 */
-	public function addSour($sour = []) {
-		$this->_sour[] = $sour;
-	}
+    /**
+     * @return void|\PhpGedcom\Record\Fam\Even
+     */
+    public function getEven($key = '')
+    {
+        if (isset($this->_even[strtoupper($key)])) {
+            return $this->_even[strtoupper($key)];
+        }
+    }
 
-	/**
-	 *
-	 */
-	public function addObje($obje = []) {
-		$this->_obje[] = $obje;
-	}
+    public function addSlgs($slgs = [])
+    {
+        $this->_slgs[] = $slgs;
+    }
+
+    public function addRefn($refn = [])
+    {
+        $this->_refn[] = $refn;
+    }
+
+    public function addNote($note = [])
+    {
+        $this->_note[] = $note;
+    }
+
+    public function addSour($sour = [])
+    {
+        $this->_sour[] = $sour;
+    }
+
+    public function addObje($obje = [])
+    {
+        $this->_obje[] = $obje;
+    }
 }

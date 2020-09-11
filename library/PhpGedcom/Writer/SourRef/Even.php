@@ -1,48 +1,45 @@
 <?php
 /**
- * php-gedcom
+ * php-gedcom.
  *
  * php-gedcom is a library for parsing, manipulating, importing and exporting
  * GEDCOM 5.5 files in PHP 5.3+.
  *
  * @author          Xiang Ming <wenqiangliu344@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Xiang Ming
- * @package         php-gedcom 
  * @license         MIT
+ *
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
 namespace PhpGedcom\Writer\SourRef;
 
-/**
- *
- */
-class Even 
+class Even
 {
     /**
      * @param \PhpGedcom\Record\SourRef\Even $even
-     * @param int $level
+     * @param int                            $level
+     *
      * @return string
      */
     public static function convert(\PhpGedcom\Record\SourRef\Even &$even, $level = 0)
     {
-        $output = "";
+        $output = '';
 
         // $_date;
         $_even = $even->getEven();
-        if(!empty($_even)){
-            $output.=$level." EVEN ".$_even."\n";
-        }else{
+        if (!empty($_even)) {
+            $output .= $level.' EVEN '.$_even."\n";
+        } else {
             $output = $level." EVEN\n";
         }
         // level up
         $level++;
 
-        
         // $_role ROLE
         $_role = $data->getRole();
-        if(!empty($_role)){
-            $output.=$level." ROLE ".$_role."\n";
+        if (!empty($_role)) {
+            $output .= $level.' ROLE '.$_role."\n";
         }
 
         return $output;
