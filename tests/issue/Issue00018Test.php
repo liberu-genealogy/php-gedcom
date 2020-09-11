@@ -5,8 +5,7 @@ namespace PhpGedcomTest;
 use PhpGedcom\Parser;
 
 /**
- * Class Issue00018Test
- * @package PhpGedcomTest
+ * Class Issue00018Test.
  */
 class Issue00018Test extends \PHPUnit_Framework_TestCase
 {
@@ -15,7 +14,7 @@ class Issue00018Test extends \PHPUnit_Framework_TestCase
      */
     public function testEmptyNote()
     {
-        $sample = realpath(__DIR__ . '/files/issue00018.ged');
+        $sample = realpath(__DIR__.'/files/issue00018.ged');
 
         $parser = new Parser();
         $gedcom = $parser->parse($sample);

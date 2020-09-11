@@ -1,14 +1,14 @@
 <?php
 /**
- * php-gedcom
+ * php-gedcom.
  *
  * php-gedcom is a library for parsing, manipulating, importing and exporting
  * GEDCOM 5.5 files in PHP 5.3+.
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
- * @package         php-gedcom
  * @license         MIT
+ *
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
@@ -17,41 +17,31 @@ namespace PhpGedcomTest;
 use PhpGedcom\Parser;
 
 /**
- * Class ParserTest
- * @package PhpGedcomTest
+ * Class ParserTest.
  */
 class ParserTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var \PhpGedcom\Parser
      */
-    protected $parser  = null;
-    
+    protected $parser = null;
+
     /**
      * @var \PhpGedcom\Gedcom
      */
-    protected $gedcom  = null;
-    
-    /**
-     *
-     */
+    protected $gedcom = null;
+
     public function setUp()
     {
         $this->parser = new Parser();
-        $this->gedcom = $this->parser->parse(TEST_DIR . '/stresstestfiles/TGC551LF.ged');
+        $this->gedcom = $this->parser->parse(TEST_DIR.'/stresstestfiles/TGC551LF.ged');
     }
 
-    /**
-     *
-     */
     public function testNoErrors()
     {
         $this->assertEquals(1, count($this->parser->getErrors()));
     }
 
-    /**
-     *
-     */
     public function testRecordCounts()
     {
         $this->assertEquals(count($this->gedcom->getIndi()), 15);
@@ -62,9 +52,6 @@ class ParserTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(count($this->gedcom->getRepo()), 1);
     }
 
-    /**
-     *
-     */
     public function testHead()
     {
         $head = $this->gedcom->getHead();
@@ -114,9 +101,6 @@ class ParserTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($head->getSubn(), 'SUBMISSION');
     }
 
-    /**
-     *
-     */
     public function testSubn()
     {
         $subn = $this->gedcom->getSubn();
@@ -131,9 +115,6 @@ class ParserTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($subn->getRin(), '1');
     }
 
-    /**
-     *
-     */
     public function testSubm()
     {
         $subm = $this->gedcom->getSubm();
@@ -142,10 +123,10 @@ class ParserTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($subm['SUBMITTER']->getName(), 'John A. Nairn');
         $this->assertEquals(
             $subm['SUBMITTER']->getAddr()->getAddr(),
-            "Submitter address line 1\n" .
-            "Submitter address line 2\n" .
-            "Submitter address line 3\n" .
-            "Submitter address line 4"
+            "Submitter address line 1\n".
+            "Submitter address line 2\n".
+            "Submitter address line 3\n".
+            'Submitter address line 4'
         );
 
         $this->assertEquals($subm['SUBMITTER']->getAddr()->getAdr1(), 'Submitter address line 1');
@@ -175,13 +156,12 @@ class ParserTest extends \PHPUnit_Framework_TestCase
         $note = current($obje->getNote());
         $this->assertEquals($note->getNote(), 'N1');
 
-
         $this->assertEquals($subm['SM2']->getSubm(), 'SM2');
         $this->assertEquals($subm['SM2']->getName(), 'Secondary Submitter');
         $this->assertEquals(
             $subm['SM2']->getAddr()->getAddr(),
-            "Secondary Submitter Address 1\n" .
-            "Secondary Submitter Address 2"
+            "Secondary Submitter Address 1\n".
+            'Secondary Submitter Address 2'
         );
 
         $lang = $subm['SM2']->getLang();
@@ -190,54 +170,34 @@ class ParserTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($subm['SM2']->getChan()->getTime(), '10:38:33');
         $this->assertEquals($subm['SM2']->getRin(), '2');
 
-
         $this->assertEquals($subm['SM3']->getSubm(), 'SM3');
         $this->assertEquals($subm['SM3']->getName(), 'H. Eichmann');
         $this->assertEquals(
             $subm['SM3']->getAddr()->getAddr(),
-            "email: h.eichmann@@mbox.iqo.uni-hannover.de\n" .
-            "or: heiner_eichmann@@h.maus.de (no more than 16k!!!!)"
+            "email: h.eichmann@@mbox.iqo.uni-hannover.de\n".
+            'or: heiner_eichmann@@h.maus.de (no more than 16k!!!!)'
         );
         $this->assertEquals($subm['SM3']->getChan()->getDate(), '13 Jun 2000');
         $this->assertEquals($subm['SM3']->getChan()->getTime(), '17:07:32');
         $this->assertEquals($subm['SM3']->getRin(), '3');
     }
 
-    /**
-     *
-     */
     public function testIndi()
     {
-
     }
 
-    /**
-     *
-     */
     public function testFam()
     {
-
     }
 
-    /**
-     *
-     */
     public function testObje()
     {
-
     }
 
-    /**
-     *
-     */
     public function testRepo()
     {
-
     }
 
-    /**
-     *
-     */
     public function testSour()
     {
         $sour = $this->gedcom->getSour();
@@ -253,9 +213,6 @@ class ParserTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($secondSource->getRin(), '2');
     }
 
-    /**
-     *
-     */
     public function testNote()
     {
         $firstNote = current($this->gedcom->getNote());

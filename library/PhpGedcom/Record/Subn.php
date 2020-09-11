@@ -1,14 +1,14 @@
 <?php
 /**
- * php-gedcom
+ * php-gedcom.
  *
  * php-gedcom is a library for parsing, manipulating, importing and exporting
  * GEDCOM 5.5 files in PHP 5.3+.
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
- * @package         php-gedcom
  * @license         MIT
+ *
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
@@ -17,8 +17,7 @@ namespace PhpGedcom\Record;
 use PhpGedcom\Record;
 
 /**
- * Class Subn
- * @package PhpGedcom\Record
+ * Class Subn.
  */
 class Subn extends Record
 {
@@ -65,38 +64,46 @@ class Subn extends Record
     /**
      * @var array
      */
-    protected $_note = array();
+    protected $_note = [];
 
     /**
      * @var \PhpGedcom\Record\Chan
      */
     protected $_chan = null;
 
-    public function setChan($chan) {
+    public function setChan($chan)
+    {
         $this->_chan = $chan;
+
         return $this;
     }
 
-    public function getChan() {
+    public function getChan()
+    {
         return $this->_chan;
     }
 
-    public function addNote($note) {
+    public function addNote($note)
+    {
         $this->_note[] = $note;
+
         return $this;
     }
 
-    public function getNote() {
+    public function getNote()
+    {
         return $this->_note;
     }
 
     /**
      * @param string $subn
+     *
      * @return Subn
      */
     public function setSubn($subn = '')
     {
         $this->subn = $subn;
+
         return $this;
     }
 
@@ -110,11 +117,13 @@ class Subn extends Record
 
     /**
      * @param string $subm
+     *
      * @return Subn
      */
     public function setSubm($subm = '')
     {
         $this->subm = $subm;
+
         return $this;
     }
 
@@ -128,11 +137,13 @@ class Subn extends Record
 
     /**
      * @param string $famf
+     *
      * @return Subn
      */
     public function setFamf($famf = '')
     {
         $this->famf = $famf;
+
         return $this;
     }
 
@@ -146,11 +157,13 @@ class Subn extends Record
 
     /**
      * @param string $temp
+     *
      * @return Subn
      */
     public function setTemp($temp = '')
     {
         $this->temp = $temp;
+
         return $this;
     }
 
@@ -164,11 +177,13 @@ class Subn extends Record
 
     /**
      * @param string $ance
+     *
      * @return Subn
      */
     public function setAnce($ance = '')
     {
         $this->ance = $ance;
+
         return $this;
     }
 
@@ -182,11 +197,13 @@ class Subn extends Record
 
     /**
      * @param string $desc
+     *
      * @return Subn
      */
     public function setDesc($desc = '')
     {
         $this->desc = $desc;
+
         return $this;
     }
 
@@ -200,11 +217,13 @@ class Subn extends Record
 
     /**
      * @param string $ordi
+     *
      * @return Subn
      */
     public function setOrdi($ordi = '')
     {
         $this->ordi = $ordi;
+
         return $this;
     }
 
@@ -218,11 +237,13 @@ class Subn extends Record
 
     /**
      * @param string $rin
+     *
      * @return Subn
      */
     public function setRin($rin = '')
     {
         $this->rin = $rin;
+
         return $this;
     }
 

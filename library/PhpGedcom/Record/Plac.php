@@ -1,55 +1,55 @@
 <?php
 /**
- * php-gedcom
+ * php-gedcom.
  *
  * php-gedcom is a library for parsing, manipulating, importing and exporting
  * GEDCOM 5.5 files in PHP 5.3+.
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
- * @package         php-gedcom 
  * @license         MIT
+ *
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
 namespace PhpGedcom\Record;
-use \PhpGedcom\Record\Noteable;
-/**
- *
- */
+
 class Plac extends \PhpGedcom\Record implements Noteable
 {
     /**
-     * string plac
+     * string plac.
      */
     protected $_plac = null;
     /**
-     * string place_hierarchy
+     * string place_hierarchy.
      */
     protected $_form = null;
     /**
-     * array PhpGedcom\Record\Plac\Fone
+     * array PhpGedcom\Record\Plac\Fone.
      */
     protected $_fone = null;
     /**
-     * array PhpGedcom\Record\Plac\Romn
+     * array PhpGedcom\Record\Plac\Romn.
      */
     protected $_romn = null;
     /**
-     * PhpGedcom\Record\Plac\Map
+     * PhpGedcom\Record\Plac\Map.
      */
     protected $_map = null;
     /**
-     * array PhpGedcom\Record\NoteRef
+     * array PhpGedcom\Record\NoteRef.
      */
-    protected $_note= null;
+    protected $_note = null;
 
     /**
-	 * @param PhpGedcom\Record\NoteRef $note
-	 * @return Plac
-	 */
-    public function addNote($note = null) {
-		$this->_note[] = $note;
-		return $this;
-	}
+     * @param PhpGedcom\Record\NoteRef $note
+     *
+     * @return Plac
+     */
+    public function addNote($note = null)
+    {
+        $this->_note[] = $note;
+
+        return $this;
+    }
 }

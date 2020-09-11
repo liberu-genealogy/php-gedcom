@@ -5,13 +5,13 @@ namespace PhpGedcomTest;
 use PhpGedcom\Parser;
 
 /**
- * Class Issue00012Test
+ * Class Issue00012Test.
  */
 class Issue00012Test extends \PHPUnit_Framework_TestCase
 {
     public function testBirthDate()
     {
-        $sample = realpath(__DIR__ . '/files/issue00012.ged');
+        $sample = realpath(__DIR__.'/files/issue00012.ged');
 
         $parser = new Parser();
         $gedcom = $parser->parse($sample);

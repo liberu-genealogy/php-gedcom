@@ -1,49 +1,38 @@
 <?php
 /**
- * php-gedcom
+ * php-gedcom.
  *
  * php-gedcom is a library for parsing, manipulating, importing and exporting
  * GEDCOM 5.5 files in PHP 5.3+.
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
- * @package         php-gedcom
  * @license         MIT
+ *
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
 namespace PhpGedcom\Parser\Indi\Name;
 
-/**
- *
- *
- */
 class Fone extends \PhpGedcom\Parser\Component
 {
-
-    /**
-     *
-     *
-     */
     public static function parse(\PhpGedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
-        $depth = (int)$record[0];
-        if(isset($record[2])){
-          $fone = new \PhpGedcom\Record\Indi\Name\Fone();
-          $fone->setFone(trim($record[2]));
+        $depth = (int) $record[0];
+        if (isset($record[2])) {
+            $fone = new \PhpGedcom\Record\Indi\Name\Fone();
+            $fone->setFone(trim($record[2]));
+        } else {
+            return null;
         }
-        else{
-           return null;
-        }
-
 
         $parser->forward();
 
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
             $recordType = strtoupper(trim($record[1]));
-            $currentDepth = (int)$record[0];
+            $currentDepth = (int) $record[0];
 
             if ($currentDepth <= $depth) {
                 $parser->back();
@@ -57,7 +46,7 @@ class Fone extends \PhpGedcom\Parser\Component
             switch ($recordType) {
                 case 'TYPE':
                     $fone->setType(trim($record[2]));
-                    break;                
+                    break;
                 case 'NPFX':
                     $fone->setNpfx(trim($record[2]));
                     break;
@@ -77,7 +66,7 @@ class Fone extends \PhpGedcom\Parser\Component
                     $fone->setNsfx(trim($record[2]));
                     break;
                 default:
-                    $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
+                    $parser->logUnhandledRecord(get_class().' @ '.__LINE__);
             }
 
             $parser->forward();

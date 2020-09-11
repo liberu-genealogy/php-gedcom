@@ -1,14 +1,14 @@
 <?php
 /**
- * php-gedcom
+ * php-gedcom.
  *
  * php-gedcom is a library for parsing, manipulating, importing and exporting
  * GEDCOM 5.5 files in PHP 5.3+.
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
- * @package         php-gedcom
  * @license         MIT
+ *
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
@@ -17,293 +17,344 @@ namespace PhpGedcom\Record;
 use PhpGedcom\Record;
 
 /**
- * Class Subm
- * @package PhpGedcom\Record
+ * Class Subm.
  */
-class Subm extends Record implements Objectable {
-	/**
-	 * @var string
-	 */
-	protected $subm;
+class Subm extends Record implements Objectable
+{
+    /**
+     * @var string
+     */
+    protected $subm;
 
-	/**
-	 * @var Record\Chan
-	 */
-	protected $chan;
+    /**
+     * @var Record\Chan
+     */
+    protected $chan;
 
-	/**
-	 * @var string
-	 */
-	protected $name;
+    /**
+     * @var string
+     */
+    protected $name;
 
-	/**
-	 * @var Record\Addr
-	 */
-	protected $addr;
+    /**
+     * @var Record\Addr
+     */
+    protected $addr;
 
-	/**
-	 * @var string
-	 */
-	protected $rin;
+    /**
+     * @var string
+     */
+    protected $rin;
 
-	/**
-	 * @var string
-	 */
-	protected $rfn;
+    /**
+     * @var string
+     */
+    protected $rfn;
 
-	/**
-	 * @var array
-	 */
-	protected $lang = array();
+    /**
+     * @var array
+     */
+    protected $lang = [];
 
-	/**
-	 * @var array
-	 */
-	protected $phon = array();
+    /**
+     * @var array
+     */
+    protected $phon = [];
 
-	/**
-	 * @var array
-	 */
-	protected $email = array();
+    /**
+     * @var array
+     */
+    protected $email = [];
 
-	/**
-	 * @var array
-	 */
-	protected $fax = array();
+    /**
+     * @var array
+     */
+    protected $fax = [];
 
-	/**
-	 * @var array
-	 */
-	protected $www = array();
+    /**
+     * @var array
+     */
+    protected $www = [];
 
-	/**
-	 * @var array
-	 */
-	protected $obje = array();
+    /**
+     * @var array
+     */
+    protected $obje = [];
 
-	/**
-	 * @var array
-	 */
-	protected $note = array();
+    /**
+     * @var array
+     */
+    protected $note = [];
 
-	/**
-	 * @param string $subm
-	 * @return Subm
-	 */
-	public function setSubm($subm = '') {
-		$this->subm = $subm;
-		return $this;
-	}
+    /**
+     * @param string $subm
+     *
+     * @return Subm
+     */
+    public function setSubm($subm = '')
+    {
+        $this->subm = $subm;
 
-	/**
-	 * @return string
-	 */
-	public function getSubm() {
-		return $this->subm;
-	}
+        return $this;
+    }
 
-	/**
-	 * @param string $name
-	 * @return Subm
-	 */
-	public function setName($name = '') {
-		$this->name = $name;
-		return $this;
-	}
+    /**
+     * @return string
+     */
+    public function getSubm()
+    {
+        return $this->subm;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getName() {
-		return $this->name;
-	}
+    /**
+     * @param string $name
+     *
+     * @return Subm
+     */
+    public function setName($name = '')
+    {
+        $this->name = $name;
 
-	/**
-	 * @param array $phon
-	 * @return Subm
-	 */
-	public function setPhon($phon = []) {
-		$this->phon = $phon;
-		return $this;
-	}
+        return $this;
+    }
 
-	/**
-	 * @return array
-	 */
-	public function getPhon() {
-		return $this->phon;
-	}
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
 
+    /**
+     * @param array $phon
+     *
+     * @return Subm
+     */
+    public function setPhon($phon = [])
+    {
+        $this->phon = $phon;
 
-	/**
-	 * @param Record\Phon $phon
-	 * @return Subm
-	 */
-	public function addPhon($phon = []) {
-		$this->phon[] = $phon;
-		return $this;
-	}
+        return $this;
+    }
 
-	/**
-	 * @return array
-	 */
-	public function getEmail() {
-		return $this->email;
-	}
+    /**
+     * @return array
+     */
+    public function getPhon()
+    {
+        return $this->phon;
+    }
 
+    /**
+     * @param Record\Phon $phon
+     *
+     * @return Subm
+     */
+    public function addPhon($phon = [])
+    {
+        $this->phon[] = $phon;
 
-	/**
-	 * @param Record\Phon $phon
-	 * @return Subm
-	 */
-	public function addEmail($email) {
-		$this->email[] = $email;
-		return $this;
-	}
+        return $this;
+    }
 
-	/**
-	 * @return array
-	 */
-	public function getFax() {
-		return $this->fax;
-	}
+    /**
+     * @return array
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
 
+    /**
+     * @param Record\Phon $phon
+     *
+     * @return Subm
+     */
+    public function addEmail($email)
+    {
+        $this->email[] = $email;
 
-	/**
-	 * @param Record\Phon $phon
-	 * @return Subm
-	 */
-	public function addFax($fax) {
-		$this->fax[] = $fax;
-		return $this;
-	}
+        return $this;
+    }
 
-	/**
-	 * @return array
-	 */
-	public function getWww() {
-		return $this->www;
-	}
+    /**
+     * @return array
+     */
+    public function getFax()
+    {
+        return $this->fax;
+    }
 
+    /**
+     * @param Record\Phon $phon
+     *
+     * @return Subm
+     */
+    public function addFax($fax)
+    {
+        $this->fax[] = $fax;
 
-	/**
-	 * @param Record\Phon $phon
-	 * @return Subm
-	 */
-	public function addWww($www) {
-		$this->www[] = $www;
-		return $this;
-	}
+        return $this;
+    }
 
-	/**
-	 * @param string $rfn
-	 * @return Subm
-	 */
-	public function setRfn($rfn = '') {
-		$this->rfn = $rfn;
-		return $this;
-	}
+    /**
+     * @return array
+     */
+    public function getWww()
+    {
+        return $this->www;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getRfn() {
-		return $this->rfn;
-	}
+    /**
+     * @param Record\Phon $phon
+     *
+     * @return Subm
+     */
+    public function addWww($www)
+    {
+        $this->www[] = $www;
 
-	/**
-	 * @param string $rin
-	 * @return Subm
-	 */
-	public function setRin($rin = '') {
-		$this->rin = $rin;
-		return $this;
-	}
+        return $this;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getRin() {
-		return $this->rin;
-	}
+    /**
+     * @param string $rfn
+     *
+     * @return Subm
+     */
+    public function setRfn($rfn = '')
+    {
+        $this->rfn = $rfn;
 
-	/**
-	 * @param \PhpGedcom\Record\Chan $chan
-	 * @return Subm
-	 */
-	public function setChan($chan = []) {
-		$this->chan = $chan;
-		return $this;
-	}
+        return $this;
+    }
 
-	/**
-	 * @return \PhpGedcom\Record\Chan
-	 */
-	public function getChan() {
-		return $this->chan;
-	}
+    /**
+     * @return string
+     */
+    public function getRfn()
+    {
+        return $this->rfn;
+    }
 
-	/**
-	 * @return array
-	 */
-	public function getLang() {
-		return $this->lang;
-	}
+    /**
+     * @param string $rin
+     *
+     * @return Subm
+     */
+    public function setRin($rin = '')
+    {
+        $this->rin = $rin;
 
-	/**
-	 * @param string $lang
-	 * @return Subm
-	 */
-	public function addLang($lang = '') {
-		$this->lang[] = $lang;
-		return $this;
-	}
+        return $this;
+    }
 
-	/**
-	 * @return Addr
-	 */
-	public function getAddr() {
-		return $this->addr;
-	}
+    /**
+     * @return string
+     */
+    public function getRin()
+    {
+        return $this->rin;
+    }
 
-	/**
-	 * @param Addr $addr
-	 * @return Subm
-	 */
-	public function setAddr($addr = []) {
-		$this->addr = $addr;
-		return $this;
-	}
+    /**
+     * @param \PhpGedcom\Record\Chan $chan
+     *
+     * @return Subm
+     */
+    public function setChan($chan = [])
+    {
+        $this->chan = $chan;
 
-	/**
-	 * @return array
-	 */
-	public function getObje() {
-		return $this->obje;
-	}
+        return $this;
+    }
 
-	/**
-	 * @param Record\ObjeRef $obje
-	 * @return Subm
-	 */
-	public function addObje($obje = []) {
-		$this->obje[] = $obje;
-		return $this;
-	}
+    /**
+     * @return \PhpGedcom\Record\Chan
+     */
+    public function getChan()
+    {
+        return $this->chan;
+    }
 
-	/**
-	 * @return array
-	 */
-	public function getNote() {
-		return $this->note;
-	}
+    /**
+     * @return array
+     */
+    public function getLang()
+    {
+        return $this->lang;
+    }
 
-	/**
-	 * @param Record\Note $note
-	 * @return Subm
-	 */
-	public function addNote($note = []) {
-		$this->note[] = $note;
-		return $this;
-	}
+    /**
+     * @param string $lang
+     *
+     * @return Subm
+     */
+    public function addLang($lang = '')
+    {
+        $this->lang[] = $lang;
+
+        return $this;
+    }
+
+    /**
+     * @return Addr
+     */
+    public function getAddr()
+    {
+        return $this->addr;
+    }
+
+    /**
+     * @param Addr $addr
+     *
+     * @return Subm
+     */
+    public function setAddr($addr = [])
+    {
+        $this->addr = $addr;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getObje()
+    {
+        return $this->obje;
+    }
+
+    /**
+     * @param Record\ObjeRef $obje
+     *
+     * @return Subm
+     */
+    public function addObje($obje = [])
+    {
+        $this->obje[] = $obje;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getNote()
+    {
+        return $this->note;
+    }
+
+    /**
+     * @param Record\Note $note
+     *
+     * @return Subm
+     */
+    public function addNote($note = [])
+    {
+        $this->note[] = $note;
+
+        return $this;
+    }
 }

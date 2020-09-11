@@ -1,37 +1,35 @@
 <?php
 /**
- * php-gedcom
+ * php-gedcom.
  *
  * php-gedcom is a library for parsing, manipulating, importing and exporting
  * GEDCOM 5.5 files in PHP 5.3+.
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
- * @package         php-gedcom 
  * @license         MIT
+ *
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
 namespace PhpGedcom\Writer\Head\Sour;
 
-/**
- *
- */
 class Corp
 {
     /**
      * @param \PhpGedcom\Record\Head\Sour\Corp $corp
-     * @param string $format
-     * @param int $level
+     * @param string                           $format
+     * @param int                              $level
+     *
      * @return string
      */
     public static function convert(\PhpGedcom\Record\Head\Sour\Corp &$corp, $level)
     {
-        $output = "";
+        $output = '';
         $_corp = $corp->getCorp();
-        if($_corp){
-            $output.=$level." CORP ".$_corp."\n";
-        }else{
+        if ($_corp) {
+            $output .= $level.' CORP '.$_corp."\n";
+        } else {
             return $output;
         }
 
@@ -40,18 +38,18 @@ class Corp
 
         // ADDR
         $addr = $corp->getAddr();
-        if($addr){
+        if ($addr) {
             $_convert = \PhpGedcom\Writer\Addr::convert($addr, $level);
-            $output.=$_convert;
+            $output .= $_convert;
         }
 
         // phon
         $phon = $corp->getPhon();
-        if($phon && count($phon) > 0){
-            foreach($phon as $item){
-                if($item){
+        if ($phon && count($phon) > 0) {
+            foreach ($phon as $item) {
+                if ($item) {
                     $_convert = \PhpGedcom\Writer\Phon::convert($item, $level);
-                    $output.=$_convert;
+                    $output .= $_convert;
                 }
             }
         }

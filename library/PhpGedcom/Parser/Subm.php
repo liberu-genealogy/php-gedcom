@@ -1,40 +1,31 @@
 <?php
 /**
- * php-gedcom
+ * php-gedcom.
  *
  * php-gedcom is a library for parsing, manipulating, importing and exporting
  * GEDCOM 5.5 files in PHP 5.3+.
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
- * @package         php-gedcom
  * @license         MIT
+ *
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
 namespace PhpGedcom\Parser;
 
-/**
- *
- *
- */
 class Subm extends \PhpGedcom\Parser\Component
 {
-
-    /**
-     *
-     *
-     */
     public static function parse(\PhpGedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
-        $depth = (int)$record[0];
-        if(isset($record[1])){
-          $identifier = $parser->normalizeIdentifier($record[1]);
-        }
-        else{
-           $parser->skipToNextLevel($depth);
-           return null;
+        $depth = (int) $record[0];
+        if (isset($record[1])) {
+            $identifier = $parser->normalizeIdentifier($record[1]);
+        } else {
+            $parser->skipToNextLevel($depth);
+
+            return null;
         }
 
         $subm = new \PhpGedcom\Record\Subm();
@@ -46,7 +37,7 @@ class Subm extends \PhpGedcom\Parser\Component
 
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
-            $currentDepth = (int)$record[0];
+            $currentDepth = (int) $record[0];
             $recordType = strtoupper(trim($record[1]));
 
             if ($currentDepth <= $depth) {
@@ -63,19 +54,19 @@ class Subm extends \PhpGedcom\Parser\Component
                     $subm->setAddr($addr);
                     break;
                 case 'PHON':
-                    $phone = isset($record[2]) ? trim($record[2]): '';
+                    $phone = isset($record[2]) ? trim($record[2]) : '';
                     $subm->addPhon($phone);
                     break;
                 case 'EMAIL':
-                    $email = isset($record[2]) ? trim($record[2]): '';
+                    $email = isset($record[2]) ? trim($record[2]) : '';
                     $subm->addEmail($email);
                     break;
                 case 'FAX':
-                    $fax = isset($record[2]) ? trim($record[2]): '';
+                    $fax = isset($record[2]) ? trim($record[2]) : '';
                     $subm->addFax($fax);
                     break;
                 case 'WWW':
-                    $www = isset($record[2]) ? trim($record[2]): '';
+                    $www = isset($record[2]) ? trim($record[2]) : '';
                     $subm->addWww($www);
                     break;
                 case 'NOTE':
@@ -102,7 +93,7 @@ class Subm extends \PhpGedcom\Parser\Component
                     $subm->addLang(isset($record[2]) ? trim($record[2]) : '');
                     break;
                 default:
-                    $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
+                    $parser->logUnhandledRecord(get_class().' @ '.__LINE__);
             }
 
             $parser->forward();
