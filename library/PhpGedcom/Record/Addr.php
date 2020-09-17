@@ -1,14 +1,14 @@
 <?php
 /**
- * php-gedcom
+ * php-gedcom.
  *
  * php-gedcom is a library for parsing, manipulating, importing and exporting
  * GEDCOM 5.5 files in PHP 5.3+.
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
- * @package         php-gedcom
  * @license         MIT
+ *
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
@@ -17,8 +17,7 @@ namespace PhpGedcom\Record;
 use PhpGedcom\Record;
 
 /**
- * Class Addr
- * @package PhpGedcom\Record
+ * Class Addr.
  */
 class Addr extends Record
 {
@@ -59,11 +58,13 @@ class Addr extends Record
 
     /**
      * @param string $addr
+     *
      * @return Addr
      */
     public function setAddr($addr = '')
     {
         $this->addr = $addr;
+
         return $this;
     }
 
@@ -77,11 +78,13 @@ class Addr extends Record
 
     /**
      * @param string $adr1
+     *
      * @return Addr
      */
     public function setAdr1($adr1 = '')
     {
         $this->adr1 = $adr1;
+
         return $this;
     }
 
@@ -95,11 +98,13 @@ class Addr extends Record
 
     /**
      * @param string $adr2
+     *
      * @return Addr
      */
     public function setAdr2($adr2 = '')
     {
         $this->adr2 = $adr2;
+
         return $this;
     }
 
@@ -113,11 +118,13 @@ class Addr extends Record
 
     /**
      * @param string $city
+     *
      * @return Addr
      */
     public function setCity($city = '')
     {
         $this->city = $city;
+
         return $this;
     }
 
@@ -131,11 +138,13 @@ class Addr extends Record
 
     /**
      * @param string $stae
+     *
      * @return Addr
      */
     public function setStae($stae = '')
     {
         $this->stae = $stae;
+
         return $this;
     }
 
@@ -149,11 +158,13 @@ class Addr extends Record
 
     /**
      * @param string $post
+     *
      * @return Addr
      */
     public function setPost($post = '')
     {
         $this->post = $post;
+
         return $this;
     }
 
@@ -167,11 +178,13 @@ class Addr extends Record
 
     /**
      * @param string $ctry
+     *
      * @return Addr
      */
     public function setCtry($ctry = '')
     {
         $this->ctry = $ctry;
+
         return $this;
     }
 

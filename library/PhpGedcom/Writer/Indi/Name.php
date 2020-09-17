@@ -1,27 +1,25 @@
 <?php
 /**
- * php-gedcom
+ * php-gedcom.
  *
  * php-gedcom is a library for parsing, manipulating, importing and exporting
  * GEDCOM 5.5 files in PHP 5.3+.
  *
  * @author          Xiang Ming <wenqiangliu344@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Xiang Ming
- * @package         php-gedcom 
  * @license         MIT
+ *
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
 namespace PhpGedcom\Writer\Indi;
 
-/**
- *
- */
 class Name
 {
     /**
      * @param \PhpGedcom\Record\Indi\Name $attr
-     * @param int $level
+     * @param int                         $level
+     *
      * @return string
      */
     public static function convert(\PhpGedcom\Record\Indi\Name &$name, $level = 0)
@@ -29,58 +27,58 @@ class Name
         $output = '';
         // NAME
         $_name = $name->getName();
-        if(empty($_name)){
+        if (empty($_name)) {
             return $output;
         }
-        $output.= $level." NAME ".$_name."\n";
+        $output .= $level.' NAME '.$_name."\n";
         // level up
         $level++;
-        
+
         // NPFX
         $npfx = $name->getNpfx();
-        if(!empty($npfx)){
-            $output.=$level." NPFX ".$npfx."\n";
+        if (!empty($npfx)) {
+            $output .= $level.' NPFX '.$npfx."\n";
         }
 
         // GIVN
         $givn = $name->getGivn();
-        if(!empty($givn)){
-            $output.=$level." GIVN ".$givn."\n";
+        if (!empty($givn)) {
+            $output .= $level.' GIVN '.$givn."\n";
         }
         // NICK
         $nick = $name->getNick();
-        if(!empty($nick)){
-            $output.=$level." NICK ".$nick."\n";
+        if (!empty($nick)) {
+            $output .= $level.' NICK '.$nick."\n";
         }
         // SPFX
         $spfx = $name->getSpfx();
-        if(!empty($spfx)){
-            $output.=$level." SPFX ".$spfx."\n";
+        if (!empty($spfx)) {
+            $output .= $level.' SPFX '.$spfx."\n";
         }
         // SURN
         $surn = $name->getSurn();
-        if(!empty($surn)){
-            $output.=$level." SURN ".$surn."\n";
+        if (!empty($surn)) {
+            $output .= $level.' SURN '.$surn."\n";
         }
         // NSFX
         $nsfx = $name->getNsfx();
-        if(!empty($nsfx)){
-            $output.=$level." NSFX ".$nsfx."\n";
+        if (!empty($nsfx)) {
+            $output .= $level.' NSFX '.$nsfx."\n";
         }
         // SOUR
         $sour = $name->getSour();
-        if(!empty($sour) && count($sour) > 0){
-            foreach($sour as $item){
+        if (!empty($sour) && count($sour) > 0) {
+            foreach ($sour as $item) {
                 $_convert = \PhpGedcom\Writer\SourRef::convert($item, $level);
-                $output.=$_convert;
+                $output .= $_convert;
             }
         }
         // note
         $note = $name->getSour();
-        if(!empty($note) && count($note) > 0){
-            foreach($note as $item){
+        if (!empty($note) && count($note) > 0) {
+            foreach ($note as $item) {
                 $_convert = \PhpGedcom\Writer\NoteRef::convert($item, $level);
-                $output.=$_convert;
+                $output .= $_convert;
             }
         }
 

@@ -5,8 +5,7 @@ namespace PhpGedcomTest;
 use PhpGedcom\Parser;
 
 /**
- * Class Issue00017Test
- * @package PhpGedcomTest
+ * Class Issue00017Test.
  */
 class Issue00017Test extends \PHPUnit_Framework_TestCase
 {
@@ -15,7 +14,7 @@ class Issue00017Test extends \PHPUnit_Framework_TestCase
      */
     public function testEmptyFamc()
     {
-        $sample = realpath(__DIR__ . '/files/issue00017.ged');
+        $sample = realpath(__DIR__.'/files/issue00017.ged');
 
         $parser = new Parser();
         $gedcom = $parser->parse($sample);

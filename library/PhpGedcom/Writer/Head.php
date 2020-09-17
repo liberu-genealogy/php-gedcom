@@ -1,114 +1,110 @@
 <?php
 /**
- * php-gedcom
+ * php-gedcom.
  *
  * php-gedcom is a library for parsing, manipulating, importing and exporting
  * GEDCOM 5.5 files in PHP 5.3+.
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
- * @package         php-gedcom 
  * @license         MIT
+ *
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
 namespace PhpGedcom\Writer;
 
-/**
- *
- */
 class Head
 {
     /**
      * @param \PhpGedcom\Record\Head $head
-     * @param string $format
+     * @param string                 $format
+     *
      * @return string
      */
     public static function convert(\PhpGedcom\Record\Head &$head, $format = self::GEDCOM55)
     {
-      $level = 0;
-      $output = $level." HEAD\n";
+        $level = 0;
+        $output = $level." HEAD\n";
 
-      // level up
-      $level++;
+        // level up
+        $level++;
 
-      //SOUR
-      $sour = $head->getSour();
-      if($sour){
-        $_convert = \PhpGedcom\Writer\Head\Sour::convert($sour, $level);
-        $output.=$_convert;
-      }
-      
-      // DEST
-      $dest = $head->getDest();
-      if($dest){
-        $output.=$level." DEST ".$dest."\n";
-      }
+        //SOUR
+        $sour = $head->getSour();
+        if ($sour) {
+            $_convert = \PhpGedcom\Writer\Head\Sour::convert($sour, $level);
+            $output .= $_convert;
+        }
 
-      //Subm
-      $subm = $head->getSubm();
-      if($subm){
-        $output.=$level." SUBM ".$subm."\n";
-      }
+        // DEST
+        $dest = $head->getDest();
+        if ($dest) {
+            $output .= $level.' DEST '.$dest."\n";
+        }
 
-      // SUBN
-      $subn = $head->getSubn();
-      if($subn){
-        $output.=$level." SUBN ".$subn."\n";
-      }
+        //Subm
+        $subm = $head->getSubm();
+        if ($subm) {
+            $output .= $level.' SUBM '.$subm."\n";
+        }
 
-      // FILE
-      $file = $head->getFile();
-      if($file){
-        $output.=$level." FILE ".$file."\n";
-      }
+        // SUBN
+        $subn = $head->getSubn();
+        if ($subn) {
+            $output .= $level.' SUBN '.$subn."\n";
+        }
 
-      // COPR
-      $copr = $head->getCopr();
-      if($copr){
-        $output.=$level." COPR ".$copr."\n";
-      }
+        // FILE
+        $file = $head->getFile();
+        if ($file) {
+            $output .= $level.' FILE '.$file."\n";
+        }
 
-      // LANG
-      $lang = $head->getLang();
-      if($lang){
-        $output.=$level." LANG ".$lang."\n";
-      }
-      // DATE
-      $date = $head->getDate();
-      if($date){
-        $_convert = \PhpGedcom\Writer\Head\Date::convert($date, $level);
-        $output.=$_convert;
-      }
+        // COPR
+        $copr = $head->getCopr();
+        if ($copr) {
+            $output .= $level.' COPR '.$copr."\n";
+        }
 
+        // LANG
+        $lang = $head->getLang();
+        if ($lang) {
+            $output .= $level.' LANG '.$lang."\n";
+        }
+        // DATE
+        $date = $head->getDate();
+        if ($date) {
+            $_convert = \PhpGedcom\Writer\Head\Date::convert($date, $level);
+            $output .= $_convert;
+        }
 
-      // GEDC
-      $gedc = $head->getGedc();
-      if($gedc){
-        $_convert = \PhpGedcom\Writer\Head\Gedc::convert($gedc, $level);
-        $output.=$_convert;
-      }
+        // GEDC
+        $gedc = $head->getGedc();
+        if ($gedc) {
+            $_convert = \PhpGedcom\Writer\Head\Gedc::convert($gedc, $level);
+            $output .= $_convert;
+        }
 
+        // CHAR
+        $char = $head->getChar();
+        if ($char) {
+            $_convert = \PhpGedcom\Writer\Head\Char::convert($char, $level);
+            $output .= $_convert;
+        }
+        // PLAC
+        $plac = $head->getPlac();
+        if ($plac) {
+            $_convert = \PhpGedcom\Writer\Head\Plac::convert($plac, $level);
+            $output .= $_convert;
+        }
 
-      // CHAR
-      $char = $head->getChar();
-      if($char){
-        $_convert = \PhpGedcom\Writer\Head\Char::convert($char, $level);
-        $output.=$_convert;
-      }
-      // PLAC
-      $plac = $head->getPlac();
-      if($plac){
-        $_convert = \PhpGedcom\Writer\Head\Plac::convert($plac, $level);
-        $output.=$_convert;
-      }
-
-      // NOTE
-      $note = $head->getNote();
-      if($note){
-        $output.=$level." NOTE ".$note."\n";
-      }
-      // 
+        // NOTE
+        $note = $head->getNote();
+        if ($note) {
+            $output .= $level.' NOTE '.$note."\n";
+        }
+        //
         /*
             +1 SUBM @<XREF:SUBM>@  {1:1}
             +1 SUBN @<XREF:SUBN>@  {0:1}
@@ -125,7 +121,7 @@ class Head
             +1 NOTE <GEDCOM_CONTENT_DESCRIPTION>  {0:1}
               +2 [CONT|CONC] <GEDCOM_CONTENT_DESCRIPTION>  {0:M}
         */
-        
+
         return $output;
     }
 }

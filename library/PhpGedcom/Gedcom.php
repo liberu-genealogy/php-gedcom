@@ -1,22 +1,21 @@
 <?php
 /**
- * php-gedcom
+ * php-gedcom.
  *
  * php-gedcom is a library for parsing, manipulating, importing and exporting
  * GEDCOM 5.5 files in PHP 5.3+.
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
- * @package         php-gedcom 
  * @license         MIT
+ *
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
 namespace PhpGedcom;
 
 /**
- * Class Gedcom
- * @package PhpGedcom
+ * Class Gedcom.
  */
 class Gedcom
 {
@@ -39,56 +38,56 @@ class Gedcom
      *
      * @var \PhpGedcom\Record\Sour[]
      */
-    protected $sour = array();
+    protected $sour = [];
 
     /**
      * Stores all the individuals contained within the GEDCOM file.
      *
      * @var \PhpGedcom\Record\Indi[]
      */
-    protected $indi = array();
+    protected $indi = [];
 
     /**
      * Stores all the individuals contained within the GEDCOM file.
      *
      * @var array
      */
-    protected $uid2indi = array();
+    protected $uid2indi = [];
 
     /**
      * Stores all the families contained within the GEDCOM file.
      *
      * @var \PhpGedcom\Record\Fam[]
      */
-    protected $fam  = array();
+    protected $fam = [];
 
     /**
      * Stores all the notes contained within the GEDCOM file that are not inline.
      *
      * @var \PhpGedcom\Record\Note[]
      */
-    protected $note = array();
+    protected $note = [];
 
     /**
      * Stores all repositories that are contained within the GEDCOM file and referenced by sources.
      *
      * @var \PhpGedcom\Record\Repo[]
      */
-    protected $repo = array();
+    protected $repo = [];
 
     /**
      * Stores all the media objects that are contained within the GEDCOM file.
      *
      * @var \PhpGedcom\Record\Obje[]
      */
-    protected $obje = array();
+    protected $obje = [];
 
     /**
      * Stores information about all the submitters to the GEDCOM file.
      *
      * @var \PhpGedcom\Record\Subm[]
      */
-    protected $subm = array();
+    protected $subm = [];
 
     /**
      * Retrieves the header record of the GEDCOM file.

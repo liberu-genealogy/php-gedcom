@@ -1,14 +1,14 @@
 <?php
 /**
- * php-gedcom
+ * php-gedcom.
  *
  * php-gedcom is a library for parsing, manipulating, importing and exporting
  * GEDCOM 5.5 files in PHP 5.3+.
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
- * @package         php-gedcom
  * @license         MIT
+ *
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
@@ -23,38 +23,30 @@ namespace PhpGedcom\Record\Indi;
  * @method string getSurn()
  * @method string getNsfx()
  */
-class Name extends \PhpGedcom\Record implements \PhpGedcom\Record\Sourceable {
-	protected $_name = null;
-	protected $_npfx = null;
-	protected $_givn = null;
-	protected $_nick = null;
-	protected $_spfx = null;
-	protected $_surn = null;
-	protected $_nsfx = null;
-	protected $_fone = null; // PhpGedcom/
-	protected $_romn = null;
-	protected $_type = null;
-	/**
-	 *
-	 */
-	protected $_note = array();
+class Name extends \PhpGedcom\Record implements \PhpGedcom\Record\Sourceable
+{
+    protected $_name = null;
+    protected $_npfx = null;
+    protected $_givn = null;
+    protected $_nick = null;
+    protected $_spfx = null;
+    protected $_surn = null;
+    protected $_nsfx = null;
+    protected $_fone = null; // PhpGedcom/
+    protected $_romn = null;
+    protected $_type = null;
 
-	/**
-	 *
-	 */
-	protected $_sour = array();
+    protected $_note = [];
 
-	/**
-	 *
-	 */
-	public function addSour($sour = []) {
-		$this->_sour[] = $sour;
-	}
+    protected $_sour = [];
 
-	/**
-	 *
-	 */
-	public function addNote($note = []) {
-		$this->_note[] = $note;
-	}
+    public function addSour($sour = [])
+    {
+        $this->_sour[] = $sour;
+    }
+
+    public function addNote($note = [])
+    {
+        $this->_note[] = $note;
+    }
 }

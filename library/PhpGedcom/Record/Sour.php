@@ -1,14 +1,14 @@
 <?php
 /**
- * php-gedcom
+ * php-gedcom.
  *
  * php-gedcom is a library for parsing, manipulating, importing and exporting
  * GEDCOM 5.5 files in PHP 5.3+.
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
- * @package         php-gedcom
  * @license         MIT
+ *
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
@@ -17,8 +17,7 @@ namespace PhpGedcom\Record;
 use PhpGedcom\Record;
 
 /**
- * Class Sour
- * @package PhpGedcom\Record
+ * Class Sour.
  */
 class Sour extends Record implements Noteable, Objectable
 {
@@ -65,7 +64,7 @@ class Sour extends Record implements Noteable, Objectable
     /**
      * @var array
      */
-    protected $refn = array();
+    protected $refn = [];
 
     /**
      * @var string
@@ -80,20 +79,22 @@ class Sour extends Record implements Noteable, Objectable
     /**
      * @var array
      */
-    protected $note = array();
+    protected $note = [];
 
     /**
      * @var array
      */
-    protected $obje = array();
+    protected $obje = [];
 
     /**
      * @param string $sour
+     *
      * @return Sour
      */
     public function setSour($sour = '')
     {
         $this->sour = $sour;
+
         return $this;
     }
 
@@ -107,11 +108,13 @@ class Sour extends Record implements Noteable, Objectable
 
     /**
      * @param string $titl
+     *
      * @return Sour
      */
     public function setTitl($titl = '')
     {
         $this->titl = $titl;
+
         return $this;
     }
 
@@ -125,11 +128,13 @@ class Sour extends Record implements Noteable, Objectable
 
     /**
      * @param string $abbr
+     *
      * @return Sour
      */
     public function setAbbr($abbr = '')
     {
         $this->abbr = $abbr;
+
         return $this;
     }
 
@@ -143,11 +148,13 @@ class Sour extends Record implements Noteable, Objectable
 
     /**
      * @param string $auth
+     *
      * @return Sour
      */
     public function setAuth($auth = '')
     {
         $this->auth = $auth;
+
         return $this;
     }
 
@@ -161,11 +168,13 @@ class Sour extends Record implements Noteable, Objectable
 
     /**
      * @param string $publ
+     *
      * @return Sour
      */
     public function setPubl($publ = '')
     {
         $this->publ = $publ;
+
         return $this;
     }
 
@@ -179,11 +188,13 @@ class Sour extends Record implements Noteable, Objectable
 
     /**
      * @param \PhpGedcom\Record\Repo $repo
+     *
      * @return Sour
      */
     public function setRepo($repo)
     {
         $this->repo = $repo;
+
         return $this;
     }
 
@@ -197,11 +208,13 @@ class Sour extends Record implements Noteable, Objectable
 
     /**
      * @param string $text
+     *
      * @return Sour
      */
     public function setText($text = '')
     {
         $this->text = $text;
+
         return $this;
     }
 
@@ -215,11 +228,13 @@ class Sour extends Record implements Noteable, Objectable
 
     /**
      * @param string $data
+     *
      * @return Sour
      */
     public function setData($data = '')
     {
         $this->data = $data;
+
         return $this;
     }
 
@@ -233,11 +248,13 @@ class Sour extends Record implements Noteable, Objectable
 
     /**
      * @param string $rin
+     *
      * @return Sour
      */
     public function setRin($rin = '')
     {
         $this->rin = $rin;
+
         return $this;
     }
 
@@ -251,11 +268,13 @@ class Sour extends Record implements Noteable, Objectable
 
     /**
      * @param \PhpGedcom\Record\Chan $chan
+     *
      * @return Sour
      */
     public function setChan($chan = [])
     {
         $this->chan = $chan;
+
         return $this;
     }
 
@@ -269,11 +288,13 @@ class Sour extends Record implements Noteable, Objectable
 
     /**
      * @param Refn $refn
+     *
      * @return Sour
      */
     public function addRefn($refn = [])
     {
         $this->refn[] = $refn;
+
         return $this;
     }
 
@@ -287,11 +308,13 @@ class Sour extends Record implements Noteable, Objectable
 
     /**
      * @param NoteRef $note
+     *
      * @return Sour
      */
     public function addNote($note = [])
     {
         $this->note[] = $note;
+
         return $this;
     }
 
@@ -305,11 +328,13 @@ class Sour extends Record implements Noteable, Objectable
 
     /**
      * @param ObjeRef $obje
+     *
      * @return Sour
      */
     public function addObje($obje = [])
     {
         $this->obje[] = $obje;
+
         return $this;
     }
 
