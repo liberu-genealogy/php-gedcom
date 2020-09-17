@@ -32,5 +32,6 @@ class File extends Record
      */
     protected $_form;
     protected $_titl;
+    protected $_date;
 
 }
