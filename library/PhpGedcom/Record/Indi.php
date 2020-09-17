@@ -16,7 +16,6 @@ namespace PhpGedcom\Record;
 
 use PhpGedcom\Record;
 
-
 /**
  * Class Indi.
  */
