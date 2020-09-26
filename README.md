@@ -1,12 +1,12 @@
 # php-gedcom
- ![Latest Stable Version](https://img.shields.io/github/release/modularsoftware/php-gedcom.svg) 
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/modularsoftware/php-gedcom/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/modularsoftware/php-gedcom/?branch=master)
-[![Build Status](https://scrutinizer-ci.com/g/modularsoftware/php-gedcom/badges/build.png?b=master)](https://scrutinizer-ci.com/g/modularsoftware/php-gedcom/build-status/master)
-[![Code Intelligence Status](https://scrutinizer-ci.com/g/modularsoftware/php-gedcom/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
+ ![Latest Stable Version](https://img.shields.io/github/release/genealogiawebsite/php-gedcom.svg) 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/genealogiawebsite/php-gedcom/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/genealogiawebsite/php-gedcom/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/genealogiawebsite/php-gedcom/badges/build.png?b=master)](https://scrutinizer-ci.com/g/genealogiawebsite/php-gedcom/build-status/master)
+[![Code Intelligence Status](https://scrutinizer-ci.com/g/genealogiawebsite/php-gedcom/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
 [![StyleCI](https://github.styleci.io/repos/262784020/shield?branch=master)](https://github.styleci.io/repos/262784020)
-[![CodeFactor](https://www.codefactor.io/repository/github/modularsoftware/php-gedcom/badge/master)](https://www.codefactor.io/repository/github/modularsoftware/php-gedcom/overview/master)
+[![CodeFactor](https://www.codefactor.io/repository/github/genealogiawebsite/php-gedcom/badge/master)](https://www.codefactor.io/repository/github/genealogiawebsite/php-gedcom/overview/master)
 [![codebeat badge](https://codebeat.co/badges/911f9e33-212a-4dfa-a860-751cdbbacff7)](https://codebeat.co/projects/github-com-modularphp-gedcom-php-gedcom-master)
-[![Build Status](https://travis-ci.org/modularsoftware/php-gedcom.svg?branch=master)](https://travis-ci.org/modularsoftware/php-gedcom)
+[![Build Status](https://travis-ci.org/genealogiawebsite/php-gedcom.svg?branch=master)](https://travis-ci.org/genealogiawebsite/php-gedcom)
 
 
 
@@ -25,7 +25,7 @@ To install php-gedcom in your project using composer, simply add the following r
 
     {
         "require": {
-            "modularsoftware/php-gedcom": "1.0.*"
+            "genealogiawebsite/php-gedcom": "1.0.*"
         }
     }
 
