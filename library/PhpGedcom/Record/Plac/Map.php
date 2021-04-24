@@ -24,10 +24,10 @@ class Map extends Record
     /**
      * @var string place_latitude
      */
-    protected $lati;
+    protected $_lati;
 
     /**
      * @var string place_longitude
      */
-    protected $long;
+    protected $_long;
 }
