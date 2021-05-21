@@ -59,9 +59,11 @@ class Indi
         // $even
         $even = $indi->getAllEven();
         if (!empty($even) && count($even) > 0) {
-            foreach ($even as $item) {
-                $_convert = \PhpGedcom\Writer\Indi\Even::convert($item, $level);
-                $output .= $_convert;
+            foreach ($even as $items) {
+                foreach ($items as $item) {
+                    $_convert = \PhpGedcom\Writer\Indi\Even::convert($item, $level);
+                    $output .= $_convert;
+                }
             }
         }
 
