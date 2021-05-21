@@ -26,7 +26,7 @@ class Famc
     {
         $output = '';
         // NAME
-        $_famc = $famc->getFams();
+        $_famc = $famc->getFamc();
         if (empty($_fams)) {
             return $output;
         }
