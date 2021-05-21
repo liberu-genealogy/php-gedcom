@@ -16,6 +16,36 @@ namespace PhpGedcom\Writer\Indi;
 
 class Even
 {
+
+  /**
+   * Array of special events.
+   */
+    const SPECIAL_EVENTS = [
+        'ADOP',
+        'ATTR',
+        'BAPM',
+        'BARM',
+        'BASM',
+        'BLES',
+        'BURI',
+        'CENS',
+        'CHR',
+        'CHRA',
+        'CONF',
+        'CREM',
+        'DEAT',
+        'EMIG',
+        'FCOM',
+        'GRAD',
+        'IMMI',
+        'NATU',
+        'ORDN',
+        'PROB',
+        'BIRT',
+        'WILL',
+        'RETI',
+    ];
+
     /**
      * @param \PhpGedcom\Record\Indi\Even $even
      * @param int                         $level
@@ -26,18 +56,20 @@ class Even
     {
         $output = '';
 
+        $type = $even->getType();
+        $tag = in_array($type, self::SPECIAL_EVENTS, TRUE) ? $type : 'EVEN';
+
         // $_attr;
         $attr = $even->getAttr();
         if (!empty($attr)) {
-            $output .= $level.' EVEN '.$attr."\n";
+            $output .= $level.' '.$tag.' '.$attr."\n";
         } else {
-            $output = $level." EVEN\n";
+            $output = $level.' '.$tag."\n";
         }
         $level++;
 
         // $type;
-        $type = $even->getType();
-        if (!empty($type)) {
+        if (!empty($type) && $tag === 'EVEN') {
             $output .= $level.' TYPE '.$type."\n";
         }
 
