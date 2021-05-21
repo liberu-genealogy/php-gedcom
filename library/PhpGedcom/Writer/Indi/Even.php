@@ -44,7 +44,7 @@ class Even
         // $date;
         $date = $even->getDate();
         if (!empty($date)) {
-            $output .= $level.' DATE '.$date."\n";
+            $output .= $level.' DATE '.$date->getDate()."\n";
         }
 
         // Plac
