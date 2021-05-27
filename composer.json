@@ -1,9 +1,9 @@
 {
-    "name": "genealogiawebsite/php-gedcom",
+    "name": "familytree365/php-gedcom",
     "description": "A GEDCOM file parser (read + write) for PHP 7.3+",
     "type": "library",
     "keywords": ["gedcom","parser"],
-    "homepage": "http://github.com/genealogiawebsite/php-gedcom",
+    "homepage": "http://github.com/familytree365/php-gedcom",
     "license": "MIT",
     "require": {
         "php": ">=7.3"
