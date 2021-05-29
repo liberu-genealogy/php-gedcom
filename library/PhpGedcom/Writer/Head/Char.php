@@ -37,7 +37,7 @@ class Char
         // level up
         $level++;
         // VERS
-        $vers = $char->getVersion();
+        $vers = $char->getVers();
         if ($vers) {
             $output .= $level.' VERS '.$vers."\n";
         }
