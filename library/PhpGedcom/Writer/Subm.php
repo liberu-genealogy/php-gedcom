@@ -26,7 +26,7 @@ class Subm
     {
         $level = 0;
         $output = '';
-        $_subm = $subm->getSubn();
+        $_subm = $subm->getSubm();
         if (empty($_subm)) {
             return $output;
         } else {

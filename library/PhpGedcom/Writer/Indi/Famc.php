@@ -27,7 +27,7 @@ class Famc
         $output = '';
         // NAME
         $_famc = $famc->getFamc();
-        if (empty($_fams)) {
+        if (empty($_famc)) {
             return $output;
         }
         $output .= $level.' FAMC @'.$_famc."@\n";
@@ -41,7 +41,7 @@ class Famc
         }
 
         // note
-        $note = $famc->getSour();
+        $note = $famc->getNote();
         if (!empty($note) && count($note) > 0) {
             foreach ($note as $item) {
                 $_convert = \PhpGedcom\Writer\NoteRef::convert($item, $level);
