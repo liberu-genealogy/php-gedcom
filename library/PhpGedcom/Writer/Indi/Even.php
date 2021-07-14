@@ -16,10 +16,9 @@ namespace PhpGedcom\Writer\Indi;
 
 class Even
 {
-
-  /**
-   * Array of special events.
-   */
+    /**
+     * Array of special events.
+     */
     const SPECIAL_EVENTS = [
         'ADOP',
         'ATTR',
@@ -57,7 +56,7 @@ class Even
         $output = '';
 
         $type = $even->getType();
-        $tag = in_array($type, self::SPECIAL_EVENTS, TRUE) ? $type : 'EVEN';
+        $tag = in_array($type, self::SPECIAL_EVENTS, true) ? $type : 'EVEN';
 
         // $_attr;
         $attr = $even->getAttr();
