@@ -1,0 +1,71 @@
+<?php
+/**
+ * php-gedcom.
+ *
+ * php-gedcom is a library for parsing, manipulating, importing and exporting
+ * GEDCOM 5.5 files in PHP 5.3+.
+ *
+ * @author          Kristopher Wilson <kristopherwilson@gmail.com>
+ * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
+ * @license         MIT
+ *
+ * @link            http://github.com/mrkrstphr/php-gedcom
+ */
+
+namespace Parser\Fam;
+
+class Slgs extends \Parser\Component
+{
+    public static function parse(\Gedcom\Parser $parser)
+    {
+        $record = $parser->getCurrentLineRecord();
+        $depth = (int) $record[0];
+
+        $slgs = new \Record\Fam\Slgs();
+
+        $parser->forward();
+
+        while (!$parser->eof()) {
+            $record = $parser->getCurrentLineRecord();
+            $recordType = strtoupper(trim($record[1]));
+            $currentDepth = (int) $record[0];
+
+            if ($currentDepth <= $depth) {
+                $parser->back();
+                break;
+            }
+
+            switch ($recordType) {
+                case 'STAT':
+                    $stat = \Parser\Fam\Slgs\Stat::parse($parser);
+                    $slgs->setStat($stat);
+                    break;
+                case 'DATE':
+                    $slgs->setDate(trim($record[2]));
+                    break;
+                case 'PLAC':
+                    $slgs->setPlac(trim($record[2]));
+                    break;
+                case 'TEMP':
+                    $slgs->setTemp(trim($record[2]));
+                    break;
+                case 'SOUR':
+                    $sour = \Parser\SourRef::parse($parser);
+                    $slgs->addSour($sour);
+                    break;
+                case 'NOTE':
+                    $note = \Parser\NoteRef::parse($parser);
+                    if ($note) {
+                        $slgs->addNote($note);
+                    }
+                    break;
+                default:
+                    $parser->logUnhandledRecord(get_class().' @ '.__LINE__);
+            }
+
+            $parser->forward();
+        }
+
+        return $slgs;
+    }
+}
