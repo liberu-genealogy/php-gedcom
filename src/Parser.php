@@ -240,23 +240,23 @@ class Parser
                 }
 
                 if (isset($record[1]) && trim($record[1]) == 'HEAD') {
-                    Gedcom\Parser\Head::parse($this);
+                    Parser\Head::parse($this);
                 } elseif (isset($record[2]) && trim($record[2]) == 'SUBN') {
-                    Gedcom\Parser\Subn::parse($this);
+                    Parser\Subn::parse($this);
                 } elseif (isset($record[2]) && trim($record[2]) == 'SUBM') {
-                    Gedcom\Parser\Subm::parse($this);
+                    Parser\Subm::parse($this);
                 } elseif (isset($record[2]) && $record[2] == 'SOUR') {
-                    Gedcom\Parser\Sour::parse($this);
+                    Parser\Sour::parse($this);
                 } elseif (isset($record[2]) && $record[2] == 'INDI') {
-                    Gedcom\Parser\Indi::parse($this);
+                    Parser\Indi::parse($this);
                 } elseif (isset($record[2]) && $record[2] == 'FAM') {
-                    Gedcom\Parser\Fam::parse($this);
+                    Parser\Fam::parse($this);
                 } elseif (isset($record[2]) && substr(trim($record[2]), 0, 4) == 'NOTE') {
-                    Gedcom\Parser\Note::parse($this);
+                    Parser\Note::parse($this);
                 } elseif (isset($record[2]) && $record[2] == 'REPO') {
-                    Gedcom\Parser\Repo::parse($this);
+                    Parser\Repo::parse($this);
                 } elseif (isset($record[2]) && $record[2] == 'OBJE') {
-                    Gedcom\Parser\Obje::parse($this);
+                    Parser\Obje::parse($this);
                 } elseif (isset($record[1]) && trim($record[1]) == 'TRLR') {
                     // EOF
                     break;
