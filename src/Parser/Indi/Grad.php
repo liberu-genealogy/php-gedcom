@@ -14,6 +14,6 @@
 
 namespace Gedcom\Parser\Indi;
 
-class Grad extends \Parser\Indi\Even
+class Grad extends Gedcom\Parser\Indi\Even
 {
 }

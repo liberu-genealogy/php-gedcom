@@ -14,6 +14,6 @@
 
 namespace Gedcom\Parser\Fam;
 
-class Cens extends \Parser\Fam\Even
+class Cens extends Gedcom\Parser\Fam\Even
 {
 }

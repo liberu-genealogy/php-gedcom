@@ -14,6 +14,6 @@
 
 namespace Gedcom\Parser\Indi;
 
-class Will extends \Parser\Indi\Even
+class Will extends Gedcom\Parser\Indi\Even
 {
 }

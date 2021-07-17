@@ -14,6 +14,6 @@
 
 namespace Gedcom\Parser\Indi;
 
-class Basm extends \Parser\Indi\Even
+class Basm extends Gedcom\Parser\Indi\Even
 {
 }

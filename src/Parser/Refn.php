@@ -14,7 +14,7 @@
 
 namespace Gedcom\Parser;
 
-class Refn extends \Parser\Component
+class Refn extends Gedcom\Parser\Component
 {
     public static function parse(\Gedcom\Parser $parser)
     {

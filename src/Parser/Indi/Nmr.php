@@ -14,6 +14,6 @@
 
 namespace Gedcom\Parser\Indi;
 
-class Nmr extends \Parser\Indi\Attr
+class Nmr extends Gedcom\Parser\Indi\Attr
 {
 }

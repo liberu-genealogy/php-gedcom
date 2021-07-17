@@ -14,7 +14,7 @@
 
 namespace Gedcom\Parser;
 
-class Sour extends \Parser\Component
+class Sour extends Gedcom\Parser\Component
 {
     public static function parse(\Gedcom\Parser $parser)
     {

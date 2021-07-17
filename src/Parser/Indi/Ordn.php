@@ -14,6 +14,6 @@
 
 namespace Gedcom\Parser\Indi;
 
-class Ordn extends \Parser\Indi\Even
+class Ordn extends Gedcom\Parser\Indi\Even
 {
 }

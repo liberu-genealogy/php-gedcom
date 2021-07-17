@@ -19,7 +19,7 @@ use Record;
 /**
  * Class Repo.
  */
-class Repo extends Record implements Noteable
+class Repo extends Gedcom\Record implements Noteable
 {
     /**
      * @var string

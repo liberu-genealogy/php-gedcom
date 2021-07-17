@@ -19,7 +19,7 @@ use Record;
 /**
  * Class Refn.
  */
-class Fone extends Record
+class Fone extends Gedcom\Record
 {
     /**
      * @var string phonetic_variation

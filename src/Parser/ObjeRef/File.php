@@ -14,7 +14,7 @@
 
 namespace Gedcom\Parser\ObjeRef;
 
-class File extends \Parser\Component
+class File extends Gedcom\Parser\Component
 {
     public static function parse(\Gedcom\Parser $parser)
     {

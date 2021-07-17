@@ -14,6 +14,6 @@
 
 namespace Gedcom\Parser\Indi;
 
-class Resi extends \Parser\Indi\Attr
+class Resi extends Gedcom\Parser\Indi\Attr
 {
 }

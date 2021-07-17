@@ -14,7 +14,7 @@
 
 namespace Gedcom\Parser\Plac;
 
-class Map extends \Parser\Component
+class Map extends Gedcom\Parser\Component
 {
     public static function parse(\Gedcom\Parser $parser)
     {

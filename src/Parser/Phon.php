@@ -14,7 +14,7 @@
 
 namespace Gedcom\Parser;
 
-class Phon extends \Parser\Component
+class Phon extends Gedcom\Parser\Component
 {
     public static function parse(\Gedcom\Parser $parser)
     {

@@ -14,7 +14,7 @@
 
 namespace Gedcom\Parser\Indi;
 
-class Birt extends \Parser\Indi\Even
+class Birt extends Gedcom\Parser\Indi\Even
 {
     public static function parseFamc($parser, $even)
     {

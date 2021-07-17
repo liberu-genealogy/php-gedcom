@@ -14,6 +14,6 @@
 
 namespace Gedcom\Parser\Indi;
 
-class Crem extends \Parser\Indi\Even
+class Crem extends Gedcom\Parser\Indi\Even
 {
 }

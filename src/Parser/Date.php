@@ -14,7 +14,7 @@
 
 namespace Gedcom\Parser;
 
-class Date extends \Parser\Component
+class Date extends Gedcom\Parser\Component
 {
     public static function parse(\Gedcom\Parser $parser)
     {

@@ -14,6 +14,6 @@
 
 namespace Gedcom\Parser\Indi;
 
-class Chra extends \Parser\Indi\Even
+class Chra extends Gedcom\Parser\Indi\Even
 {
 }

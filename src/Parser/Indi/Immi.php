@@ -14,6 +14,6 @@
 
 namespace Gedcom\Parser\Indi;
 
-class Immi extends \Parser\Indi\Even
+class Immi extends Gedcom\Parser\Indi\Even
 {
 }

@@ -14,6 +14,6 @@
 
 namespace Gedcom\Parser\Indi;
 
-class Prob extends \Parser\Indi\Even
+class Prob extends Gedcom\Parser\Indi\Even
 {
 }

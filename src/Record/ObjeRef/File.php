@@ -19,7 +19,7 @@ use Record;
 /**
  * Class Refn.
  */
-class File extends Record
+class File extends Gedcom\Record
 {
     /**
      * @var string multimedia_file_refn

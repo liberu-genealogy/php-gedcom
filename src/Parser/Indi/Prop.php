@@ -14,6 +14,6 @@
 
 namespace Gedcom\Parser\Indi;
 
-class Prop extends \Parser\Indi\Attr
+class Prop extends Gedcom\Parser\Indi\Attr
 {
 }

@@ -14,7 +14,7 @@
 
 namespace Gedcom\Parser\Indi;
 
-class Name extends \Parser\Component
+class Name extends Gedcom\Parser\Component
 {
     public static function parse(\Gedcom\Parser $parser)
     {

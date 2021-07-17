@@ -14,6 +14,6 @@
 
 namespace Gedcom\Parser\Indi;
 
-class Deat extends \Parser\Indi\Even
+class Deat extends Gedcom\Parser\Indi\Even
 {
 }

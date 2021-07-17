@@ -19,7 +19,7 @@ use Record;
 /**
  * Stores the data from the HEAD section of a GEDCOM 5.5 file.
  */
-class Head extends Record
+class Head extends Gedcom\Record
 {
     /**
      * @var Head\Sour

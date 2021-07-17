@@ -14,6 +14,6 @@
 
 namespace Gedcom\Parser\Fam;
 
-class Divf extends \Parser\Fam\Even
+class Divf extends Gedcom\Parser\Fam\Even
 {
 }

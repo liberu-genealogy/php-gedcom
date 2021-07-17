@@ -14,6 +14,6 @@
 
 namespace Gedcom\Parser\Indi;
 
-class Cast extends \Parser\Indi\Attr
+class Cast extends Gedcom\Parser\Indi\Attr
 {
 }

@@ -14,7 +14,7 @@
 
 namespace Gedcom\Parser;
 
-class Note extends \Parser\Component
+class Note extends Gedcom\Parser\Component
 {
     public static function parse(\Gedcom\Parser $parser)
     {

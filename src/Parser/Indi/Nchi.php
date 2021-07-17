@@ -14,6 +14,6 @@
 
 namespace Gedcom\Parser\Indi;
 
-class Nchi extends \Parser\Indi\Attr
+class Nchi extends Gedcom\Parser\Indi\Attr
 {
 }

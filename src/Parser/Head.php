@@ -14,7 +14,7 @@
 
 namespace Gedcom\Parser;
 
-class Head extends \Parser\Component
+class Head extends Gedcom\Parser\Component
 {
     /**
      * @param \Gedcom\Parser $parser

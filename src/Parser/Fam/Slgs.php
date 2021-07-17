@@ -14,7 +14,7 @@
 
 namespace Gedcom\Parser\Fam;
 
-class Slgs extends \Parser\Component
+class Slgs extends Gedcom\Parser\Component
 {
     public static function parse(\Gedcom\Parser $parser)
     {

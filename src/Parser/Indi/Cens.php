@@ -14,6 +14,6 @@
 
 namespace Gedcom\Parser\Indi;
 
-class Cens extends \Parser\Indi\Even
+class Cens extends Gedcom\Parser\Indi\Even
 {
 }

@@ -14,7 +14,7 @@
 
 namespace Gedcom\Parser\Head\Sour;
 
-class Corp extends \Parser\Component
+class Corp extends Gedcom\Parser\Component
 {
     public static function parse(\Gedcom\Parser $parser)
     {

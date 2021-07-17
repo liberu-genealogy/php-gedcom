@@ -19,7 +19,7 @@ use Record;
 /**
  * Class Plac.
  */
-class Plac extends Record implements Record\Noteable, Record\Sourceable
+class Plac extends Gedcom\Record implements Record\Noteable, Record\Sourceable
 {
     /**
      * @var string

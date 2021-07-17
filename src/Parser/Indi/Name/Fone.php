@@ -14,7 +14,7 @@
 
 namespace Gedcom\Parser\Indi\Name;
 
-class Fone extends \Parser\Component
+class Fone extends Gedcom\Parser\Component
 {
     public static function parse(\Gedcom\Parser $parser)
     {

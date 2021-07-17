@@ -14,6 +14,6 @@
 
 namespace Gedcom\Parser\Indi;
 
-class Natu extends \Parser\Indi\Even
+class Natu extends Gedcom\Parser\Indi\Even
 {
 }

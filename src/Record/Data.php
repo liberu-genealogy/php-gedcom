@@ -19,7 +19,7 @@ use Record;
 /**
  * Class Data.
  */
-class Data extends Record
+class Data extends Gedcom\Record
 {
     /**
      * @var string

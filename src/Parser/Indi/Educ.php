@@ -14,6 +14,6 @@
 
 namespace Gedcom\Parser\Indi;
 
-class Educ extends \Parser\Indi\Attr
+class Educ extends Gedcom\Parser\Indi\Attr
 {
 }

@@ -14,6 +14,6 @@
 
 namespace Gedcom\Parser\Indi;
 
-class Ssn extends \Parser\Indi\Attr
+class Ssn extends Gedcom\Parser\Indi\Attr
 {
 }

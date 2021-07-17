@@ -14,6 +14,6 @@
 
 namespace Gedcom\Parser\Indi;
 
-class Reti extends \Parser\Indi\Even
+class Reti extends Gedcom\Parser\Indi\Even
 {
 }

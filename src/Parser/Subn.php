@@ -14,7 +14,7 @@
 
 namespace Gedcom\Parser;
 
-class Subn extends \Parser\Component
+class Subn extends Gedcom\Parser\Component
 {
     public static function parse(\Gedcom\Parser $parser)
     {

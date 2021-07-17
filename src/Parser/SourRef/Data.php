@@ -14,7 +14,7 @@
 
 namespace Gedcom\Parser\SourRef;
 
-class Data extends \Parser\Component
+class Data extends Gedcom\Parser\Component
 {
     public static function parse(\Gedcom\Parser $parser)
     {

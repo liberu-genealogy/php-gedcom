@@ -14,7 +14,7 @@
 
 namespace Gedcom\Parser\Sour;
 
-class Repo extends \Parser\Component
+class Repo extends Gedcom\Parser\Component
 {
     public static function parse(\Gedcom\Parser $parser)
     {

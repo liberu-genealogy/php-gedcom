@@ -14,7 +14,7 @@
 
 namespace Gedcom\Parser;
 
-class Fam extends \Parser\Component
+class Fam extends Gedcom\Parser\Component
 {
     protected static $_eventTypes = [
         'ANUL',

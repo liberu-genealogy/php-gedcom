@@ -14,6 +14,6 @@
 
 namespace Gedcom\Parser\Indi;
 
-class Occu extends \Parser\Indi\Attr
+class Occu extends Gedcom\Parser\Indi\Attr
 {
 }

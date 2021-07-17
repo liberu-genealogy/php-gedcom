@@ -14,6 +14,6 @@
 
 namespace Gedcom\Parser\Fam;
 
-class Marl extends \Parser\Fam\Even
+class Marl extends Gedcom\Parser\Fam\Even
 {
 }

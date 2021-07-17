@@ -14,7 +14,7 @@
 
 namespace Gedcom\Parser\Head;
 
-class Plac extends \Parser\Component
+class Plac extends Gedcom\Parser\Component
 {
     public static function parse(\Gedcom\Parser $parser)
     {

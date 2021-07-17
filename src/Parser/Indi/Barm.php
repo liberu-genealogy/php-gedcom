@@ -14,6 +14,6 @@
 
 namespace Gedcom\Parser\Indi;
 
-class Barm extends \Parser\Indi\Even
+class Barm extends Gedcom\Parser\Indi\Even
 {
 }

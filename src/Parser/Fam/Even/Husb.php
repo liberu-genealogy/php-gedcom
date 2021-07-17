@@ -14,7 +14,7 @@
 
 namespace Gedcom\Parser\Fam\Even;
 
-class Husb extends \Parser\Component
+class Husb extends Gedcom\Parser\Component
 {
     public static function parse(\Gedcom\Parser $parser)
     {

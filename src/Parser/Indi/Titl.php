@@ -14,6 +14,6 @@
 
 namespace Gedcom\Parser\Indi;
 
-class Titl extends \Parser\Indi\Attr
+class Titl extends Gedcom\Parser\Indi\Attr
 {
 }

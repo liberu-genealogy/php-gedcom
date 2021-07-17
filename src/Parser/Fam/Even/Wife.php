@@ -14,7 +14,7 @@
 
 namespace Gedcom\Parser\Fam\Even;
 
-class Wife extends \Parser\Component
+class Wife extends Gedcom\Parser\Component
 {
     public static function parse(\Gedcom\Parser $parser)
     {

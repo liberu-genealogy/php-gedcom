@@ -14,6 +14,6 @@
 
 namespace Gedcom\Parser\Indi;
 
-class Reli extends \Parser\Indi\Attr
+class Reli extends Gedcom\Parser\Indi\Attr
 {
 }

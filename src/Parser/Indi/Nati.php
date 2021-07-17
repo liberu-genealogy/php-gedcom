@@ -14,6 +14,6 @@
 
 namespace Gedcom\Parser\Indi;
 
-class Nati extends \Parser\Indi\Attr
+class Nati extends Gedcom\Parser\Indi\Attr
 {
 }

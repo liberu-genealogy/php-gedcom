@@ -14,6 +14,6 @@
 
 namespace Gedcom\Parser\Indi;
 
-class Dscr extends \Parser\Indi\Attr
+class Dscr extends Gedcom\Parser\Indi\Attr
 {
 }

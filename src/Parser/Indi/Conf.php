@@ -14,6 +14,6 @@
 
 namespace Gedcom\Parser\Indi;
 
-class Conf extends \Parser\Indi\Even
+class Conf extends Gedcom\Parser\Indi\Even
 {
 }

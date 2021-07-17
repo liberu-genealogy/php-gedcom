@@ -14,7 +14,7 @@
 
 namespace Gedcom\Parser\Indi;
 
-class Adop extends \Parser\Indi\Even
+class Adop extends Gedcom\Parser\Indi\Even
 {
     public static function parseAdop($parser, $even)
     {

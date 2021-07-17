@@ -19,7 +19,7 @@ use Record;
 /**
  * Class Refn.
  */
-class Map extends Record
+class Map extends Gedcom\Record
 {
     /**
      * @var string place_latitude

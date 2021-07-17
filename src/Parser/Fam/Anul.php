@@ -14,6 +14,6 @@
 
 namespace Gedcom\Parser\Fam;
 
-class Anul extends \Parser\Fam\Even
+class Anul extends Gedcom\Parser\Fam\Even
 {
 }

@@ -14,6 +14,6 @@
 
 namespace Gedcom\Parser\Fam;
 
-class Marb extends \Parser\Fam\Even
+class Marb extends Gedcom\Parser\Fam\Even
 {
 }

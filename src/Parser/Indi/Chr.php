@@ -14,7 +14,7 @@
 
 namespace Gedcom\Parser\Indi;
 
-class Chr extends \Parser\Indi\Even
+class Chr extends Gedcom\Parser\Indi\Even
 {
     public static function parseFamc($parser, $even)
     {

@@ -19,7 +19,7 @@ use Record;
 /**
  * Class Refn.
  */
-class Romn extends Record
+class Romn extends Gedcom\Record
 {
     /**
      * @var string romanized_variation

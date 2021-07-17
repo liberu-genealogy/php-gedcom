@@ -14,7 +14,7 @@
 
 namespace Gedcom\Parser;
 
-class Chan extends \Parser\Component
+class Chan extends Gedcom\Parser\Component
 {
     public static function parse(\Gedcom\Parser $parser)
     {
