@@ -33,7 +33,7 @@ class Head extends \Gedcom\Parser\Component
             return null;
         }
 
-        $head = new Record\Head();
+        $head = new \Gedcom\Record\Head();
 
         $parser->getGedcom()->setHead($head);
 
@@ -51,11 +51,8 @@ class Head extends \Gedcom\Parser\Component
 
             switch ($recordType) {
                 case 'SOUR':
-                    $sour = Parser\Head\Sour::parse($parser);
+                    $sour = \Gedcom\Parser\Head\Sour::parse($parser);
                     $head->setSour($sour);
-                    break;
-                case 'DEST':
-                    $head->setDest(trim($record[2]));
                     break;
                 case 'SUBM':
                     $head->setSubm($parser->normalizeIdentifier($record[2]));
@@ -76,19 +73,19 @@ class Head extends \Gedcom\Parser\Component
                     $head->setLang(trim($record[2]));
                     break;
                 case 'DATE':
-                    $date = Parser\Head\Date::parse($parser);
+                    $date = \Gedcom\Parser\Head\Date::parse($parser);
                     $head->setDate($date);
                     break;
                 case 'GEDC':
-                    $gedc = Parser\Head\Gedc::parse($parser);
+                    $gedc = \Gedcom\Parser\Head\Gedc::parse($parser);
                     $head->setGedc($gedc);
                     break;
                 case 'CHAR':
-                    $char = Parser\Head\Char::parse($parser);
+                    $char = \Gedcom\Parser\Head\Char::parse($parser);
                     $head->setChar($char);
                     break;
                 case 'PLAC':
-                    $plac = Parser\Head\Plac::parse($parser);
+                    $plac = \Gedcom\Parser\Head\Plac::parse($parser);
                     $head->setPlac($plac);
                     break;
                 case 'NOTE':
