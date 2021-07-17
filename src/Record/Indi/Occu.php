@@ -14,6 +14,6 @@
 
 namespace Gedcom\Record\Indi;
 
-class Occu extends \Record\Indi\Attr
+class Occu extends \Gedcom\Record\Indi\Attr
 {
 }

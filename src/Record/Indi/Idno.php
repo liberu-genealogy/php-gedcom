@@ -14,6 +14,6 @@
 
 namespace Gedcom\Record\Indi;
 
-class Idno extends \Record\Indi\Attr
+class Idno extends \Gedcom\Record\Indi\Attr
 {
 }

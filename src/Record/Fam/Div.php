@@ -14,6 +14,6 @@
 
 namespace Gedcom\Record\Fam;
 
-class Div extends \Record\Fam\Even
+class Div extends \Gedcom\Record\Fam\Even
 {
 }

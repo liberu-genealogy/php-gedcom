@@ -16,12 +16,12 @@ namespace Gedcom\Parser\Indi;
 
 class Name extends \Gedcom\Parser\Component
 {
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
         if (isset($record[2])) {
-            $name = new \Record\Indi\Name();
+            $name = new \Gedcom\Record\Indi\Name();
             $name->setName(trim($record[2]));
         } else {
             $parser->skipToNextLevel($depth);

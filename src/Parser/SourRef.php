@@ -16,12 +16,12 @@ namespace Gedcom\Parser;
 
 class SourRef extends \Gedcom\Parser\Component
 {
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
         if (isset($record[2])) {
-            $sour = new \Record\SourRef();
+            $sour = new \Gedcom\Record\SourRef();
             $sour->setSour($parser->normalizeIdentifier($record[2]));
         } else {
             $parser->skipToNextLevel($depth);

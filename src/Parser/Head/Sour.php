@@ -16,12 +16,12 @@ namespace Gedcom\Parser\Head;
 
 class Sour extends \Gedcom\Parser\Component
 {
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
         if (isset($record[2])) {
-            $source = new \Record\Head\Sour();
+            $source = new \Gedcom\Record\Head\Sour();
             $source->setSour(trim($record[2]));
         } else {
             $parser->skipToNextLevel($depth);

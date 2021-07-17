@@ -16,12 +16,12 @@ namespace Gedcom\Parser\SourRef;
 
 class Even extends \Gedcom\Parser\Component
 {
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
         if (isset($record[2])) {
-            $even = new \Record\SourRef\Even();
+            $even = new \Gedcom\Record\SourRef\Even();
             $even->setEven(trim($record[2]));
         } else {
             $parser->skipToNextLevel($depth);

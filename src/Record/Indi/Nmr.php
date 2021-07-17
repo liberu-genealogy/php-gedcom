@@ -14,6 +14,6 @@
 
 namespace Gedcom\Record\Indi;
 
-class Nmr extends \Record\Indi\Attr
+class Nmr extends \Gedcom\Record\Indi\Attr
 {
 }

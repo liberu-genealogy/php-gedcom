@@ -14,6 +14,6 @@
 
 namespace Gedcom\Record\Indi;
 
-class Deat extends \Record\Indi\Even
+class Deat extends \Gedcom\Record\Indi\Even
 {
 }

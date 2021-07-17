@@ -14,6 +14,6 @@
 
 namespace Gedcom\Record\Indi;
 
-class Immi extends \Record\Indi\Even
+class Immi extends \Gedcom\Record\Indi\Even
 {
 }

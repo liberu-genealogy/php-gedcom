@@ -16,12 +16,12 @@ namespace Gedcom\Parser;
 
 class Date extends \Gedcom\Parser\Component
 {
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
         if (isset($record[1])) {
-            $dat = new \Record\Date();
+            $dat = new \Gedcom\Record\Date();
             if (!empty($record[2])) {
                 $dat->setDate($record[2]);
             }

@@ -14,8 +14,8 @@
 
 namespace Gedcom\Record\Indi;
 
-use Record\Noteable;
-use Record\Sourceable;
+use \Gedcom\Record\Noteable;
+use \Gedcom\Record\Sourceable;
 
 abstract class Lds extends \Gedcom\Record implements Sourceable, Noteable
 {

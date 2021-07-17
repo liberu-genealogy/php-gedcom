@@ -14,6 +14,6 @@
 
 namespace Gedcom\Record\Fam;
 
-class Mars extends \Record\Fam\Even
+class Mars extends \Gedcom\Record\Fam\Even
 {
 }

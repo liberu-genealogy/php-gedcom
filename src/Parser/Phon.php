@@ -16,12 +16,12 @@ namespace Gedcom\Parser;
 
 class Phon extends \Gedcom\Parser\Component
 {
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
         if (isset($record[2])) {
-            $phone = new \Record\Phon();
+            $phone = new \Gedcom\Record\Phon();
             $phone->setPhon(trim($record[2]));
         } else {
             $parser->skipToNextLevel($depth);

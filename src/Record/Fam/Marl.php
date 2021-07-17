@@ -14,6 +14,6 @@
 
 namespace Gedcom\Record\Fam;
 
-class Marl extends \Record\Fam\Even
+class Marl extends \Gedcom\Record\Fam\Even
 {
 }

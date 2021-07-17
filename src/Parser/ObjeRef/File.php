@@ -16,9 +16,9 @@ namespace Gedcom\Parser\ObjeRef;
 
 class File extends \Gedcom\Parser\Component
 {
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
-        $file = new \Record\ObjeRef\File();
+        $file = new \Gedcom\Record\ObjeRef\File();
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
         if (isset($record[2])) {

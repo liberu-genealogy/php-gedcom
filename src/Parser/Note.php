@@ -16,7 +16,7 @@ namespace Gedcom\Parser;
 
 class Note extends \Gedcom\Parser\Component
 {
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord(4);
         $depth = (int) $record[0];
@@ -28,7 +28,7 @@ class Note extends \Gedcom\Parser\Component
             return null;
         }
 
-        $note = new \Record\Note();
+        $note = new \Gedcom\Record\Note();
         $note->setId($identifier);
 
         if (isset($record[3])) {

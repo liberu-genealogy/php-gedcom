@@ -16,7 +16,7 @@ namespace Gedcom\Parser;
 
 abstract class Component
 {
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
     }
 }

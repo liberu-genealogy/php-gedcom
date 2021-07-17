@@ -14,6 +14,6 @@
 
 namespace Gedcom\Record\Indi;
 
-class Will extends \Record\Indi\Even
+class Will extends \Gedcom\Record\Indi\Even
 {
 }

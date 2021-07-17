@@ -16,12 +16,12 @@ namespace Gedcom\Parser\Sour\Data;
 
 class Even extends \Gedcom\Parser\Component
 {
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
 
-        $even = new \Record\Sour\Data\Even();
+        $even = new \Gedcom\Record\Sour\Data\Even();
 
         $parser->forward();
 

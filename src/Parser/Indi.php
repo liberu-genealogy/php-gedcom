@@ -16,7 +16,7 @@ namespace Gedcom\Parser;
 
 class Indi extends \Gedcom\Parser\Component
 {
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
@@ -28,7 +28,7 @@ class Indi extends \Gedcom\Parser\Component
             return null;
         }
 
-        $indi = new \Record\Indi();
+        $indi = new \Gedcom\Record\Indi();
         $indi->setId($identifier);
 
         $parser->getGedcom()->addIndi($indi);

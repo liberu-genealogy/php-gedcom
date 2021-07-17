@@ -16,12 +16,12 @@ namespace Gedcom\Parser;
 
 class NoteRef extends \Gedcom\Parser\Component
 {
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
 
-        $note = new \Record\NoteRef();
+        $note = new \Gedcom\Record\NoteRef();
 
         if (count($record) < 3) {
             $parser->logSkippedRecord('Missing note information; '.get_class(), ' @ '.__LINE__);

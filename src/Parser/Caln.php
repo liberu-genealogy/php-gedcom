@@ -16,7 +16,7 @@ namespace Gedcom\Parser;
 
 class Caln extends \Gedcom\Parser\Component
 {
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
@@ -28,7 +28,7 @@ class Caln extends \Gedcom\Parser\Component
             return null;
         }
 
-        $caln = new \Record\Caln();
+        $caln = new \Gedcom\Record\Caln();
         $caln->setCaln($identifier);
 
         $parser->forward();

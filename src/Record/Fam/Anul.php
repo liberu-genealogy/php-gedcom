@@ -14,6 +14,6 @@
 
 namespace Gedcom\Record\Fam;
 
-class Anul extends \Record\Fam\Even
+class Anul extends \Gedcom\Record\Fam\Even
 {
 }

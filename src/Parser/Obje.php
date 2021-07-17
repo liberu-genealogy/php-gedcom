@@ -16,7 +16,7 @@ namespace Gedcom\Parser;
 
 class Obje extends \Gedcom\Parser\Component
 {
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
@@ -28,7 +28,7 @@ class Obje extends \Gedcom\Parser\Component
             return null;
         }
 
-        $obje = new \Record\Obje();
+        $obje = new \Gedcom\Record\Obje();
         $obje->setId($identifier);
 
         $parser->getGedcom()->addObje($obje);

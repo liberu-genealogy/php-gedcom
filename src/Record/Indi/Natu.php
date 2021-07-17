@@ -14,6 +14,6 @@
 
 namespace Gedcom\Record\Indi;
 
-class Natu extends \Record\Indi\Even
+class Natu extends \Gedcom\Record\Indi\Even
 {
 }

@@ -16,12 +16,12 @@ namespace Gedcom\Parser\Fam;
 
 class Slgs extends \Gedcom\Parser\Component
 {
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
 
-        $slgs = new \Record\Fam\Slgs();
+        $slgs = new \Gedcom\Record\Fam\Slgs();
 
         $parser->forward();
 

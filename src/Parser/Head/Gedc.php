@@ -16,12 +16,12 @@ namespace Gedcom\Parser\Head;
 
 class Gedc extends \Gedcom\Parser\Component
 {
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
 
-        $gedc = new \Record\Head\Gedc();
+        $gedc = new \Gedcom\Record\Head\Gedc();
 
         $parser->forward();
 

@@ -14,6 +14,6 @@
 
 namespace Gedcom\Record\Indi;
 
-class Educ extends \Record\Indi\Attr
+class Educ extends \Gedcom\Record\Indi\Attr
 {
 }

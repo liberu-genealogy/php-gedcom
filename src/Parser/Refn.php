@@ -16,12 +16,12 @@ namespace Gedcom\Parser;
 
 class Refn extends \Gedcom\Parser\Component
 {
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
         if (isset($record[2])) {
-            $refn = new \Record\Refn();
+            $refn = new \Gedcom\Record\Refn();
             $refn->setRefn(trim($record[2]));
         } else {
             $parser->skipToNextLevel($depth);

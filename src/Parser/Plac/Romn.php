@@ -16,7 +16,7 @@ namespace Gedcom\Parser\Plac;
 
 class Romn extends \Gedcom\Parser\Component
 {
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
@@ -28,7 +28,7 @@ class Romn extends \Gedcom\Parser\Component
             return null;
         }
 
-        $romn = new \Record\Plac\Romn();
+        $romn = new \Gedcom\Record\Plac\Romn();
         $romn->setPlac($_romn);
 
         $parser->forward();

@@ -16,12 +16,12 @@ namespace Gedcom\Parser\Indi\Name;
 
 class Romn extends \Gedcom\Parser\Component
 {
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
         if (isset($record[2])) {
-            $romn = new \Record\Indi\Name\Romn();
+            $romn = new \Gedcom\Record\Indi\Name\Romn();
             $romn->setRomn(trim($record[2]));
         } else {
             $parser->skipToNextLevel($depth);

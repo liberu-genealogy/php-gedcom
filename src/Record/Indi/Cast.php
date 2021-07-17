@@ -14,6 +14,6 @@
 
 namespace Gedcom\Record\Indi;
 
-class Cast extends \Record\Indi\Attr
+class Cast extends \Gedcom\Record\Indi\Attr
 {
 }

@@ -14,6 +14,6 @@
 
 namespace Gedcom\Record\Indi;
 
-class Note extends \Record\NoteRefAbstract
+class Note extends \Gedcom\Record\NoteRefAbstract
 {
 }

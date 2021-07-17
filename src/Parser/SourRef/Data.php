@@ -16,9 +16,9 @@ namespace Gedcom\Parser\SourRef;
 
 class Data extends \Gedcom\Parser\Component
 {
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
-        $data = new \Record\SourRef\Data();
+        $data = new \Gedcom\Record\SourRef\Data();
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
 

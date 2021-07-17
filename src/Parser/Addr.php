@@ -16,13 +16,13 @@ namespace Gedcom\Parser;
 
 class Addr extends \Gedcom\Parser\Component
 {
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
         $line = isset($record[2]) ? trim($record[2]) : '';
 
-        $addr = new \Record\Addr();
+        $addr = new \Gedcom\Record\Addr();
         $addr->setAddr($line);
         $parser->forward();
 

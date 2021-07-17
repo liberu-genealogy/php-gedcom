@@ -14,6 +14,6 @@
 
 namespace Gedcom\Record\Indi;
 
-class Buri extends \Record\Indi\Even
+class Buri extends \Gedcom\Record\Indi\Even
 {
 }

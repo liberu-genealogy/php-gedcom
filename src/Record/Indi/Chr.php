@@ -14,7 +14,7 @@
 
 namespace Gedcom\Record\Indi;
 
-class Chr extends \Record\Indi\Even
+class Chr extends \Gedcom\Record\Indi\Even
 {
     protected $_famc = null;
 }

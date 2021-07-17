@@ -16,7 +16,7 @@ namespace Gedcom\Parser\Indi;
 
 class Fams extends \Gedcom\Parser\Component
 {
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
@@ -30,7 +30,7 @@ class Fams extends \Gedcom\Parser\Component
 
         $fams = $parser->normalizeIdentifier($record[2]);
 
-        $fam = new \Record\Indi\Fams();
+        $fam = new \Gedcom\Record\Indi\Fams();
         $fam->setFams($fams);
 
         $parser->forward();

@@ -14,6 +14,6 @@
 
 namespace Gedcom\Record\Indi;
 
-class Ssn extends \Record\Indi\Attr
+class Ssn extends \Gedcom\Record\Indi\Attr
 {
 }

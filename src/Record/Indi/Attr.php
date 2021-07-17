@@ -14,11 +14,11 @@
 
 namespace Gedcom\Record\Indi;
 
-use Record\Noteable;
-use Record\Objectable;
-use Record\Sourceable;
+use \Gedcom\Record\Noteable;
+use \Gedcom\Record\Objectable;
+use \Gedcom\Record\Sourceable;
 
-class Attr extends \Record\Indi\Even implements Sourceable, Noteable, Objectable
+class Attr extends \Gedcom\Record\Indi\Even implements Sourceable, Noteable, Objectable
 {
     protected $type = null;
     protected $_attr = null;

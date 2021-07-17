@@ -14,6 +14,6 @@
 
 namespace Gedcom\Record\Indi;
 
-class Grad extends \Record\Indi\Even
+class Grad extends \Gedcom\Record\Indi\Even
 {
 }

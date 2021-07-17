@@ -16,12 +16,12 @@ namespace Gedcom\Parser\Plac;
 
 class Map extends \Gedcom\Parser\Component
 {
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
 
-        $map = new \Record\Plac\Map();
+        $map = new \Gedcom\Record\Plac\Map();
 
         $parser->forward();
 

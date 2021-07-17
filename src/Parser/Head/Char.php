@@ -16,12 +16,12 @@ namespace Gedcom\Parser\Head;
 
 class Char extends \Gedcom\Parser\Component
 {
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
         if (isset($record[2])) {
-            $char = new \Record\Head\Char();
+            $char = new \Gedcom\Record\Head\Char();
             $char->setChar(trim($record[2]));
         } else {
             $parser->skipToNextLevel($depth);

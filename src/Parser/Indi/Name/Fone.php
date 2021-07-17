@@ -16,12 +16,12 @@ namespace Gedcom\Parser\Indi\Name;
 
 class Fone extends \Gedcom\Parser\Component
 {
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
         if (isset($record[2])) {
-            $fone = new \Record\Indi\Name\Fone();
+            $fone = new \Gedcom\Record\Indi\Name\Fone();
             $fone->setFone(trim($record[2]));
         } else {
             return null;

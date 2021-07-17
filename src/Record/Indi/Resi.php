@@ -14,6 +14,6 @@
 
 namespace Gedcom\Record\Indi;
 
-class Resi extends \Record\Indi\Attr
+class Resi extends \Gedcom\Record\Indi\Attr
 {
 }

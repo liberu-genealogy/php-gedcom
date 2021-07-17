@@ -16,12 +16,12 @@ namespace Gedcom\Parser\Indi\Even;
 
 class Plac extends \Gedcom\Parser\Component
 {
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
 
-        $plac = new \Record\Indi\Even\Plac();
+        $plac = new \Gedcom\Record\Indi\Even\Plac();
 
         if (isset($record[2])) {
             $plac->setPlac(trim($record[2]));

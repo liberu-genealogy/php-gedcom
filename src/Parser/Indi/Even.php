@@ -14,11 +14,11 @@
 
 namespace Gedcom\Parser\Indi;
 
-use Parser\Chan;
+use Gedcom\Parser\Chan;
 
 class Even extends \Gedcom\Parser\Component
 {
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
@@ -34,7 +34,7 @@ class Even extends \Gedcom\Parser\Component
             $className = 'GedcomzRecordzIndiz'.ucfirst(strtolower(trim($record[1])));
             $even = new $className();
         } else {
-            $even = new \Record\Indi\Even();
+            $even = new \Gedcom\Record\Indi\Even();
         }
 
         if (isset($record[1]) && strtoupper(trim($record[1])) != 'EVEN') {

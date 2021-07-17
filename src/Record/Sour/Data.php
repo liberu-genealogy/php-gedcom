@@ -14,7 +14,7 @@
 
 namespace Gedcom\Record\Sour;
 
-use Record\Noteable;
+use \Gedcom\Record\Noteable;
 
 class Data extends \Gedcom\Record implements Noteable
 {

@@ -14,8 +14,8 @@
 
 namespace Gedcom\Record\Fam;
 
-use Record\Noteable;
-use Record\Sourceable;
+use \Gedcom\Record\Noteable;
+use \Gedcom\Record\Sourceable;
 
 class Slgs extends \Gedcom\Record implements Sourceable, Noteable
 {

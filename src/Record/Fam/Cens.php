@@ -14,6 +14,6 @@
 
 namespace Gedcom\Record\Fam;
 
-class Cens extends \Record\Fam\Even
+class Cens extends \Gedcom\Record\Fam\Even
 {
 }

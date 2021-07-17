@@ -16,7 +16,7 @@ namespace Gedcom\Parser;
 
 class Repo extends \Gedcom\Parser\Component
 {
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
@@ -28,7 +28,7 @@ class Repo extends \Gedcom\Parser\Component
             return null;
         }
 
-        $repo = new \Record\Repo();
+        $repo = new \Gedcom\Record\Repo();
         $repo->setRepo($identifier);
 
         $parser->getGedcom()->addRepo($repo);

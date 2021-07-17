@@ -14,6 +14,6 @@
 
 namespace Gedcom\Record\Indi;
 
-class Reti extends \Record\Indi\Even
+class Reti extends \Gedcom\Record\Indi\Even
 {
 }

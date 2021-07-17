@@ -16,12 +16,12 @@ namespace Gedcom\Parser\Sour;
 
 class Data extends \Gedcom\Parser\Component
 {
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
 
-        $data = new \Record\Sour\Data();
+        $data = new \Gedcom\Record\Sour\Data();
 
         $parser->forward();
 

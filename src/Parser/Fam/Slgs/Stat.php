@@ -16,7 +16,7 @@ namespace Gedcom\Parser\Fam\Slgs;
 
 class Stat extends \Gedcom\Parser\Component
 {
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
@@ -28,7 +28,7 @@ class Stat extends \Gedcom\Parser\Component
             return null;
         }
 
-        $stat = new \Record\Fam\Slgs\Stat();
+        $stat = new \Gedcom\Record\Fam\Slgs\Stat();
         $stat->setStat($_stat);
 
         $parser->forward();

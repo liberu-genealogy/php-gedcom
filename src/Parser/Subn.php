@@ -16,7 +16,7 @@ namespace Gedcom\Parser;
 
 class Subn extends \Gedcom\Parser\Component
 {
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
@@ -28,7 +28,7 @@ class Subn extends \Gedcom\Parser\Component
             return null;
         }
 
-        $subn = new \Record\Subn();
+        $subn = new \Gedcom\Record\Subn();
         $subn->setSubn($identifier);
 
         $parser->getGedcom()->setSubn($subn);

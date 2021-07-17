@@ -16,12 +16,12 @@ namespace Gedcom\Parser\Fam\Even;
 
 class Wife extends \Gedcom\Parser\Component
 {
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
 
-        $wife = new \Record\Fam\Even\Wife();
+        $wife = new \Gedcom\Record\Fam\Even\Wife();
 
         $parser->forward();
 

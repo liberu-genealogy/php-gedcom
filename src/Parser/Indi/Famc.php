@@ -16,7 +16,7 @@ namespace Gedcom\Parser\Indi;
 
 class Famc extends \Gedcom\Parser\Component
 {
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
@@ -30,7 +30,7 @@ class Famc extends \Gedcom\Parser\Component
 
         $famc = $parser->normalizeIdentifier($record[2]);
 
-        $fam = new \Record\Indi\Famc();
+        $fam = new \Gedcom\Record\Indi\Famc();
         $fam->setFamc($famc);
 
         $parser->forward();

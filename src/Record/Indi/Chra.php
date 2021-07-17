@@ -14,6 +14,6 @@
 
 namespace Gedcom\Record\Indi;
 
-class Chra extends \Record\Indi\Even
+class Chra extends \Gedcom\Record\Indi\Even
 {
 }

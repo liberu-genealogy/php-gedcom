@@ -14,6 +14,6 @@
 
 namespace Gedcom\Record\Indi;
 
-class Conf extends \Record\Indi\Even
+class Conf extends \Gedcom\Record\Indi\Even
 {
 }

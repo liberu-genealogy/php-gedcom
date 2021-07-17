@@ -14,6 +14,6 @@
 
 namespace Gedcom\Record\Indi;
 
-class Prop extends \Record\Indi\Attr
+class Prop extends \Gedcom\Record\Indi\Attr
 {
 }

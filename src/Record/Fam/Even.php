@@ -14,9 +14,9 @@
 
 namespace Gedcom\Record\Fam;
 
-use Record\Noteable;
-use Record\Objectable;
-use Record\Sourceable;
+use \Gedcom\Record\Noteable;
+use \Gedcom\Record\Objectable;
+use \Gedcom\Record\Sourceable;
 
 /**
  * Event record.

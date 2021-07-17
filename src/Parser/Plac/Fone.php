@@ -16,7 +16,7 @@ namespace Gedcom\Parser\Plac;
 
 class Fone extends \Gedcom\Parser\Component
 {
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
@@ -28,7 +28,7 @@ class Fone extends \Gedcom\Parser\Component
             return null;
         }
 
-        $fone = new \Record\Plac\Fone();
+        $fone = new \Gedcom\Record\Plac\Fone();
         $fone->setPlac($_fone);
 
         $parser->forward();

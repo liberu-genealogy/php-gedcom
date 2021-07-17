@@ -14,6 +14,6 @@
 
 namespace Gedcom\Record\Indi;
 
-class Prob extends \Record\Indi\Even
+class Prob extends \Gedcom\Record\Indi\Even
 {
 }

@@ -29,7 +29,7 @@ class Fam extends \Gedcom\Parser\Component
         'MARS',
     ];
 
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
@@ -41,7 +41,7 @@ class Fam extends \Gedcom\Parser\Component
             return null;
         }
 
-        $fam = new \Record\Fam();
+        $fam = new \Gedcom\Record\Fam();
         $fam->setId($identifier);
 
         $parser->getGedcom()->addFam($fam);

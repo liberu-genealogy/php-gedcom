@@ -16,12 +16,12 @@ namespace Gedcom\Parser\Fam\Even;
 
 class Husb extends \Gedcom\Parser\Component
 {
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
 
-        $husband = new \Record\Fam\Even\Husb();
+        $husband = new \Gedcom\Record\Fam\Even\Husb();
 
         $parser->forward();
 

@@ -14,6 +14,6 @@
 
 namespace Gedcom\Record\Indi;
 
-class Dscr extends \Record\Indi\Attr
+class Dscr extends \Gedcom\Record\Indi\Attr
 {
 }

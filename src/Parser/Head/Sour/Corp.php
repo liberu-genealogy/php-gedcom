@@ -16,12 +16,12 @@ namespace Gedcom\Parser\Head\Sour;
 
 class Corp extends \Gedcom\Parser\Component
 {
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
         if (isset($record[2])) {
-            $corp = new \Record\Head\Sour\Corp();
+            $corp = new \Gedcom\Record\Head\Sour\Corp();
             $corp->setCorp(trim($record[2]));
         } else {
             $parser->skipToNextLevel($depth);

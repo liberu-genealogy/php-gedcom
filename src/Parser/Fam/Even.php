@@ -16,12 +16,12 @@ namespace Gedcom\Parser\Fam;
 
 class Even extends \Gedcom\Parser\Component
 {
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
 
-        $even = new \Record\Fam\Even();
+        $even = new \Gedcom\Record\Fam\Even();
 
         if (isset($record[1]) && strtoupper(trim($record[1])) != 'EVEN') {
             $even->setType(trim($record[1]));

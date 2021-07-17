@@ -16,12 +16,12 @@ namespace Gedcom\Parser\Head;
 
 class Plac extends \Gedcom\Parser\Component
 {
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
 
-        $plac = new \Record\Head\Plac();
+        $plac = new \Gedcom\Record\Head\Plac();
 
         $parser->forward();
 

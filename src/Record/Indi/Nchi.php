@@ -14,6 +14,6 @@
 
 namespace Gedcom\Record\Indi;
 
-class Nchi extends \Record\Indi\Attr
+class Nchi extends \Gedcom\Record\Indi\Attr
 {
 }

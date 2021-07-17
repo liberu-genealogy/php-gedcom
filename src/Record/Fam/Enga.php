@@ -14,6 +14,6 @@
 
 namespace Gedcom\Record\Fam;
 
-class Enga extends \Record\Fam\Even
+class Enga extends \Gedcom\Record\Fam\Even
 {
 }

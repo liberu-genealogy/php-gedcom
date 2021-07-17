@@ -16,12 +16,12 @@ namespace Gedcom\Parser\Indi;
 
 class Asso extends \Gedcom\Parser\Component
 {
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
         if (isset($record[2])) {
-            $asso = new \Record\Indi\Asso();
+            $asso = new \Gedcom\Record\Indi\Asso();
             $asso->setIndi($parser->normalizeIdentifier($record[2]));
         } else {
             $parser->skipToNextLevel($depth);

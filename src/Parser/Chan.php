@@ -16,14 +16,14 @@ namespace Gedcom\Parser;
 
 class Chan extends \Gedcom\Parser\Component
 {
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
 
         $parser->forward();
 
-        $chan = new \Record\Chan();
+        $chan = new \Gedcom\Record\Chan();
 
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();

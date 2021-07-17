@@ -14,6 +14,6 @@
 
 namespace Gedcom\Record\Fam;
 
-class Marb extends \Record\Fam\Even
+class Marb extends \Gedcom\Record\Fam\Even
 {
 }

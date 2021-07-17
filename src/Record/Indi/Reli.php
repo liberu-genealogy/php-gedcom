@@ -14,6 +14,6 @@
 
 namespace Gedcom\Record\Indi;
 
-class Reli extends \Record\Indi\Attr
+class Reli extends \Gedcom\Record\Indi\Attr
 {
 }

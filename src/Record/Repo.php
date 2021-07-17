@@ -14,12 +14,12 @@
 
 namespace Gedcom\Record;
 
-use Record;
+use \Gedcom\Record;
 
 /**
  * Class Repo.
  */
-class Repo extends \Gedcom\Record implements Noteable
+class Repo extends Record implements Noteable
 {
     /**
      * @var string
@@ -160,7 +160,7 @@ class Repo extends \Gedcom\Record implements Noteable
     public function addRefn($refn = null)
     {
         if (empty($refn)) {
-            $refn = new \Record\Refn();
+            $refn = new \Gedcom\Record\Refn();
         }
         $this->refn[] = $refn;
 
@@ -183,7 +183,7 @@ class Repo extends \Gedcom\Record implements Noteable
     public function addNote($note = null)
     {
         if (empty($node)) {
-            $note = new \Record\NoteRef();
+            $note = new \Gedcom\Record\NoteRef();
         }
         $this->note[] = $note;
 
@@ -246,7 +246,7 @@ class Repo extends \Gedcom\Record implements Noteable
     public function setAddr($addr = null)
     {
         if (empty($addr)) {
-            $addr = new \Record\Addr();
+            $addr = new \Gedcom\Record\Addr();
         }
         $this->addr = $addr;
 

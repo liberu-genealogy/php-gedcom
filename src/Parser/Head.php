@@ -17,11 +17,11 @@ namespace Gedcom\Parser;
 class Head extends \Gedcom\Parser\Component
 {
     /**
-     * @param Gedcom\Parser $parser
+     * @param \Gedcom\Parser $parser
      *
      * @return \Record\Head
      */
-    public static function parse(Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
@@ -33,7 +33,7 @@ class Head extends \Gedcom\Parser\Component
             return null;
         }
 
-        $head = new \Record\Head();
+        $head = new \Gedcom\Record\Head();
 
         $parser->getGedcom()->setHead($head);
 
