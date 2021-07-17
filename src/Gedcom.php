@@ -95,7 +95,7 @@ class Gedcom
      *
      * @param \Gedcom\Record\Head $head
      */
-    public function setHead (\Record\Head $head)
+    public function setHead (\Gedcom\Record\Head $head)
     {
         $this->head = $head;
     }
@@ -105,7 +105,7 @@ class Gedcom
      *
      * @param \Gedcom\Record\Subn $subn
      */
-    public function setSubn (\Record\Subn $subn)
+    public function setSubn (\Gedcom\Record\Subn $subn)
     {
         $this->subn = $subn;
     }
@@ -115,7 +115,7 @@ class Gedcom
      *
      * @param \Gedcom\Record\Sour $sour
      */
-    public function addSour (\Record\Sour $sour)
+    public function addSour (\Gedcom\Record\Sour $sour)
     {
         $this->sour[$sour->getSour()] = $sour;
     }
@@ -125,7 +125,7 @@ class Gedcom
      *
      * @param \Gedcom\Record\Indi $indi
      */
-    public function addIndi (\Record\Indi $indi)
+    public function addIndi (\Gedcom\Record\Indi $indi)
     {
         $this->indi[$indi->getId()] = $indi;
         if ($indi->getUid()) {
@@ -138,7 +138,7 @@ class Gedcom
      *
      * @param \Gedcom\Record\Fam $fam
      */
-    public function addFam (\Record\Fam $fam)
+    public function addFam (\Gedcom\Record\Fam $fam)
     {
         $this->fam[$fam->getId()] = $fam;
     }
@@ -148,7 +148,7 @@ class Gedcom
      *
      * @param \Gedcom\Record\Note $note
      */
-    public function addNote (\Record\Note $note)
+    public function addNote (\Gedcom\Record\Note $note)
     {
         $this->note[$note->getId()] = $note;
     }
@@ -158,7 +158,7 @@ class Gedcom
      *
      * @param \Gedcom\Record\Repo $repo
      */
-    public function addRepo (\Record\Repo $repo)
+    public function addRepo (\Gedcom\Record\Repo $repo)
     {
         $this->repo[$repo->getRepo()] = $repo;
     }
@@ -168,7 +168,7 @@ class Gedcom
      *
      * @param \Gedcom\Record\Obje $obje
      */
-    public function addObje (\Record\Obje $obje)
+    public function addObje (\Gedcom\Record\Obje $obje)
     {
         $this->obje[$obje->getId()] = $obje;
     }
@@ -178,7 +178,7 @@ class Gedcom
      *
      * @param \Gedcom\Record\Subm $subm
      */
-    public function addSubm (\Record\Subm $subm)
+    public function addSubm (\Gedcom\Record\Subm $subm)
     {
         $this->subm[$subm->getSubm()] = $subm;
     }
