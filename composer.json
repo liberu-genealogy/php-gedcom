@@ -13,8 +13,13 @@
         "squizlabs/php_codesniffer": "3.5.*"
     },
     "autoload": {
-        "psr-0": {
-            "PhpGedcom\\": "library/"
+        "psr-4": {
+            "Gedcom\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "GedcomTest\\": "tests/"
         }
     }
 }
