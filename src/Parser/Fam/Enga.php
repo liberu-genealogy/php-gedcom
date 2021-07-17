@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespaceGedcom\Parser\Fam;
+namespace Gedcom\Parser\Fam;
 
 class Enga extends \Gedcom\Parser\Fam\Even
 {

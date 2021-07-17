@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespaceGedcom\Parser\Indi;
+namespace Gedcom\Parser\Indi;
 
 abstract class Attr extends \Gedcom\Parser\Component
 {

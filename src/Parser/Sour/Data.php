@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespaceGedcom\Parser\Sour;
+namespace Gedcom\Parser\Sour;
 
 class Data extends \Gedcom\Parser\Component
 {

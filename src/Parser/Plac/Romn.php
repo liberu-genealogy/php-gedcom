@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespaceGedcom\Parser\Plac;
+namespace Gedcom\Parser\Plac;
 
 class Romn extends \Gedcom\Parser\Component
 {

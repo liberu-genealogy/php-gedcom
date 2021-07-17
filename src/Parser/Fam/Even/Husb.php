@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespaceGedcom\Parser\Fam\Even;
+namespace Gedcom\Parser\Fam\Even;
 
 class Husb extends \Gedcom\Parser\Component
 {

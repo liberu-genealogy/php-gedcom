@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespaceGedcom\Parser\Fam\Slgs;
+namespace Gedcom\Parser\Fam\Slgs;
 
 class Stat extends \Gedcom\Parser\Component
 {

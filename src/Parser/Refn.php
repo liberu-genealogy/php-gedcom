@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespaceGedcom\Parser;
+namespace Gedcom\Parser;
 
 class Refn extends \Gedcom\Parser\Component
 {

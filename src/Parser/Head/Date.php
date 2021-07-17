@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespaceGedcom\Parser\Head;
+namespace Gedcom\Parser\Head;
 
 class Date extends \Gedcom\Parser\Component
 {

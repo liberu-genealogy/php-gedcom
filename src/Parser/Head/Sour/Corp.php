@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespaceGedcom\Parser\Head\Sour;
+namespace Gedcom\Parser\Head\Sour;
 
 class Corp extends \Gedcom\Parser\Component
 {

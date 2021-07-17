@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespaceGedcom\Parser\Sour\Repo;
+namespace Gedcom\Parser\Sour\Repo;
 
 class Caln extends \Gedcom\Parser\Component
 {

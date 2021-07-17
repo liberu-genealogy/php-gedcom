@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespaceGedcom\Parser\Plac;
+namespace Gedcom\Parser\Plac;
 
 class Fone extends \Gedcom\Parser\Component
 {

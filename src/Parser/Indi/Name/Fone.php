@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespaceGedcom\Parser\Indi\Name;
+namespace Gedcom\Parser\Indi\Name;
 
 class Fone extends \Gedcom\Parser\Component
 {
