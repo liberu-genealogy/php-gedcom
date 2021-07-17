@@ -60,18 +60,18 @@ class Note extends \Gedcom\Parser\Component
                     }
                     break;
                 case 'REFN':
-                    $refn = \Parser\Refn::parse($parser);
+                    $refn = \Gedcom\Parser\Refn::parse($parser);
                     $note->addRefn($refn);
                     break;
                 case 'RIN':
                     $note->setRin(trim($record[2]));
                     break;
                 case 'SOUR':
-                    $sour = \Parser\SourRef::parse($parser);
+                    $sour = \Gedcom\Parser\SourRef::parse($parser);
                     $note->addSour($sour);
                     break;
                 case 'CHAN':
-                    $chan = \Parser\Chan::parse($parser);
+                    $chan = \Gedcom\Parser\Chan::parse($parser);
                     $note->setChan($chan);
                     break;
                 default:

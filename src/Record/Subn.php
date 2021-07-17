@@ -14,7 +14,7 @@
 
 namespace Gedcom\Record;
 
-use Record;
+use \Gedcom\Record;
 
 /**
  * Class Subn.
@@ -67,7 +67,7 @@ class Subn extends \Gedcom\Record
     protected $_note = [];
 
     /**
-     * @var \Record\Chan
+     * @var \Gedcom\Record\Chan
      */
     protected $_chan = null;
 

@@ -17,12 +17,12 @@ namespace Gedcom\Writer;
 class Repo
 {
     /**
-     * @param \Record\Repo $sour
+     * @param \Gedcom\Record\Repo $sour
      * @param int                    $level
      *
      * @return string
      */
-    public static function convert(\Record\Repo &$repo)
+    public static function convert (\Gedcom\Record\Repo &$repo)
     {
         $level = 0;
         $output = '';
@@ -45,14 +45,14 @@ class Repo
         // ADDR
         $addr = $repo->getAddr();
         if ($addr) {
-            $_convert = \Writer\Addr::convert($addr, $level);
+            $_convert = \Gedcom\Writer\Addr::convert($addr, $level);
             $output .= $_convert;
         }
 
         // PHON
         $phon = $repo->getPhon();
         if ($phon) {
-            $_convert = \Writer\Phon::convert($phon, $level);
+            $_convert = \Gedcom\Writer\Phon::convert($phon, $level);
             $output .= $_convert;
         }
 
@@ -61,7 +61,7 @@ class Repo
         if ($note && count($note) > 0) {
             foreach ($note as $item) {
                 if ($item) {
-                    $_convert = \Writer\NoteRef::convert($item, $level);
+                    $_convert = \Gedcom\Writer\NoteRef::convert($item, $level);
                     $output .= $_convert;
                 }
             }
@@ -72,7 +72,7 @@ class Repo
         if (!empty($refn) && count($refn) > 0) {
             foreach ($refn as $item) {
                 if ($item) {
-                    $_convert = \Writer\Refn::convert($item, $level);
+                    $_convert = \Gedcom\Writer\Refn::convert($item, $level);
                     $output .= $_convert;
                 }
             }
@@ -81,7 +81,7 @@ class Repo
         // CHAN
         $chan = $repo->getChan();
         if ($chan) {
-            $_convert = \Writer\Chan::convert($chan, $level);
+            $_convert = \Gedcom\Writer\Chan::convert($chan, $level);
             $output .= $_convert;
         }
 

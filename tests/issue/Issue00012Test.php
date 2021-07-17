@@ -1,8 +1,8 @@
 <?php
 
-namespace PhpGedcomTest;
+namespace GedcomTest;
 
-use PhpGedcom\Parser;
+use Gedcom\Parser;
 
 /**
  * Class Issue00012Test.

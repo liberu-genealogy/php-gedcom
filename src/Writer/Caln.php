@@ -17,12 +17,12 @@ namespace Gedcom\Writer;
 class Caln
 {
     /**
-     * @param \Record\Caln $note
+     * @param \Gedcom\Record\Caln $note
      * @param int                    $level
      *
      * @return string
      */
-    public static function convert(\Record\Caln &$caln, $level)
+    public static function convert (\Gedcom\Record\Caln &$caln, $level)
     {
         $output = '';
         $_caln = $caln->getCaln();

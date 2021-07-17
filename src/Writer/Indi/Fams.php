@@ -17,12 +17,12 @@ namespace Gedcom\Writer\Indi;
 class Fams
 {
     /**
-     * @param \Record\Indi\Fams $attr
+     * @param \Gedcom\Record\Indi\Fams $attr
      * @param int                         $level
      *
      * @return string
      */
-    public static function convert(\Record\Indi\Fams &$fams, $level = 0)
+    public static function convert (\Gedcom\Record\Indi\Fams &$fams, $level = 0)
     {
         $output = '';
         // NAME
@@ -38,7 +38,7 @@ class Fams
         $note = $fams->getNote();
         if (!empty($note) && count($note) > 0) {
             foreach ($note as $item) {
-                $_convert = \Writer\NoteRef::convert($item, $level);
+                $_convert = \Gedcom\Writer\NoteRef::convert($item, $level);
                 $output .= $_convert;
             }
         }

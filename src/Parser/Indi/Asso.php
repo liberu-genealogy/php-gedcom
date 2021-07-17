@@ -46,11 +46,11 @@ class Asso extends \Gedcom\Parser\Component
                     $asso->setRela(trim($record[2]));
                     break;
                 case 'SOUR':
-                    $sour = \Parser\SourRef::parse($parser);
+                    $sour = \Gedcom\Parser\SourRef::parse($parser);
                     $asso->addSour($sour);
                     break;
                 case 'NOTE':
-                    $note = \Parser\NoteRef::parse($parser);
+                    $note = \Gedcom\Parser\NoteRef::parse($parser);
                     if ($note) {
                         $asso->addNote($note);
                     }

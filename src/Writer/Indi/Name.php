@@ -17,12 +17,12 @@ namespace Gedcom\Writer\Indi;
 class Name
 {
     /**
-     * @param \Record\Indi\Name $attr
+     * @param \Gedcom\Record\Indi\Name $attr
      * @param int                         $level
      *
      * @return string
      */
-    public static function convert(\Record\Indi\Name &$name, $level = 0)
+    public static function convert (\Gedcom\Record\Indi\Name &$name, $level = 0)
     {
         $output = '';
         // NAME
@@ -69,7 +69,7 @@ class Name
         $sour = $name->getSour();
         if (!empty($sour) && count($sour) > 0) {
             foreach ($sour as $item) {
-                $_convert = \Writer\SourRef::convert($item, $level);
+                $_convert = \Gedcom\Writer\SourRef::convert($item, $level);
                 $output .= $_convert;
             }
         }
@@ -77,7 +77,7 @@ class Name
         $note = $name->getSour();
         if (!empty($note) && count($note) > 0) {
             foreach ($note as $item) {
-                $_convert = \Writer\NoteRef::convert($item, $level);
+                $_convert = \Gedcom\Writer\NoteRef::convert($item, $level);
                 $output .= $_convert;
             }
         }

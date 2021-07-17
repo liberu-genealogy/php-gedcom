@@ -17,12 +17,12 @@ namespace Gedcom\Writer;
 class Refn
 {
     /**
-     * @param \Record\Refn $note
+     * @param \Gedcom\Record\Refn $note
      * @param int                    $level
      *
      * @return string
      */
-    public static function convert(\Record\Refn &$refn, $level)
+    public static function convert (\Gedcom\Record\Refn &$refn, $level)
     {
         $output = '';
         $_refn = $refn->getRefn();

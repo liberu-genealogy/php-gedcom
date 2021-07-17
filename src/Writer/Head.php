@@ -17,12 +17,12 @@ namespace Gedcom\Writer;
 class Head
 {
     /**
-     * @param \Record\Head $head
+     * @param \Gedcom\Record\Head $head
      * @param string                 $format
      *
      * @return string
      */
-    public static function convert(\Record\Head &$head, $format = self::GEDCOM55)
+    public static function convert (\Gedcom\Record\Head &$head, $format = self::GEDCOM55)
     {
         $level = 0;
         $output = $level." HEAD\n";
@@ -33,7 +33,7 @@ class Head
         //SOUR
         $sour = $head->getSour();
         if ($sour) {
-            $_convert = \Writer\Head\Sour::convert($sour, $level);
+            $_convert = \Gedcom\Writer\Head\Sour::convert($sour, $level);
             $output .= $_convert;
         }
 
@@ -75,27 +75,27 @@ class Head
         // DATE
         $date = $head->getDate();
         if ($date) {
-            $_convert = \Writer\Head\Date::convert($date, $level);
+            $_convert = \Gedcom\Writer\Head\Date::convert($date, $level);
             $output .= $_convert;
         }
 
         // GEDC
         $gedc = $head->getGedc();
         if ($gedc) {
-            $_convert = \Writer\Head\Gedc::convert($gedc, $level);
+            $_convert = \Gedcom\Writer\Head\Gedc::convert($gedc, $level);
             $output .= $_convert;
         }
 
         // CHAR
         $char = $head->getChar();
         if ($char) {
-            $_convert = \Writer\Head\Char::convert($char, $level);
+            $_convert = \Gedcom\Writer\Head\Char::convert($char, $level);
             $output .= $_convert;
         }
         // PLAC
         $plac = $head->getPlac();
         if ($plac) {
-            $_convert = \Writer\Head\Plac::convert($plac, $level);
+            $_convert = \Gedcom\Writer\Head\Plac::convert($plac, $level);
             $output .= $_convert;
         }
 

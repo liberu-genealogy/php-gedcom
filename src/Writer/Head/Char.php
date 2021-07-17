@@ -17,13 +17,13 @@ namespace Gedcom\Writer\Head;
 class Char
 {
     /**
-     * @param \Record\Head\Char $char
+     * @param \Gedcom\Record\Head\Char $char
      * @param string                      $format
      * @param int                         $level
      *
      * @return string
      */
-    public static function convert(\Record\Head\Char &$char, $level)
+    public static function convert (\Gedcom\Record\Head\Char &$char, $level)
     {
         $output = '';
         // char

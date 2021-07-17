@@ -60,7 +60,7 @@ class Fam extends \Gedcom\Record implements Noteable, Sourceable, Objectable
     }
 
     /**
-     * @return void|\Record\Fam\Even
+     * @return void|\Gedcom\Record\Fam\Even
      */
     public function getEven($key = '')
     {

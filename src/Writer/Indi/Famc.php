@@ -17,12 +17,12 @@ namespace Gedcom\Writer\Indi;
 class Famc
 {
     /**
-     * @param \Record\Indi\Famc $attr
+     * @param \Gedcom\Record\Indi\Famc $attr
      * @param int                         $level
      *
      * @return string
      */
-    public static function convert(\Record\Indi\Famc &$famc, $level = 0)
+    public static function convert (\Gedcom\Record\Indi\Famc &$famc, $level = 0)
     {
         $output = '';
         // NAME
@@ -44,7 +44,7 @@ class Famc
         $note = $famc->getSour();
         if (!empty($note) && count($note) > 0) {
             foreach ($note as $item) {
-                $_convert = \Writer\NoteRef::convert($item, $level);
+                $_convert = \Gedcom\Writer\NoteRef::convert($item, $level);
                 $output .= $_convert;
             }
         }

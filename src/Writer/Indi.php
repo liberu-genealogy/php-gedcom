@@ -17,12 +17,12 @@ namespace Gedcom\Writer;
 class Indi
 {
     /**
-     * @param \Record\Indi $indi
+     * @param \Gedcom\Record\Indi $indi
      * @param string                 $format
      *
      * @return string
      */
-    public static function convert(\Record\Indi &$indi)
+    public static function convert (\Gedcom\Record\Indi &$indi)
     {
         $level = 0;
 
@@ -46,12 +46,12 @@ class Indi
         }
 
         // $attr
-        // PhpGedcom/Record/Attr extend PhpGedcom/Record/Even and there is no change.
+        // Gedcom/Record/Attr extend Gedcom/Record/Even and there is no change.
         // So used convert Even
         $attr = $indi->getAllAttr();
         if (!empty($attr) && count($attr) > 0) {
             foreach ($attr as $item) {
-                $_convert = \Writer\Indi\Even::convert($item, $level);
+                $_convert = \Gedcom\Writer\Indi\Even::convert($item, $level);
                 $output .= $_convert;
             }
         }
@@ -60,7 +60,7 @@ class Indi
         $even = $indi->getAllEven();
         if (!empty($even) && count($even) > 0) {
             foreach ($even as $item) {
-                $_convert = \Writer\Indi\Even::convert($item, $level);
+                $_convert = \Gedcom\Writer\Indi\Even::convert($item, $level);
                 $output .= $_convert;
             }
         }
@@ -70,7 +70,7 @@ class Indi
         $note = $indi->getNote();
         if (!empty($note) && count($note) > 0) {
             foreach ($note as $item) {
-                $_convert = \Writer\NoteRef::convert($item, $level);
+                $_convert = \Gedcom\Writer\NoteRef::convert($item, $level);
                 $output .= $_convert;
             }
         }
@@ -79,7 +79,7 @@ class Indi
         $obje = $indi->getObje();
         if (!empty($obje) && count($obje) > 0) {
             foreach ($obje as $item) {
-                $_convert = \Writer\ObjeRef::convert($item, $level);
+                $_convert = \Gedcom\Writer\ObjeRef::convert($item, $level);
                 $output .= $_convert;
             }
         }
@@ -88,7 +88,7 @@ class Indi
         $sour = $indi->getSour();
         if (!empty($sour) && count($sour) > 0) {
             foreach ($sour as $item) {
-                $_convert = \Writer\SourRef::convert($item, $level);
+                $_convert = \Gedcom\Writer\SourRef::convert($item, $level);
                 $output .= $_convert;
             }
         }
@@ -97,7 +97,7 @@ class Indi
         $name = $indi->getName();
         if (!empty($name) && count($name) > 0) {
             foreach ($name as $item) {
-                $_convert = \Writer\Indi\Name::convert($item, $level);
+                $_convert = \Gedcom\Writer\Indi\Name::convert($item, $level);
                 $output .= $_convert;
             }
         }
@@ -147,7 +147,7 @@ class Indi
         $fams = $indi->getFams();
         if (!empty($fams) && count($fams) > 0) {
             foreach ($fams as $item) {
-                $_convert = \Writer\Indi\Fams::convert($item, $level);
+                $_convert = \Gedcom\Writer\Indi\Fams::convert($item, $level);
                 $output .= $_convert;
             }
         }
@@ -156,7 +156,7 @@ class Indi
         $famc = $indi->getFamc();
         if (!empty($famc) && count($famc) > 0) {
             foreach ($famc as $item) {
-                $_convert = \Writer\Indi\Famc::convert($item, $level);
+                $_convert = \Gedcom\Writer\Indi\Famc::convert($item, $level);
                 $output .= $_convert;
             }
         }
@@ -165,7 +165,7 @@ class Indi
         $asso = $indi->getAsso();
         if (!empty($asso) && count($asso) > 0) {
             foreach ($asso as $item) {
-                $_convert = \Writer\Indi\Asso::convert($item, $level);
+                $_convert = \Gedcom\Writer\Indi\Asso::convert($item, $level);
                 $output .= $_convert;
             }
         }
@@ -203,7 +203,7 @@ class Indi
         $refn = $indi->getRefn();
         if (!empty($refn) && count($refn) > 0) {
             foreach ($refn as $item) {
-                $_convert = \Writer\Refn::convert($item, $level);
+                $_convert = \Gedcom\Writer\Refn::convert($item, $level);
                 $output .= $_convert;
             }
         }
@@ -212,7 +212,7 @@ class Indi
         // Currently Bapl is empty
         // $bapl = $indi->getBapl();
         // if(!empty($bapl)){
-        //     $_convert = \Writer\Indi\Bapl::convert($bapl, $level);
+        //     $_convert = \Gedcom\Writer\Indi\Bapl::convert($bapl, $level);
         //     $output.=$_convert;
         // }
 
@@ -220,7 +220,7 @@ class Indi
         // Currently Conl is empty
         // $conl = $indi->getConl();
         // if(!empty($conl)){
-        //     $_convert = \Writer\Indi\Conl::convert($conl, $level);
+        //     $_convert = \Gedcom\Writer\Indi\Conl::convert($conl, $level);
         //     $output.=$_convert;
         // }
 
@@ -228,7 +228,7 @@ class Indi
         // Currently Endl is empty
         // $endl = $indi->getEndl();
         // if(!empty($endl)){
-        //     $_convert = \Writer\Indi\Endl::convert($endl, $level);
+        //     $_convert = \Gedcom\Writer\Indi\Endl::convert($endl, $level);
         //     $output.=$_convert;
         // }
 
@@ -236,7 +236,7 @@ class Indi
         // Currently Endl is empty
         // $slgc = $indi->getSlgc();
         // if(!empty($slgc)){
-        //     $_convert = \Writer\Indi\Slgc::convert($slgc, $level);
+        //     $_convert = \Gedcom\Writer\Indi\Slgc::convert($slgc, $level);
         //     $output.=$_convert;
         // }
 

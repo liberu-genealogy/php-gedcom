@@ -17,12 +17,12 @@ namespace Gedcom\Writer\Fam;
 class Slgs
 {
     /**
-     * @param \Record\Fam\Slgs $slgs
+     * @param \Gedcom\Record\Fam\Slgs $slgs
      * @param int                        $level
      *
      * @return string
      */
-    public static function convert(\Record\Fam\Slgs &$slgs, $level)
+    public static function convert (\Gedcom\Record\Fam\Slgs &$slgs, $level)
     {
         $output = '';
         $output .= $level." SLGS \n";
@@ -58,7 +58,7 @@ class Slgs
         $sour = $slgs->getSour();
         if (!empty($sour) && count($sour) > 0) {
             foreach ($sour as $item) {
-                $_convert = \Writer\SourRef::convert($item, $level);
+                $_convert = \Gedcom\Writer\SourRef::convert($item, $level);
                 $output .= $_convert;
             }
         }
@@ -66,7 +66,7 @@ class Slgs
         $note = $slgs->getNote();
         if (!empty($note) && count($note) > 0) {
             foreach ($note as $item) {
-                $_convert = \Writer\NoteRef::convert($item, $level);
+                $_convert = \Gedcom\Writer\NoteRef::convert($item, $level);
                 $output .= $_convert;
             }
         }

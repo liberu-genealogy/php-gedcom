@@ -17,12 +17,12 @@ namespace Gedcom\Writer\Fam\Even;
 class Husb
 {
     /**
-     * @param \Record\Fam\Even\Husb $attr
+     * @param \Gedcom\Record\Fam\Even\Husb $attr
      * @param int                             $level
      *
      * @return string
      */
-    public static function convert(\Record\Fam\Even\Husb &$husb, $level = 0)
+    public static function convert (\Gedcom\Record\Fam\Even\Husb &$husb, $level = 0)
     {
         $output = '';
 

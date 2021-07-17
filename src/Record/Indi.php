@@ -14,7 +14,7 @@
 
 namespace Gedcom\Record;
 
-use Record;
+use \Gedcom\Record;
 
 
 /**
@@ -312,7 +312,7 @@ class Indi extends \Gedcom\Record implements Noteable, Objectable, Sourceable
     }
 
     /**
-     * @param \Record\NoteRef $note
+     * @param \Gedcom\Record\NoteRef $note
      *
      * @return Indi
      */

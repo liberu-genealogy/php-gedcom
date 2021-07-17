@@ -43,7 +43,7 @@ class Sour extends \Gedcom\Record
     }
 
     /**
-     * @param \Record\Head\Sour\Data $data
+     * @param \Gedcom\Record\Head\Sour\Data $data
      */
     public function setData($data = [])
     {
@@ -51,7 +51,7 @@ class Sour extends \Gedcom\Record
     }
 
     /**
-     * @return \Record\Head\Sour\Data
+     * @return \Gedcom\Record\Head\Sour\Data
      */
     public function getData()
     {

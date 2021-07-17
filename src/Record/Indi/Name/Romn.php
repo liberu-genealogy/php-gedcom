@@ -14,7 +14,7 @@
 
 namespace Gedcom\Record\Indi\Name;
 
-use Record;
+use \Gedcom\Record;
 
 /**
  * Class Refn.

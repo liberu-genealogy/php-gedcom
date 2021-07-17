@@ -17,13 +17,13 @@ namespace Gedcom\Writer;
 class Addr
 {
     /**
-     * @param \Record\Addr $addr
+     * @param \Gedcom\Record\Addr $addr
      * @param string                 $format
      * @param int                    $level
      *
      * @return string
      */
-    public static function convert(\Record\Addr &$addr, $format = self::GEDCOM55, $level = 1)
+    public static function convert (\Gedcom\Record\Addr &$addr, $format = self::GEDCOM55, $level = 1)
     {
         $addrs = explode("\n", $addr->getAddr());
 

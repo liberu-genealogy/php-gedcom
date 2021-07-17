@@ -17,12 +17,12 @@ namespace Gedcom\Writer;
 class RepoRef
 {
     /**
-     * @param \Record\RepoRef $reporef
+     * @param \Gedcom\Record\RepoRef $reporef
      * @param int                       $level
      *
      * @return string
      */
-    public static function convert(\Record\RepoRef &$reporef, $level)
+    public static function convert (\Gedcom\Record\RepoRef &$reporef, $level)
     {
         $output = '';
         $_repo = $reporef->getRepo();
@@ -38,7 +38,7 @@ class RepoRef
         $note = $reporef->getNote();
         if (!empty($note) && count($note) > 0) {
             foreach ($note as $item) {
-                $_convert = \Writer\NoteRef::convert($item, $level);
+                $_convert = \Gedcom\Writer\NoteRef::convert($item, $level);
                 $output .= $_convert;
             }
         }
@@ -47,7 +47,7 @@ class RepoRef
         $_caln = $reporef->getCaln();
         if (!empty($_caln) && count($_caln) > 0) {
             foreach ($_caln as $item) {
-                $_convert = \Writer\Caln::convert($item, $level);
+                $_convert = \Gedcom\Writer\Caln::convert($item, $level);
                 $output .= $_convert;
             }
         }

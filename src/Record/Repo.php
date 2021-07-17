@@ -19,7 +19,7 @@ use \Gedcom\Record;
 /**
  * Class Repo.
  */
-class Repo extends Record implements Noteable
+class Repo extends \Gedcom\Record implements Noteable
 {
     /**
      * @var string
@@ -153,7 +153,7 @@ class Repo extends Record implements Noteable
     }
 
     /**
-     * @param null|\Record\Refn $refn
+     * @param null|\Gedcom\Record\Refn $refn
      *
      * @return Repo
      */
@@ -176,7 +176,7 @@ class Repo extends Record implements Noteable
     }
 
     /**
-     * @param null|\Record\NoteRef $note
+     * @param null|\Gedcom\Record\NoteRef $note
      *
      * @return Repo
      */
@@ -239,7 +239,7 @@ class Repo extends Record implements Noteable
     }
 
     /**
-     * @param null|\Record\Addr $addr
+     * @param null|\Gedcom\Record\Addr $addr
      *
      * @return Repo
      */
@@ -254,7 +254,7 @@ class Repo extends Record implements Noteable
     }
 
     /**
-     * @return \Record\Addr
+     * @return \Gedcom\Record\Addr
      */
     public function getAddr()
     {
@@ -282,7 +282,7 @@ class Repo extends Record implements Noteable
     }
 
     /**
-     * @param \Record\Chan $chan
+     * @param \Gedcom\Record\Chan $chan
      *
      * @return Repo
      */
@@ -294,7 +294,7 @@ class Repo extends Record implements Noteable
     }
 
     /**
-     * @return \Record\Chan
+     * @return \Gedcom\Record\Chan
      */
     public function getChan()
     {

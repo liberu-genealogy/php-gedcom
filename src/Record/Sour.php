@@ -14,7 +14,7 @@
 
 namespace Gedcom\Record;
 
-use Record;
+use \Gedcom\Record;
 
 /**
  * Class Sour.
@@ -187,7 +187,7 @@ class Sour extends \Gedcom\Record implements Noteable, Objectable
     }
 
     /**
-     * @param \Record\Repo $repo
+     * @param \Gedcom\Record\Repo $repo
      *
      * @return Sour
      */
@@ -199,7 +199,7 @@ class Sour extends \Gedcom\Record implements Noteable, Objectable
     }
 
     /**
-     * @return \Record\Repo
+     * @return \Gedcom\Record\Repo
      */
     public function getRepo()
     {
@@ -267,7 +267,7 @@ class Sour extends \Gedcom\Record implements Noteable, Objectable
     }
 
     /**
-     * @param \Record\Chan $chan
+     * @param \Gedcom\Record\Chan $chan
      *
      * @return Sour
      */
@@ -279,7 +279,7 @@ class Sour extends \Gedcom\Record implements Noteable, Objectable
     }
 
     /**
-     * @return \Record\Chan
+     * @return \Gedcom\Record\Chan
      */
     public function getChan()
     {

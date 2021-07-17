@@ -68,13 +68,13 @@ class Subn extends \Gedcom\Parser\Component
                     $subn->setRin(trim($record[2]));
                     break;
                 case 'NOTE':
-                    $note = \Parser\NoteRef::parse($parser);
+                    $note = \Gedcom\Parser\NoteRef::parse($parser);
                     if ($note) {
                         $subn->addNote($note);
                     }
                     break;
                 case 'CHAN':
-                    $chan = \Parser\Chan::parse($parser);
+                    $chan = \Gedcom\Parser\Chan::parse($parser);
                     $subn->setChan($chan);
                     break;
                 default:

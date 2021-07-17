@@ -14,7 +14,7 @@
 
 namespace Gedcom\Record\Indi;
 
-use Record;
+use \Gedcom\Record;
 
 /**
  * Class Even.
@@ -172,7 +172,7 @@ class Even extends \Gedcom\Record implements Record\Objectable, Record\Sourceabl
     }
 
     /**
-     * @param \Record\Addr $addr
+     * @param \Gedcom\Record\Addr $addr
      *
      * @return Even
      */
@@ -184,7 +184,7 @@ class Even extends \Gedcom\Record implements Record\Objectable, Record\Sourceabl
     }
 
     /**
-     * @return \Record\Addr
+     * @return \Gedcom\Record\Addr
      */
     public function getAddr()
     {
@@ -272,7 +272,7 @@ class Even extends \Gedcom\Record implements Record\Objectable, Record\Sourceabl
     }
 
     /**
-     * @param \Record\Indi\Even\Plac $plac
+     * @param \Gedcom\Record\Indi\Even\Plac $plac
      *
      * @return Even
      */
@@ -284,7 +284,7 @@ class Even extends \Gedcom\Record implements Record\Objectable, Record\Sourceabl
     }
 
     /**
-     * @return \Record\Indi\Even\Plac
+     * @return \Gedcom\Record\Indi\Even\Plac
      */
     public function getPlac()
     {

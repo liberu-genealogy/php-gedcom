@@ -46,7 +46,7 @@ class SourRef extends \Gedcom\Parser\Component
                     $sour->setPage(trim($record[2]));
                     break;
                 case 'EVEN':
-                    $even = \Parser\SourRef\Even::parse($parser);
+                    $even = \Gedcom\Parser\SourRef\Even::parse($parser);
                     $sour->setEven($even);
                     break;
                 case 'DATA':
@@ -56,13 +56,13 @@ class SourRef extends \Gedcom\Parser\Component
                     $sour->setText($parser->parseMultiLineRecord());
                     break;
                 case 'OBJE':
-                    $obje = \Parser\ObjeRef::parse($parser);
+                    $obje = \Gedcom\Parser\ObjeRef::parse($parser);
                     if ($obje) {
                         $sour->addNote($obje);
                     }
                     break;
                 case 'NOTE':
-                    $note = \Parser\NoteRef::parse($parser);
+                    $note = \Gedcom\Parser\NoteRef::parse($parser);
                     if ($note) {
                         $sour->addNote($note);
                     }

@@ -95,32 +95,32 @@ class Fam extends \Gedcom\Parser\Component
                     $fam->addSubm($parser->normalizeIdentifier($record[2]));
                     break;
                 case 'SLGS':
-                    $slgs = \Parser\Fam\Slgs::parse($parser);
+                    $slgs = \Gedcom\Parser\Fam\Slgs::parse($parser);
                     $fam->addSlgs($slgs);
                     break;
                 case 'REFN':
-                    $ref = \Parser\Refn::parse($parser);
+                    $ref = \Gedcom\Parser\Refn::parse($parser);
                     $fam->addRefn($ref);
                     break;
                 case 'RIN':
                     $fam->setRin(trim($record[2]));
                     break;
                 case 'CHAN':
-                    $chan = \Parser\Chan::parse($parser);
+                    $chan = \Gedcom\Parser\Chan::parse($parser);
                     $fam->setChan($chan);
                     break;
                 case 'NOTE':
-                    $note = \Parser\NoteRef::parse($parser);
+                    $note = \Gedcom\Parser\NoteRef::parse($parser);
                     if ($note) {
                         $fam->addNote($note);
                     }
                     break;
                 case 'SOUR':
-                    $sour = \Parser\SourRef::parse($parser);
+                    $sour = \Gedcom\Parser\SourRef::parse($parser);
                     $fam->addSour($sour);
                     break;
                 case 'OBJE':
-                    $obje = \Parser\ObjeRef::parse($parser);
+                    $obje = \Gedcom\Parser\ObjeRef::parse($parser);
                     $fam->addObje($obje);
                     break;
 

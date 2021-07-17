@@ -17,12 +17,12 @@ namespace Gedcom\Writer;
 class SourRef
 {
     /**
-     * @param \Record\SourRef $sour
+     * @param \Gedcom\Record\SourRef $sour
      * @param int                       $level
      *
      * @return string
      */
-    public static function convert(\Record\SourRef &$sour, $level)
+    public static function convert (\Gedcom\Record\SourRef &$sour, $level)
     {
         $output = '';
         $_sour = $sour->getSour();
@@ -39,14 +39,14 @@ class SourRef
         $note = $sour->getNote();
         if ($note && count($note) > 0) {
             foreach ($note as $item) {
-                $_convert = \Writer\NoteRef::convert($item, $level);
+                $_convert = \Gedcom\Writer\NoteRef::convert($item, $level);
                 $output .= $_convert;
             }
         }
         // protected $_data    = null;
         $_data = $sour->getData();
         if ($_data) {
-            $_convert = \Writer\Sour\Data::convert($_data, $level);
+            $_convert = \Gedcom\Writer\Sour\Data::convert($_data, $level);
             $output .= $_convert;
         }
         // protected $_page setPage
@@ -57,7 +57,7 @@ class SourRef
         // protected $_even    = null;
         $_even = $sour->getData();
         if ($_even) {
-            $_convert = \Writer\SourRef\Even::convert($_even, $level);
+            $_convert = \Gedcom\Writer\SourRef\Even::convert($_even, $level);
             $output .= $_convert;
         }
         // protected $_quay

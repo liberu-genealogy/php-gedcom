@@ -17,12 +17,12 @@ namespace Gedcom\Writer;
 class Sour
 {
     /**
-     * @param \Record\Sour $sour
+     * @param \Gedcom\Record\Sour $sour
      * @param int                    $level
      *
      * @return string
      */
-    public static function convert(\Record\Sour &$sour, $level)
+    public static function convert (\Gedcom\Record\Sour &$sour, $level)
     {
         $output = '';
         $_sour = $sour->getSour();
@@ -73,7 +73,7 @@ class Sour
         // REPO
         $repo = $sour->getRepo();
         if (!empty($repo)) {
-            $_convert = \Writer\RepoRef::convert($repo, $level);
+            $_convert = \Gedcom\Writer\RepoRef::convert($repo, $level);
             $output .= $_convert;
         }
 
@@ -81,7 +81,7 @@ class Sour
         $note = $sour->getNote();
         if (!empty($note) && count($note) > 0) {
             foreach ($note as $item) {
-                $_convert = \Writer\NoteRef::convert($item, $level);
+                $_convert = \Gedcom\Writer\NoteRef::convert($item, $level);
                 $output .= $_convert;
             }
         }
@@ -89,7 +89,7 @@ class Sour
         // DATA
         $data = $sour->getData();
         if (!empty($data)) {
-            $_convert = \Writer\Sour\Data::convert($data, $level);
+            $_convert = \Gedcom\Writer\Sour\Data::convert($data, $level);
             $output .= $_convert;
         }
 
@@ -97,7 +97,7 @@ class Sour
         $obje = $sour->getObje();
         if (!empty($obje) && count($obje) > 0) {
             foreach ($obje as $item) {
-                $_convert = \Writer\ObjeRef::convert($item, $level);
+                $_convert = \Gedcom\Writer\ObjeRef::convert($item, $level);
                 $output .= $_convert;
             }
         }
@@ -106,7 +106,7 @@ class Sour
         $refn = $sour->getRefn();
         if (!empty($refn) && count($refn) > 0) {
             foreach ($refn as $item) {
-                $_convert = \Writer\Refn::convert($item, $level);
+                $_convert = \Gedcom\Writer\Refn::convert($item, $level);
                 $output .= $_convert;
             }
         }
@@ -114,7 +114,7 @@ class Sour
         // chan
         $chan = $sour->getChan();
         if (!empty($chan)) {
-            $_convert = \Writer\Chan::convert($chan, $level);
+            $_convert = \Gedcom\Writer\Chan::convert($chan, $level);
             $output .= $_convert;
         }
 

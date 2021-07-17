@@ -17,12 +17,12 @@ namespace Gedcom\Writer;
 class Subn
 {
     /**
-     * @param \Record\Subn $note
+     * @param \Gedcom\Record\Subn $note
      * @param int                    $level
      *
      * @return string
      */
-    public static function convert(\Record\Subn &$subn)
+    public static function convert (\Gedcom\Record\Subn &$subn)
     {
         $level = 0;
         $output = '';

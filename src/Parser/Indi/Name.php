@@ -68,11 +68,11 @@ class Name extends \Gedcom\Parser\Component
                     $name->setNsfx(trim($record[2]));
                     break;
                 case 'SOUR':
-                    $sour = \Parser\SourRef::parse($parser);
+                    $sour = \Gedcom\Parser\SourRef::parse($parser);
                     $name->addSour($sour);
                     break;
                 case 'NOTE':
-                    $note = \Parser\NoteRef::parse($parser);
+                    $note = \Gedcom\Parser\NoteRef::parse($parser);
                     if ($note) {
                         $name->addNote($note);
                     }

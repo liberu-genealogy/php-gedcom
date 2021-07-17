@@ -53,7 +53,7 @@ class Indi extends \Gedcom\Parser\Component
                 $indi->setResn(trim($record[2]));
                 break;
             case 'NAME':
-                $name = \Parser\Indi\Name::parse($parser);
+                $name = \Gedcom\Parser\Indi\Name::parse($parser);
                 $indi->addName($name);
                 break;
             case 'SEX':
@@ -118,13 +118,13 @@ class Indi extends \Gedcom\Parser\Component
                 $indi->{'add'.$recordType}[] = $lds;
                 break;
             case 'FAMC':
-                $famc = \Parser\Indi\Famc::parse($parser);
+                $famc = \Gedcom\Parser\Indi\Famc::parse($parser);
                 if ($famc) {
                     $indi->addFamc($famc);
                 }
                 break;
             case 'FAMS':
-                $fams = \Parser\Indi\Fams::parse($parser);
+                $fams = \Gedcom\Parser\Indi\Fams::parse($parser);
                 if ($fams) {
                     $indi->addFams($fams);
                 }
@@ -133,7 +133,7 @@ class Indi extends \Gedcom\Parser\Component
                 $indi->addSubm($parser->normalizeIdentifier($record[2]));
                 break;
             case 'ASSO':
-                $asso = \Parser\Indi\Asso::parse($parser);
+                $asso = \Gedcom\Parser\Indi\Asso::parse($parser);
                 $indi->addAsso($asso);
                 break;
             case 'ALIA':
@@ -152,28 +152,28 @@ class Indi extends \Gedcom\Parser\Component
                 $indi->setAfn(trim($record[2]));
                 break;
             case 'REFN':
-                $ref = \Parser\Refn::parse($parser);
+                $ref = \Gedcom\Parser\Refn::parse($parser);
                 $indi->addRefn($ref);
                 break;
             case 'RIN':
                 $indi->setRin(trim($record[2]));
                 break;
             case 'CHAN':
-                $chan = \Parser\Chan::parse($parser);
+                $chan = \Gedcom\Parser\Chan::parse($parser);
                 $indi->setChan($chan);
                 break;
             case 'NOTE':
-                $note = \Parser\NoteRef::parse($parser);
+                $note = \Gedcom\Parser\NoteRef::parse($parser);
                 if ($note) {
                     $indi->addNote($note);
                 }
                 break;
             case 'SOUR':
-                $sour = \Parser\SourRef::parse($parser);
+                $sour = \Gedcom\Parser\SourRef::parse($parser);
                 $indi->addSour($sour);
                 break;
             case 'OBJE':
-                $obje = \Parser\ObjeRef::parse($parser);
+                $obje = \Gedcom\Parser\ObjeRef::parse($parser);
                 $indi->addObje($obje);
                 break;
             default:

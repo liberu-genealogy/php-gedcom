@@ -17,12 +17,12 @@ namespace Gedcom\Writer\Fam;
 class Even
 {
     /**
-     * @param \Record\Fam\Even $even
+     * @param \Gedcom\Record\Fam\Even $even
      * @param int                        $level
      *
      * @return string
      */
-    public static function convert(\Record\Fam\Even &$even, $level)
+    public static function convert (\Gedcom\Record\Fam\Even &$even, $level)
     {
         $output = '';
 
@@ -50,7 +50,7 @@ class Even
         // Plac
         $plac = $even->getPlac();
         if (!empty($plac)) {
-            $_convert = \Writer\Indi\Even\Plac::convert($plac, $level);
+            $_convert = \Gedcom\Writer\Indi\Even\Plac::convert($plac, $level);
             $output .= $_convert;
         }
 
@@ -69,7 +69,7 @@ class Even
         // $addr
         $addr = $even->getAddr();
         if (!empty($addr)) {
-            $_convert = \Writer\Addr::convert($addr, $level);
+            $_convert = \Gedcom\Writer\Addr::convert($addr, $level);
             $output .= $_convert;
         }
 
@@ -77,7 +77,7 @@ class Even
         $phon = $even->getPhon();
         if (!empty($phon) && count($phon) > 0) {
             foreach ($phon as $item) {
-                $_convert = \Writer\Phon::convert($item, $level);
+                $_convert = \Gedcom\Writer\Phon::convert($item, $level);
                 $output .= $_convert;
             }
         }
@@ -90,14 +90,14 @@ class Even
         // HUSB
         $husb = $even->getHusb();
         if (!empty($husb)) {
-            $_convert = \Writer\Fam\Even\Husb::convert($husb, $level);
+            $_convert = \Gedcom\Writer\Fam\Even\Husb::convert($husb, $level);
             $output .= $_convert;
         }
 
         // WIFE
         $wife = $even->getWife();
         if (!empty($wife)) {
-            $_convert = \Writer\Fam\Even\Wife::convert($wife, $level);
+            $_convert = \Gedcom\Writer\Fam\Even\Wife::convert($wife, $level);
             $output .= $_convert;
         }
 
@@ -108,7 +108,7 @@ class Even
         $obje = $even->getObje();
         if (!empty($obje) && count($obje) > 0) {
             foreach ($obje as $item) {
-                $_convert = \Writer\ObjeRef::convert($item, $level);
+                $_convert = \Gedcom\Writer\ObjeRef::convert($item, $level);
                 $output .= $_convert;
             }
         }
@@ -116,7 +116,7 @@ class Even
         $sour = $even->getSour();
         if (!empty($sour) && count($sour) > 0) {
             foreach ($sour as $item) {
-                $_convert = \Writer\SourRef::convert($item, $level);
+                $_convert = \Gedcom\Writer\SourRef::convert($item, $level);
                 $output .= $_convert;
             }
         }
@@ -124,7 +124,7 @@ class Even
         $note = $even->getNote();
         if (!empty($note) && count($note) > 0) {
             foreach ($note as $item) {
-                $_convert = \Writer\NoteRef::convert($item, $level);
+                $_convert = \Gedcom\Writer\NoteRef::convert($item, $level);
                 $output .= $_convert;
             }
         }

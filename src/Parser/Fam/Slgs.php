@@ -37,7 +37,7 @@ class Slgs extends \Gedcom\Parser\Component
 
             switch ($recordType) {
                 case 'STAT':
-                    $stat = \Parser\Fam\Slgs\Stat::parse($parser);
+                    $stat = \Gedcom\Parser\Fam\Slgs\Stat::parse($parser);
                     $slgs->setStat($stat);
                     break;
                 case 'DATE':
@@ -50,11 +50,11 @@ class Slgs extends \Gedcom\Parser\Component
                     $slgs->setTemp(trim($record[2]));
                     break;
                 case 'SOUR':
-                    $sour = \Parser\SourRef::parse($parser);
+                    $sour = \Gedcom\Parser\SourRef::parse($parser);
                     $slgs->addSour($sour);
                     break;
                 case 'NOTE':
-                    $note = \Parser\NoteRef::parse($parser);
+                    $note = \Gedcom\Parser\NoteRef::parse($parser);
                     if ($note) {
                         $slgs->addNote($note);
                     }

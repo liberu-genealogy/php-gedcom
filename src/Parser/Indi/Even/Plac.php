@@ -44,13 +44,13 @@ class Plac extends \Gedcom\Parser\Component
                     $plac->setForm(trim($record[2]));
                     break;
                 case 'NOTE':
-                    $note = \Parser\NoteRef::parse($parser);
+                    $note = \Gedcom\Parser\NoteRef::parse($parser);
                     if ($note) {
                         $plac->addNote($note);
                     }
                     break;
                 case 'SOUR':
-                    $sour = \Parser\SourRef::parse($parser);
+                    $sour = \Gedcom\Parser\SourRef::parse($parser);
                     $plac->addSour($sour);
                     break;
                 default:

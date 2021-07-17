@@ -23,7 +23,7 @@ namespace Gedcom\Record\Indi;
  * @method string getSurn()
  * @method string getNsfx()
  */
-class Name extends \Gedcom\Record implements \Record\Sourceable
+class Name extends \Gedcom\Record implements \Gedcom\Record\Sourceable
 {
     protected $_name = null;
     protected $_npfx = null;
@@ -32,7 +32,7 @@ class Name extends \Gedcom\Record implements \Record\Sourceable
     protected $_spfx = null;
     protected $_surn = null;
     protected $_nsfx = null;
-    protected $_fone = null; // PhpGedcom/
+    protected $_fone = null; // Gedcom/
     protected $_romn = null;
     protected $_type = null;
 

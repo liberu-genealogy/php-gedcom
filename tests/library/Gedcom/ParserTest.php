@@ -12,9 +12,9 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace PhpGedcomTest;
+namespace GedcomTest;
 
-use PhpGedcom\Parser;
+use Gedcom\Parser;
 
 /**
  * Class ParserTest.
@@ -22,12 +22,12 @@ use PhpGedcom\Parser;
 class ParserTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var \PhpGedcom\Parser
+     * @var \Gedcom\Parser
      */
     protected $parser = null;
 
     /**
-     * @var \PhpGedcom\Gedcom
+     * @var \Gedcom
      */
     protected $gedcom = null;
 

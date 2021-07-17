@@ -44,20 +44,20 @@ class Even extends \Gedcom\Parser\Component
                 $even->setType(trim($record[2]));
                 break;
             case 'DATE':
-                $dat = \Parser\Date::parse($parser);
+                $dat = \Gedcom\Parser\Date::parse($parser);
                 $even->setDate($dat);
                 //$even->setDate(trim($record[2]));
                 break;
             case 'PLAC':
-                $plac = \Parser\Plac::parse($parser);
+                $plac = \Gedcom\Parser\Plac::parse($parser);
                 $even->setPlac($plac);
                 break;
             case 'ADDR':
-                $addr = \Parser\Addr::parse($parser);
+                $addr = \Gedcom\Parser\Addr::parse($parser);
                 $even->setAddr($addr);
                 break;
             case 'PHON':
-                $phone = \Parser\Phon::parse($parser);
+                $phone = \Gedcom\Parser\Phon::parse($parser);
                 $even->addPhone($phone);
                 break;
             case 'CAUS':
@@ -70,23 +70,23 @@ class Even extends \Gedcom\Parser\Component
                 $even->setAgnc(trim($record[2]));
                 break;
             case 'HUSB':
-                $husb = \Parser\Fam\Even\Husb::parse($parser);
+                $husb = \Gedcom\Parser\Fam\Even\Husb::parse($parser);
                 $even->setHusb($husb);
                 break;
             case 'WIFE':
-                $wife = \Parser\Fam\Even\Wife::parse($parser);
+                $wife = \Gedcom\Parser\Fam\Even\Wife::parse($parser);
                 $even->setWife($wife);
                 break;
             case 'SOUR':
-                $sour = \Parser\SourRef::parse($parser);
+                $sour = \Gedcom\Parser\SourRef::parse($parser);
                 $even->addSour($sour);
                 break;
             case 'OBJE':
-                $obje = \Parser\ObjeRef::parse($parser);
+                $obje = \Gedcom\Parser\ObjeRef::parse($parser);
                 $even->addObje($obje);
                 break;
             case 'NOTE':
-                $note = \Parser\NoteRef::parse($parser);
+                $note = \Gedcom\Parser\NoteRef::parse($parser);
                 if ($note) {
                     $even->addNote($note);
                 }

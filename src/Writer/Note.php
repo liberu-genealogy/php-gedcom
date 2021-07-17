@@ -17,12 +17,12 @@ namespace Gedcom\Writer;
 class Note
 {
     /**
-     * @param \Record\Note $sour
+     * @param \Gedcom\Record\Note $sour
      * @param int                    $level
      *
      * @return string
      */
-    public static function convert(\Record\Note &$note)
+    public static function convert (\Gedcom\Record\Note &$note)
     {
         $level = 0;
         $output = '';
@@ -52,7 +52,7 @@ class Note
         if (!empty($refn) && count($refn) > 0) {
             foreach ($refn as $item) {
                 if ($item) {
-                    $_convert = \Writer\Refn::convert($item, $level);
+                    $_convert = \Gedcom\Writer\Refn::convert($item, $level);
                     $output .= $_convert;
                 }
             }
@@ -60,7 +60,7 @@ class Note
         // CHAN
         $chan = $note->getChan();
         if ($chan) {
-            $_convert = \Writer\Chan::convert($chan, $level);
+            $_convert = \Gedcom\Writer\Chan::convert($chan, $level);
             $output .= $_convert;
         }
 
@@ -69,7 +69,7 @@ class Note
         if (!empty($sour) && count($sour) > 0) {
             foreach ($sour as $item) {
                 if ($item) {
-                    $_convert = \Writer\SourRef::convert($item, $level);
+                    $_convert = \Gedcom\Writer\SourRef::convert($item, $level);
                     $output .= $_convert;
                 }
             }

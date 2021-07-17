@@ -53,7 +53,7 @@ class NoteRef extends \Gedcom\Parser\Component
 
             switch ($recordType) {
                 case 'SOUR':
-                    $sour = \Parser\SourRef::parse($parser);
+                    $sour = \Gedcom\Parser\SourRef::parse($parser);
                     $note->addSour($sour);
                     break;
                 default:

@@ -47,7 +47,7 @@ class Fams extends \Gedcom\Parser\Component
 
             switch ($recordType) {
                 case 'NOTE':
-                    $note = \Parser\NoteRef::parse($parser);
+                    $note = \Gedcom\Parser\NoteRef::parse($parser);
                     if ($note) {
                         $fam->addNote($note);
                     }

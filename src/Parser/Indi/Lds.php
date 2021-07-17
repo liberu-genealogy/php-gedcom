@@ -55,11 +55,11 @@ abstract class Lds extends \Gedcom\Parser\Component
                     $lds->setTemp(trim($record[2]));
                     break;
                 case 'SOUR':
-                    $sour = \Parser\SourRef::parse($parser);
+                    $sour = \Gedcom\Parser\SourRef::parse($parser);
                     $lds->addSour($sour);
                     break;
                 case 'NOTE':
-                    $note = \Parser\NoteRef::parse($parser);
+                    $note = \Gedcom\Parser\NoteRef::parse($parser);
                     if ($note) {
                         $lds->addNote($note);
                     }

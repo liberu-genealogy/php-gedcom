@@ -17,12 +17,12 @@ namespace Gedcom\Writer\Indi;
 class Asso
 {
     /**
-     * @param \Record\Indi\Asso $attr
+     * @param \Gedcom\Record\Indi\Asso $attr
      * @param int                         $level
      *
      * @return string
      */
-    public static function convert(\Record\Indi\Asso &$asso, $level = 0)
+    public static function convert (\Gedcom\Record\Indi\Asso &$asso, $level = 0)
     {
         $output = '';
         // _indi
@@ -43,7 +43,7 @@ class Asso
         $sour = $asso->getSour();
         if (!empty($sour) && count($sour) > 0) {
             foreach ($sour as $item) {
-                $_convert = \Writer\SourRef::convert($item, $level);
+                $_convert = \Gedcom\Writer\SourRef::convert($item, $level);
                 $output .= $_convert;
             }
         }
@@ -52,7 +52,7 @@ class Asso
         $note = $asso->getSour();
         if (!empty($note) && count($note) > 0) {
             foreach ($note as $item) {
-                $_convert = \Writer\NoteRef::convert($item, $level);
+                $_convert = \Gedcom\Writer\NoteRef::convert($item, $level);
                 $output .= $_convert;
             }
         }

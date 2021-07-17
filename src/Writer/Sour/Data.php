@@ -17,12 +17,12 @@ namespace Gedcom\Writer\Sour;
 class Data
 {
     /**
-     * @param \Record\Sour\Data $data
+     * @param \Gedcom\Record\Sour\Data $data
      * @param int                         $level
      *
      * @return string
      */
-    public static function convert(\Record\Sour\Data &$data, $level = 0)
+    public static function convert (\Gedcom\Record\Sour\Data &$data, $level = 0)
     {
         $output = '';
 
@@ -51,7 +51,7 @@ class Data
         $note = $data->getNote();
         if ($note && count($note) > 0) {
             foreach ($note as $item) {
-                $_convert = \Writer\NoteRef::convert($item, $level);
+                $_convert = \Gedcom\Writer\NoteRef::convert($item, $level);
                 $output .= $_convert;
             }
         }
@@ -60,7 +60,7 @@ class Data
         $_even = $data->getEven();
         if ($_even && count($_even) > 0) {
             foreach ($_even as $item) {
-                $_convert = \Writer\Sour\Data\Even::convert($item, $level);
+                $_convert = \Gedcom\Writer\Sour\Data\Even::convert($item, $level);
                 $output .= $_convert;
             }
         }

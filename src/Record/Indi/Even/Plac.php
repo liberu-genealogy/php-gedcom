@@ -14,7 +14,7 @@
 
 namespace Gedcom\Record\Indi\Even;
 
-use Record;
+use \Gedcom\Record;
 
 /**
  * Class Plac.

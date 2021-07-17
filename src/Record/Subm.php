@@ -14,7 +14,7 @@
 
 namespace Gedcom\Record;
 
-use Record;
+use \Gedcom\Record;
 
 /**
  * Class Subm.
@@ -259,7 +259,7 @@ class Subm extends \Gedcom\Record implements Objectable
     }
 
     /**
-     * @param \Record\Chan $chan
+     * @param \Gedcom\Record\Chan $chan
      *
      * @return Subm
      */
@@ -271,7 +271,7 @@ class Subm extends \Gedcom\Record implements Objectable
     }
 
     /**
-     * @return \Record\Chan
+     * @return \Gedcom\Record\Chan
      */
     public function getChan()
     {

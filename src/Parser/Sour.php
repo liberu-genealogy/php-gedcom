@@ -68,24 +68,24 @@ class Sour extends \Gedcom\Parser\Component
                     $sour->setRepo(\Parser\Sour\Repo::parse($parser));
                     break;
                 case 'REFN':
-                    $refn = \Parser\Refn::parse($parser);
+                    $refn = \Gedcom\Parser\Refn::parse($parser);
                     $sour->addRefn($refn);
                     break;
                 case 'RIN':
                     $sour->setRin(trim($record[2]));
                     break;
                 case 'CHAN':
-                    $chan = \Parser\Chan::parse($parser);
+                    $chan = \Gedcom\Parser\Chan::parse($parser);
                     $sour->setChan($chan);
                     break;
                 case 'NOTE':
-                    $note = \Parser\NoteRef::parse($parser);
+                    $note = \Gedcom\Parser\NoteRef::parse($parser);
                     if ($note) {
                         $sour->addNote($note);
                     }
                     break;
                 case 'OBJE':
-                    $obje = \Parser\ObjeRef::parse($parser);
+                    $obje = \Gedcom\Parser\ObjeRef::parse($parser);
                     $sour->addObje($obje);
                     break;
                 default:

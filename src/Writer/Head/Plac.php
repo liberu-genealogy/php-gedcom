@@ -17,13 +17,13 @@ namespace Gedcom\Writer\Head;
 class Plac
 {
     /**
-     * @param \Record\Head\Plac $plac
+     * @param \Gedcom\Record\Head\Plac $plac
      * @param string                      $format
      * @param int                         $level
      *
      * @return string
      */
-    public static function convert(\Record\Head\Plac &$plac, $level)
+    public static function convert (\Gedcom\Record\Head\Plac &$plac, $level)
     {
         $output = $level." PLAC \n";
 

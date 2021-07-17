@@ -14,7 +14,7 @@
 
 namespace Gedcom\Record;
 
-use Record;
+use \Gedcom\Record;
 
 /**
  * Stores the data from the HEAD section of a GEDCOM 5.5 file.
@@ -82,7 +82,7 @@ class Head extends \Gedcom\Record
     protected $note = null;
 
     /**
-     * @param \Record\Head\Sour $sour
+     * @param \Gedcom\Record\Head\Sour $sour
      *
      * @return Head
      */
@@ -94,7 +94,7 @@ class Head extends \Gedcom\Record
     }
 
     /**
-     * @return \Record\Head\Sour
+     * @return \Gedcom\Record\Head\Sour
      */
     public function getSour()
     {
@@ -102,7 +102,7 @@ class Head extends \Gedcom\Record
     }
 
     /**
-     * @param \Record\Head\Date $date
+     * @param \Gedcom\Record\Head\Date $date
      *
      * @return Head
      */
@@ -114,7 +114,7 @@ class Head extends \Gedcom\Record
     }
 
     /**
-     * @return \Record\Head\Date
+     * @return \Gedcom\Record\Head\Date
      */
     public function getDate()
     {
@@ -122,7 +122,7 @@ class Head extends \Gedcom\Record
     }
 
     /**
-     * @param \Record\Head\Gedc $gedc
+     * @param \Gedcom\Record\Head\Gedc $gedc
      *
      * @return Head
      */
@@ -134,7 +134,7 @@ class Head extends \Gedcom\Record
     }
 
     /**
-     * @return \Record\Head\Gedc
+     * @return \Gedcom\Record\Head\Gedc
      */
     public function getGedc()
     {
@@ -142,7 +142,7 @@ class Head extends \Gedcom\Record
     }
 
     /**
-     * @param \Record\Head\Char $char
+     * @param \Gedcom\Record\Head\Char $char
      *
      * @return Head
      */
@@ -154,7 +154,7 @@ class Head extends \Gedcom\Record
     }
 
     /**
-     * @return \Record\Head\Char
+     * @return \Gedcom\Record\Head\Char
      */
     public function getChar()
     {
@@ -162,7 +162,7 @@ class Head extends \Gedcom\Record
     }
 
     /**
-     * @param \Record\Head\Plac $plac
+     * @param \Gedcom\Record\Head\Plac $plac
      *
      * @return Head
      */
@@ -174,7 +174,7 @@ class Head extends \Gedcom\Record
     }
 
     /**
-     * @return \Record\Head\Plac
+     * @return \Gedcom\Record\Head\Plac
      */
     public function getPlac()
     {

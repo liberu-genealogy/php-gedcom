@@ -17,13 +17,13 @@ namespace Gedcom\Writer\Head;
 class Sour
 {
     /**
-     * @param \Record\Head\Sour $sour
+     * @param \Gedcom\Record\Head\Sour $sour
      * @param string                      $format
      * @param int                         $level
      *
      * @return string
      */
-    public static function convert(\Record\Head\Sour &$sour, $level)
+    public static function convert (\Gedcom\Record\Head\Sour &$sour, $level)
     {
         $output = '';
         $_sour = $sour->getSour();
@@ -51,14 +51,14 @@ class Sour
         // CORP
         $corp = $sour->getCorp();
         if ($corp) {
-            $_convert = \Writer\Head\Sour\Corp::convert($corp, $level);
+            $_convert = \Gedcom\Writer\Head\Sour\Corp::convert($corp, $level);
             $output .= $_convert;
         }
 
         // DATA
         $data = $sour->getData();
         if ($data) {
-            $_convert = \Writer\Head\Sour\Data::convert($data, $level);
+            $_convert = \Gedcom\Writer\Head\Sour\Data::convert($data, $level);
             $output .= $_convert;
         }
 

@@ -50,7 +50,7 @@ class Famc extends \Gedcom\Parser\Component
                     $fam->setPedi(trim($record[2]));
                     break;
                 case 'NOTE':
-                    $note = \Parser\NoteRef::parse($parser);
+                    $note = \Gedcom\Parser\NoteRef::parse($parser);
                     if ($note) {
                         $fam->addNote($note);
                     }

@@ -14,7 +14,7 @@
 
 namespace Gedcom\Record\ObjeRef;
 
-use Record;
+use \Gedcom\Record;
 
 /**
  * Class Refn.

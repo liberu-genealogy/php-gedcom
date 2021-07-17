@@ -48,20 +48,20 @@ class Plac extends \Gedcom\Parser\Component
                     $plac->setForm(trim($record[2]));
                     break;
                 case 'FONE':
-                    $fone = \Parser\Plac\Fone::parse($parser);
+                    $fone = \Gedcom\Parser\Plac\Fone::parse($parser);
                     $plac->setFone($fone);
                     break;
                 case 'ROMN':
-                    $romn = \Parser\Plac\Romn::parse($parser);
+                    $romn = \Gedcom\Parser\Plac\Romn::parse($parser);
                     $plac->setRomn($romn);
                     break;
                 case 'NOTE':
-                    if ($note = \Parser\NoteRef::parse($parser)) {
+                    if ($note = \Gedcom\Parser\NoteRef::parse($parser)) {
                         $plac->addNote($note);
                     }
                     break;
                 case 'MAP':
-                    $map = \Parser\Plac\Map::parse($parser);
+                    $map = \Gedcom\Parser\Plac\Map::parse($parser);
                     $plac->setMap($map);
                     break;
                 default:

@@ -22,11 +22,11 @@ abstract class Record
             $arr = strtolower(substr($method, 3));
 
             if (!property_exists($this, '_'.$arr) || !is_array($this->{'_'.$arr})) {
-                throw new \Exception('Unknown '.get_class($this).'::'.$arr);
+                throw new \Gedcom\Exception('Unknown '.get_class($this).'::'.$arr);
             }
 
             if (!is_array($args)) {
-                throw new \Exception('Incorrect arguments to '.$method);
+                throw new \Gedcom\Exception('Incorrect arguments to '.$method);
             }
 
             if (!isset($args[0])) {
@@ -45,11 +45,11 @@ abstract class Record
             $arr = strtolower(substr($method, 3));
 
             if (!property_exists($this, '_'.$arr)) {
-                throw new \Exception('Unknown '.get_class($this).'::'.$arr);
+                throw new \Gedcom\Exception('Unknown '.get_class($this).'::'.$arr);
             }
 
             if (!is_array($args)) {
-                throw new \Exception('Incorrect arguments to '.$method);
+                throw new \Gedcom\Exception('Incorrect arguments to '.$method);
             }
 
             if (!isset($args[0])) {
@@ -70,26 +70,26 @@ abstract class Record
             // hotfix getData
             if ('data' == $arr) {
                 if (!property_exists($this, '_text')) {
-                    throw new \Exception('Unknown '.get_class($this).'::'.$arr);
+                    throw new \Gedcom\Exception('Unknown '.get_class($this).'::'.$arr);
                 }
 
                 return $this->{'_text'};
             }
 
             if (!property_exists($this, '_'.$arr)) {
-                throw new \Exception('Unknown '.get_class($this).'::'.$arr);
+                throw new \Gedcom\Exception('Unknown '.get_class($this).'::'.$arr);
             }
 
             return $this->{'_'.$arr};
         } else {
-            throw new \Exception('Unknown method called: '.$method);
+            throw new \Gedcom\Exception('Unknown method called: '.$method);
         }
     }
 
     public function __set($var, $val)
     {
         // this class does not have any public vars
-        throw new \Exception('Undefined property '.get_class().'::'.$var);
+        throw new \Gedcom\Exception('Undefined property '.get_class().'::'.$var);
     }
 
     /**

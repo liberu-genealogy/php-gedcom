@@ -17,12 +17,12 @@ namespace Gedcom\Writer;
 class Subm
 {
     /**
-     * @param \Record\Subm $note
+     * @param \Gedcom\Record\Subm $note
      * @param int                    $level
      *
      * @return string
      */
-    public static function convert(\Record\Subm &$subm)
+    public static function convert (\Gedcom\Record\Subm &$subm)
     {
         $level = 0;
         $output = '';
@@ -43,14 +43,14 @@ class Subm
         // $chan
         $chan = $subm->getChan();
         if ($chan) {
-            $_convert = \Writer\Chan::convert($chan, $level);
+            $_convert = \Gedcom\Writer\Chan::convert($chan, $level);
             $output .= $_convert;
         }
 
         // $addr
         $addr = $subm->getAddr();
         if ($addr) {
-            $_convert = \Writer\Addr::convert($addr, $level);
+            $_convert = \Gedcom\Writer\Addr::convert($addr, $level);
             $output .= $_convert;
         }
 
@@ -82,7 +82,7 @@ class Subm
         if (!empty($phon) && count($phon) > 0) {
             foreach ($phon as $item) {
                 if ($item) {
-                    $_convert = \Writer\Phon::convert($item, $level);
+                    $_convert = \Gedcom\Writer\Phon::convert($item, $level);
                     $output .= $_convert;
                 }
             }
@@ -92,7 +92,7 @@ class Subm
         $obje = $subm->getObje();
         if (!empty($obje) && count($obje) > 0) {
             foreach ($obje as $item) {
-                $_convert = \Writer\ObjeRef::convert($item, $level);
+                $_convert = \Gedcom\Writer\ObjeRef::convert($item, $level);
                 $output .= $_convert;
             }
         }
@@ -101,7 +101,7 @@ class Subm
         $note = $subm->getNote();
         if (!empty($note) && count($note) > 0) {
             foreach ($note as $item) {
-                $_convert = \Writer\NoteRef::convert($item, $level);
+                $_convert = \Gedcom\Writer\NoteRef::convert($item, $level);
                 $output .= $_convert;
             }
         }

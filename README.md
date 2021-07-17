@@ -35,15 +35,15 @@ If you are not using composer, you can download an archive of the source from Gi
 
 ```php
 spl_autoload_register(function ($class) {
-    $pathToPhpGedcom = __DIR__ . '/library/'; // TODO FIXME
+    $pathToGedcom = __DIR__ . '/library/'; // TODO FIXME
 
-    if (!substr(ltrim($class, '\\'), 0, 7) == 'PhpGedcom\\') {
+    if (!substr(ltrim($class, '\\'), 0, 7) == 'Gedcom\\') {
         return;
     }
 
     $class = str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
-    if (file_exists($pathToPhpGedcom . $class)) {
-        require_once($pathToPhpGedcom . $class);
+    if (file_exists($pathToGedcom . $class)) {
+        require_once($pathToGedcom . $class);
     }
 });
 ```
@@ -53,8 +53,8 @@ spl_autoload_register(function ($class) {
 To parse a GEDCOM file and load it into a collection of PHP Objects, simply instantiate a new Parser object and pass it the file name to parse. The resulting Gedcom object will contain all the information stored within the supplied GEDCOM file:
 
 ```php
-$parser = new \PhpGedcom\Parser();
-$gedcom = $parser->parse('tmp\gedcom.ged');
+$parser = new \Gedcom\Parser();
+$gedcom = $parser->parse('tmp.ged');
 
 foreach ($gedcom->getIndi() as $individual) {
     echo $individual->getId() . ': ' . current($individual->getName())->getSurn() .

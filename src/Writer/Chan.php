@@ -17,12 +17,12 @@ namespace Gedcom\Writer;
 class Chan
 {
     /**
-     * @param \Record\Chan $note
+     * @param \Gedcom\Record\Chan $note
      * @param int                    $level
      *
      * @return string
      */
-    public static function convert(\Record\Chan &$chan, $level)
+    public static function convert (\Gedcom\Record\Chan &$chan, $level)
     {
         $output = $level." CHAN \n";
         // level up
@@ -41,7 +41,7 @@ class Chan
         $_note = $chan->getNote();
         if (!empty($_note) && count($_note) > 0) {
             foreach ($_note as $item) {
-                $_convert = \Writer\NoteRef::convert($item, $level);
+                $_convert = \Gedcom\Writer\NoteRef::convert($item, $level);
                 $output .= $_convert;
             }
         }

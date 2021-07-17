@@ -46,7 +46,7 @@ class Data extends \Gedcom\Parser\Component
                     $data->setAgnc(trim($record[2]));
                     break;
                 case 'NOTE':
-                    $note = \Parser\NoteRef::parse($parser);
+                    $note = \Gedcom\Parser\NoteRef::parse($parser);
                     if ($note) {
                         $data->addNote($note);
                     }

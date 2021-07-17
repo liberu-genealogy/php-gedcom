@@ -17,13 +17,13 @@ namespace Gedcom\Writer\Head;
 class Date
 {
     /**
-     * @param \Record\Head\Date $date
+     * @param \Gedcom\Record\Head\Date $date
      * @param string                      $format
      * @param int                         $level
      *
      * @return string
      */
-    public static function convert(\Record\Head\Date &$date, $level)
+    public static function convert (\Gedcom\Record\Head\Date &$date, $level)
     {
         $output = '';
         $_date = $date->getDate();

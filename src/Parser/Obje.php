@@ -50,7 +50,7 @@ class Obje extends \Gedcom\Parser\Component
                     $obje->setFile(trim($record[2]));
                     break;
                 case 'REFN':
-                    $refn = \Parser\Refn::parse($parser);
+                    $refn = \Gedcom\Parser\Refn::parse($parser);
                     $obje->addRefn($refn);
                     break;
                 case 'RIN':
@@ -58,18 +58,18 @@ class Obje extends \Gedcom\Parser\Component
                     break;
 
                 case 'NOTE':
-                    $note = \Parser\NoteRef::parse($parser);
+                    $note = \Gedcom\Parser\NoteRef::parse($parser);
                     if ($note) {
                         $obje->addNote($note);
                     }
                     break;
                 case 'SOUR':
-                    $chan = \Parser\Chan::parse($parser);
+                    $chan = \Gedcom\Parser\Chan::parse($parser);
                     $obje->setChan($chan);
                     break;
 
                 case 'CHAN':
-                    $chan = \Parser\Chan::parse($parser);
+                    $chan = \Gedcom\Parser\Chan::parse($parser);
                     $obje->setChan($chan);
                     break;
 

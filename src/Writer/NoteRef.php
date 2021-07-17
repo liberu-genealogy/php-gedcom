@@ -17,12 +17,12 @@ namespace Gedcom\Writer;
 class NoteRef
 {
     /**
-     * @param \Record\NoteRef $note
+     * @param \Gedcom\Record\NoteRef $note
      * @param int                       $level
      *
      * @return string
      */
-    public static function convert(\Record\NoteRef &$note, $level)
+    public static function convert (\Gedcom\Record\NoteRef &$note, $level)
     {
         $output = '';
 
@@ -37,7 +37,7 @@ class NoteRef
         $sour = $note->getSour();
         if ($sour && count($sour) > 0) {
             foreach ($sour as $item) {
-                $_convert = \Writer\SourRef::convert($item, $level);
+                $_convert = \Gedcom\Writer\SourRef::convert($item, $level);
                 $output .= $_convert;
             }
         }

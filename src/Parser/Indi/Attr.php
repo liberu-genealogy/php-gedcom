@@ -55,14 +55,14 @@ abstract class Attr extends \Gedcom\Parser\Component
                     $attr->setDate(trim($record[2]));
                     break;
                 case 'PLAC':
-                    $plac = \Parser\Indi\Even\Plac::parse($parser);
+                    $plac = \Gedcom\Parser\Indi\Even\Plac::parse($parser);
                     $attr->setPlac($plac);
                     break;
                 case 'ADDR':
                     $attr->setAddr(\Parser\Addr::parse($parser));
                     break;
                 case 'PHON':
-                    $phone = \Parser\Phon::parse($parser);
+                    $phone = \Gedcom\Parser\Phon::parse($parser);
                     $attr->addPhon($phone);
                     break;
                 case 'CAUS':
@@ -75,15 +75,15 @@ abstract class Attr extends \Gedcom\Parser\Component
                     $attr->setAgnc(trim($record[2]));
                     break;
                 case 'SOUR':
-                    $sour = \Parser\SourRef::parse($parser);
+                    $sour = \Gedcom\Parser\SourRef::parse($parser);
                     $attr->addSour($sour);
                     break;
                 case 'OBJE':
-                    $obje = \Parser\ObjeRef::parse($parser);
+                    $obje = \Gedcom\Parser\ObjeRef::parse($parser);
                     $attr->addObje($obje);
                     break;
                 case 'NOTE':
-                    $note = \Parser\NoteRef::parse($parser);
+                    $note = \Gedcom\Parser\NoteRef::parse($parser);
                     if ($note) {
                         $attr->addNote($note);
                     }

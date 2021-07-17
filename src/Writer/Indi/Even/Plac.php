@@ -17,12 +17,12 @@ namespace Gedcom\Writer\Indi\Even;
 class Plac
 {
     /**
-     * @param \Record\Indi\Even\Plac $plac
+     * @param \Gedcom\Record\Indi\Even\Plac $plac
      * @param int                              $level
      *
      * @return string
      */
-    public static function convert(\Record\Indi\Even\Plac &$plac, $level = 0)
+    public static function convert (\Gedcom\Record\Indi\Even\Plac &$plac, $level = 0)
     {
         $output = '';
 
@@ -47,7 +47,7 @@ class Plac
         $note = $plac->getNote();
         if ($note && count($note) > 0) {
             foreach ($note as $item) {
-                $_convert = \Writer\NoteRef::convert($item, $level);
+                $_convert = \Gedcom\Writer\NoteRef::convert($item, $level);
                 $output .= $_convert;
             }
         }
@@ -55,7 +55,7 @@ class Plac
         $sour = $plac->getSour();
         if ($sour && count($sour) > 0) {
             foreach ($sour as $item) {
-                $_convert = \Writer\SourRef::convert($item, $level);
+                $_convert = \Gedcom\Writer\SourRef::convert($item, $level);
                 $output .= $_convert;
             }
         }

@@ -48,7 +48,7 @@ class RepoRef extends \Gedcom\Parser\Component
                     $repo->addCaln(\Parser\Caln::parse($parser));
                     break;
                 case 'NOTE':
-                    $note = \Parser\NoteRef::parse($parser);
+                    $note = \Gedcom\Parser\NoteRef::parse($parser);
                     if ($note) {
                         $repo->addNote($note);
                     }

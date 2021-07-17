@@ -17,13 +17,13 @@ namespace Gedcom\Writer\Head\Sour;
 class Corp
 {
     /**
-     * @param \Record\Head\Sour\Corp $corp
+     * @param \Gedcom\Record\Head\Sour\Corp $corp
      * @param string                           $format
      * @param int                              $level
      *
      * @return string
      */
-    public static function convert(\Record\Head\Sour\Corp &$corp, $level)
+    public static function convert (\Gedcom\Record\Head\Sour\Corp &$corp, $level)
     {
         $output = '';
         $_corp = $corp->getCorp();
@@ -39,7 +39,7 @@ class Corp
         // ADDR
         $addr = $corp->getAddr();
         if ($addr) {
-            $_convert = \Writer\Addr::convert($addr, $level);
+            $_convert = \Gedcom\Writer\Addr::convert($addr, $level);
             $output .= $_convert;
         }
 
@@ -48,7 +48,7 @@ class Corp
         if ($phon && count($phon) > 0) {
             foreach ($phon as $item) {
                 if ($item) {
-                    $_convert = \Writer\Phon::convert($item, $level);
+                    $_convert = \Gedcom\Writer\Phon::convert($item, $level);
                     $output .= $_convert;
                 }
             }

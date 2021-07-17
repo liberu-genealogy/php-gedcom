@@ -50,7 +50,7 @@ class Repo extends \Gedcom\Parser\Component
                     $repo->setName(trim($record[2]));
                     break;
                 case 'ADDR':
-                    $addr = \Parser\Addr::parse($parser);
+                    $addr = \Gedcom\Parser\Addr::parse($parser);
                     $repo->setAddr($addr);
                     break;
                 case 'PHON':
@@ -66,19 +66,19 @@ class Repo extends \Gedcom\Parser\Component
                     $repo->addWww(trim($record[2]));
                     break;
                 case 'NOTE':
-                    if ($note = \Parser\NoteRef::parse($parser)) {
+                    if ($note = \Gedcom\Parser\NoteRef::parse($parser)) {
                         $repo->addNote($note);
                     }
                     break;
                 case 'REFN':
-                    $refn = \Parser\Refn::parse($parser);
+                    $refn = \Gedcom\Parser\Refn::parse($parser);
                     $repo->addRefn($refn);
                     break;
                 case 'RIN':
                     $repo->setRin(trim($record[2]));
                     break;
                 case 'CHAN':
-                    $chan = \Parser\Chan::parse($parser);
+                    $chan = \Gedcom\Parser\Chan::parse($parser);
                     $repo->setChan($chan);
                     break;
                 default:

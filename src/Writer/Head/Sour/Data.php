@@ -17,13 +17,13 @@ namespace Gedcom\Writer\Head\Sour;
 class Data
 {
     /**
-     * @param \Record\Head\Sour\Data $data
+     * @param \Gedcom\Record\Head\Sour\Data $data
      * @param string                           $format
      * @param int                              $level
      *
      * @return string
      */
-    public static function convert(\Record\Head\Sour\Data &$data, $level)
+    public static function convert (\Gedcom\Record\Head\Sour\Data &$data, $level)
     {
         $output = '';
         $_data = $data->getData();
