@@ -21,7 +21,7 @@ abstract class Attr extends \Gedcom\Parser\Component
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
         if (isset($record[1])) {
-            $className = 'GedcomzRecordzIndiz'.ucfirst(strtolower(trim($record[1])));
+            $className = 'GedcomRecordzIndiz'.ucfirst(strtolower(trim($record[1])));
             $attr = new $className();
 
             $attr->setType(trim($record[1]));
@@ -59,7 +59,7 @@ abstract class Attr extends \Gedcom\Parser\Component
                     $attr->setPlac($plac);
                     break;
                 case 'ADDR':
-                    $attr->setAddr(\Parser\Addr::parse($parser));
+                    $attr->setAddr(\Gedcom\Parser\Addr::parse($parser));
                     break;
                 case 'PHON':
                     $phone = \Gedcom\Parser\Phon::parse($parser);
