@@ -112,7 +112,7 @@ class Indi extends \Gedcom\Parser\Component
             case 'ENDL':
             case 'SLGC':
                 $className = ucfirst(strtolower($recordType));
-                $class = 'GedcomParserIndiz'.$className;
+                $class = 'GedcomParserIndi'.$className;
 
                 $lds = $class::parse($parser);
                 $indi->{'add'.$recordType}[] = $lds;

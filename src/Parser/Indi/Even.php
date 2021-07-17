@@ -31,7 +31,7 @@ class Even extends \Gedcom\Parser\Component
         $even = null;
 
         if (strtoupper(trim($record[1])) != 'EVEN') {
-            $className = 'GedcomRecordzIndiz'.ucfirst(strtolower(trim($record[1])));
+            $className = 'GedcomRecordIndi'.ucfirst(strtolower(trim($record[1])));
             $even = new $className();
         } else {
             $even = new \Gedcom\Record\Indi\Even();
@@ -102,7 +102,7 @@ class Even extends \Gedcom\Parser\Component
                 }
                 break;
             case 'CHAN':
-                $change = Chan::parse($parser);
+                $change = \Gedcom\Parser\Chan::parse($parser);
                 $even->setChan($change);
                 break;
             default:
