@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Record\Indi;
+namespace Gedcom\Record\Indi;
 
 use Record\Noteable;
 use Record\Sourceable;

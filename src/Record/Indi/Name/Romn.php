@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Record\Indi\Name;
+namespace Gedcom\Record\Indi\Name;
 
 use Record;
 

@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Writer\Head;
+namespace Gedcom\Writer\Head;
 
 class Plac
 {

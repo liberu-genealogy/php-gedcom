@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Record\Plac;
+namespace Gedcom\Record\Plac;
 
 use Record;
 

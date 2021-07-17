@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Record\Indi\Even;
+namespace Gedcom\Record\Indi\Even;
 
 use Record;
 

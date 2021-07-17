@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Parser;
+namespace Gedcom\Parser;
 
 class Sour extends \Parser\Component
 {

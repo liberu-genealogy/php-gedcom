@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Parser\Fam\Even;
+namespace Gedcom\Parser\Fam\Even;
 
 class Wife extends \Parser\Component
 {

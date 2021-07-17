@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Record\Sour\Repo;
+namespace Gedcom\Record\Sour\Repo;
 
 class Caln extends \Gedcom\Record
 {

@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Record\Fam\Even;
+namespace Gedcom\Record\Fam\Even;
 
 class Wife extends \Gedcom\Record
 {

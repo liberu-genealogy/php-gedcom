@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Parser\Head;
+namespace Gedcom\Parser\Head;
 
 class Gedc extends \Parser\Component
 {

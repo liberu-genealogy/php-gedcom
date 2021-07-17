@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Writer\Sour;
+namespace Gedcom\Writer\Sour;
 
 class Data
 {

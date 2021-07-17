@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Record;
+namespace Gedcom\Record;
 
 class SourRef extends \Gedcom\Record
 {

@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Parser\Fam;
+namespace Gedcom\Parser\Fam;
 
 class Marc extends \Parser\Fam\Even
 {

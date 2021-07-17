@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Record\Indi;
+namespace Gedcom\Record\Indi;
 
 class Ssn extends \Record\Indi\Attr
 {

@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Writer\Head\Sour;
+namespace Gedcom\Writer\Head\Sour;
 
 class Corp
 {

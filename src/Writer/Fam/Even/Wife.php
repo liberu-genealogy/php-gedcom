@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Writer\Fam\Even;
+namespace Gedcom\Writer\Fam\Even;
 
 class Wife
 {

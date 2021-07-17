@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Record\Sour;
+namespace Gedcom\Record\Sour;
 
 use Record\Noteable;
 

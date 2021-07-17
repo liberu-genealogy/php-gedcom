@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Writer\Indi;
+namespace Gedcom\Writer\Indi;
 
 class Fams
 {

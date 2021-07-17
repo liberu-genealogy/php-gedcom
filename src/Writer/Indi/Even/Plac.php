@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Writer\Indi\Even;
+namespace Gedcom\Writer\Indi\Even;
 
 class Plac
 {

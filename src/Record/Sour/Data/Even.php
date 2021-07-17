@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Record\Sour\Data;
+namespace Gedcom\Record\Sour\Data;
 
 class Even extends \Gedcom\Record
 {

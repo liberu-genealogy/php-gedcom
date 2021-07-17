@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Record\Fam\Slgs;
+namespace Gedcom\Record\Fam\Slgs;
 
 class Stat extends \Gedcom\Record
 {

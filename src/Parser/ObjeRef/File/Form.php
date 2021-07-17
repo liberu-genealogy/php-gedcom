@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Parser\ObjeRef\File;
+namespace Gedcom\Parser\ObjeRef\File;
 
 class Form extends \Parser\Component
 {

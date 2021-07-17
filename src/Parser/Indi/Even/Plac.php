@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Parser\Indi\Even;
+namespace Gedcom\Parser\Indi\Even;
 
 class Plac extends \Parser\Component
 {

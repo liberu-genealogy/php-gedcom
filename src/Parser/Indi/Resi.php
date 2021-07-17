@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Parser\Indi;
+namespace Gedcom\Parser\Indi;
 
 class Resi extends \Parser\Indi\Attr
 {

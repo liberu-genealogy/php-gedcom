@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Parser\Sour\Data;
+namespace Gedcom\Parser\Sour\Data;
 
 class Even extends \Parser\Component
 {

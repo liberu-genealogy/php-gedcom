@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Parser\Indi;
+namespace Gedcom\Parser\Indi;
 
 class Buri extends \Parser\Indi\Even
 {

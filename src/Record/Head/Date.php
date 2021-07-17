@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Record\Head;
+namespace Gedcom\Record\Head;
 
 class Date extends \Gedcom\Record
 {

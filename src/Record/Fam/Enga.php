@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Record\Fam;
+namespace Gedcom\Record\Fam;
 
 class Enga extends \Record\Fam\Even
 {

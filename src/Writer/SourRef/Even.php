@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Writer\SourRef;
+namespace Gedcom\Writer\SourRef;
 
 class Even
 {

@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Writer\Sour\Data;
+namespace Gedcom\Writer\Sour\Data;
 
 class Even
 {

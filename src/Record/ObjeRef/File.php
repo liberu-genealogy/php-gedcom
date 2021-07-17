@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Record\ObjeRef;
+namespace Gedcom\Record\ObjeRef;
 
 use Record;
 

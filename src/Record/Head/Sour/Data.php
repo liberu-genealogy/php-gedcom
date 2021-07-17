@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Record\Head\Sour;
+namespace Gedcom\Record\Head\Sour;
 
 class Data extends \Gedcom\Record
 {

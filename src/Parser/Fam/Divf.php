@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Parser\Fam;
+namespace Gedcom\Parser\Fam;
 
 class Divf extends \Parser\Fam\Even
 {

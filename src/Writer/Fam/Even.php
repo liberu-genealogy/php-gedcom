@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Writer\Fam;
+namespace Gedcom\Writer\Fam;
 
 class Even
 {
