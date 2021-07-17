@@ -19,7 +19,7 @@ use Record;
 /**
  * Class Even.
  */
-class Even extends Gedcom\Record implements Record\Objectable, Record\Sourceable, Record\Noteable
+class Even extends \Gedcom\Record implements Record\Objectable, Record\Sourceable, Record\Noteable
 {
     /**
      * @var string

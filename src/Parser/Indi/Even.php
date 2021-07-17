@@ -12,13 +12,13 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Gedcom\Parser\Indi;
+namespaceGedcom\Parser\Indi;
 
 use Parser\Chan;
 
-class Even extends Gedcom\Parser\Component
+class Even extends \Gedcom\Parser\Component
 {
-    public static function parse(\Gedcom\Parser $parser)
+    public static function parse(Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
@@ -31,7 +31,7 @@ class Even extends Gedcom\Parser\Component
         $even = null;
 
         if (strtoupper(trim($record[1])) != 'EVEN') {
-            $className = '\\Gedcom\\Record\\Indi\\'.ucfirst(strtolower(trim($record[1])));
+            $className = 'GedcomzRecordzIndiz'.ucfirst(strtolower(trim($record[1])));
             $even = new $className();
         } else {
             $even = new \Record\Indi\Even();

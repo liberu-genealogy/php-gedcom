@@ -12,11 +12,11 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Gedcom\Parser\Fam\Slgs;
+namespaceGedcom\Parser\Fam\Slgs;
 
-class Stat extends Gedcom\Parser\Component
+class Stat extends \Gedcom\Parser\Component
 {
-    public static function parse(\Gedcom\Parser $parser)
+    public static function parse(Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];

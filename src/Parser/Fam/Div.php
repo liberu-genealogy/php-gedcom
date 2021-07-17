@@ -12,8 +12,8 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Gedcom\Parser\Fam;
+namespaceGedcom\Parser\Fam;
 
-class Div extends Gedcom\Parser\Fam\Even
+class Div extends \Gedcom\Parser\Fam\Even
 {
 }

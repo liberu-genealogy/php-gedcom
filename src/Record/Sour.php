@@ -19,7 +19,7 @@ use Record;
 /**
  * Class Sour.
  */
-class Sour extends Gedcom\Record implements Noteable, Objectable
+class Sour extends \Gedcom\Record implements Noteable, Objectable
 {
     /**
      * @var string

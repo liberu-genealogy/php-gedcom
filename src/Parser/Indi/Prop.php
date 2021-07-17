@@ -12,8 +12,8 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Gedcom\Parser\Indi;
+namespaceGedcom\Parser\Indi;
 
-class Prop extends Gedcom\Parser\Indi\Attr
+class Prop extends \Gedcom\Parser\Indi\Attr
 {
 }

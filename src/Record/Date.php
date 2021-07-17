@@ -19,7 +19,7 @@ use Record;
 /**
  * Class Date.
  */
-class Date extends Gedcom\Record
+class Date extends \Gedcom\Record
 {
     /**
      * @var string

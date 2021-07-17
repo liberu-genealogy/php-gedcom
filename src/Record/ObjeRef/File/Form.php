@@ -19,7 +19,7 @@ use Record;
 /**
  * Class Refn.
  */
-class Form extends Gedcom\Record
+class Form extends \Gedcom\Record
 {
     /**
      * @var string multimedia_format

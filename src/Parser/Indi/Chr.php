@@ -12,9 +12,9 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Gedcom\Parser\Indi;
+namespaceGedcom\Parser\Indi;
 
-class Chr extends Gedcom\Parser\Indi\Even
+class Chr extends \Gedcom\Parser\Indi\Even
 {
     public static function parseFamc($parser, $even)
     {

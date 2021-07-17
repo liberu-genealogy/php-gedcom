@@ -12,11 +12,11 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Gedcom\Parser\SourRef;
+namespaceGedcom\Parser\SourRef;
 
-class Data extends Gedcom\Parser\Component
+class Data extends \Gedcom\Parser\Component
 {
-    public static function parse(\Gedcom\Parser $parser)
+    public static function parse(Gedcom\Parser $parser)
     {
         $data = new \Record\SourRef\Data();
         $record = $parser->getCurrentLineRecord();

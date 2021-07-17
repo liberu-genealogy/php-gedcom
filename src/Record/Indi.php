@@ -20,7 +20,7 @@ use Record;
 /**
  * Class Indi.
  */
-class Indi extends Gedcom\Record implements Noteable, Objectable, Sourceable
+class Indi extends \Gedcom\Record implements Noteable, Objectable, Sourceable
 {
     /**
      * @var string

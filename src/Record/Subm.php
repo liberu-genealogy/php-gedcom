@@ -19,7 +19,7 @@ use Record;
 /**
  * Class Subm.
  */
-class Subm extends Gedcom\Record implements Objectable
+class Subm extends \Gedcom\Record implements Objectable
 {
     /**
      * @var string

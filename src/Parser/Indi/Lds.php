@@ -12,16 +12,16 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Gedcom\Parser\Indi;
+namespaceGedcom\Parser\Indi;
 
-abstract class Lds extends Gedcom\Parser\Component
+abstract class Lds extends \Gedcom\Parser\Component
 {
-    public static function parse(\Gedcom\Parser $parser)
+    public static function parse(Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
         if (isset($record[1])) {
-            $className = '\\Gedcom\\Record\\Indi\\'.ucfirst(strtolower(trim($record[1])));
+            $className = 'GedcomzRecordzIndiz'.ucfirst(strtolower(trim($record[1])));
             $lds = new $className();
         } else {
             $parser->skipToNextLevel($depth);

@@ -12,11 +12,11 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Gedcom\Parser\ObjeRef;
+namespaceGedcom\Parser\ObjeRef;
 
-class File extends Gedcom\Parser\Component
+class File extends \Gedcom\Parser\Component
 {
-    public static function parse(\Gedcom\Parser $parser)
+    public static function parse(Gedcom\Parser $parser)
     {
         $file = new \Record\ObjeRef\File();
         $record = $parser->getCurrentLineRecord();

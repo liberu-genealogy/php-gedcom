@@ -12,8 +12,8 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Gedcom\Parser\Indi;
+namespaceGedcom\Parser\Indi;
 
-class Barm extends Gedcom\Parser\Indi\Even
+class Barm extends \Gedcom\Parser\Indi\Even
 {
 }

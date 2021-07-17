@@ -12,9 +12,9 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Gedcom\Parser;
+namespaceGedcom\Parser;
 
-class Fam extends Gedcom\Parser\Component
+class Fam extends \Gedcom\Parser\Component
 {
     protected static $_eventTypes = [
         'ANUL',
@@ -29,7 +29,7 @@ class Fam extends Gedcom\Parser\Component
         'MARS',
     ];
 
-    public static function parse(\Gedcom\Parser $parser)
+    public static function parse(Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
@@ -74,7 +74,7 @@ class Fam extends Gedcom\Parser\Component
                 case 'MARL':
                 case 'MARS':
                     $className = ucfirst(strtolower($recordType));
-                    $class = '\\Gedcom\\Parser\\Fam\\'.$className;
+                    $class = 'GedcomzParserzFamz'.$className;
 
                     $even = $class::parse($parser);
                     $fam->addEven($even);

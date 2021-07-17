@@ -12,11 +12,11 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Gedcom\Parser\Sour\Repo;
+namespaceGedcom\Parser\Sour\Repo;
 
-class Caln extends Gedcom\Parser\Component
+class Caln extends \Gedcom\Parser\Component
 {
-    public static function parse(\Gedcom\Parser $parser)
+    public static function parse(Gedcom\Parser $parser)
     {
         $caln = new \Record\Sour\Repo\Caln();
         $record = $parser->getCurrentLineRecord();

@@ -12,11 +12,11 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Gedcom\Parser;
+namespaceGedcom\Parser;
 
-class Indi extends Gedcom\Parser\Component
+class Indi extends \Gedcom\Parser\Component
 {
-    public static function parse(\Gedcom\Parser $parser)
+    public static function parse(Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
@@ -83,7 +83,7 @@ class Indi extends Gedcom\Parser\Component
             case 'WILL':
             case 'EVEN':
                 $className = ucfirst(strtolower($recordType));
-                $class = '\\Gedcom\\Parser\\Indi\\'.$className;
+                $class = 'GedcomzParserzIndiz'.$className;
 
                 $event = $class::parse($parser);
                 $indi->addEven($event);
@@ -102,7 +102,7 @@ class Indi extends Gedcom\Parser\Component
             case 'SSN':
             case 'TITL':
                 $className = ucfirst(strtolower($recordType));
-                $class = '\\Gedcom\\Parser\\Indi\\'.$className;
+                $class = 'GedcomzParserzIndiz'.$className;
 
                 $att = $class::parse($parser);
                 $indi->addAttr($att);
@@ -112,7 +112,7 @@ class Indi extends Gedcom\Parser\Component
             case 'ENDL':
             case 'SLGC':
                 $className = ucfirst(strtolower($recordType));
-                $class = '\\Gedcom\\Parser\\Indi\\'.$className;
+                $class = 'GedcomzParserzIndiz'.$className;
 
                 $lds = $class::parse($parser);
                 $indi->{'add'.$recordType}[] = $lds;

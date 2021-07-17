@@ -12,16 +12,16 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Gedcom\Parser;
+namespaceGedcom\Parser;
 
-class Head extends Gedcom\Parser\Component
+class Head extends \Gedcom\Parser\Component
 {
     /**
-     * @param \Gedcom\Parser $parser
+     * @param Gedcom\Parser $parser
      *
      * @return \Record\Head
      */
-    public static function parse(\Gedcom\Parser $parser)
+    public static function parse(Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
@@ -51,7 +51,7 @@ class Head extends Gedcom\Parser\Component
 
             switch ($recordType) {
                 case 'SOUR':
-                    $sour = \Gedcom\Parser\Head\Sour::parse($parser);
+                    $sour = Gedcom\Parser\Head\Sour::parse($parser);
                     $head->setSour($sour);
                     break;
                 case 'DEST':
@@ -76,19 +76,19 @@ class Head extends Gedcom\Parser\Component
                     $head->setLang(trim($record[2]));
                     break;
                 case 'DATE':
-                    $date = \Gedcom\Parser\Head\Date::parse($parser);
+                    $date = Gedcom\Parser\Head\Date::parse($parser);
                     $head->setDate($date);
                     break;
                 case 'GEDC':
-                    $gedc = \Gedcom\Parser\Head\Gedc::parse($parser);
+                    $gedc = Gedcom\Parser\Head\Gedc::parse($parser);
                     $head->setGedc($gedc);
                     break;
                 case 'CHAR':
-                    $char = \Gedcom\Parser\Head\Char::parse($parser);
+                    $char = Gedcom\Parser\Head\Char::parse($parser);
                     $head->setChar($char);
                     break;
                 case 'PLAC':
-                    $plac = \Gedcom\Parser\Head\Plac::parse($parser);
+                    $plac = Gedcom\Parser\Head\Plac::parse($parser);
                     $head->setPlac($plac);
                     break;
                 case 'NOTE':
