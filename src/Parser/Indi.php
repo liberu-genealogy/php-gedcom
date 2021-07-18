@@ -83,7 +83,7 @@ class Indi extends \Gedcom\Parser\Component
             case 'WILL':
             case 'EVEN':
                 $className = ucfirst(strtolower($recordType));
-                $class = 'GedcomParserIndi'.$className;
+                $class = '\\Gedcom\\Parser\\Indi\\'.$className;
 
                 $event = $class::parse($parser);
                 $indi->addEven($event);
@@ -102,7 +102,7 @@ class Indi extends \Gedcom\Parser\Component
             case 'SSN':
             case 'TITL':
                 $className = ucfirst(strtolower($recordType));
-                $class = 'GedcomParserIndi'.$className;
+                $class = '\\Gedcom\\Parser\\Indi\\'.$className;
 
                 $att = $class::parse($parser);
                 $indi->addAttr($att);
@@ -112,7 +112,7 @@ class Indi extends \Gedcom\Parser\Component
             case 'ENDL':
             case 'SLGC':
                 $className = ucfirst(strtolower($recordType));
-                $class = 'GedcomParserIndi'.$className;
+                $class = '\\Gedcom\\Parser\\Indi\\'.$className;
 
                 $lds = $class::parse($parser);
                 $indi->{'add'.$recordType}[] = $lds;

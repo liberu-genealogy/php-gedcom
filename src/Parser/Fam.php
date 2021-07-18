@@ -74,7 +74,7 @@ class Fam extends \Gedcom\Parser\Component
                 case 'MARL':
                 case 'MARS':
                     $className = ucfirst(strtolower($recordType));
-                    $class = 'GedcomParserFam'.$className;
+                    $class = '\\Gedcom\\Parser\\Fam\\'.$className;
 
                     $even = $class::parse($parser);
                     $fam->addEven($even);
