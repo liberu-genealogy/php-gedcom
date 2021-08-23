@@ -17,15 +17,11 @@ namespace Gedcom\Writer\Indi;
 class Attr
 {
     /**
-     * @param \Gedcom\Record\Indi\Attr $attr
      * @param int                         $level
-     *
      * @return string
      */
     public static function convert (\Gedcom\Record\Indi\Attr &$attr, $level = 0)
     {
-        $output = '';
-
-        return $output;
+        return '';
     }
 }

@@ -45,7 +45,7 @@ class Caln extends \Gedcom\Parser\Component
                     $caln->setMedi(trim($record[2]));
                     break;
                 default:
-                    $parser->logUnhandledRecord(get_class().' @ '.__LINE__);
+                    $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
             }
 
             $parser->forward();

@@ -48,7 +48,7 @@ class Fone extends \Gedcom\Parser\Component
                     $fone->setType(trim($record[2]));
                     break;
                 default:
-                    $parser->logUnhandledRecord(get_class().' @ '.__LINE__);
+                    $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
             }
 
             $parser->forward();

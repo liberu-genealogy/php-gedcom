@@ -17,9 +17,7 @@ namespace Gedcom\Writer\Indi;
 class Even
 {
     /**
-     * @param \Gedcom\Record\Indi\Even $even
      * @param int                         $level
-     *
      * @return string
      */
     public static function convert (\Gedcom\Record\Indi\Even &$even, $level = 0)

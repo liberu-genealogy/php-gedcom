@@ -16,7 +16,7 @@ namespace Gedcom\Record\Head\Sour;
 
 class Data extends \Gedcom\Record
 {
-    protected $_data = null;
-    protected $_date = null;
-    protected $_copr = null;
+    protected $_data;
+    protected $_date;
+    protected $_copr;
 }

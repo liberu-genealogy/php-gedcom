@@ -17,9 +17,7 @@ namespace Gedcom\Writer\SourRef;
 class Even
 {
     /**
-     * @param \Gedcom\Record\SourRef\Even $even
      * @param int                            $level
-     *
      * @return string
      */
     public static function convert (\Gedcom\Record\SourRef\Even &$even, $level = 0)

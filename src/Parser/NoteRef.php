@@ -24,7 +24,7 @@ class NoteRef extends \Gedcom\Parser\Component
         $note = new \Gedcom\Record\NoteRef();
 
         if (count($record) < 3) {
-            $parser->logSkippedRecord('Missing note information; '.get_class(), ' @ '.__LINE__);
+            $parser->logSkippedRecord('Missing note information; '.self::class, ' @ '.__LINE__);
             $parser->skipToNextLevel($depth);
 
             return null;
@@ -34,7 +34,7 @@ class NoteRef extends \Gedcom\Parser\Component
             $note->setIsReference(true);
             $note->setNote($parser->normalizeIdentifier($record[2]));
         } else {
-            $before = $parser->getCurrentLine();
+            $parser->getCurrentLine();
             $note->setIsReference(false);
             $note->setNote($parser->parseMultiLineRecord());
         }
@@ -57,7 +57,7 @@ class NoteRef extends \Gedcom\Parser\Component
                     $note->addSour($sour);
                     break;
                 default:
-                    $parser->logUnhandledRecord(get_class().' @ '.__LINE__);
+                    $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
             }
 
             $parser->forward();

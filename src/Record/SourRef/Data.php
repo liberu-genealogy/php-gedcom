@@ -19,9 +19,9 @@ class Data extends \Gedcom\Record
     /**
      * string entry_recording_date.
      */
-    protected $_date = null;
+    protected $_date;
     /**
      * string text_from_source.
      */
-    protected $_text = null;
+    protected $_text;
 }

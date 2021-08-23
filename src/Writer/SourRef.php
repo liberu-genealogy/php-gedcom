@@ -17,9 +17,7 @@ namespace Gedcom\Writer;
 class SourRef
 {
     /**
-     * @param \Gedcom\Record\SourRef $sour
      * @param int                       $level
-     *
      * @return string
      */
     public static function convert (\Gedcom\Record\SourRef &$sour, $level)

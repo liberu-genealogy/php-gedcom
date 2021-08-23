@@ -17,15 +17,11 @@ namespace Gedcom\Writer\Sour\Data;
 class Even
 {
     /**
-     * @param \Gedcom\Record\Sour\Data\Even $even
      * @param int                              $level
-     *
      * @return string
      */
     public static function convert (\Gedcom\Record\Sour\Data\Even &$even, $level)
     {
-        $output = '';
-
         $output = $level." EVEN\n";
         $level++;
 

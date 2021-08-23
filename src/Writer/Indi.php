@@ -17,9 +17,7 @@ namespace Gedcom\Writer;
 class Indi
 {
     /**
-     * @param \Gedcom\Record\Indi $indi
      * @param string                 $format
-     *
      * @return string
      */
     public static function convert (\Gedcom\Record\Indi &$indi)

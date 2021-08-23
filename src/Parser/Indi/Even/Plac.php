@@ -54,7 +54,7 @@ class Plac extends \Gedcom\Parser\Component
                     $plac->addSour($sour);
                     break;
                 default:
-                    $parser->logUnhandledRecord(get_class().' @ '.__LINE__);
+                    $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
             }
 
             $parser->forward();

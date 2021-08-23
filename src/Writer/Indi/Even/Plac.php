@@ -17,9 +17,7 @@ namespace Gedcom\Writer\Indi\Even;
 class Plac
 {
     /**
-     * @param \Gedcom\Record\Indi\Even\Plac $plac
      * @param int                              $level
-     *
      * @return string
      */
     public static function convert (\Gedcom\Record\Indi\Even\Plac &$plac, $level = 0)

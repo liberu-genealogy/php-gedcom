@@ -17,9 +17,7 @@ namespace Gedcom\Writer;
 class Head
 {
     /**
-     * @param \Gedcom\Record\Head $head
      * @param string                 $format
-     *
      * @return string
      */
     public static function convert (\Gedcom\Record\Head &$head, $format = self::GEDCOM55)

@@ -69,7 +69,7 @@ class Subn extends \Gedcom\Record
     /**
      * @var \Gedcom\Record\Chan
      */
-    protected $_chan = null;
+    protected $_chan;
 
     public function setChan($chan)
     {

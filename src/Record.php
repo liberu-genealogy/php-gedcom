@@ -22,7 +22,7 @@ abstract class Record
             $arr = strtolower(substr($method, 3));
 
             if (!property_exists($this, '_'.$arr) || !is_array($this->{'_'.$arr})) {
-                throw new \Gedcom\Exception('Unknown '.get_class($this).'::'.$arr);
+                throw new \Gedcom\Exception('Unknown '.$this::class.'::'.$arr);
             }
 
             if (!is_array($args)) {
@@ -45,7 +45,7 @@ abstract class Record
             $arr = strtolower(substr($method, 3));
 
             if (!property_exists($this, '_'.$arr)) {
-                throw new \Gedcom\Exception('Unknown '.get_class($this).'::'.$arr);
+                throw new \Gedcom\Exception('Unknown '.$this::class.'::'.$arr);
             }
 
             if (!is_array($args)) {
@@ -70,14 +70,14 @@ abstract class Record
             // hotfix getData
             if ('data' == $arr) {
                 if (!property_exists($this, '_text')) {
-                    throw new \Gedcom\Exception('Unknown '.get_class($this).'::'.$arr);
+                    throw new \Gedcom\Exception('Unknown '.$this::class.'::'.$arr);
                 }
 
                 return $this->{'_text'};
             }
 
             if (!property_exists($this, '_'.$arr)) {
-                throw new \Gedcom\Exception('Unknown '.get_class($this).'::'.$arr);
+                throw new \Gedcom\Exception('Unknown '.$this::class.'::'.$arr);
             }
 
             return $this->{'_'.$arr};
@@ -89,7 +89,7 @@ abstract class Record
     public function __set($var, $val)
     {
         // this class does not have any public vars
-        throw new \Gedcom\Exception('Undefined property '.get_class().'::'.$var);
+        throw new \Gedcom\Exception('Undefined property '.self::class.'::'.$var);
     }
 
     /**

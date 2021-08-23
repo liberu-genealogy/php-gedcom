@@ -16,8 +16,8 @@ namespace Gedcom\Record\Head\Sour;
 
 class Corp extends \Gedcom\Record
 {
-    protected $_corp = null;
-    protected $_addr = null;
+    protected $_corp;
+    protected $_addr;
 
     protected $_phon = [];
 

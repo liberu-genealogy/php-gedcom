@@ -17,10 +17,8 @@ namespace Gedcom\Writer\Head;
 class Date
 {
     /**
-     * @param \Gedcom\Record\Head\Date $date
      * @param string                      $format
      * @param int                         $level
-     *
      * @return string
      */
     public static function convert (\Gedcom\Record\Head\Date &$date, $level)

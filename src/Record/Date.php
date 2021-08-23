@@ -24,7 +24,7 @@ class Date extends \Gedcom\Record
     /**
      * @var string
      */
-    protected $date = null;
+    protected $date;
 
     /**
      * @var array

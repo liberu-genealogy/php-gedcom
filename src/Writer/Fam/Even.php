@@ -17,9 +17,7 @@ namespace Gedcom\Writer\Fam;
 class Even
 {
     /**
-     * @param \Gedcom\Record\Fam\Even $even
      * @param int                        $level
-     *
      * @return string
      */
     public static function convert (\Gedcom\Record\Fam\Even &$even, $level)

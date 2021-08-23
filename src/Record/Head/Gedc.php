@@ -16,9 +16,9 @@ namespace Gedcom\Record\Head;
 
 class Gedc extends \Gedcom\Record
 {
-    protected $_vers = null;
+    protected $_vers;
 
-    protected $_form = null;
+    protected $_form;
 
     /**
      * @return Gedc/version

@@ -16,11 +16,11 @@ namespace Gedcom\Record;
 
 class Obje extends \Gedcom\Record implements Noteable
 {
-    protected $_id = null;
+    protected $_id;
 
     protected $_file = [];
-    protected $_rin = null;
-    protected $_chan = null;
+    protected $_rin;
+    protected $_chan;
 
     protected $_refn = [];
 

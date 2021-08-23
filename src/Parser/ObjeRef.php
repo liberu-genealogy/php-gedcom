@@ -50,7 +50,7 @@ class ObjeRef extends \Gedcom\Parser\Component
                     $obje->setFile(\Parser\ObjeRef\File::parse($parser));
                     break;
                 default:
-                    $parser->logUnhandledRecord(get_class().' @ '.__LINE__);
+                    $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
             }
 
             $parser->forward();

@@ -177,7 +177,7 @@ class Indi extends \Gedcom\Parser\Component
                 $indi->addObje($obje);
                 break;
             default:
-                $parser->logUnhandledRecord(get_class().' @ '.__LINE__);
+                $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
             }
 
             $parser->forward();

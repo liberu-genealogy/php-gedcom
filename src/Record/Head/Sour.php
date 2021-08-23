@@ -16,15 +16,15 @@ namespace Gedcom\Record\Head;
 
 class Sour extends \Gedcom\Record
 {
-    protected $_sour = null;
+    protected $_sour;
 
-    protected $_vers = null;
+    protected $_vers;
 
-    protected $_name = null;
+    protected $_name;
 
-    protected $_corp = null;
+    protected $_corp;
 
-    protected $_data = null;
+    protected $_data;
 
     /**
      * @param Sour\Corp $corp

@@ -68,7 +68,7 @@ class Romn extends \Gedcom\Parser\Component
                     $romn->setNsfx(trim($record[2]));
                     break;
                 default:
-                    $parser->logUnhandledRecord(get_class().' @ '.__LINE__);
+                    $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
             }
 
             $parser->forward();

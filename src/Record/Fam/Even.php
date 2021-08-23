@@ -27,20 +27,20 @@ use \Gedcom\Record\Sourceable;
  */
 class Even extends \Gedcom\Record implements Objectable, Sourceable, Noteable
 {
-    protected $_type = null;
-    protected $_date = null;
-    protected $_plac = null;
-    protected $_caus = null;
-    protected $_age = null;
+    protected $_type;
+    protected $_date;
+    protected $_plac;
+    protected $_caus;
+    protected $_age;
 
-    protected $_addr = null;
+    protected $_addr;
 
     protected $_phon = [];
 
-    protected $_agnc = null;
+    protected $_agnc;
 
-    protected $_husb = null;
-    protected $_wife = null;
+    protected $_husb;
+    protected $_wife;
 
     protected $_obje = [];
 

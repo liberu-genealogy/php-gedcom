@@ -92,7 +92,7 @@ class Even extends \Gedcom\Parser\Component
                 }
                 break;
             default:
-                $parser->logUnhandledRecord(get_class().' @ '.__LINE__);
+                $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
             }
 
             $parser->forward();

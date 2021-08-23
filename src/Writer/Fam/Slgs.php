@@ -17,9 +17,7 @@ namespace Gedcom\Writer\Fam;
 class Slgs
 {
     /**
-     * @param \Gedcom\Record\Fam\Slgs $slgs
      * @param int                        $level
-     *
      * @return string
      */
     public static function convert (\Gedcom\Record\Fam\Slgs &$slgs, $level)

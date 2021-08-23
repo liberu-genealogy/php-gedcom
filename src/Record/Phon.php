@@ -24,7 +24,7 @@ class Phon extends \Gedcom\Record
     /**
      * @var string
      */
-    protected $phon = null;
+    protected $phon;
 
     /**
      * @param $phon

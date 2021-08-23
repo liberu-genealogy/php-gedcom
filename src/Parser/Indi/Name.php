@@ -84,7 +84,7 @@ class Name extends \Gedcom\Parser\Component
                     $name->setRomn(\Parser\Indi\Name\Romn::parse($parser));
                     break;
                 default:
-                    $parser->logUnhandledRecord(get_class().' @ '.__LINE__);
+                    $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
             }
 
             $parser->forward();

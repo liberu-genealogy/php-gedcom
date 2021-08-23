@@ -46,7 +46,7 @@ class Addr extends \Gedcom\Parser\Component
                         $addr->setAddr($addr->getAddr().trim($record[2]));
                     }
                 } else {
-                    $parser->logUnhandledRecord(get_class().' @ '.__LINE__);
+                    $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
                 }
             }
 

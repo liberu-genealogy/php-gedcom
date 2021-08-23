@@ -40,7 +40,7 @@ class Husb extends \Gedcom\Parser\Component
                     $husband->setAge(trim($record[2]));
                     break;
                 default:
-                    $parser->logUnhandledRecord(get_class().' @ '.__LINE__);
+                    $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
             }
 
             $parser->forward();

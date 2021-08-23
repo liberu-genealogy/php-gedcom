@@ -19,9 +19,9 @@ class Caln extends \Gedcom\Record
     /**
      * string source_call_number.
      */
-    protected $_caln = null;
+    protected $_caln;
     /**
      * string source_media_type.
      */
-    protected $_medi = null;
+    protected $_medi;
 }

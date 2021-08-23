@@ -89,7 +89,7 @@ class Sour extends \Gedcom\Parser\Component
                     $sour->addObje($obje);
                     break;
                 default:
-                    $parser->logUnhandledRecord(get_class().' @ '.__LINE__);
+                    $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
             }
 
             $parser->forward();

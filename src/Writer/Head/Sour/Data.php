@@ -17,10 +17,8 @@ namespace Gedcom\Writer\Head\Sour;
 class Data
 {
     /**
-     * @param \Gedcom\Record\Head\Sour\Data $data
      * @param string                           $format
      * @param int                              $level
-     *
      * @return string
      */
     public static function convert (\Gedcom\Record\Head\Sour\Data &$data, $level)

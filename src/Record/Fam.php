@@ -16,19 +16,19 @@ namespace Gedcom\Record;
 
 class Fam extends \Gedcom\Record implements Noteable, Sourceable, Objectable
 {
-    protected $_id = null;
+    protected $_id;
 
-    protected $_resn = null;
+    protected $_resn;
 
     protected $_even = [];
 
-    protected $_husb = null;
+    protected $_husb;
 
-    protected $_wife = null;
+    protected $_wife;
 
     protected $_chil = [];
 
-    protected $_nchi = null;
+    protected $_nchi;
 
     protected $_subm = [];
 
@@ -36,9 +36,9 @@ class Fam extends \Gedcom\Record implements Noteable, Sourceable, Objectable
 
     protected $_refn = [];
 
-    protected $_rin = null;
+    protected $_rin;
 
-    protected $_chan = null;
+    protected $_chan;
 
     protected $_note = [];
 

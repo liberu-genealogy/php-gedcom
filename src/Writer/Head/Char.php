@@ -17,10 +17,8 @@ namespace Gedcom\Writer\Head;
 class Char
 {
     /**
-     * @param \Gedcom\Record\Head\Char $char
      * @param string                      $format
      * @param int                         $level
-     *
      * @return string
      */
     public static function convert (\Gedcom\Record\Head\Char &$char, $level)

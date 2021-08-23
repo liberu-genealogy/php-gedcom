@@ -28,8 +28,6 @@ class Even extends \Gedcom\Parser\Component
             return null;
         }
 
-        $even = null;
-
         if (strtoupper(trim($record[1])) != 'EVEN') {
             $className = 'GedcomRecordIndi'.ucfirst(strtolower(trim($record[1])));
             $even = new $className();

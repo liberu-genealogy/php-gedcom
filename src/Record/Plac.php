@@ -19,27 +19,27 @@ class Plac extends \Gedcom\Record implements Noteable
     /**
      * string plac.
      */
-    protected $_plac = null;
+    protected $_plac;
     /**
      * string place_hierarchy.
      */
-    protected $_form = null;
+    protected $_form;
     /**
      * array PhpRecord\Plac\Fone.
      */
-    protected $_fone = null;
+    protected $_fone;
     /**
      * array PhpRecord\Plac\Romn.
      */
-    protected $_romn = null;
+    protected $_romn;
     /**
      * PhpRecord\Plac\Map.
      */
-    protected $_map = null;
+    protected $_map;
     /**
      * array PhpRecord\NoteRef.
      */
-    protected $_note = null;
+    protected $_note;
 
     /**
      * @param PhpRecord\NoteRef $note

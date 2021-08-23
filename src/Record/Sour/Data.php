@@ -19,10 +19,10 @@ use \Gedcom\Record\Noteable;
 class Data extends \Gedcom\Record implements Noteable
 {
     protected $_even = [];
-    protected $_agnc = null;
-    protected $_date = null;
+    protected $_agnc;
+    protected $_date;
 
-    protected $_text = null;
+    protected $_text;
 
     protected $_note = [];
 

@@ -92,8 +92,6 @@ class Gedcom
 
     /**
      * Retrieves the header record of the GEDCOM file.
-     *
-     * @param \Gedcom\Record\Head $head
      */
     public function setHead (\Gedcom\Record\Head $head)
     {
@@ -102,8 +100,6 @@ class Gedcom
 
     /**
      * Retrieves the submission record of the GEDCOM file.
-     *
-     * @param \Gedcom\Record\Subn $subn
      */
     public function setSubn (\Gedcom\Record\Subn $subn)
     {
@@ -112,8 +108,6 @@ class Gedcom
 
     /**
      * Adds a source to the collection of sources.
-     *
-     * @param \Gedcom\Record\Sour $sour
      */
     public function addSour (\Gedcom\Record\Sour $sour)
     {
@@ -122,8 +116,6 @@ class Gedcom
 
     /**
      * Adds an individual to the collection of individuals.
-     *
-     * @param \Gedcom\Record\Indi $indi
      */
     public function addIndi (\Gedcom\Record\Indi $indi)
     {
@@ -135,8 +127,6 @@ class Gedcom
 
     /**
      * Adds a family to the collection of families.
-     *
-     * @param \Gedcom\Record\Fam $fam
      */
     public function addFam (\Gedcom\Record\Fam $fam)
     {
@@ -145,8 +135,6 @@ class Gedcom
 
     /**
      * Adds a note to the collection of notes.
-     *
-     * @param \Gedcom\Record\Note $note
      */
     public function addNote (\Gedcom\Record\Note $note)
     {
@@ -155,8 +143,6 @@ class Gedcom
 
     /**
      * Adds a repository to the collection of repositories.
-     *
-     * @param \Gedcom\Record\Repo $repo
      */
     public function addRepo (\Gedcom\Record\Repo $repo)
     {
@@ -165,8 +151,6 @@ class Gedcom
 
     /**
      * Adds an object to the collection of objects.
-     *
-     * @param \Gedcom\Record\Obje $obje
      */
     public function addObje (\Gedcom\Record\Obje $obje)
     {
@@ -175,8 +159,6 @@ class Gedcom
 
     /**
      * Adds a submitter record to the collection of submitters.
-     *
-     * @param \Gedcom\Record\Subm $subm
      */
     public function addSubm (\Gedcom\Record\Subm $subm)
     {

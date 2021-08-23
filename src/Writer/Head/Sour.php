@@ -17,10 +17,8 @@ namespace Gedcom\Writer\Head;
 class Sour
 {
     /**
-     * @param \Gedcom\Record\Head\Sour $sour
      * @param string                      $format
      * @param int                         $level
-     *
      * @return string
      */
     public static function convert (\Gedcom\Record\Head\Sour &$sour, $level)
