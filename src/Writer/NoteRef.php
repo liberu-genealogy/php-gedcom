@@ -17,10 +17,11 @@ namespace Gedcom\Writer;
 class NoteRef
 {
     /**
-     * @param int                       $level
+     * @param int $level
+     *
      * @return string
      */
-    public static function convert (\Gedcom\Record\NoteRef &$note, $level)
+    public static function convert(\Gedcom\Record\NoteRef &$note, $level)
     {
         $output = '';
 

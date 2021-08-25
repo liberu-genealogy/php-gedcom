@@ -14,7 +14,7 @@
 
 namespace Gedcom\Record\Sour;
 
-use \Gedcom\Record\Noteable;
+use Gedcom\Record\Noteable;
 
 class Repo extends \Gedcom\Record implements Noteable
 {

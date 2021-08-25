@@ -17,11 +17,12 @@ namespace Gedcom\Writer\Head;
 class Sour
 {
     /**
-     * @param string                      $format
-     * @param int                         $level
+     * @param string $format
+     * @param int    $level
+     *
      * @return string
      */
-    public static function convert (\Gedcom\Record\Head\Sour &$sour, $level)
+    public static function convert(\Gedcom\Record\Head\Sour &$sour, $level)
     {
         $output = '';
         $_sour = $sour->getSour();

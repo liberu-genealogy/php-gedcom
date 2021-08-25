@@ -14,8 +14,6 @@
 
 namespace Gedcom\Record\Plac;
 
-use \Gedcom\Record;
-
 /**
  * Class Refn.
  */

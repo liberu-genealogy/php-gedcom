@@ -17,11 +17,12 @@ namespace Gedcom\Writer;
 class Addr
 {
     /**
-     * @param string                 $format
-     * @param int                    $level
+     * @param string $format
+     * @param int    $level
+     *
      * @return string
      */
-    public static function convert (\Gedcom\Record\Addr &$addr, $format = self::GEDCOM55, $level = 1)
+    public static function convert(\Gedcom\Record\Addr &$addr, $format = self::GEDCOM55, $level = 1)
     {
         $addrs = explode("\n", $addr->getAddr());
 
@@ -33,7 +34,7 @@ class Addr
             $output .= ($level + 1).' CONT '.$cont."\n";
         }
 
-        return $output . (($level + 1).' ADR1 '.$addr->adr1."\n".
+        return $output.(($level + 1).' ADR1 '.$addr->adr1."\n".
             ($level + 1).' ADR2 '.$addr->getAdr2()."\n".
             ($level + 1).' CITY '.$addr->getCity()."\n".
             ($level + 1).' STAE '.$addr->getStae()."\n".

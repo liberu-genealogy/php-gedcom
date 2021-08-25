@@ -18,11 +18,11 @@ class Repo
 {
     /**
      * @param \Gedcom\Record\Repo $sour
-     * @param int                    $level
+     * @param int                 $level
      *
      * @return string
      */
-    public static function convert (\Gedcom\Record\Repo &$repo)
+    public static function convert(\Gedcom\Record\Repo &$repo)
     {
         $level = 0;
         $output = '';

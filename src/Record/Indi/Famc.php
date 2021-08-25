@@ -14,7 +14,7 @@
 
 namespace Gedcom\Record\Indi;
 
-use \Gedcom\Record\Noteable;
+use Gedcom\Record\Noteable;
 
 class Famc extends \Gedcom\Record implements Noteable
 {
