@@ -49,7 +49,7 @@ class Sour extends \Gedcom\Parser\Component
                     $source->setName(trim($record[2]));
                     break;
                 case 'CORP':
-                    $corp = Parser\Head\Sour\Corp::parse($parser);
+                    $corp = \Gedcom\Parser\Head\Sour\Corp::parse($parser);
                     $source->setCorp($corp);
                     break;
                 case 'DATA':

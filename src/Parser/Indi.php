@@ -61,6 +61,9 @@ class Indi extends \Gedcom\Parser\Component
                 break;
             case 'ADOP':
             case 'BIRT':
+                $birthday = \Gedcom\Parser\Date::parse($parser);
+                $indi->setBirthday($birthday);
+                break;
             case 'BAPM':
             case 'BARM':
             case 'BASM':
@@ -72,6 +75,7 @@ class Indi extends \Gedcom\Parser\Component
             case 'CONF':
             case 'CREM':
             case 'DEAT':
+                break;
             case 'EMIG':
             case 'FCOM':
             case 'GRAD':

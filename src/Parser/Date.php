@@ -20,6 +20,10 @@ class Date extends \Gedcom\Parser\Component
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
+
+        $parser->forward();
+        $record = $parser->getCurrentLineRecord();
+        
         if (isset($record[1])) {
             $dat = new \Gedcom\Record\Date();
             if (!empty($record[2])) {
@@ -30,7 +34,11 @@ class Date extends \Gedcom\Parser\Component
 
             return null;
         }
+        
+        if ($dat->getYear() && $dat->getMonth() && $dat->getDay()) {
+            return $dat->getYear() .'-'. substr("0{$dat->getMonth()}", -2) .'-'. substr("0{$dat->getDay()}", -2);
+        }
 
-        return $dat;
+        return null;
     }
 }
