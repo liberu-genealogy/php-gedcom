@@ -14,7 +14,7 @@
 
 namespace Gedcom\Record\Indi;
 
-use \Gedcom\Record;
+use Gedcom\Record;
 
 /**
  * Class Even.

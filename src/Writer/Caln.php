@@ -18,11 +18,11 @@ class Caln
 {
     /**
      * @param \Gedcom\Record\Caln $note
-     * @param int                    $level
+     * @param int                 $level
      *
      * @return string
      */
-    public static function convert (\Gedcom\Record\Caln &$caln, $level)
+    public static function convert(\Gedcom\Record\Caln &$caln, $level)
     {
         $output = '';
         $_caln = $caln->getCaln();

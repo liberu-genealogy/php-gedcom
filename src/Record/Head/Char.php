@@ -16,6 +16,6 @@ namespace Gedcom\Record\Head;
 
 class Char extends \Gedcom\Record
 {
-    protected $_char = null;
-    protected $_vers = null;
+    protected $_char;
+    protected $_vers;
 }

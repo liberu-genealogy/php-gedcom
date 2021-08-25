@@ -18,11 +18,11 @@ class Fams
 {
     /**
      * @param \Gedcom\Record\Indi\Fams $attr
-     * @param int                         $level
+     * @param int                      $level
      *
      * @return string
      */
-    public static function convert (\Gedcom\Record\Indi\Fams &$fams, $level = 0)
+    public static function convert(\Gedcom\Record\Indi\Fams &$fams, $level = 0)
     {
         $output = '';
         // NAME

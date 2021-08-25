@@ -18,11 +18,11 @@ class Fam
 {
     /**
      * @param \Gedcom\Record\Fam $sour
-     * @param int                   $level
+     * @param int                $level
      *
      * @return string
      */
-    public static function convert (\Gedcom\Record\Fam &$fam, $level = 0)
+    public static function convert(\Gedcom\Record\Fam &$fam, $level = 0)
     {
         $output = '';
         $id = $fam->getId();

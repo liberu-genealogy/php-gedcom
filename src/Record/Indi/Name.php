@@ -25,16 +25,16 @@ namespace Gedcom\Record\Indi;
  */
 class Name extends \Gedcom\Record implements \Gedcom\Record\Sourceable
 {
-    protected $_name = null;
-    protected $_npfx = null;
-    protected $_givn = null;
-    protected $_nick = null;
-    protected $_spfx = null;
-    protected $_surn = null;
-    protected $_nsfx = null;
-    protected $_fone = null; // Gedcom/
-    protected $_romn = null;
-    protected $_type = null;
+    protected $_name;
+    protected $_npfx;
+    protected $_givn;
+    protected $_nick;
+    protected $_spfx;
+    protected $_surn;
+    protected $_nsfx;
+    protected $_fone; // Gedcom/
+    protected $_romn;
+    protected $_type;
 
     protected $_note = [];
 

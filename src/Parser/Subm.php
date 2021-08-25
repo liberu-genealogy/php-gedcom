@@ -93,7 +93,7 @@ class Subm extends \Gedcom\Parser\Component
                     $subm->addLang(isset($record[2]) ? trim($record[2]) : '');
                     break;
                 default:
-                    $parser->logUnhandledRecord(get_class().' @ '.__LINE__);
+                    $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
             }
 
             $parser->forward();

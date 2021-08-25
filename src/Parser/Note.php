@@ -75,7 +75,7 @@ class Note extends \Gedcom\Parser\Component
                     $note->setChan($chan);
                     break;
                 default:
-                    $parser->logUnhandledRecord(get_class().' @ '.__LINE__);
+                    $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
             }
 
             $parser->forward();

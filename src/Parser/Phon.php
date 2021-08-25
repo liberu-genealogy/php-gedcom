@@ -43,7 +43,7 @@ class Phon extends \Gedcom\Parser\Component
 
             switch ($recordType) {
                 default:
-                    $parser->logUnhandledRecord(get_class().' @ '.__LINE__);
+                    $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
             }
 
             $parser->forward();

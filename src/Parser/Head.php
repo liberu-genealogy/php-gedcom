@@ -17,8 +17,6 @@ namespace Gedcom\Parser;
 class Head extends \Gedcom\Parser\Component
 {
     /**
-     * @param \Gedcom\Parser $parser
-     *
      * @return \Gedcom\Record\Head
      */
     public static function parse(\Gedcom\Parser $parser)
@@ -26,7 +24,7 @@ class Head extends \Gedcom\Parser\Component
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
         if (isset($record[1])) {
-            $identifier = $parser->normalizeIdentifier($record[1]);
+            $parser->normalizeIdentifier($record[1]);
         } else {
             $parser->skipToNextLevel($depth);
 
@@ -92,7 +90,7 @@ class Head extends \Gedcom\Parser\Component
                     $head->setNote($parser->parseMultiLineRecord());
                     break;
                 default:
-                    $parser->logUnhandledRecord(get_class().' @ '.__LINE__);
+                    $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
             }
 
             $parser->forward();

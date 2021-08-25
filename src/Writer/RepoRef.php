@@ -17,12 +17,11 @@ namespace Gedcom\Writer;
 class RepoRef
 {
     /**
-     * @param \Gedcom\Record\RepoRef $reporef
-     * @param int                       $level
+     * @param int $level
      *
      * @return string
      */
-    public static function convert (\Gedcom\Record\RepoRef &$reporef, $level)
+    public static function convert(\Gedcom\Record\RepoRef &$reporef, $level)
     {
         $output = '';
         $_repo = $reporef->getRepo();

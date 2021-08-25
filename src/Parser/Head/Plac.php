@@ -40,7 +40,7 @@ class Plac extends \Gedcom\Parser\Component
                     $plac->setForm(trim($record[2]));
                     break;
                 default:
-                    $parser->logUnhandledRecord(get_class().' @ '.__LINE__);
+                    $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
             }
 
             $parser->forward();

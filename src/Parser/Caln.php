@@ -46,7 +46,7 @@ class Caln extends \Gedcom\Parser\Component
             if ($caln->hasAttribute($recordType)) {
                 $caln->{'set'.$recordType}(trim($record[2]));
             } else {
-                $parser->logUnhandledRecord(get_class().' @ '.__LINE__);
+                $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
             }
 
             $parser->forward();

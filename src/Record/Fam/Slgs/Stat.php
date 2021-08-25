@@ -20,10 +20,10 @@ class Stat extends \Gedcom\Record
      * string lds_spouse_sealing_date_status
      * 2020/06/27 blue.
      */
-    protected $_stat = null;
+    protected $_stat;
 
     /**
      * string change_date.
      */
-    protected $_date = null;
+    protected $_date;
 }

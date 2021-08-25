@@ -17,12 +17,11 @@ namespace Gedcom\Writer;
 class SourRef
 {
     /**
-     * @param \Gedcom\Record\SourRef $sour
-     * @param int                       $level
+     * @param int $level
      *
      * @return string
      */
-    public static function convert (\Gedcom\Record\SourRef &$sour, $level)
+    public static function convert(\Gedcom\Record\SourRef &$sour, $level)
     {
         $output = '';
         $_sour = $sour->getSour();

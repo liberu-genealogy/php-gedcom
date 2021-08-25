@@ -45,7 +45,7 @@ class File extends \Gedcom\Parser\Component
                 case 'TITL':
                     $file->setTitl(trim($record[2]));
                 default:
-                    $parser->logUnhandledRecord(get_class().' @ '.__LINE__);
+                    $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
             }
 
             $parser->forward();

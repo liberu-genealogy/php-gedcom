@@ -16,6 +16,6 @@ namespace Gedcom\Record\Indi;
 
 class Adop extends \Gedcom\Record\Indi\Even
 {
-    protected $_adop = null;
-    protected $_famc = null;
+    protected $_adop;
+    protected $_famc;
 }

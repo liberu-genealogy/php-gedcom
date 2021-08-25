@@ -17,13 +17,12 @@ namespace Gedcom\Writer\Head\Sour;
 class Corp
 {
     /**
-     * @param \Gedcom\Record\Head\Sour\Corp $corp
-     * @param string                           $format
-     * @param int                              $level
+     * @param string $format
+     * @param int    $level
      *
      * @return string
      */
-    public static function convert (\Gedcom\Record\Head\Sour\Corp &$corp, $level)
+    public static function convert(\Gedcom\Record\Head\Sour\Corp &$corp, $level)
     {
         $output = '';
         $_corp = $corp->getCorp();

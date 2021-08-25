@@ -46,7 +46,7 @@ class Repo extends \Gedcom\Parser\Component
                     $repo->addCaln(\Parser\Sour\Repo\Caln::parse($parser));
                     break;
                 default:
-                    $parser->logUnhandledRecord(get_class().' @ '.__LINE__);
+                    $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
             }
 
             $parser->forward();

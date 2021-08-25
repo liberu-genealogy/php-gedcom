@@ -18,11 +18,11 @@ class Name
 {
     /**
      * @param \Gedcom\Record\Indi\Name $attr
-     * @param int                         $level
+     * @param int                      $level
      *
      * @return string
      */
-    public static function convert (\Gedcom\Record\Indi\Name &$name, $level = 0)
+    public static function convert(\Gedcom\Record\Indi\Name &$name, $level = 0)
     {
         $output = '';
         // NAME

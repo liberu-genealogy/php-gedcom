@@ -18,11 +18,11 @@ class Wife
 {
     /**
      * @param \Gedcom\Record\Fam\Even\Wife $attr
-     * @param int                             $level
+     * @param int                          $level
      *
      * @return string
      */
-    public static function convert (\Gedcom\Record\Fam\Even\Wife &$wife, $level = 0)
+    public static function convert(\Gedcom\Record\Fam\Even\Wife &$wife, $level = 0)
     {
         $output = '';
 

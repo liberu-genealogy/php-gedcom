@@ -16,9 +16,9 @@ namespace Gedcom;
 
 class Parser
 {
-    protected $_file = null;
+    protected $_file;
 
-    protected $_gedcom = null;
+    protected $_gedcom;
 
     protected $_errorLog = [];
 
@@ -26,7 +26,7 @@ class Parser
 
     protected $_line = '';
 
-    protected $_lineRecord = null;
+    protected $_lineRecord;
 
     protected $_linePieces = 0;
 
@@ -201,9 +201,8 @@ class Parser
     public function normalizeIdentifier($identifier)
     {
         $identifier = trim($identifier);
-        $identifier = trim($identifier, '@');
 
-        return $identifier;
+        return trim($identifier, '@');
     }
 
     /**
@@ -236,35 +235,35 @@ class Parser
             if ($depth == 0) {
                 // Although not always an identifier (HEAD,TRLR):
                 if (isset($record[1])) {
-                    $identifier = $this->normalizeIdentifier($record[1]);
+                    $this->normalizeIdentifier($record[1]);
                 }
 
                 if (isset($record[1]) && trim($record[1]) == 'HEAD') {
-                     \Gedcom\Parser\Head::parse($this);
+                    \Gedcom\Parser\Head::parse($this);
                 } elseif (isset($record[2]) && trim($record[2]) == 'SUBN') {
-                     \Gedcom\Parser\Subn::parse($this);
+                    \Gedcom\Parser\Subn::parse($this);
                 } elseif (isset($record[2]) && trim($record[2]) == 'SUBM') {
-                     \Gedcom\Parser\Subm::parse($this);
+                    \Gedcom\Parser\Subm::parse($this);
                 } elseif (isset($record[2]) && $record[2] == 'SOUR') {
-                     \Gedcom\Parser\Sour::parse($this);
+                    \Gedcom\Parser\Sour::parse($this);
                 } elseif (isset($record[2]) && $record[2] == 'INDI') {
-                     \Gedcom\Parser\Indi::parse($this);
+                    \Gedcom\Parser\Indi::parse($this);
                 } elseif (isset($record[2]) && $record[2] == 'FAM') {
-                     \Gedcom\Parser\Fam::parse($this);
+                    \Gedcom\Parser\Fam::parse($this);
                 } elseif (isset($record[2]) && substr(trim($record[2]), 0, 4) == 'NOTE') {
-                     \Gedcom\Parser\Note::parse($this);
+                    \Gedcom\Parser\Note::parse($this);
                 } elseif (isset($record[2]) && $record[2] == 'REPO') {
-                     \Gedcom\Parser\Repo::parse($this);
+                    \Gedcom\Parser\Repo::parse($this);
                 } elseif (isset($record[2]) && $record[2] == 'OBJE') {
-                     \Gedcom\Parser\Obje::parse($this);
+                    \Gedcom\Parser\Obje::parse($this);
                 } elseif (isset($record[1]) && trim($record[1]) == 'TRLR') {
                     // EOF
                     break;
                 } else {
-                    $this->logUnhandledRecord(get_class().' @ '.__LINE__);
+                    $this->logUnhandledRecord(self::class.' @ '.__LINE__);
                 }
             } else {
-                $this->logUnhandledRecord(get_class().' @ '.__LINE__);
+                $this->logUnhandledRecord(self::class.' @ '.__LINE__);
             }
 
             $this->forward();

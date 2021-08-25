@@ -14,25 +14,25 @@
 
 namespace Gedcom;
 
-use \Gedcom\Writer\Fam;
-use \Gedcom\Writer\Head;
-use \Gedcom\Writer\Indi;
-use \Gedcom\Writer\Note;
-use \Gedcom\Writer\Obje;
-use \Gedcom\Writer\Repo;
-use \Gedcom\Writer\Sour;
-use \Gedcom\Writer\Subm;
-use \Gedcom\Writer\Subn;
+use Gedcom\Writer\Fam;
+use Gedcom\Writer\Head;
+use Gedcom\Writer\Indi;
+use Gedcom\Writer\Note;
+use Gedcom\Writer\Obje;
+use Gedcom\Writer\Repo;
+use Gedcom\Writer\Sour;
+use Gedcom\Writer\Subm;
+use Gedcom\Writer\Subn;
 
 class Writer
 {
     const GEDCOM55 = 'gedcom5.5';
 
-    protected $_output = null;
+    protected $_output;
 
     /**
      * @param  $gedcom The GEDCOM object
-     * @param string            $format The format to convert the GEDCOM object to
+     * @param string $format The format to convert the GEDCOM object to
      *
      * @return string The contents of the document in the converted format
      */

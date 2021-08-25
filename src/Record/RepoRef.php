@@ -16,7 +16,7 @@ namespace Gedcom\Record;
 
 class RepoRef extends \Gedcom\Record implements Noteable
 {
-    protected $_repo = null;
+    protected $_repo;
 
     protected $_caln = [];
 

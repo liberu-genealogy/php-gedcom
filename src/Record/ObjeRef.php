@@ -18,11 +18,11 @@ class ObjeRef extends \Gedcom\Record
 {
     protected $_isRef = false;
 
-    protected $_obje = null;
+    protected $_obje;
 
-    protected $_titl = null;
+    protected $_titl;
 
-    protected $_file = null;
+    protected $_file;
 
     public function setIsReference($isReference = true)
     {

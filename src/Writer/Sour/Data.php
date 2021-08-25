@@ -17,15 +17,12 @@ namespace Gedcom\Writer\Sour;
 class Data
 {
     /**
-     * @param \Gedcom\Record\Sour\Data $data
-     * @param int                         $level
+     * @param int $level
      *
      * @return string
      */
-    public static function convert (\Gedcom\Record\Sour\Data &$data, $level = 0)
+    public static function convert(\Gedcom\Record\Sour\Data &$data, $level = 0)
     {
-        $output = '';
-
         $output = $level." DATA\n";
         $level++;
 

@@ -16,5 +16,5 @@ namespace Gedcom\Record\Head;
 
 class Plac extends \Gedcom\Record
 {
-    protected $_form = null;
+    protected $_form;
 }

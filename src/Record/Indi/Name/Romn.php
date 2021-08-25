@@ -14,8 +14,6 @@
 
 namespace Gedcom\Record\Indi\Name;
 
-use \Gedcom\Record;
-
 /**
  * Class Refn.
  */
@@ -33,27 +31,27 @@ class Romn extends \Gedcom\Record
     /**
      * string name_piece_prefix.
      */
-    protected $_npfx = null;
+    protected $_npfx;
     /**
      * string name_piece_given.
      */
-    protected $_givn = null;
+    protected $_givn;
     /**
      * string name_piece_nickname.
      */
-    protected $_nick = null;
+    protected $_nick;
     /**
      * strign name_piece_surname_prefix.
      */
-    protected $_spfx = null;
+    protected $_spfx;
     /**
      * string name_piece_surname.
      */
-    protected $_surn = null;
+    protected $_surn;
     /**
      * string name_piece_suffix.
      */
-    protected $_nsfx = null;
+    protected $_nsfx;
 
     /**
      * PhpRecord\NoteRef.

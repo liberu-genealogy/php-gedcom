@@ -82,7 +82,7 @@ class Repo extends \Gedcom\Parser\Component
                     $repo->setChan($chan);
                     break;
                 default:
-                    $parser->logUnhandledRecord(get_class().' @ '.__LINE__);
+                    $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
             }
 
             $parser->forward();

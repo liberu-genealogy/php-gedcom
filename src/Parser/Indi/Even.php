@@ -14,8 +14,6 @@
 
 namespace Gedcom\Parser\Indi;
 
-use \Gedcom\Parser\Chan;
-
 class Even extends \Gedcom\Parser\Component
 {
     public static function parse(\Gedcom\Parser $parser)
@@ -27,8 +25,6 @@ class Even extends \Gedcom\Parser\Component
 
             return null;
         }
-
-        $even = null;
 
         if (strtoupper(trim($record[1])) != 'EVEN') {
             $className = 'GedcomRecordIndi'.ucfirst(strtolower(trim($record[1])));

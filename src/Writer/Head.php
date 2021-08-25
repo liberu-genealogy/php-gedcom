@@ -17,12 +17,11 @@ namespace Gedcom\Writer;
 class Head
 {
     /**
-     * @param \Gedcom\Record\Head $head
-     * @param string                 $format
+     * @param string $format
      *
      * @return string
      */
-    public static function convert (\Gedcom\Record\Head &$head, $format = self::GEDCOM55)
+    public static function convert(\Gedcom\Record\Head &$head, $format = self::GEDCOM55)
     {
         $level = 0;
         $output = $level." HEAD\n";

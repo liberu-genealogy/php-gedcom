@@ -18,12 +18,12 @@ class SourRef extends \Gedcom\Record
 {
     protected $_isRef = false;
 
-    protected $_sour = null;
-    protected $_page = null;
-    protected $_even = null;
-    protected $_data = null;
-    protected $_quay = null;
-    protected $_text = null;
+    protected $_sour;
+    protected $_page;
+    protected $_even;
+    protected $_data;
+    protected $_quay;
+    protected $_text;
 
     protected $_obje = [];
     protected $_note = [];

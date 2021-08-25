@@ -18,11 +18,11 @@ class Subm
 {
     /**
      * @param \Gedcom\Record\Subm $note
-     * @param int                    $level
+     * @param int                 $level
      *
      * @return string
      */
-    public static function convert (\Gedcom\Record\Subm &$subm)
+    public static function convert(\Gedcom\Record\Subm &$subm)
     {
         $level = 0;
         $output = '';

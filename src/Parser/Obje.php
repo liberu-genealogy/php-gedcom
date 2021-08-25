@@ -64,9 +64,6 @@ class Obje extends \Gedcom\Parser\Component
                     }
                     break;
                 case 'SOUR':
-                    $chan = \Gedcom\Parser\Chan::parse($parser);
-                    $obje->setChan($chan);
-                    break;
 
                 case 'CHAN':
                     $chan = \Gedcom\Parser\Chan::parse($parser);
@@ -74,7 +71,7 @@ class Obje extends \Gedcom\Parser\Component
                     break;
 
                 default:
-                    $parser->logUnhandledRecord(get_class().' @ '.__LINE__);
+                    $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
             }
 
             $parser->forward();

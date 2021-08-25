@@ -16,6 +16,6 @@ namespace Gedcom\Record\Head;
 
 class Date extends \Gedcom\Record
 {
-    protected $_date = null;
-    protected $_time = null;
+    protected $_date;
+    protected $_time;
 }

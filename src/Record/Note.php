@@ -16,15 +16,15 @@ namespace Gedcom\Record;
 
 class Note extends \Gedcom\Record implements Sourceable
 {
-    protected $_id = null;
-    protected $_note = null;
+    protected $_id;
+    protected $_note;
 
-    protected $_even = null;
+    protected $_even;
     protected $_refn = [];
-    protected $_rin = null;
+    protected $_rin;
 
     protected $_sour = [];
-    protected $_chan = null;
+    protected $_chan;
 
     public function addRefn($refn = [])
     {

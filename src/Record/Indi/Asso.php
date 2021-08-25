@@ -14,13 +14,13 @@
 
 namespace Gedcom\Record\Indi;
 
-use \Gedcom\Record\Noteable;
-use \Gedcom\Record\Sourceable;
+use Gedcom\Record\Noteable;
+use Gedcom\Record\Sourceable;
 
 class Asso extends \Gedcom\Record implements Sourceable, Noteable
 {
-    protected $_indi = null;
-    protected $_rela = null;
+    protected $_indi;
+    protected $_rela;
 
     protected $_note = [];
 

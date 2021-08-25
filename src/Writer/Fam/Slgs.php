@@ -17,12 +17,11 @@ namespace Gedcom\Writer\Fam;
 class Slgs
 {
     /**
-     * @param \Gedcom\Record\Fam\Slgs $slgs
-     * @param int                        $level
+     * @param int $level
      *
      * @return string
      */
-    public static function convert (\Gedcom\Record\Fam\Slgs &$slgs, $level)
+    public static function convert(\Gedcom\Record\Fam\Slgs &$slgs, $level)
     {
         $output = '';
         $output .= $level." SLGS \n";

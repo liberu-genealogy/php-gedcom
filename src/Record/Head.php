@@ -14,8 +14,6 @@
 
 namespace Gedcom\Record;
 
-use \Gedcom\Record;
-
 /**
  * Stores the data from the HEAD section of a GEDCOM 5.5 file.
  */
@@ -24,62 +22,62 @@ class Head extends \Gedcom\Record
     /**
      * @var Head\Sour
      */
-    protected $sour = null;
+    protected $sour;
 
     /**
      * @var string
      */
-    protected $dest = null;
+    protected $dest;
 
     /**
      * @var Head\Date
      */
-    protected $date = null;
+    protected $date;
 
     /**
      * @var string
      */
-    protected $subm = null;
+    protected $subm;
 
     /**
      * @var string
      */
-    protected $subn = null;
+    protected $subn;
 
     /**
      * @var string
      */
-    protected $file = null;
+    protected $file;
 
     /**
      * @var string
      */
-    protected $copr = null;
+    protected $copr;
 
     /**
      * @var Head\Gedc
      */
-    protected $gedc = null;
+    protected $gedc;
 
     /**
      * @var Head\Char
      */
-    protected $char = null;
+    protected $char;
 
     /**
      * @var string
      */
-    protected $lang = null;
+    protected $lang;
 
     /**
      * @var Head\Plac
      */
-    protected $plac = null;
+    protected $plac;
 
     /**
      * @var string
      */
-    protected $note = null;
+    protected $note;
 
     /**
      * @param \Gedcom\Record\Head\Sour $sour

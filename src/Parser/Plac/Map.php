@@ -43,7 +43,7 @@ class Map extends \Gedcom\Parser\Component
                     $map->setLong(trim($record[2]));
                     break;
                 default:
-                    $parser->logUnhandledRecord(get_class().' @ '.__LINE__);
+                    $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
             }
 
             $parser->forward();

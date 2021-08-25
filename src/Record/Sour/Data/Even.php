@@ -16,6 +16,6 @@ namespace Gedcom\Record\Sour\Data;
 
 class Even extends \Gedcom\Record
 {
-    protected $_date = null;
-    protected $_plac = null;
+    protected $_date;
+    protected $_plac;
 }

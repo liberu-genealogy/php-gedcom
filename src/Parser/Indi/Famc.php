@@ -22,7 +22,7 @@ class Famc extends \Gedcom\Parser\Component
         $depth = (int) $record[0];
 
         if (count($record) < 3) {
-            $parser->logSkippedRecord('Missing family information; '.get_class(), ' @ '.__LINE__);
+            $parser->logSkippedRecord('Missing family information; '.self::class, ' @ '.__LINE__);
             $parser->skipToNextLevel($depth);
 
             return null;
@@ -56,7 +56,7 @@ class Famc extends \Gedcom\Parser\Component
                     }
                     break;
                 default:
-                    $parser->logUnhandledRecord(get_class().' @ '.__LINE__);
+                    $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
             }
 
             $parser->forward();

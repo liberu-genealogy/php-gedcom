@@ -14,8 +14,6 @@
 
 namespace Gedcom\Record;
 
-use \Gedcom\Record;
-
 /**
  * Class Data.
  */
