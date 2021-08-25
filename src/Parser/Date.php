@@ -39,6 +39,6 @@ class Date extends \Gedcom\Parser\Component
             return $dat->getYear().'-'.substr("0{$dat->getMonth()}", -2).'-'.substr("0{$dat->getDay()}", -2);
         }
 
-        return null;
+        return $dat->getYear();
     }
 }
