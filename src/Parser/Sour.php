@@ -47,7 +47,7 @@ class Sour extends \Gedcom\Parser\Component
 
             switch ($recordType) {
                 case 'DATA':
-                    $sour->setData(\Parser\Sour\Data::parse($parser));
+                    $sour->setData(\Gedcom\Parser\Sour\Data::parse($parser));
                     break;
                 case 'AUTH':
                     $sour->setAuth($parser->parseMultilineRecord());
@@ -65,7 +65,7 @@ class Sour extends \Gedcom\Parser\Component
                     $sour->setText($parser->parseMultilineRecord());
                     break;
                 case 'REPO':
-                    $sour->setRepo(\Parser\Sour\Repo::parse($parser));
+                    $sour->setRepo(\Gedcom\Parser\Sour\Repo::parse($parser));
                     break;
                 case 'REFN':
                     $refn = \Gedcom\Parser\Refn::parse($parser);

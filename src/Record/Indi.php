@@ -138,6 +138,20 @@ class Indi extends \Gedcom\Record implements Noteable, Objectable, Sourceable
      * @var Indi\Asso[]
      */
     protected $asso = [];
+    
+    protected $birthday;
+    
+    public function setBirthday($birthday = '')
+    {
+        $this->birthday = $birthday;
+        
+        return $this;
+    }
+    
+    public function getBirthday()
+    {
+        return $this->birthday;
+    }
 
     /**
      * @param string $id

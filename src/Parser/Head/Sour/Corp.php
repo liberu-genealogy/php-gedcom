@@ -43,7 +43,7 @@ class Corp extends \Gedcom\Parser\Component
 
             switch ($recordType) {
                 case 'ADDR':
-                    $corp->setAddr(\Parser\Addr::parse($parser));
+                    $corp->setAddr(\Gedcom\Parser\Addr::parse($parser));
                     break;
                 case 'PHON':
                     $corp->addPhon(trim($record[2]));
