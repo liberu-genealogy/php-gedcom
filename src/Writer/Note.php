@@ -18,11 +18,11 @@ class Note
 {
     /**
      * @param \Gedcom\Record\Note $sour
-     * @param int                    $level
+     * @param int                 $level
      *
      * @return string
      */
-    public static function convert (\Gedcom\Record\Note &$note)
+    public static function convert(\Gedcom\Record\Note &$note)
     {
         $level = 0;
         $output = '';

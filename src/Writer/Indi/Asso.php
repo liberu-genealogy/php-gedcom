@@ -18,11 +18,11 @@ class Asso
 {
     /**
      * @param \Gedcom\Record\Indi\Asso $attr
-     * @param int                         $level
+     * @param int                      $level
      *
      * @return string
      */
-    public static function convert (\Gedcom\Record\Indi\Asso &$asso, $level = 0)
+    public static function convert(\Gedcom\Record\Indi\Asso &$asso, $level = 0)
     {
         $output = '';
         // _indi

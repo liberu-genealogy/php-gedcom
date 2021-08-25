@@ -14,16 +14,16 @@
 
 namespace Gedcom\Record\Fam;
 
-use \Gedcom\Record\Noteable;
-use \Gedcom\Record\Objectable;
-use \Gedcom\Record\Sourceable;
+use Gedcom\Record\Noteable;
+use Gedcom\Record\Objectable;
+use Gedcom\Record\Sourceable;
 
 /**
  * Event record.
  *
- * @method mixed                  getType()
+ * @method mixed        getType()
  * @method \Record\Date getDate()
- * @method string                 getPlac()
+ * @method string       getPlac()
  */
 class Even extends \Gedcom\Record implements Objectable, Sourceable, Noteable
 {

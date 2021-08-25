@@ -93,7 +93,7 @@ class Gedcom
     /**
      * Retrieves the header record of the GEDCOM file.
      */
-    public function setHead (\Gedcom\Record\Head $head)
+    public function setHead(\Gedcom\Record\Head $head)
     {
         $this->head = $head;
     }
@@ -101,7 +101,7 @@ class Gedcom
     /**
      * Retrieves the submission record of the GEDCOM file.
      */
-    public function setSubn (\Gedcom\Record\Subn $subn)
+    public function setSubn(\Gedcom\Record\Subn $subn)
     {
         $this->subn = $subn;
     }
@@ -109,7 +109,7 @@ class Gedcom
     /**
      * Adds a source to the collection of sources.
      */
-    public function addSour (\Gedcom\Record\Sour $sour)
+    public function addSour(\Gedcom\Record\Sour $sour)
     {
         $this->sour[$sour->getSour()] = $sour;
     }
@@ -117,7 +117,7 @@ class Gedcom
     /**
      * Adds an individual to the collection of individuals.
      */
-    public function addIndi (\Gedcom\Record\Indi $indi)
+    public function addIndi(\Gedcom\Record\Indi $indi)
     {
         $this->indi[$indi->getId()] = $indi;
         if ($indi->getUid()) {
@@ -128,7 +128,7 @@ class Gedcom
     /**
      * Adds a family to the collection of families.
      */
-    public function addFam (\Gedcom\Record\Fam $fam)
+    public function addFam(\Gedcom\Record\Fam $fam)
     {
         $this->fam[$fam->getId()] = $fam;
     }
@@ -136,7 +136,7 @@ class Gedcom
     /**
      * Adds a note to the collection of notes.
      */
-    public function addNote (\Gedcom\Record\Note $note)
+    public function addNote(\Gedcom\Record\Note $note)
     {
         $this->note[$note->getId()] = $note;
     }
@@ -144,7 +144,7 @@ class Gedcom
     /**
      * Adds a repository to the collection of repositories.
      */
-    public function addRepo (\Gedcom\Record\Repo $repo)
+    public function addRepo(\Gedcom\Record\Repo $repo)
     {
         $this->repo[$repo->getRepo()] = $repo;
     }
@@ -152,7 +152,7 @@ class Gedcom
     /**
      * Adds an object to the collection of objects.
      */
-    public function addObje (\Gedcom\Record\Obje $obje)
+    public function addObje(\Gedcom\Record\Obje $obje)
     {
         $this->obje[$obje->getId()] = $obje;
     }
@@ -160,7 +160,7 @@ class Gedcom
     /**
      * Adds a submitter record to the collection of submitters.
      */
-    public function addSubm (\Gedcom\Record\Subm $subm)
+    public function addSubm(\Gedcom\Record\Subm $subm)
     {
         $this->subm[$subm->getSubm()] = $subm;
     }

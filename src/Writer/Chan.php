@@ -18,11 +18,11 @@ class Chan
 {
     /**
      * @param \Gedcom\Record\Chan $note
-     * @param int                    $level
+     * @param int                 $level
      *
      * @return string
      */
-    public static function convert (\Gedcom\Record\Chan &$chan, $level)
+    public static function convert(\Gedcom\Record\Chan &$chan, $level)
     {
         $output = $level." CHAN \n";
         // level up

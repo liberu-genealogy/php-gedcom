@@ -14,8 +14,6 @@
 
 namespace Gedcom\Parser\Indi;
 
-use \Gedcom\Parser\Chan;
-
 class Even extends \Gedcom\Parser\Component
 {
     public static function parse(\Gedcom\Parser $parser)

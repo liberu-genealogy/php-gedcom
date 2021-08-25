@@ -18,11 +18,11 @@ class Obje
 {
     /**
      * @param \Gedcom\Record\Obje $sour
-     * @param int                    $level
+     * @param int                 $level
      *
      * @return string
      */
-    public static function convert (\Gedcom\Record\Obje &$obje)
+    public static function convert(\Gedcom\Record\Obje &$obje)
     {
         $level = 0;
         $output = '';

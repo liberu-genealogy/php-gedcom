@@ -18,11 +18,11 @@ class Husb
 {
     /**
      * @param \Gedcom\Record\Fam\Even\Husb $attr
-     * @param int                             $level
+     * @param int                          $level
      *
      * @return string
      */
-    public static function convert (\Gedcom\Record\Fam\Even\Husb &$husb, $level = 0)
+    public static function convert(\Gedcom\Record\Fam\Even\Husb &$husb, $level = 0)
     {
         $output = '';
 

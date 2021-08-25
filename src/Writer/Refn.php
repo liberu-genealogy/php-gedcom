@@ -18,11 +18,11 @@ class Refn
 {
     /**
      * @param \Gedcom\Record\Refn $note
-     * @param int                    $level
+     * @param int                 $level
      *
      * @return string
      */
-    public static function convert (\Gedcom\Record\Refn &$refn, $level)
+    public static function convert(\Gedcom\Record\Refn &$refn, $level)
     {
         $output = '';
         $_refn = $refn->getRefn();

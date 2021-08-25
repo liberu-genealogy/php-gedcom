@@ -17,11 +17,12 @@ namespace Gedcom\Writer\Head;
 class Gedc
 {
     /**
-     * @param string                      $format
-     * @param int                         $level
+     * @param string $format
+     * @param int    $level
+     *
      * @return string
      */
-    public static function convert (\Gedcom\Record\Head\Gedc &$gedc, $level)
+    public static function convert(\Gedcom\Record\Head\Gedc &$gedc, $level)
     {
         $output = $level." GEDC \n";
 

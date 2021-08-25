@@ -14,7 +14,7 @@
 
 namespace Gedcom\Record;
 
-use \Gedcom\Record;
+use Gedcom\Record;
 
 /**
  * Class Subm.

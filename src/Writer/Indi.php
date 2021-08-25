@@ -17,10 +17,11 @@ namespace Gedcom\Writer;
 class Indi
 {
     /**
-     * @param string                 $format
+     * @param string $format
+     *
      * @return string
      */
-    public static function convert (\Gedcom\Record\Indi &$indi)
+    public static function convert(\Gedcom\Record\Indi &$indi)
     {
         $level = 0;
 
