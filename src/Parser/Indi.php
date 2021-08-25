@@ -69,12 +69,17 @@ class Indi extends \Gedcom\Parser\Component
             case 'BASM':
             case 'BLES':
             case 'BURI':
+                $burialday = \Gedcom\Parser\Date::parse($parser);
+                $indi->setBurialday($burialday);
+                break;
             case 'CENS':
             case 'CHR':
             case 'CHRA':
             case 'CONF':
             case 'CREM':
             case 'DEAT':
+                $deathday = \Gedcom\Parser\Date::parse($parser);
+                $indi->setDeathday($deathday);
                 break;
             case 'EMIG':
             case 'FCOM':
