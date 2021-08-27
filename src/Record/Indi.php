@@ -151,6 +151,8 @@ class Indi extends \Gedcom\Record implements Noteable, Objectable, Sourceable
     protected $buri;
 
     protected $deat;
+
+    protected $chr;
     
     public function setBirt($birt) {
         $this->birt = $birt;
@@ -174,6 +176,14 @@ class Indi extends \Gedcom\Record implements Noteable, Objectable, Sourceable
 
     public function getDeat() {
         return $this->deat;
+    }
+
+    public function setChr($chr) {
+        $this->chr = $chr;
+    }
+
+    public function getChr() {
+        return $this->chr;
     }
 
     /**

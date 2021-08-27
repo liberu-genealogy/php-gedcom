@@ -27,6 +27,8 @@ class Birt extends \Gedcom\Record
     ];
     
     public $date;
+    
+    public $month;
 
     public $year;
 
@@ -42,8 +44,8 @@ class Birt extends \Gedcom\Record
             $this->dateFormatted = $this->getYear() .'-'. $this->getMonth() .'-'. substr("0{$this->getDay()}", -2);
         }
         else {
-            $this->year = $date;
-            $this->date = null;
+            $this->month = $this->getMonth();
+            $this->year = $this->getYear();
         }
     }
     
