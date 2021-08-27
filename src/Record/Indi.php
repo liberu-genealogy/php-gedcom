@@ -30,6 +30,11 @@ class Indi extends \Gedcom\Record implements Noteable, Objectable, Sourceable
     /**
      * @var string
      */
+    protected $gid;
+
+    /**
+     * @var string
+     */
     protected $uid;
 
     /**
@@ -199,6 +204,26 @@ class Indi extends \Gedcom\Record implements Noteable, Objectable, Sourceable
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @param string $id
+     *
+     * @return Indi
+     */
+    public function setGid($gid = '')
+    {
+        $this->gid = $gid;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGid()
+    {
+        return $this->gid;
     }
 
     /**

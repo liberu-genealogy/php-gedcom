@@ -27,21 +27,18 @@ class Indi
 
         // id
         $id = $indi->getId();
-        $output = $level.' @'.$id."@ INDI\n";
+
+        // gid
+        $gid = $indi->getGid();
+        $output = $level.' @'.$gid."@ INDI\n";
 
         // increase level after start indi
         $level++;
 
-        // name
-        // $name = $indi->getName();
-        // if(!empty($name)){
-        //     $output.=$level." NAME ".$name."\n";
-        // }
-
-        // chan
-        $chan = $indi->getChan();
-        if (!empty($chan)) {
-            $output .= $level.' CHAN '.$chan."\n";
+        // uid
+        $uid = $indi->getUid();
+        if (!empty($uid)) {
+            $output .= $level.' _UID '.$uid."\n";
         }
 
         // $attr
@@ -116,6 +113,27 @@ class Indi
         $sex = $indi->getSex();
         if (!empty($sex)) {
             $output .= $level.' SEX '.$sex."\n";
+        }
+
+        // $birthday
+        $birthday = $indi->getBirthday();
+        if (!empty($birthday)) {
+            $output .= $level.' BIRT '."\n";
+            $output .= ($level+1).' DATE '.$birthday."\n";
+        }
+
+        // $deathday
+        $deathday = $indi->getDeathday();
+        if (!empty($deathday)) {
+            $output .= $level.' DEAT '."\n";
+            $output .= ($level+1).' DATE '.$deathday."\n";
+        }
+
+        // $burialday
+        $burialday = $indi->getBurialday();
+        if (!empty($burialday)) {
+            $output .= $level.' BURI '."\n";
+            $output .= ($level+1).' DATE '.$burialday."\n";
         }
 
         // $rin
@@ -205,6 +223,14 @@ class Indi
                 $_convert = \Gedcom\Writer\Refn::convert($item, $level);
                 $output .= $_convert;
             }
+        }
+
+        // chan
+        $chan = $indi->getChan();
+        if (!empty($chan)) {
+            $output .= $level.' CHAN '."\n";
+            $output .= ($level+1).' DATE '.$chan[0]."\n";
+            $output .= ($level+1).' TIME '.$chan[1]."\n";
         }
 
         // Bapl
