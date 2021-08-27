@@ -28,6 +28,8 @@ class Buri extends \Gedcom\Record
     
     public $date;
 
+    public $month;
+
     public $year;
 
     public $dateFormatted = null;
@@ -42,9 +44,8 @@ class Buri extends \Gedcom\Record
             $this->dateFormatted = $this->getYear() .'-'. $this->getMonth() .'-'. substr("0{$this->getDay()}", -2);
         }
         else {
-            $this->dateFormatted = null;
-            $this->year = $date;
-            $this->date = null;
+            $this->month = $this->getMonth();
+            $this->year = $this->getYear();
         }
     }
     

@@ -78,6 +78,9 @@ class Indi extends \Gedcom\Parser\Component
                 break;
             case 'CENS':
             case 'CHR':
+                $chr = \Gedcom\Parser\Chr::parse($parser);
+                $indi->setChr($chr);
+                break;
             case 'CHRA':
             case 'CONF':
             case 'CREM':
