@@ -144,46 +144,36 @@ class Indi extends \Gedcom\Record implements Noteable, Objectable, Sourceable
      */
     protected $asso = [];
     
-    protected $birthday;
+    protected $deathday = [];
     
-    protected $deathday;
+    protected $birt;
     
-    protected $burialday;
+    protected $buri;
+
+    protected $deat;
     
-    public function setBirthday($birthday = '')
-    {
-        $this->birthday = $birthday;
-        
-        return $this;
+    public function setBirt($birt) {
+        $this->birt = $birt;
     }
     
-    public function getBirthday()
-    {
-        return $this->birthday;
+    public function getBirt() {
+        return $this->birt;
     }
 
-    public function setDeathday($deathday = '')
-    {
-        $this->deathday = $deathday;
-
-        return $this;
+    public function setBuri($buri) {
+        $this->buri = $buri;
     }
 
-    public function getDeathday()
-    {
-        return $this->deathday;
+    public function getBuri() {
+        return $this->buri;
     }
 
-    public function setBurialday($burialday = '')
-    {
-        $this->burialday = $burialday;
-
-        return $this;
+    public function setDeat($deat) {
+        $this->deat = $deat;
     }
 
-    public function getBurialday()
-    {
-        return $this->burialday;
+    public function getDeat() {
+        return $this->deat;
     }
 
     /**

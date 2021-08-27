@@ -14,7 +14,7 @@
 
 namespace Gedcom\Parser;
 
-class Chan extends \Gedcom\Parser\Component
+class Buri extends \Gedcom\Parser\Component
 {
     public static function parse(\Gedcom\Parser $parser)
     {
@@ -23,7 +23,7 @@ class Chan extends \Gedcom\Parser\Component
 
         $parser->forward();
 
-        $chan = new \Gedcom\Record\Chan();
+        $buri = new \Gedcom\Record\Buri();
 
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
@@ -37,16 +37,13 @@ class Chan extends \Gedcom\Parser\Component
 
             switch ($recordType) {
                 case 'DATE':
-                    $chan->setDate(trim($record[2]));
+                    $buri->setDate(trim($record[2]));
                     break;
-                case 'TIME':
-                    $chan->setTime(trim($record[2]));
+                case '_DATI':
+                    $buri->setDati(trim($record[2]));
                     break;
-                case 'NOTE':
-                    $note = \Gedcom\Parser\NoteRef::parse($parser);
-                    if ($note) {
-                        $chan->addNote($note);
-                    }
+                case 'PLAC':
+                    $buri->setPlac(trim($record[2]));
                     break;
                 default:
                     $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
@@ -55,9 +52,6 @@ class Chan extends \Gedcom\Parser\Component
             $parser->forward();
         }
 
-        $date = $chan->getYear() .'-'. $chan->getMonth() .'-'. $chan->getDay();
-        $chan->setDatetime($date);
-
-        return $chan;
+        return $buri;
     }
 }

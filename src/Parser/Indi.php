@@ -45,6 +45,10 @@ class Indi extends \Gedcom\Parser\Component
                 break;
             }
 
+            if ($recordType == 'BURI') {
+                $a='';
+            }
+
             switch ($recordType) {
             case '_UID':
                 $indi->setUid(trim($record[2]));
@@ -61,16 +65,16 @@ class Indi extends \Gedcom\Parser\Component
                 break;
             case 'ADOP':
             case 'BIRT':
-                $birthday = \Gedcom\Parser\Date::parse($parser);
-                $indi->setBirthday($birthday);
+                $birt = \Gedcom\Parser\Birt::parse($parser);
+                $indi->setBirt($birt);
                 break;
             case 'BAPM':
             case 'BARM':
             case 'BASM':
             case 'BLES':
             case 'BURI':
-                $burialday = \Gedcom\Parser\Date::parse($parser);
-                $indi->setBurialday($burialday);
+                $buri = \Gedcom\Parser\Buri::parse($parser);
+                $indi->setBuri($buri);
                 break;
             case 'CENS':
             case 'CHR':
@@ -78,8 +82,8 @@ class Indi extends \Gedcom\Parser\Component
             case 'CONF':
             case 'CREM':
             case 'DEAT':
-                $deathday = \Gedcom\Parser\Date::parse($parser);
-                $indi->setDeathday($deathday);
+                $deat = \Gedcom\Parser\Deat::parse($parser);
+                $indi->setDeat($deat);
                 break;
             case 'EMIG':
             case 'FCOM':

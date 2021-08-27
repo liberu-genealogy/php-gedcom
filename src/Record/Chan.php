@@ -42,7 +42,7 @@ class Chan extends \Gedcom\Record
     /**
      * @var string
      */
-    protected $datetime;
+    protected $datetime = '';
 
     /**
      * @var array
@@ -109,7 +109,7 @@ class Chan extends \Gedcom\Record
         return $this->time;
     }
     
-    public function setDatetime($date)
+    public function setDatetime($date = '')
     {
         $this->datetime = $date .' '. $this->time;
         
