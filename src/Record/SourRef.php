@@ -27,4 +27,11 @@ class SourRef extends \Gedcom\Record
 
     protected $_obje = [];
     protected $_note = [];
+
+    public function setSour($sour = '')
+    {
+        $this->_sour = $sour;
+
+        return $this;
+    }
 }

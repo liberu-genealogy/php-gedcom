@@ -116,21 +116,21 @@ class Indi
         }
 
         // $birthday
-        $birthday = $indi->getBirthday();
+        $birthday = $indi->getBirt();
         if (!empty($birthday)) {
             $output .= $level.' BIRT '."\n";
             $output .= ($level+1).' DATE '.$birthday."\n";
         }
 
         // $deathday
-        $deathday = $indi->getDeathday();
+        $deathday = $indi->getDeat();
         if (!empty($deathday)) {
             $output .= $level.' DEAT '."\n";
             $output .= ($level+1).' DATE '.$deathday."\n";
         }
 
         // $burialday
-        $burialday = $indi->getBurialday();
+        $burialday = $indi->getBuri();
         if (!empty($burialday)) {
             $output .= $level.' BURI '."\n";
             $output .= ($level+1).' DATE '.$burialday."\n";

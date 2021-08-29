@@ -77,7 +77,7 @@ abstract class Record
             }
 
             if (!property_exists($this, '_'.$arr)) {
-                throw new \Gedcom\Exception('Unknown '.$this::class.'::'.$arr);
+                throw new \Exception('Unknown '.$this::class.'::'.$arr);
             }
 
             return $this->{'_'.$arr};
