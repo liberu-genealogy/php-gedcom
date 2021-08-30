@@ -73,7 +73,7 @@ class Writer
         if (!empty($sours) && count($sours) > 0) {
             foreach ($sours as $item) {
                 if ($item) {
-                    $output .= Sour::convert($item);
+                    $output .= Sour::convert($item, 0);
                 }
             }
         }
