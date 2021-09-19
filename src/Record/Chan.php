@@ -28,7 +28,7 @@ class Chan extends \Gedcom\Record
         'JAN' => '01', 'FEB' => '02', 'MAR' => '03', 'APR' => '04', 'MAY' => '05', 'JUN' => '06',
         'JUL' => '07', 'AUG' => '08', 'SEP' => '09', 'OCT' => '10', 'NOV' => '11', 'DEC' => '12',
     ];
-    
+
     /**
      * @var string
      */
@@ -108,14 +108,14 @@ class Chan extends \Gedcom\Record
     {
         return $this->time;
     }
-    
+
     public function setDatetime($date = '')
     {
-        $this->datetime = $date .' '. $this->time;
-        
+        $this->datetime = $date.' '.$this->time;
+
         return $this;
     }
-    
+
     public function getDatetime()
     {
         return $this->datetime;

@@ -14,9 +14,6 @@
 
 namespace Gedcom\Record;
 
-use \Gedcom\Record;
-
-
 /**
  * Class Indi.
  */
@@ -143,46 +140,54 @@ class Indi extends \Gedcom\Record implements Noteable, Objectable, Sourceable
      * @var Indi\Asso[]
      */
     protected $asso = [];
-    
+
     protected $deathday = [];
-    
+
     protected $birt;
-    
+
     protected $buri;
 
     protected $deat;
 
     protected $chr;
-    
-    public function setBirt($birt) {
+
+    public function setBirt($birt)
+    {
         $this->birt = $birt;
     }
-    
-    public function getBirt() {
+
+    public function getBirt()
+    {
         return $this->birt;
     }
 
-    public function setBuri($buri) {
+    public function setBuri($buri)
+    {
         $this->buri = $buri;
     }
 
-    public function getBuri() {
+    public function getBuri()
+    {
         return $this->buri;
     }
 
-    public function setDeat($deat) {
+    public function setDeat($deat)
+    {
         $this->deat = $deat;
     }
 
-    public function getDeat() {
+    public function getDeat()
+    {
         return $this->deat;
     }
 
-    public function setChr($chr) {
+    public function setChr($chr)
+    {
         $this->chr = $chr;
     }
 
-    public function getChr() {
+    public function getChr()
+    {
         return $this->chr;
     }
 

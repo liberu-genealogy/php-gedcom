@@ -14,8 +14,6 @@
 
 namespace Gedcom\Record;
 
-use Gedcom\Record;
-
 /**
  * Class Chan.
  */
@@ -32,24 +30,29 @@ class Chr extends \Gedcom\Record
 
     public $plac;
 
-    public function setDate($date) {
+    public function setDate($date)
+    {
         $this->date = $date;
-        $this->dateFormatted = $this->getYear() .'-'. $this->getMonth() .'-'. substr("0{$this->getDay()}", -2);
+        $this->dateFormatted = $this->getYear().'-'.$this->getMonth().'-'.substr("0{$this->getDay()}", -2);
     }
 
-    public function getDateFormatted() {
+    public function getDateFormatted()
+    {
         return $this->dateFormatted;
     }
 
-    public function getDate() {
+    public function getDate()
+    {
         return $this->date;
     }
 
-    public function setPlac($plac) {
+    public function setPlac($plac)
+    {
         $this->plac = $plac;
     }
 
-    public function getPlac() {
+    public function getPlac()
+    {
         return $this->plac;
     }
 
