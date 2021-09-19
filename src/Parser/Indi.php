@@ -46,7 +46,7 @@ class Indi extends \Gedcom\Parser\Component
             }
 
             if ($recordType == 'BURI') {
-                $a='';
+                $a = '';
             }
 
             switch ($recordType) {

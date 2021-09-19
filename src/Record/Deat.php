@@ -14,8 +14,6 @@
 
 namespace Gedcom\Record;
 
-use Gedcom\Record;
-
 /**
  * Class Chan.
  */
@@ -25,7 +23,7 @@ class Deat extends \Gedcom\Record
         'JAN' => '01', 'FEB' => '02', 'MAR' => '03', 'APR' => '04', 'MAY' => '05', 'JUN' => '06',
         'JUL' => '07', 'AUG' => '08', 'SEP' => '09', 'OCT' => '10', 'NOV' => '11', 'DEC' => '12',
     ];
-    
+
     public $date;
 
     public $month;
@@ -33,53 +31,61 @@ class Deat extends \Gedcom\Record
     public $year;
 
     public $dateFormatted = null;
-    
+
     public $dati;
-    
+
     public $plac;
-    
+
     public $caus;
-    
-    public function setDate($date) {
+
+    public function setDate($date)
+    {
         $this->date = $date;
         if ($this->getDay()) {
-            $this->dateFormatted = $this->getYear() .'-'. $this->getMonth() .'-'. substr("0{$this->getDay()}", -2);
-        }
-        else {
+            $this->dateFormatted = $this->getYear().'-'.$this->getMonth().'-'.substr("0{$this->getDay()}", -2);
+        } else {
             $this->month = $this->getMonth();
             $this->year = $this->getYear();
         }
     }
-    
-    public function getDateFormatted() {
+
+    public function getDateFormatted()
+    {
         return $this->dateFormatted;
     }
-    
-    public function getDate() {
+
+    public function getDate()
+    {
         return $this->date;
     }
-    
-    public function setDati($dati) {
+
+    public function setDati($dati)
+    {
         $this->dati = $dati;
     }
-    
-    public function getDati() {
+
+    public function getDati()
+    {
         return $this->dati;
     }
-    
-    public function setPlac($plac) {
+
+    public function setPlac($plac)
+    {
         $this->plac = $plac;
     }
-    
-    public function getPlac() {
+
+    public function getPlac()
+    {
         return $this->plac;
     }
 
-    public function setCaus($caus) {
+    public function setCaus($caus)
+    {
         $this->caus = $caus;
     }
 
-    public function getCaus() {
+    public function getCaus()
+    {
         return $this->caus;
     }
 

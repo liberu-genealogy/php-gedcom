@@ -119,21 +119,21 @@ class Indi
         $birthday = $indi->getBirt();
         if (!empty($birthday)) {
             $output .= $level.' BIRT '."\n";
-            $output .= ($level+1).' DATE '.$birthday."\n";
+            $output .= ($level + 1).' DATE '.$birthday."\n";
         }
 
         // $deathday
         $deathday = $indi->getDeat();
         if (!empty($deathday)) {
             $output .= $level.' DEAT '."\n";
-            $output .= ($level+1).' DATE '.$deathday."\n";
+            $output .= ($level + 1).' DATE '.$deathday."\n";
         }
 
         // $burialday
         $burialday = $indi->getBuri();
         if (!empty($burialday)) {
             $output .= $level.' BURI '."\n";
-            $output .= ($level+1).' DATE '.$burialday."\n";
+            $output .= ($level + 1).' DATE '.$burialday."\n";
         }
 
         // $rin
@@ -229,8 +229,8 @@ class Indi
         $chan = $indi->getChan();
         if (!empty($chan)) {
             $output .= $level.' CHAN '."\n";
-            $output .= ($level+1).' DATE '.$chan[0]."\n";
-            $output .= ($level+1).' TIME '.$chan[1]."\n";
+            $output .= ($level + 1).' DATE '.$chan[0]."\n";
+            $output .= ($level + 1).' TIME '.$chan[1]."\n";
         }
 
         // Bapl

@@ -55,7 +55,7 @@ class Chan extends \Gedcom\Parser\Component
             $parser->forward();
         }
 
-        $date = $chan->getYear() .'-'. $chan->getMonth() .'-'. $chan->getDay();
+        $date = $chan->getYear().'-'.$chan->getMonth().'-'.$chan->getDay();
         $chan->setDatetime($date);
 
         return $chan;
