@@ -40,10 +40,10 @@ class Repo extends \Gedcom\Parser\Component
 
             switch ($recordType) {
                 case 'NOTE':
-                    $repo->addNote(\Parser\NoteRef::parse($parser));
+                    $repo->addNote(\Gedcom\Parser\NoteRef::parse($parser));
                     break;
                 case 'CALN':
-                    $repo->addCaln(\Parser\Sour\Repo\Caln::parse($parser));
+                    $repo->addCaln(\Gedcom\Parser\Sour\Repo\Caln::parse($parser));
                     break;
                 default:
                     $parser->logUnhandledRecord(self::class.' @ '.__LINE__);

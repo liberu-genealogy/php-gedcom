@@ -50,7 +50,7 @@ class SourRef extends \Gedcom\Parser\Component
                     $sour->setEven($even);
                     break;
                 case 'DATA':
-                    $sour->setData(\Parser\SourRef\Data::parse($parser));
+                    $sour->setData(\Gedcom\Parser\SourRef\Data::parse($parser));
                     break;
                 case 'TEXT':
                     $sour->setText($parser->parseMultiLineRecord());
