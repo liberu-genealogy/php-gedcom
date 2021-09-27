@@ -37,7 +37,7 @@ class Data extends \Gedcom\Parser\Component
 
             switch ($recordType) {
                 case 'EVEN':
-                    $data->addEven(\Parser\Sour\Data\Even::parse($parser));
+                    $data->addEven(\Gedcom\Parser\Sour\Data\Even::parse($parser));
                     break;
                 case 'DATE': // not in 5.5.1
                     $data->setDate(trim($record[2]));
