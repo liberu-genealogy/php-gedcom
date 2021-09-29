@@ -28,4 +28,29 @@ class Map extends \Gedcom\Record
      * @var string place_longitude
      */
     protected $long;
+
+    /**
+     * @param string $lati
+     *
+     * @return Map
+     */
+    public function setLati($lati = '')
+    {
+        $this->lati = $lati;
+
+        return $this;
+    }
+
+   /**
+     * @param string $long
+     *
+     * @return Map
+     */
+    public function setLong($long = '')
+    {
+        $this->long = $long;
+
+        return $this;
+    }
+
 }

@@ -22,11 +22,11 @@ abstract class Record
             $arr = strtolower(substr($method, 3));
 
             if (!property_exists($this, '_'.$arr) || !is_array($this->{'_'.$arr})) {
-                throw new \Gedcom\Exception('Unknown '.$this::class.'::'.$arr);
+                throw new \Exception('Unknown '.$this::class.'::'.$arr);
             }
 
             if (!is_array($args)) {
-                throw new \Gedcom\Exception('Incorrect arguments to '.$method);
+                throw new \Exception('Incorrect arguments to '.$method);
             }
 
             if (!isset($args[0])) {
@@ -45,11 +45,11 @@ abstract class Record
             $arr = strtolower(substr($method, 3));
 
             if (!property_exists($this, '_'.$arr)) {
-                throw new \Gedcom\Exception('Unknown '.$this::class.'::'.$arr);
+                throw new \Exception('Unknown '.$this::class.'::'.$arr);
             }
 
             if (!is_array($args)) {
-                throw new \Gedcom\Exception('Incorrect arguments to '.$method);
+                throw new \Exception('Incorrect arguments to '.$method);
             }
 
             if (!isset($args[0])) {
@@ -70,7 +70,7 @@ abstract class Record
             // hotfix getData
             if ('data' == $arr) {
                 if (!property_exists($this, '_text')) {
-                    throw new \Gedcom\Exception('Unknown '.$this::class.'::'.$arr);
+                    throw new \Exception('Unknown '.$this::class.'::'.$arr);
                 }
 
                 return $this->{'_text'};
@@ -82,14 +82,14 @@ abstract class Record
 
             return $this->{'_'.$arr};
         } else {
-            throw new \Gedcom\Exception('Unknown method called: '.$method);
+            throw new \Exception('Unknown method called: '.$method);
         }
     }
 
     public function __set($var, $val)
     {
         // this class does not have any public vars
-        throw new \Gedcom\Exception('Undefined property '.self::class.'::'.$var);
+        throw new \Exception('Undefined property '.self::class.'::'.$var);
     }
 
     /**
