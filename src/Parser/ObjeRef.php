@@ -47,7 +47,7 @@ class ObjeRef extends \Gedcom\Parser\Component
                     $obje->setTitl(trim($record[2]));
                     break;
                 case 'FILE':
-                    $obje->setFile(\Parser\ObjeRef\File::parse($parser));
+                    $obje->setFile(\Gedcom\Parser\ObjeRef\File::parse($parser));
                     break;
                 default:
                     $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
