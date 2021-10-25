@@ -67,4 +67,85 @@ class Even extends \Gedcom\Record implements Objectable, Sourceable, Noteable
     {
         $this->_note[] = $note;
     }
+    
+    /**
+     * @return string
+     */
+    public function getDate()
+    {
+        return $this->_date;
+    }
+
+    /**
+     * @return \PhpGedcom\Record\Indi\Even\Plac
+     */
+    public function getPlac()
+    {
+        return $this->_plac;
+    }
+
+    /**
+     * @return array
+     */
+    public function getSour()
+    {
+        return $this->_sour;
+    }
+
+    /**
+     * @return array
+     */
+    public function getNote()
+    {
+        return $this->_note;
+    }
+
+    /**
+     * @return array
+     */
+    public function getObje()
+    {
+        return $this->obje;
+    }
+
+    /**
+     * @return \PhpGedcom\Record\Addr
+     */
+    public function getAddr()
+    {
+        return $this->_addr;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAge()
+    {
+        return $this->_age;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAgnc()
+    {
+        return $this->_agnc;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCaus()
+    {
+        return $this->_caus;
+    }
+
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->_type;
+    }
+}
 }
