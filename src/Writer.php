@@ -31,7 +31,7 @@ class Writer
     protected $_output;
 
     /**
-     * @param  $gedcom The GEDCOM object
+     * @param        $gedcom The GEDCOM object
      * @param string $format The format to convert the GEDCOM object to
      *
      * @return string The contents of the document in the converted format
