@@ -148,4 +148,3 @@ class Even extends \Gedcom\Record implements Objectable, Sourceable, Noteable
         return $this->_type;
     }
 }
-}
