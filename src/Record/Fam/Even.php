@@ -67,7 +67,7 @@ class Even extends \Gedcom\Record implements Objectable, Sourceable, Noteable
     {
         $this->_note[] = $note;
     }
-    
+
     /**
      * @return string
      */

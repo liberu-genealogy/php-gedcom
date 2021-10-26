@@ -41,7 +41,7 @@ class Map extends \Gedcom\Record
         return $this;
     }
 
-   /**
+    /**
      * @param string $long
      *
      * @return Map
@@ -52,5 +52,4 @@ class Map extends \Gedcom\Record
 
         return $this;
     }
-
 }
