@@ -105,7 +105,7 @@ class Even extends \Gedcom\Record implements Objectable, Sourceable, Noteable
      */
     public function getObje()
     {
-        return $this->obje;
+        return $this->_obje;
     }
 
     /**
