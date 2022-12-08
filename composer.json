@@ -1,5 +1,5 @@
 {
-    "name": "familytree365/php-gedcom",
+    "name": "cgdprojects/php-gedcom",
     "description": "A GEDCOM file parser (read + write) for PHP 8.0+",
     "type": "library",
     "keywords": ["gedcom","parser"],
