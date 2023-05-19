@@ -1,5 +1,5 @@
 {
-    "name": "cgdprojects/php-gedcom",
+    "name": "laravel-liberu/php-gedcom",
     "description": "A GEDCOM file parser (read + write) for PHP 8.0+",
     "type": "library",
     "keywords": ["gedcom","parser"],
