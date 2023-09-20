@@ -49,7 +49,7 @@ class Note
 
         // REFN
         $refn = $note->getRefn();
-        if (!empty($refn) && count($refn) > 0) {
+        if (!empty($refn) && (is_countable($refn) ? count($refn) : 0) > 0) {
             foreach ($refn as $item) {
                 if ($item) {
                     $_convert = \Gedcom\Writer\Refn::convert($item, $level);
@@ -66,7 +66,7 @@ class Note
 
         // SOUR array
         $sour = $note->getSour();
-        if (!empty($sour) && count($sour) > 0) {
+        if (!empty($sour) && (is_countable($sour) ? count($sour) : 0) > 0) {
             foreach ($sour as $item) {
                 if ($item) {
                     $_convert = \Gedcom\Writer\SourRef::convert($item, $level);

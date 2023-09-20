@@ -22,7 +22,7 @@ class Char extends \Gedcom\Parser\Component
         $depth = (int) $record[0];
         if (isset($record[2])) {
             $char = new \Gedcom\Record\Head\Char();
-            $char->setChar(trim($record[2]));
+            $char->setChar(trim((string) $record[2]));
         } else {
             $parser->skipToNextLevel($depth);
 
@@ -33,7 +33,7 @@ class Char extends \Gedcom\Parser\Component
 
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
-            $recordType = strtoupper(trim($record[1]));
+            $recordType = strtoupper(trim((string) $record[1]));
             $currentDepth = (int) $record[0];
 
             if ($currentDepth <= $depth) {
@@ -41,13 +41,10 @@ class Char extends \Gedcom\Parser\Component
                 break;
             }
 
-            switch ($recordType) {
-                case 'VERS':
-                    $char->setVers(trim($record[2]));
-                    break;
-                default:
-                    $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
-            }
+            match ($recordType) {
+                'VERS' => $char->setVers(trim((string) $record[2])),
+                default => $parser->logUnhandledRecord(self::class.' @ '.__LINE__),
+            };
 
             $parser->forward();
         }

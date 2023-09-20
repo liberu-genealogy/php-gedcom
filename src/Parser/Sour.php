@@ -38,7 +38,7 @@ class Sour extends \Gedcom\Parser\Component
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
             $currentDepth = (int) $record[0];
-            $recordType = strtoupper(trim($record[1]));
+            $recordType = strtoupper(trim((string) $record[1]));
 
             if ($currentDepth <= $depth) {
                 $parser->back();
@@ -56,7 +56,7 @@ class Sour extends \Gedcom\Parser\Component
                     $sour->setTitl($parser->parseMultilineRecord());
                     break;
                 case 'ABBR':
-                    $sour->setAbbr(trim($record[2]));
+                    $sour->setAbbr(trim((string) $record[2]));
                     break;
                 case 'PUBL':
                     $sour->setPubl($parser->parseMultilineRecord());
@@ -72,7 +72,7 @@ class Sour extends \Gedcom\Parser\Component
                     $sour->addRefn($refn);
                     break;
                 case 'RIN':
-                    $sour->setRin(trim($record[2]));
+                    $sour->setRin(trim((string) $record[2]));
                     break;
                 case 'CHAN':
                     $chan = \Gedcom\Parser\Chan::parse($parser);

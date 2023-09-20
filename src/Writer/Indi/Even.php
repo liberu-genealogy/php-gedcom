@@ -74,7 +74,7 @@ class Even
 
         // $phon = array()
         $phon = $even->getPhon();
-        if (!empty($phon) && count($phon) > 0) {
+        if (!empty($phon) && $phon !== []) {
             foreach ($phon as $item) {
                 $_convert = \Gedcom\Writer\Phon::convert($item, $level);
                 $output .= $_convert;
@@ -91,7 +91,7 @@ class Even
 
         // $obje = array();
         $obje = $even->getObje();
-        if (!empty($obje) && count($obje) > 0) {
+        if (!empty($obje) && $obje !== []) {
             foreach ($obje as $item) {
                 $_convert = \Gedcom\Writer\ObjeRef::convert($item, $level);
                 $output .= $_convert;
@@ -99,7 +99,7 @@ class Even
         }
         // $sour = array();
         $sour = $even->getSour();
-        if (!empty($sour) && count($sour) > 0) {
+        if (!empty($sour) && $sour !== []) {
             foreach ($sour as $item) {
                 $_convert = \Gedcom\Writer\SourRef::convert($item, $level);
                 $output .= $_convert;
@@ -107,7 +107,7 @@ class Even
         }
         // $note = array();
         $note = $even->getSour();
-        if (!empty($note) && count($note) > 0) {
+        if (!empty($note) && $note !== []) {
             foreach ($note as $item) {
                 $_convert = \Gedcom\Writer\NoteRef::convert($item, $level);
                 $output .= $_convert;

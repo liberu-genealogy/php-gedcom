@@ -59,7 +59,7 @@ class Obje
 
         // REFN
         $refn = $obje->getRefn();
-        if (!empty($refn) && count($refn) > 0) {
+        if (!empty($refn) && (is_countable($refn) ? count($refn) : 0) > 0) {
             foreach ($refn as $item) {
                 if ($item) {
                     $_convert = \Gedcom\Writer\Refn::convert($item, $level);
@@ -76,12 +76,10 @@ class Obje
 
         // NOTE
         $note = $obje->getNote();
-        if ($note && count($note) > 0) {
-            foreach ($note as $item) {
-                if ($item) {
-                    $_convert = \Gedcom\Writer\NoteRef::convert($item, $level);
-                    $output .= $_convert;
-                }
+        foreach ($note as $item) {
+            if ($item) {
+                $_convert = \Gedcom\Writer\NoteRef::convert($item, $level);
+                $output .= $_convert;
             }
         }
 

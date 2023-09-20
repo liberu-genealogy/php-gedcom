@@ -35,7 +35,7 @@ class Caln extends \Gedcom\Parser\Component
 
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
-            $recordType = strtolower(trim($record[1]));
+            $recordType = strtolower(trim((string) $record[1]));
             $lineDepth = (int) $record[0];
 
             if ($lineDepth <= $depth) {
@@ -44,7 +44,7 @@ class Caln extends \Gedcom\Parser\Component
             }
 
             if ($caln->hasAttribute($recordType)) {
-                $caln->{'set'.$recordType}(trim($record[2]));
+                $caln->{'set'.$recordType}(trim((string) $record[2]));
             } else {
                 $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
             }

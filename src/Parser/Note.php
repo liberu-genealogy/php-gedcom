@@ -40,7 +40,7 @@ class Note extends \Gedcom\Parser\Component
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
             $currentDepth = (int) $record[0];
-            $recordType = strtoupper(trim($record[1]));
+            $recordType = strtoupper(trim((string) $record[1]));
 
             if ($currentDepth <= $depth) {
                 $parser->back();
@@ -64,7 +64,7 @@ class Note extends \Gedcom\Parser\Component
                     $note->addRefn($refn);
                     break;
                 case 'RIN':
-                    $note->setRin(trim($record[2]));
+                    $note->setRin(trim((string) $record[2]));
                     break;
                 case 'SOUR':
                     $sour = \Gedcom\Parser\SourRef::parse($parser);

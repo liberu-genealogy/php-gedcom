@@ -24,14 +24,14 @@ class Plac extends \Gedcom\Parser\Component
         $plac = new \Gedcom\Record\Indi\Even\Plac();
 
         if (isset($record[2])) {
-            $plac->setPlac(trim($record[2]));
+            $plac->setPlac(trim((string) $record[2]));
         }
 
         $parser->forward();
 
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
-            $recordType = strtoupper(trim($record[1]));
+            $recordType = strtoupper(trim((string) $record[1]));
             $currentDepth = (int) $record[0];
 
             if ($currentDepth <= $depth) {
@@ -41,7 +41,7 @@ class Plac extends \Gedcom\Parser\Component
 
             switch ($recordType) {
                 case 'FORM':
-                    $plac->setForm(trim($record[2]));
+                    $plac->setForm(trim((string) $record[2]));
                     break;
                 case 'NOTE':
                     $note = \Gedcom\Parser\NoteRef::parse($parser);

@@ -32,7 +32,7 @@ class Caln extends \Gedcom\Parser\Component
 
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
-            $recordType = strtoupper(trim($record[1]));
+            $recordType = strtoupper(trim((string) $record[1]));
             $currentDepth = (int) $record[0];
 
             if ($currentDepth <= $depth) {
@@ -40,13 +40,10 @@ class Caln extends \Gedcom\Parser\Component
                 break;
             }
 
-            switch ($recordType) {
-                case 'MEDI':
-                    $caln->setMedi(trim($record[2]));
-                    break;
-                default:
-                    $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
-            }
+            match ($recordType) {
+                'MEDI' => $caln->setMedi(trim((string) $record[2])),
+                default => $parser->logUnhandledRecord(self::class.' @ '.__LINE__),
+            };
 
             $parser->forward();
         }

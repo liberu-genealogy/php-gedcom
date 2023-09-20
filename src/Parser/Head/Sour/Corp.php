@@ -22,7 +22,7 @@ class Corp extends \Gedcom\Parser\Component
         $depth = (int) $record[0];
         if (isset($record[2])) {
             $corp = new \Gedcom\Record\Head\Sour\Corp();
-            $corp->setCorp(trim($record[2]));
+            $corp->setCorp(trim((string) $record[2]));
         } else {
             $parser->skipToNextLevel($depth);
 
@@ -33,7 +33,7 @@ class Corp extends \Gedcom\Parser\Component
 
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
-            $recordType = strtoupper(trim($record[1]));
+            $recordType = strtoupper(trim((string) $record[1]));
             $currentDepth = (int) $record[0];
 
             if ($currentDepth <= $depth) {
@@ -41,16 +41,11 @@ class Corp extends \Gedcom\Parser\Component
                 break;
             }
 
-            switch ($recordType) {
-                case 'ADDR':
-                    $corp->setAddr(\Gedcom\Parser\Addr::parse($parser));
-                    break;
-                case 'PHON':
-                    $corp->addPhon(trim($record[2]));
-                    break;
-                default:
-                    $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
-            }
+            match ($recordType) {
+                'ADDR' => $corp->setAddr(\Gedcom\Parser\Addr::parse($parser)),
+                'PHON' => $corp->addPhon(trim((string) $record[2])),
+                default => $parser->logUnhandledRecord(self::class.' @ '.__LINE__),
+            };
 
             $parser->forward();
         }

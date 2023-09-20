@@ -32,7 +32,7 @@ class Form extends \Gedcom\Parser\Component
 
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
-            $recordType = strtoupper(trim($record[1]));
+            $recordType = strtoupper(trim((string) $record[1]));
             $currentDepth = (int) $record[0];
 
             if ($currentDepth <= $depth) {
@@ -40,16 +40,11 @@ class Form extends \Gedcom\Parser\Component
                 break;
             }
 
-            switch ($recordType) {
-                case 'MEDI':
-                    $form->setMedi(trim($record[2]));
-                    break;
-                case 'TYPE':
-                    $form->setType(trim($record[2]));
-                    break;
-                default:
-                    $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
-            }
+            match ($recordType) {
+                'MEDI' => $form->setMedi(trim((string) $record[2])),
+                'TYPE' => $form->setType(trim((string) $record[2])),
+                default => $parser->logUnhandledRecord(self::class.' @ '.__LINE__),
+            };
 
             $parser->forward();
         }

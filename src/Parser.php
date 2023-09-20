@@ -34,11 +34,7 @@ class Parser
 
     public function __construct(Gedcom $gedcom = null)
     {
-        if (!is_null($gedcom)) {
-            $this->_gedcom = $gedcom;
-        } else {
-            $this->_gedcom = new Gedcom();
-        }
+        $this->_gedcom = is_null($gedcom) ? new Gedcom() : $gedcom;
     }
 
     public function forward()
@@ -106,13 +102,13 @@ class Parser
         $record = $this->getCurrentLineRecord();
 
         $depth = (int) $record[0];
-        $data = isset($record[2]) ? trim($record[2]) : '';
+        $data = isset($record[2]) ? trim((string) $record[2]) : '';
 
         $this->forward();
 
         while (!$this->eof()) {
             $record = $this->getCurrentLineRecord();
-            $recordType = strtoupper(trim($record[1]));
+            $recordType = strtoupper(trim((string) $record[1]));
             $currentDepth = (int) $record[0];
 
             if ($currentDepth <= $depth) {
@@ -125,12 +121,12 @@ class Parser
                 $data .= "\n";
 
                 if (isset($record[2])) {
-                    $data .= trim($record[2]);
+                    $data .= trim((string) $record[2]);
                 }
                 break;
             case 'CONC':
                 if (isset($record[2])) {
-                    $data .= ' '.trim($record[2]);
+                    $data .= ' '.trim((string) $record[2]);
                 }
                 break;
             default:
@@ -154,17 +150,15 @@ class Parser
 
     public function getCurrentLineRecord($pieces = 3)
     {
-        if (!is_null($this->_lineRecord)) {
-            if ($this->_linePieces == $pieces) {
-                return $this->_lineRecord;
-            }
+        if (!is_null($this->_lineRecord) && $this->_linePieces == $pieces) {
+            return $this->_lineRecord;
         }
 
         if (empty($this->_line)) {
             return false;
         }
 
-        $line = trim($this->_line);
+        $line = trim((string) $this->_line);
 
         $this->_lineRecord = explode(' ', $line, $pieces);
         $this->_linePieces = $pieces;
@@ -181,7 +175,7 @@ class Parser
     {
         $this->logError(
             $this->_linesParsed.': (Unhandled) '.trim(implode('|', $this->getCurrentLineRecord())).
-            (!empty($additionalInfo) ? ' - '.$additionalInfo : '')
+            (empty($additionalInfo) ? '' : ' - '.$additionalInfo)
         );
     }
 
@@ -189,7 +183,7 @@ class Parser
     {
         $this->logError(
             $this->_linesParsed.': (Skipping) '.trim(implode('|', $this->getCurrentLineRecord())).
-            (!empty($additionalInfo) ? ' - '.$additionalInfo : '')
+            (empty($additionalInfo) ? '' : ' - '.$additionalInfo)
         );
     }
 
@@ -200,7 +194,7 @@ class Parser
 
     public function normalizeIdentifier($identifier)
     {
-        $identifier = trim($identifier);
+        $identifier = trim((string) $identifier);
 
         return trim($identifier, '@');
     }
@@ -238,11 +232,11 @@ class Parser
                     $this->normalizeIdentifier($record[1]);
                 }
 
-                if (isset($record[1]) && trim($record[1]) == 'HEAD') {
+                if (isset($record[1]) && trim((string) $record[1]) == 'HEAD') {
                     \Gedcom\Parser\Head::parse($this);
-                } elseif (isset($record[2]) && trim($record[2]) == 'SUBN') {
+                } elseif (isset($record[2]) && trim((string) $record[2]) == 'SUBN') {
                     \Gedcom\Parser\Subn::parse($this);
-                } elseif (isset($record[2]) && trim($record[2]) == 'SUBM') {
+                } elseif (isset($record[2]) && trim((string) $record[2]) == 'SUBM') {
                     \Gedcom\Parser\Subm::parse($this);
                 } elseif (isset($record[2]) && $record[2] == 'SOUR') {
                     \Gedcom\Parser\Sour::parse($this);
@@ -250,13 +244,13 @@ class Parser
                     \Gedcom\Parser\Indi::parse($this);
                 } elseif (isset($record[2]) && $record[2] == 'FAM') {
                     \Gedcom\Parser\Fam::parse($this);
-                } elseif (isset($record[2]) && substr(trim($record[2]), 0, 4) == 'NOTE') {
+                } elseif (isset($record[2]) && str_starts_with(trim((string) $record[2]), 'NOTE')) {
                     \Gedcom\Parser\Note::parse($this);
                 } elseif (isset($record[2]) && $record[2] == 'REPO') {
                     \Gedcom\Parser\Repo::parse($this);
                 } elseif (isset($record[2]) && $record[2] == 'OBJE') {
                     \Gedcom\Parser\Obje::parse($this);
-                } elseif (isset($record[1]) && trim($record[1]) == 'TRLR') {
+                } elseif (isset($record[1]) && trim((string) $record[1]) == 'TRLR') {
                     // EOF
                     break;
                 } else {

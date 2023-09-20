@@ -48,7 +48,7 @@ class Fam
 
         // CHIL
         $chil = $fam->getChil();
-        if (!empty($chil) && count($chil) > 0) {
+        if (!empty($chil) && (is_countable($chil) ? count($chil) : 0) > 0) {
             foreach ($chil as $item) {
                 if ($item) {
                     $_convert = $level.' CHIL @'.$item."@\n";
@@ -65,7 +65,7 @@ class Fam
         // SUBM array
         $subm = $fam->getSubm();
 
-        if (!empty($subm) && count($subm) > 0) {
+        if (!empty($subm) && (is_countable($subm) ? count($subm) : 0) > 0) {
             foreach ($subm as $item) {
                 if ($item) {
                     $output .= $level.' SUBM '.$item."\n";
@@ -86,16 +86,14 @@ class Fam
         }
         // SLGS
         $slgs = $fam->getSlgs();
-        if (!empty($slgs) && count($slgs) > 0) {
-            if ($slgs) {
-                $_convert = \Gedcom\Writer\Fam\Slgs::convert($item, $level);
-                $output .= $_convert;
-            }
+        if (!empty($slgs) && (is_countable($slgs) ? count($slgs) : 0) > 0 && $slgs) {
+            $_convert = \Gedcom\Writer\Fam\Slgs::convert($item, $level);
+            $output .= $_convert;
         }
 
         // REFN array
         $refn = $fam->getRefn();
-        if (!empty($refn) && count($refn) > 0) {
+        if (!empty($refn) && (is_countable($refn) ? count($refn) : 0) > 0) {
             foreach ($refn as $item) {
                 if ($item) {
                     $_convert = \Gedcom\Writer\Refn::convert($item, $level);
@@ -106,7 +104,7 @@ class Fam
 
         // NOTE array
         $note = $fam->getNote();
-        if (!empty($note) && count($note) > 0) {
+        if (!empty($note) && (is_countable($note) ? count($note) : 0) > 0) {
             foreach ($note as $item) {
                 if ($item) {
                     $_convert = \Gedcom\Writer\NoteRef::convert($item, $level);
@@ -117,7 +115,7 @@ class Fam
 
         // SOUR
         $sour = $fam->getSour();
-        if (!empty($sour) && count($sour) > 0) {
+        if (!empty($sour) && (is_countable($sour) ? count($sour) : 0) > 0) {
             foreach ($sour as $item) {
                 if ($item) {
                     $_convert = \Gedcom\Writer\SourRef::convert($item, $level);
@@ -128,7 +126,7 @@ class Fam
 
         // OBJE
         $obje = $fam->getObje();
-        if (!empty($obje) && count($obje) > 0) {
+        if (!empty($obje) && (is_countable($obje) ? count($obje) : 0) > 0) {
             foreach ($obje as $item) {
                 if ($item) {
                     $_convert = \Gedcom\Writer\ObjeRef::convert($item, $level);
@@ -139,7 +137,7 @@ class Fam
 
         // EVEN
         $even = $fam->getAllEven();
-        if (!empty($even) && count($even) > 0) {
+        if (!empty($even) && $even !== []) {
             foreach ($even as $item) {
                 if ($item) {
                     $_convert = \Gedcom\Writer\Fam\Even::convert($item, $level);

@@ -23,15 +23,15 @@ class Even extends \Gedcom\Parser\Component
 
         $even = new \Gedcom\Record\Fam\Even();
 
-        if (isset($record[1]) && strtoupper(trim($record[1])) != 'EVEN') {
-            $even->setType(trim($record[1]));
+        if (isset($record[1]) && strtoupper(trim((string) $record[1])) != 'EVEN') {
+            $even->setType(trim((string) $record[1]));
         }
 
         $parser->forward();
 
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
-            $recordType = strtoupper(trim($record[1]));
+            $recordType = strtoupper(trim((string) $record[1]));
             $currentDepth = (int) $record[0];
 
             if ($currentDepth <= $depth) {
@@ -41,7 +41,7 @@ class Even extends \Gedcom\Parser\Component
 
             switch ($recordType) {
             case 'TYPE':
-                $even->setType(trim($record[2]));
+                $even->setType(trim((string) $record[2]));
                 break;
             case 'DATE':
                 $dat = \Gedcom\Parser\Date::parse($parser);
@@ -61,13 +61,13 @@ class Even extends \Gedcom\Parser\Component
                 $even->addPhone($phone);
                 break;
             case 'CAUS':
-                $even->setCaus(trim($record[2]));
+                $even->setCaus(trim((string) $record[2]));
                 break;
             case 'AGE':
-                $even->setAge(trim($record[2]));
+                $even->setAge(trim((string) $record[2]));
                 break;
             case 'AGNC':
-                $even->setAgnc(trim($record[2]));
+                $even->setAgnc(trim((string) $record[2]));
                 break;
             case 'HUSB':
                 $husb = \Gedcom\Parser\Fam\Even\Husb::parse($parser);

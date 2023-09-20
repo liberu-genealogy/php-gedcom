@@ -51,7 +51,7 @@ class Fam extends \Gedcom\Parser\Component
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
             $currentDepth = (int) $record[0];
-            $recordType = strtoupper(trim($record[1]));
+            $recordType = strtoupper(trim((string) $record[1]));
 
             if ($currentDepth <= $depth) {
                 $parser->back();
@@ -60,7 +60,7 @@ class Fam extends \Gedcom\Parser\Component
 
             switch ($recordType) {
                 case 'RESN':
-                    $fam->setResn(trim($record[2]));
+                    $fam->setResn(trim((string) $record[2]));
                     break;
                 case 'EVEN':
                 case 'ANUL':
@@ -89,7 +89,7 @@ class Fam extends \Gedcom\Parser\Component
                     $fam->addChil($parser->normalizeIdentifier($record[2]));
                     break;
                 case 'NCHI':
-                    $fam->setNchi(trim($record[2]));
+                    $fam->setNchi(trim((string) $record[2]));
                     break;
                 case 'SUBM':
                     $fam->addSubm($parser->normalizeIdentifier($record[2]));
@@ -103,7 +103,7 @@ class Fam extends \Gedcom\Parser\Component
                     $fam->addRefn($ref);
                     break;
                 case 'RIN':
-                    $fam->setRin(trim($record[2]));
+                    $fam->setRin(trim((string) $record[2]));
                     break;
                 case 'CHAN':
                     $chan = \Gedcom\Parser\Chan::parse($parser);

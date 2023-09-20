@@ -30,7 +30,7 @@ class File extends \Gedcom\Parser\Component
 
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
-            $recordType = strtoupper(trim($record[1]));
+            $recordType = strtoupper(trim((string) $record[1]));
             $currentDepth = (int) $record[0];
 
             if ($currentDepth <= $depth) {
@@ -43,7 +43,7 @@ class File extends \Gedcom\Parser\Component
                     $file->setDate(\Parser\ObjeRef\File\Form::parse($parser));
                     break;
                 case 'TITL':
-                    $file->setTitl(trim($record[2]));
+                    $file->setTitl(trim((string) $record[2]));
                 default:
                     $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
             }

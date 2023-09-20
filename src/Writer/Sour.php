@@ -78,7 +78,7 @@ class Sour
 
         // NOTE array
         $note = $sour->getNote();
-        if (!empty($note) && count($note) > 0) {
+        if (!empty($note) && $note !== []) {
             foreach ($note as $item) {
                 $_convert = \Gedcom\Writer\NoteRef::convert($item, $level);
                 $output .= $_convert;
@@ -94,7 +94,7 @@ class Sour
 
         // OBJE array
         $obje = $sour->getObje();
-        if (!empty($obje) && count($obje) > 0) {
+        if (!empty($obje) && $obje !== []) {
             foreach ($obje as $item) {
                 $_convert = \Gedcom\Writer\ObjeRef::convert($item, $level);
                 $output .= $_convert;
@@ -103,7 +103,7 @@ class Sour
 
         // REFN array
         $refn = $sour->getRefn();
-        if (!empty($refn) && count($refn) > 0) {
+        if (!empty($refn) && $refn !== []) {
             foreach ($refn as $item) {
                 $_convert = \Gedcom\Writer\Refn::convert($item, $level);
                 $output .= $_convert;

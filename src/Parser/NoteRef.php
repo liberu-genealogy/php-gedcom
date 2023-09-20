@@ -23,14 +23,14 @@ class NoteRef extends \Gedcom\Parser\Component
 
         $note = new \Gedcom\Record\NoteRef();
 
-        if (count($record) < 3) {
-            $parser->logSkippedRecord('Missing note information; '.self::class, ' @ '.__LINE__);
+        if ((is_countable($record) ? count($record) : 0) < 3) {
+            $parser->logSkippedRecord('Missing note information; '.self::class);
             $parser->skipToNextLevel($depth);
 
             return null;
         }
 
-        if (preg_match('/^@(.*)@$/', trim($record[2]))) {
+        if (preg_match('/^@(.*)@$/', trim((string) $record[2]))) {
             $note->setIsReference(true);
             $note->setNote($parser->normalizeIdentifier($record[2]));
         } else {
@@ -43,7 +43,7 @@ class NoteRef extends \Gedcom\Parser\Component
 
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
-            $recordType = strtoupper(trim($record[1]));
+            $recordType = strtoupper(trim((string) $record[1]));
             $currentDepth = (int) $record[0];
 
             if ($currentDepth <= $depth) {

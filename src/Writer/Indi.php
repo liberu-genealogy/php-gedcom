@@ -25,8 +25,7 @@ class Indi
     {
         $level = 0;
 
-        // id
-        $id = $indi->getId();
+        $indi->getId();
 
         // gid
         $gid = $indi->getGid();
@@ -45,7 +44,7 @@ class Indi
         // Gedcom/Record/Attr extend Gedcom/Record/Even and there is no change.
         // So used convert Even
         $attr = $indi->getAllAttr();
-        if (!empty($attr) && count($attr) > 0) {
+        if (!empty($attr) && $attr !== []) {
             foreach ($attr as $item) {
                 $_convert = \Gedcom\Writer\Indi\Even::convert($item, $level);
                 $output .= $_convert;
@@ -54,7 +53,7 @@ class Indi
 
         // $even
         $even = $indi->getAllEven();
-        if (!empty($even) && count($even) > 0) {
+        if (!empty($even) && $even !== []) {
             foreach ($even as $item) {
                 $_convert = \Gedcom\Writer\Indi\Even::convert($item, $level);
                 $output .= $_convert;
@@ -64,7 +63,7 @@ class Indi
         // $note
 
         $note = $indi->getNote();
-        if (!empty($note) && count($note) > 0) {
+        if (!empty($note) && $note !== []) {
             foreach ($note as $item) {
                 $_convert = \Gedcom\Writer\NoteRef::convert($item, $level);
                 $output .= $_convert;
@@ -73,7 +72,7 @@ class Indi
 
         // $obje
         $obje = $indi->getObje();
-        if (!empty($obje) && count($obje) > 0) {
+        if (!empty($obje) && $obje !== []) {
             foreach ($obje as $item) {
                 $_convert = \Gedcom\Writer\ObjeRef::convert($item, $level);
                 $output .= $_convert;
@@ -82,7 +81,7 @@ class Indi
 
         // $sour
         $sour = $indi->getSour();
-        if (!empty($sour) && count($sour) > 0) {
+        if (!empty($sour) && $sour !== []) {
             foreach ($sour as $item) {
                 $_convert = \Gedcom\Writer\SourRef::convert($item, $level);
                 $output .= $_convert;
@@ -91,7 +90,7 @@ class Indi
 
         // $name
         $name = $indi->getName();
-        if (!empty($name) && count($name) > 0) {
+        if (!empty($name) && $name !== []) {
             foreach ($name as $item) {
                 $_convert = \Gedcom\Writer\Indi\Name::convert($item, $level);
                 $output .= $_convert;
@@ -100,7 +99,7 @@ class Indi
 
         // $alia
         $alia = $indi->getAlia();
-        if (!empty($alia) && count($alia) > 0) {
+        if (!empty($alia) && $alia !== []) {
             foreach ($alia as $item) {
                 if (!empty($item)) {
                     $_convert = $level.' ALIA '.$item."\n";
@@ -162,7 +161,7 @@ class Indi
 
         // Fams[]
         $fams = $indi->getFams();
-        if (!empty($fams) && count($fams) > 0) {
+        if (!empty($fams) && $fams !== []) {
             foreach ($fams as $item) {
                 $_convert = \Gedcom\Writer\Indi\Fams::convert($item, $level);
                 $output .= $_convert;
@@ -171,7 +170,7 @@ class Indi
 
         // Famc[]
         $famc = $indi->getFamc();
-        if (!empty($famc) && count($famc) > 0) {
+        if (!empty($famc) && $famc !== []) {
             foreach ($famc as $item) {
                 $_convert = \Gedcom\Writer\Indi\Famc::convert($item, $level);
                 $output .= $_convert;
@@ -180,7 +179,7 @@ class Indi
 
         // Asso[]
         $asso = $indi->getAsso();
-        if (!empty($asso) && count($asso) > 0) {
+        if (!empty($asso) && $asso !== []) {
             foreach ($asso as $item) {
                 $_convert = \Gedcom\Writer\Indi\Asso::convert($item, $level);
                 $output .= $_convert;
@@ -189,7 +188,7 @@ class Indi
 
         // $subm
         $subm = $indi->getSubm();
-        if (!empty($subm) && count($subm) > 0) {
+        if (!empty($subm) && $subm !== []) {
             foreach ($subm as $item) {
                 if (!empty($item)) {
                     $_convert = $level.' SUBM '.$item."\n";
@@ -200,7 +199,7 @@ class Indi
 
         // $anci
         $anci = $indi->getAnci();
-        if (!empty($anci) && count($anci) > 0) {
+        if (!empty($anci) && $anci !== []) {
             foreach ($anci as $item) {
                 $_convert = $level.' ANCI '.$item."\n";
                 $output .= $_convert;
@@ -209,7 +208,7 @@ class Indi
 
         // $desi
         $desi = $indi->getDesi();
-        if (!empty($desi) && count($desi) > 0) {
+        if (!empty($desi) && $desi !== []) {
             foreach ($desi as $item) {
                 $_convert = $level.' DESI '.$item."\n";
                 $output .= $_convert;
@@ -218,7 +217,7 @@ class Indi
 
         // Refn[]
         $refn = $indi->getRefn();
-        if (!empty($refn) && count($refn) > 0) {
+        if (!empty($refn) && $refn !== []) {
             foreach ($refn as $item) {
                 $_convert = \Gedcom\Writer\Refn::convert($item, $level);
                 $output .= $_convert;

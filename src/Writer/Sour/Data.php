@@ -46,20 +46,16 @@ class Data
 
         // $_note
         $note = $data->getNote();
-        if ($note && count($note) > 0) {
-            foreach ($note as $item) {
-                $_convert = \Gedcom\Writer\NoteRef::convert($item, $level);
-                $output .= $_convert;
-            }
+        foreach ($note as $item) {
+            $_convert = \Gedcom\Writer\NoteRef::convert($item, $level);
+            $output .= $_convert;
         }
 
         // $_even
         $_even = $data->getEven();
-        if ($_even && count($_even) > 0) {
-            foreach ($_even as $item) {
-                $_convert = \Gedcom\Writer\Sour\Data\Even::convert($item, $level);
-                $output .= $_convert;
-            }
+        foreach ($_even as $item) {
+            $_convert = \Gedcom\Writer\Sour\Data\Even::convert($item, $level);
+            $output .= $_convert;
         }
 
         return $output;

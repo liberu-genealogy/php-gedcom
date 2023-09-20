@@ -27,7 +27,7 @@ class Slgs extends \Gedcom\Parser\Component
 
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
-            $recordType = strtoupper(trim($record[1]));
+            $recordType = strtoupper(trim((string) $record[1]));
             $currentDepth = (int) $record[0];
 
             if ($currentDepth <= $depth) {
@@ -41,13 +41,13 @@ class Slgs extends \Gedcom\Parser\Component
                     $slgs->setStat($stat);
                     break;
                 case 'DATE':
-                    $slgs->setDate(trim($record[2]));
+                    $slgs->setDate(trim((string) $record[2]));
                     break;
                 case 'PLAC':
-                    $slgs->setPlac(trim($record[2]));
+                    $slgs->setPlac(trim((string) $record[2]));
                     break;
                 case 'TEMP':
-                    $slgs->setTemp(trim($record[2]));
+                    $slgs->setTemp(trim((string) $record[2]));
                     break;
                 case 'SOUR':
                     $sour = \Gedcom\Parser\SourRef::parse($parser);

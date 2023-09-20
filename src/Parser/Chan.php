@@ -27,7 +27,7 @@ class Chan extends \Gedcom\Parser\Component
 
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
-            $recordType = trim($record[1]);
+            $recordType = trim((string) $record[1]);
             $currentDepth = (int) $record[0];
 
             if ($currentDepth <= $depth) {
@@ -37,10 +37,10 @@ class Chan extends \Gedcom\Parser\Component
 
             switch ($recordType) {
                 case 'DATE':
-                    $chan->setDate(trim($record[2]));
+                    $chan->setDate(trim((string) $record[2]));
                     break;
                 case 'TIME':
-                    $chan->setTime(trim($record[2]));
+                    $chan->setTime(trim((string) $record[2]));
                     break;
                 case 'NOTE':
                     $note = \Gedcom\Parser\NoteRef::parse($parser);

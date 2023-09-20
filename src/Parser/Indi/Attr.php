@@ -21,10 +21,10 @@ abstract class Attr extends \Gedcom\Parser\Component
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
         if (isset($record[1])) {
-            $className = '\\Gedcom\\Record\\Indi\\'.ucfirst(strtolower(trim($record[1])));
+            $className = '\\Gedcom\\Record\\Indi\\'.ucfirst(strtolower(trim((string) $record[1])));
             $attr = new $className();
 
-            $attr->setType(trim($record[1]));
+            $attr->setType(trim((string) $record[1]));
         } else {
             $parser->skipToNextLevel($depth);
 
@@ -32,14 +32,14 @@ abstract class Attr extends \Gedcom\Parser\Component
         }
 
         if (isset($record[2])) {
-            $attr->setAttr(trim($record[2]));
+            $attr->setAttr(trim((string) $record[2]));
         }
 
         $parser->forward();
 
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
-            $recordType = strtoupper(trim($record[1]));
+            $recordType = strtoupper(trim((string) $record[1]));
             $currentDepth = (int) $record[0];
 
             if ($currentDepth <= $depth) {
@@ -49,10 +49,10 @@ abstract class Attr extends \Gedcom\Parser\Component
 
             switch ($recordType) {
                 case 'TYPE':
-                    $attr->setType(trim($record[2]));
+                    $attr->setType(trim((string) $record[2]));
                     break;
                 case 'DATE':
-                    $attr->setDate(trim($record[2]));
+                    $attr->setDate(trim((string) $record[2]));
                     break;
                 case 'PLAC':
                     $plac = \Gedcom\Parser\Indi\Even\Plac::parse($parser);
@@ -66,13 +66,13 @@ abstract class Attr extends \Gedcom\Parser\Component
                     $attr->addPhon($phone);
                     break;
                 case 'CAUS':
-                    $attr->setCaus(trim($record[2]));
+                    $attr->setCaus(trim((string) $record[2]));
                     break;
                 case 'AGE':
-                    $attr->setAge(trim($record[2]));
+                    $attr->setAge(trim((string) $record[2]));
                     break;
                 case 'AGNC':
-                    $attr->setAgnc(trim($record[2]));
+                    $attr->setAgnc(trim((string) $record[2]));
                     break;
                 case 'SOUR':
                     $sour = \Gedcom\Parser\SourRef::parse($parser);

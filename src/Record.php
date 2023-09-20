@@ -18,11 +18,11 @@ abstract class Record
 {
     public function __call($method, $args)
     {
-        if (substr($method, 0, 3) == 'add') {
-            $arr = strtolower(substr($method, 3));
+        if (str_starts_with((string) $method, 'add')) {
+            $arr = strtolower(substr((string) $method, 3));
 
             if (!property_exists($this, '_'.$arr) || !is_array($this->{'_'.$arr})) {
-                throw new \Exception('Unknown '.$this::class.'::'.$arr);
+                throw new \Exception('Unknown '.static::class.'::'.$arr);
             }
 
             if (!is_array($args)) {
@@ -41,11 +41,11 @@ abstract class Record
             $this->{'_'.$arr}[] = $args[0];
 
             return $this;
-        } elseif (substr($method, 0, 3) == 'set') {
-            $arr = strtolower(substr($method, 3));
+        } elseif (str_starts_with((string) $method, 'set')) {
+            $arr = strtolower(substr((string) $method, 3));
 
             if (!property_exists($this, '_'.$arr)) {
-                throw new \Exception('Unknown '.$this::class.'::'.$arr);
+                throw new \Exception('Unknown '.static::class.'::'.$arr);
             }
 
             if (!is_array($args)) {
@@ -64,20 +64,20 @@ abstract class Record
             $this->{'_'.$arr} = $args[0];
 
             return $this;
-        } elseif (substr($method, 0, 3) == 'get') {
-            $arr = strtolower(substr($method, 3));
+        } elseif (str_starts_with((string) $method, 'get')) {
+            $arr = strtolower(substr((string) $method, 3));
 
             // hotfix getData
             if ('data' == $arr) {
                 if (!property_exists($this, '_text')) {
-                    throw new \Exception('Unknown '.$this::class.'::'.$arr);
+                    throw new \Exception('Unknown '.static::class.'::'.$arr);
                 }
 
                 return $this->{'_text'};
             }
 
             if (!property_exists($this, '_'.$arr)) {
-                throw new \Exception('Unknown '.$this::class.'::'.$arr);
+                throw new \Exception('Unknown '.static::class.'::'.$arr);
             }
 
             return $this->{'_'.$arr};

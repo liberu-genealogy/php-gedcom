@@ -27,7 +27,7 @@ class Repo
         $level = 0;
         $output = '';
         $_repo = $repo->getRepo();
-        if ($_repo) {
+        if ($_repo !== '' && $_repo !== '0') {
             $output .= $level.' '.$_repo." REPO\n";
         } else {
             return $output;
@@ -38,7 +38,7 @@ class Repo
 
         //NAME
         $name = $repo->getName();
-        if ($name) {
+        if ($name !== '' && $name !== '0') {
             $output .= $level.' NAME '.$name."\n";
         }
 
@@ -51,25 +51,23 @@ class Repo
 
         // PHON
         $phon = $repo->getPhon();
-        if ($phon) {
+        if ($phon !== []) {
             $_convert = \Gedcom\Writer\Phon::convert($phon, $level);
             $output .= $_convert;
         }
 
         // NOTE array
         $note = $repo->getNote();
-        if ($note && count($note) > 0) {
-            foreach ($note as $item) {
-                if ($item) {
-                    $_convert = \Gedcom\Writer\NoteRef::convert($item, $level);
-                    $output .= $_convert;
-                }
+        foreach ($note as $item) {
+            if ($item) {
+                $_convert = \Gedcom\Writer\NoteRef::convert($item, $level);
+                $output .= $_convert;
             }
         }
 
         // REFN
         $refn = $repo->getRefn();
-        if (!empty($refn) && count($refn) > 0) {
+        if (!empty($refn) && $refn !== []) {
             foreach ($refn as $item) {
                 if ($item) {
                     $_convert = \Gedcom\Writer\Refn::convert($item, $level);
@@ -87,7 +85,7 @@ class Repo
 
         // RIN
         $rin = $repo->getRin();
-        if ($rin) {
+        if ($rin !== '' && $rin !== '0') {
             $output .= $level.' RIN '.$rin."\n";
         }
 

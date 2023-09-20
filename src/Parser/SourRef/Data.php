@@ -26,7 +26,7 @@ class Data extends \Gedcom\Parser\Component
 
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
-            $recordType = strtoupper(trim($record[1]));
+            $recordType = strtoupper(trim((string) $record[1]));
             $currentDepth = (int) $record[0];
 
             if ($currentDepth <= $depth) {
@@ -34,16 +34,11 @@ class Data extends \Gedcom\Parser\Component
                 break;
             }
 
-            switch ($recordType) {
-                case 'DATE':
-                    $data->setDate(trim($record[2]));
-                    break;
-                case 'TEXT':
-                    $data->setText($parser->parseMultiLineRecord());
-                    break;
-                default:
-                    $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
-            }
+            match ($recordType) {
+                'DATE' => $data->setDate(trim((string) $record[2])),
+                'TEXT' => $data->setText($parser->parseMultiLineRecord()),
+                default => $parser->logUnhandledRecord(self::class.' @ '.__LINE__),
+            };
 
             $parser->forward();
         }

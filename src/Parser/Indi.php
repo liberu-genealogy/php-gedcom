@@ -37,7 +37,7 @@ class Indi extends \Gedcom\Parser\Component
 
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
-            $recordType = strtoupper(trim($record[1]));
+            $recordType = strtoupper(trim((string) $record[1]));
             $currentDepth = (int) $record[0];
 
             if ($currentDepth <= $depth) {
@@ -51,17 +51,17 @@ class Indi extends \Gedcom\Parser\Component
 
             switch ($recordType) {
             case '_UID':
-                $indi->setUid(trim($record[2]));
+                $indi->setUid(trim((string) $record[2]));
                 break;
             case 'RESN':
-                $indi->setResn(trim($record[2]));
+                $indi->setResn(trim((string) $record[2]));
                 break;
             case 'NAME':
                 $name = \Gedcom\Parser\Indi\Name::parse($parser);
                 $indi->addName($name);
                 break;
             case 'SEX':
-                $indi->setSex(isset($record[2]) ? trim($record[2]) : '');
+                $indi->setSex(isset($record[2]) ? trim((string) $record[2]) : '');
                 break;
             case 'ADOP':
             case 'BIRT':
@@ -162,17 +162,17 @@ class Indi extends \Gedcom\Parser\Component
                 $indi->addDesi($parser->normalizeIdentifier($record[2]));
                 break;
             case 'RFN':
-                $indi->setRfn(trim($record[2]));
+                $indi->setRfn(trim((string) $record[2]));
                 break;
             case 'AFN':
-                $indi->setAfn(trim($record[2]));
+                $indi->setAfn(trim((string) $record[2]));
                 break;
             case 'REFN':
                 $ref = \Gedcom\Parser\Refn::parse($parser);
                 $indi->addRefn($ref);
                 break;
             case 'RIN':
-                $indi->setRin(trim($record[2]));
+                $indi->setRin(trim((string) $record[2]));
                 break;
             case 'CHAN':
                 $chan = \Gedcom\Parser\Chan::parse($parser);

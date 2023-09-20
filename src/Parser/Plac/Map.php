@@ -28,23 +28,18 @@ class Map extends \Gedcom\Parser\Component
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
             $currentDepth = (int) $record[0];
-            $recordType = strtoupper(trim($record[1]));
+            $recordType = strtoupper(trim((string) $record[1]));
 
             if ($currentDepth <= $depth) {
                 $parser->back();
                 break;
             }
 
-            switch ($recordType) {
-                case 'LATI':
-                    $map->setLati(trim($record[2]));
-                    break;
-                case 'LONG':
-                    $map->setLong(trim($record[2]));
-                    break;
-                default:
-                    $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
-            }
+            match ($recordType) {
+                'LATI' => $map->setLati(trim((string) $record[2])),
+                'LONG' => $map->setLong(trim((string) $record[2])),
+                default => $parser->logUnhandledRecord(self::class.' @ '.__LINE__),
+            };
 
             $parser->forward();
         }

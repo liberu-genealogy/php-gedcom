@@ -44,19 +44,15 @@ class Plac
 
         // $note -array
         $note = $plac->getNote();
-        if ($note && count($note) > 0) {
-            foreach ($note as $item) {
-                $_convert = \Gedcom\Writer\NoteRef::convert($item, $level);
-                $output .= $_convert;
-            }
+        foreach ($note as $item) {
+            $_convert = \Gedcom\Writer\NoteRef::convert($item, $level);
+            $output .= $_convert;
         }
         // $sour -array
         $sour = $plac->getSour();
-        if ($sour && count($sour) > 0) {
-            foreach ($sour as $item) {
-                $_convert = \Gedcom\Writer\SourRef::convert($item, $level);
-                $output .= $_convert;
-            }
+        foreach ($sour as $item) {
+            $_convert = \Gedcom\Writer\SourRef::convert($item, $level);
+            $output .= $_convert;
         }
 
         return $output;

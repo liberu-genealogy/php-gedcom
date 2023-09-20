@@ -21,7 +21,7 @@ abstract class Lds extends \Gedcom\Parser\Component
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
         if (isset($record[1])) {
-            $className = 'GedcomRecordIndi'.ucfirst(strtolower(trim($record[1])));
+            $className = 'GedcomRecordIndi'.ucfirst(strtolower(trim((string) $record[1])));
             $lds = new $className();
         } else {
             $parser->skipToNextLevel($depth);
@@ -33,7 +33,7 @@ abstract class Lds extends \Gedcom\Parser\Component
 
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
-            $recordType = strtoupper(trim($record[1]));
+            $recordType = strtoupper(trim((string) $record[1]));
             $currentDepth = (int) $record[0];
 
             if ($currentDepth <= $depth) {
@@ -43,16 +43,16 @@ abstract class Lds extends \Gedcom\Parser\Component
 
             switch ($recordType) {
                 case 'STAT':
-                    $lds->setStat(trim($record[2]));
+                    $lds->setStat(trim((string) $record[2]));
                     break;
                 case 'DATE':
-                    $lds->setDate(trim($record[2]));
+                    $lds->setDate(trim((string) $record[2]));
                     break;
                 case 'PLAC':
-                    $lds->setPlac(trim($record[2]));
+                    $lds->setPlac(trim((string) $record[2]));
                     break;
                 case 'TEMP':
-                    $lds->setTemp(trim($record[2]));
+                    $lds->setTemp(trim((string) $record[2]));
                     break;
                 case 'SOUR':
                     $sour = \Gedcom\Parser\SourRef::parse($parser);
@@ -65,7 +65,7 @@ abstract class Lds extends \Gedcom\Parser\Component
                     }
                     break;
                 default:
-                    $self = get_called_class();
+                    $self = static::class;
                     $method = 'parse'.$recordType;
 
                     if (method_exists($self, $method)) {

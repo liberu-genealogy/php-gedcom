@@ -38,7 +38,7 @@ class Subn extends \Gedcom\Parser\Component
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
             $currentDepth = (int) $record[0];
-            $recordType = strtoupper(trim($record[1]));
+            $recordType = strtoupper(trim((string) $record[1]));
 
             if ($currentDepth <= $depth) {
                 $parser->back();
@@ -50,22 +50,22 @@ class Subn extends \Gedcom\Parser\Component
                     $subn->setSubm($parser->normalizeIdentifier($record[2]));
                     break;
                 case 'FAMF':
-                    $subn->setFamf(trim($record[2]));
+                    $subn->setFamf(trim((string) $record[2]));
                     break;
                 case 'TEMP':
-                    $subn->setTemp(trim($record[2]));
+                    $subn->setTemp(trim((string) $record[2]));
                     break;
                 case 'ANCE':
-                    $subn->setAnce(trim($record[2]));
+                    $subn->setAnce(trim((string) $record[2]));
                     break;
                 case 'DESC':
-                    $subn->setDesc(trim($record[2]));
+                    $subn->setDesc(trim((string) $record[2]));
                     break;
                 case 'ORDI':
-                    $subn->setOrdi(trim($record[2]));
+                    $subn->setOrdi(trim((string) $record[2]));
                     break;
                 case 'RIN':
-                    $subn->setRin(trim($record[2]));
+                    $subn->setRin(trim((string) $record[2]));
                     break;
                 case 'NOTE':
                     $note = \Gedcom\Parser\NoteRef::parse($parser);

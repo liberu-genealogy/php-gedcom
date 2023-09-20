@@ -38,7 +38,7 @@ class Subm extends \Gedcom\Parser\Component
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
             $currentDepth = (int) $record[0];
-            $recordType = strtoupper(trim($record[1]));
+            $recordType = strtoupper(trim((string) $record[1]));
 
             if ($currentDepth <= $depth) {
                 $parser->back();
@@ -47,26 +47,26 @@ class Subm extends \Gedcom\Parser\Component
 
             switch ($recordType) {
                 case 'NAME':
-                    $subm->setName(isset($record[2]) ? trim($record[2]) : '');
+                    $subm->setName(isset($record[2]) ? trim((string) $record[2]) : '');
                     break;
                 case 'ADDR':
                     $addr = \Gedcom\Parser\Addr::parse($parser);
                     $subm->setAddr($addr);
                     break;
                 case 'PHON':
-                    $phone = isset($record[2]) ? trim($record[2]) : '';
+                    $phone = isset($record[2]) ? trim((string) $record[2]) : '';
                     $subm->addPhon($phone);
                     break;
                 case 'EMAIL':
-                    $email = isset($record[2]) ? trim($record[2]) : '';
+                    $email = isset($record[2]) ? trim((string) $record[2]) : '';
                     $subm->addEmail($email);
                     break;
                 case 'FAX':
-                    $fax = isset($record[2]) ? trim($record[2]) : '';
+                    $fax = isset($record[2]) ? trim((string) $record[2]) : '';
                     $subm->addFax($fax);
                     break;
                 case 'WWW':
-                    $www = isset($record[2]) ? trim($record[2]) : '';
+                    $www = isset($record[2]) ? trim((string) $record[2]) : '';
                     $subm->addWww($www);
                     break;
                 case 'NOTE':
@@ -84,13 +84,13 @@ class Subm extends \Gedcom\Parser\Component
                     $subm->setChan($chan);
                     break;
                 case 'RIN':
-                    $subm->setRin(isset($record[2]) ? trim($record[2]) : '');
+                    $subm->setRin(isset($record[2]) ? trim((string) $record[2]) : '');
                     break;
                 case 'RFN':
-                    $subm->setRfn(isset($record[2]) ? trim($record[2]) : '');
+                    $subm->setRfn(isset($record[2]) ? trim((string) $record[2]) : '');
                     break;
                 case 'LANG':
-                    $subm->addLang(isset($record[2]) ? trim($record[2]) : '');
+                    $subm->addLang(isset($record[2]) ? trim((string) $record[2]) : '');
                     break;
                 default:
                     $parser->logUnhandledRecord(self::class.' @ '.__LINE__);

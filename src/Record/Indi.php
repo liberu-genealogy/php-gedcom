@@ -302,8 +302,8 @@ class Indi extends \Gedcom\Record implements Noteable, Objectable, Sourceable
      */
     public function getAttr($key = '')
     {
-        if (isset($this->attr[strtoupper($key)])) {
-            return $this->attr[strtoupper($key)];
+        if (isset($this->attr[strtoupper((string) $key)])) {
+            return $this->attr[strtoupper((string) $key)];
         }
     }
 
@@ -338,8 +338,8 @@ class Indi extends \Gedcom\Record implements Noteable, Objectable, Sourceable
      */
     public function getEven($key = '')
     {
-        if (isset($this->even[strtoupper($key)])) {
-            return $this->even[strtoupper($key)];
+        if (isset($this->even[strtoupper((string) $key)])) {
+            return $this->even[strtoupper((string) $key)];
         }
     }
 

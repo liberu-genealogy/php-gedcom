@@ -27,7 +27,7 @@ class Chr extends \Gedcom\Parser\Component
 
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
-            $recordType = trim($record[1]);
+            $recordType = trim((string) $record[1]);
             $currentDepth = (int) $record[0];
 
             if ($currentDepth <= $depth) {
@@ -35,16 +35,11 @@ class Chr extends \Gedcom\Parser\Component
                 break;
             }
 
-            switch ($recordType) {
-                case 'DATE':
-                    $chr->setDate(trim($record[2]));
-                    break;
-                case 'PLAC':
-                    $chr->setPlac(trim($record[2]));
-                    break;
-                default:
-                    $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
-            }
+            match ($recordType) {
+                'DATE' => $chr->setDate(trim((string) $record[2])),
+                'PLAC' => $chr->setPlac(trim((string) $record[2])),
+                default => $parser->logUnhandledRecord(self::class.' @ '.__LINE__),
+            };
 
             $parser->forward();
         }

@@ -38,37 +38,37 @@ class Head
 
         // DEST
         $dest = $head->getDest();
-        if ($dest) {
+        if ($dest !== '' && $dest !== '0') {
             $output .= $level.' DEST '.$dest."\n";
         }
 
         //Subm
         $subm = $head->getSubm();
-        if ($subm) {
+        if ($subm !== '' && $subm !== '0') {
             $output .= $level.' SUBM '.$subm."\n";
         }
 
         // SUBN
         $subn = $head->getSubn();
-        if ($subn) {
+        if ($subn !== '' && $subn !== '0') {
             $output .= $level.' SUBN '.$subn."\n";
         }
 
         // FILE
         $file = $head->getFile();
-        if ($file) {
+        if ($file !== '' && $file !== '0') {
             $output .= $level.' FILE '.$file."\n";
         }
 
         // COPR
         $copr = $head->getCopr();
-        if ($copr) {
+        if ($copr !== '' && $copr !== '0') {
             $output .= $level.' COPR '.$copr."\n";
         }
 
         // LANG
         $lang = $head->getLang();
-        if ($lang) {
+        if ($lang !== '' && $lang !== '0') {
             $output .= $level.' LANG '.$lang."\n";
         }
         // DATE
@@ -100,7 +100,7 @@ class Head
 
         // NOTE
         $note = $head->getNote();
-        if ($note) {
+        if ($note !== '' && $note !== '0') {
             $output .= $level.' NOTE '.$note."\n";
         }
         //

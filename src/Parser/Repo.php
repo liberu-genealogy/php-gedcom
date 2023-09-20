@@ -38,7 +38,7 @@ class Repo extends \Gedcom\Parser\Component
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
             $currentDepth = (int) $record[0];
-            $recordType = strtoupper(trim($record[1]));
+            $recordType = strtoupper(trim((string) $record[1]));
 
             if ($currentDepth <= $depth) {
                 $parser->back();
@@ -47,23 +47,23 @@ class Repo extends \Gedcom\Parser\Component
 
             switch ($recordType) {
                 case 'NAME':
-                    $repo->setName(trim($record[2]));
+                    $repo->setName(trim((string) $record[2]));
                     break;
                 case 'ADDR':
                     $addr = \Gedcom\Parser\Addr::parse($parser);
                     $repo->setAddr($addr);
                     break;
                 case 'PHON':
-                    $repo->addPhon(trim($record[2]));
+                    $repo->addPhon(trim((string) $record[2]));
                     break;
                 case 'EMAIL':
-                    $repo->addEmail(trim($record[2]));
+                    $repo->addEmail(trim((string) $record[2]));
                     break;
                 case 'FAX':
-                    $repo->addFax(trim($record[2]));
+                    $repo->addFax(trim((string) $record[2]));
                     break;
                 case 'WWW':
-                    $repo->addWww(trim($record[2]));
+                    $repo->addWww(trim((string) $record[2]));
                     break;
                 case 'NOTE':
                     if ($note = \Gedcom\Parser\NoteRef::parse($parser)) {
@@ -75,7 +75,7 @@ class Repo extends \Gedcom\Parser\Component
                     $repo->addRefn($refn);
                     break;
                 case 'RIN':
-                    $repo->setRin(trim($record[2]));
+                    $repo->setRin(trim((string) $record[2]));
                     break;
                 case 'CHAN':
                     $chan = \Gedcom\Parser\Chan::parse($parser);

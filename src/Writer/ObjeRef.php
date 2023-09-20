@@ -55,7 +55,7 @@ class ObjeRef
 
         // $_note = array()
         $_note = $obje->getNote();
-        if (!empty($_note) && count($_note) > 0) {
+        if (!empty($_note) && (is_countable($_note) ? count($_note) : 0) > 0) {
             foreach ($_note as $item) {
                 $_convert = \Gedcom\Writer\NoteRef::convert($item, $level);
                 $output .= $_convert;

@@ -42,7 +42,7 @@ class Famc
 
         // note
         $note = $famc->getSour();
-        if (!empty($note) && count($note) > 0) {
+        if (!empty($note) && (is_countable($note) ? count($note) : 0) > 0) {
             foreach ($note as $item) {
                 $_convert = \Gedcom\Writer\NoteRef::convert($item, $level);
                 $output .= $_convert;

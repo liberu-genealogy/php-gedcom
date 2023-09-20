@@ -38,7 +38,7 @@ class Obje extends \Gedcom\Parser\Component
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
             $currentDepth = (int) $record[0];
-            $recordType = strtoupper(trim($record[1]));
+            $recordType = strtoupper(trim((string) $record[1]));
 
             if ($currentDepth <= $depth) {
                 $parser->back();
@@ -47,14 +47,14 @@ class Obje extends \Gedcom\Parser\Component
 
             switch ($recordType) {
                 case 'FILE':
-                    $obje->setFile(trim($record[2]));
+                    $obje->setFile(trim((string) $record[2]));
                     break;
                 case 'REFN':
                     $refn = \Gedcom\Parser\Refn::parse($parser);
                     $obje->addRefn($refn);
                     break;
                 case 'RIN':
-                    $obje->setRin(trim($record[2]));
+                    $obje->setRin(trim((string) $record[2]));
                     break;
 
                 case 'NOTE':

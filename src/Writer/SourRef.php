@@ -36,11 +36,9 @@ class SourRef
         }
         // protected $_note    = array();
         $note = $sour->getNote();
-        if ($note && count($note) > 0) {
-            foreach ($note as $item) {
-                $_convert = \Gedcom\Writer\NoteRef::convert($item, $level);
-                $output .= $_convert;
-            }
+        foreach ($note as $item) {
+            $_convert = \Gedcom\Writer\NoteRef::convert($item, $level);
+            $output .= $_convert;
         }
         // protected $_data    = null;
         $_data = $sour->getData();

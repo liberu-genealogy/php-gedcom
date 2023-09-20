@@ -33,7 +33,7 @@ class SourRef extends \Gedcom\Parser\Component
 
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
-            $recordType = strtoupper(trim($record[1]));
+            $recordType = strtoupper(trim((string) $record[1]));
             $currentDepth = (int) $record[0];
 
             if ($currentDepth <= $depth) {
@@ -43,7 +43,7 @@ class SourRef extends \Gedcom\Parser\Component
 
             switch ($recordType) {
                 case 'PAGE':
-                    $sour->setPage(trim($record[2]));
+                    $sour->setPage(trim((string) $record[2]));
                     break;
                 case 'EVEN':
                     $even = \Gedcom\Parser\SourRef\Even::parse($parser);
@@ -68,7 +68,7 @@ class SourRef extends \Gedcom\Parser\Component
                     }
                     break;
                 case 'QUAY':
-                    $sour->setQuay(trim($record[2]));
+                    $sour->setQuay(trim((string) $record[2]));
                     break;
                 default:
                     $parser->logUnhandledRecord(self::class.' @ '.__LINE__);

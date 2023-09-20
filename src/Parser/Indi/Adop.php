@@ -20,7 +20,7 @@ class Adop extends \Gedcom\Parser\Indi\Even
     {
         $record = $parser->getCurrentLineRecord();
         if (isset($record[1])) {
-            $even->setAdop(trim($record[2]));
+            $even->setAdop(trim((string) $record[2]));
         }
     }
 
@@ -28,7 +28,7 @@ class Adop extends \Gedcom\Parser\Indi\Even
     {
         $record = $parser->getCurrentLineRecord();
         if (isset($record[1])) {
-            $even->setFamc(trim($record[2]));
+            $even->setFamc(trim((string) $record[2]));
         }
     }
 }

@@ -30,7 +30,7 @@ class Repo extends \Gedcom\Parser\Component
 
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
-            $recordType = strtoupper(trim($record[1]));
+            $recordType = strtoupper(trim((string) $record[1]));
             $currentDepth = (int) $record[0];
 
             if ($currentDepth <= $depth) {
@@ -38,16 +38,11 @@ class Repo extends \Gedcom\Parser\Component
                 break;
             }
 
-            switch ($recordType) {
-                case 'NOTE':
-                    $repo->addNote(\Gedcom\Parser\NoteRef::parse($parser));
-                    break;
-                case 'CALN':
-                    $repo->addCaln(\Gedcom\Parser\Sour\Repo\Caln::parse($parser));
-                    break;
-                default:
-                    $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
-            }
+            match ($recordType) {
+                'NOTE' => $repo->addNote(\Gedcom\Parser\NoteRef::parse($parser)),
+                'CALN' => $repo->addCaln(\Gedcom\Parser\Sour\Repo\Caln::parse($parser)),
+                default => $parser->logUnhandledRecord(self::class.' @ '.__LINE__),
+            };
 
             $parser->forward();
         }

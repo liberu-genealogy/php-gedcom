@@ -26,7 +26,7 @@ use Gedcom\Writer\Subn;
 
 class Writer
 {
-    const GEDCOM55 = 'gedcom5.5';
+    final public const GEDCOM55 = 'gedcom5.5';
 
     protected $_output;
 
@@ -61,7 +61,7 @@ class Writer
         }
 
         // subms
-        if (!empty($subms) && count($subms) > 0) {
+        if (!empty($subms) && $subms !== []) {
             foreach ($subms as $item) {
                 if ($item) {
                     $output .= Subm::convert($item);
@@ -70,7 +70,7 @@ class Writer
         }
 
         // sours
-        if (!empty($sours) && count($sours) > 0) {
+        if (!empty($sours) && $sours !== []) {
             foreach ($sours as $item) {
                 if ($item) {
                     $output .= Sour::convert($item, 0);
@@ -79,7 +79,7 @@ class Writer
         }
 
         // indis
-        if (!empty($indis) && count($indis) > 0) {
+        if (!empty($indis) && $indis !== []) {
             foreach ($indis as $item) {
                 if ($item) {
                     $output .= Indi::convert($item);
@@ -88,7 +88,7 @@ class Writer
         }
 
         // fams
-        if (!empty($fams) && count($fams) > 0) {
+        if (!empty($fams) && $fams !== []) {
             foreach ($fams as $item) {
                 if ($item) {
                     $output .= Fam::convert($item);
@@ -96,7 +96,7 @@ class Writer
             }
         }
         // notes
-        if (!empty($notes) && count($notes) > 0) {
+        if (!empty($notes) && $notes !== []) {
             foreach ($notes as $item) {
                 if ($item) {
                     $output .= Note::convert($item);
@@ -105,7 +105,7 @@ class Writer
         }
 
         // repos
-        if (!empty($repos) && count($repos) > 0) {
+        if (!empty($repos) && $repos !== []) {
             foreach ($repos as $item) {
                 if ($item) {
                     $output .= Repo::convert($item);
@@ -113,7 +113,7 @@ class Writer
             }
         }
         // Objes
-        if (!empty($objes) && count($objes) > 0) {
+        if (!empty($objes) && $objes !== []) {
             foreach ($objes as $item) {
                 if ($item) {
                     $output .= Obje::convert($item);

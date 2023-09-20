@@ -20,7 +20,7 @@ class Chr extends \Gedcom\Parser\Indi\Even
     {
         $record = $parser->getCurrentLineRecord();
         if (isset($record[2])) {
-            $even->setFamc(trim($record[2]));
+            $even->setFamc(trim((string) $record[2]));
         }
     }
 }

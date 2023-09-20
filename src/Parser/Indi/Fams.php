@@ -21,8 +21,8 @@ class Fams extends \Gedcom\Parser\Component
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
 
-        if (count($record) < 3) {
-            $parser->logSkippedRecord('Missing family information; '.self::class, ' @ '.__LINE__);
+        if ((is_countable($record) ? count($record) : 0) < 3) {
+            $parser->logSkippedRecord('Missing family information; '.self::class);
             $parser->skipToNextLevel($depth);
 
             return null;
@@ -37,7 +37,7 @@ class Fams extends \Gedcom\Parser\Component
 
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
-            $recordType = strtoupper(trim($record[1]));
+            $recordType = strtoupper(trim((string) $record[1]));
             $currentDepth = (int) $record[0];
 
             if ($currentDepth <= $depth) {

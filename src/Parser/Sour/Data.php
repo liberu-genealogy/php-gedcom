@@ -27,7 +27,7 @@ class Data extends \Gedcom\Parser\Component
 
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
-            $recordType = strtoupper(trim($record[1]));
+            $recordType = strtoupper(trim((string) $record[1]));
             $currentDepth = (int) $record[0];
 
             if ($currentDepth <= $depth) {
@@ -40,10 +40,10 @@ class Data extends \Gedcom\Parser\Component
                     $data->addEven(\Gedcom\Parser\Sour\Data\Even::parse($parser));
                     break;
                 case 'DATE': // not in 5.5.1
-                    $data->setDate(trim($record[2]));
+                    $data->setDate(trim((string) $record[2]));
                     break;
                 case 'AGNC':
-                    $data->setAgnc(trim($record[2]));
+                    $data->setAgnc(trim((string) $record[2]));
                     break;
                 case 'NOTE':
                     $note = \Gedcom\Parser\NoteRef::parse($parser);

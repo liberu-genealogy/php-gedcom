@@ -27,7 +27,7 @@ class Birt extends \Gedcom\Parser\Component
 
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
-            $recordType = trim($record[1]);
+            $recordType = trim((string) $record[1]);
             $currentDepth = (int) $record[0];
 
             if ($currentDepth <= $depth) {
@@ -35,19 +35,12 @@ class Birt extends \Gedcom\Parser\Component
                 break;
             }
 
-            switch ($recordType) {
-                case 'DATE':
-                    $birt->setDate(trim($record[2]));
-                    break;
-                case '_DATI':
-                    $birt->setDati(trim($record[2]));
-                    break;
-                case 'PLAC':
-                    $birt->setPlac(trim($record[2]));
-                    break;
-                default:
-                    $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
-            }
+            match ($recordType) {
+                'DATE' => $birt->setDate(trim((string) $record[2])),
+                '_DATI' => $birt->setDati(trim((string) $record[2])),
+                'PLAC' => $birt->setPlac(trim((string) $record[2])),
+                default => $parser->logUnhandledRecord(self::class.' @ '.__LINE__),
+            };
 
             $parser->forward();
         }

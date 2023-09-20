@@ -21,10 +21,7 @@ use Gedcom\Record;
  */
 class Chan extends \Gedcom\Record
 {
-    /**
-     * @var array
-     */
-    private $months = [
+    private array $months = [
         'JAN' => '01', 'FEB' => '02', 'MAR' => '03', 'APR' => '04', 'MAY' => '05', 'JUN' => '06',
         'JUL' => '07', 'AUG' => '08', 'SEP' => '09', 'OCT' => '10', 'NOV' => '11', 'DEC' => '12',
     ];
@@ -124,14 +121,12 @@ class Chan extends \Gedcom\Record
     public function getMonth()
     {
         $record = explode(' ', $this->date);
-        if (count($record) > 0) {
-            if ($this->isPrefix($record[0])) {
-                unset($record[0]);
-            }
-            foreach ($record as $part) {
-                if (isset($this->months[trim($part)])) {
-                    return $this->months[trim($part)];
-                }
+        if ($this->isPrefix($record[0])) {
+            unset($record[0]);
+        }
+        foreach ($record as $part) {
+            if (isset($this->months[trim($part)])) {
+                return $this->months[trim($part)];
             }
         }
 
@@ -146,16 +141,11 @@ class Chan extends \Gedcom\Record
     public function getYear()
     {
         $record = explode(' ', $this->date);
-        if (count($record) > 0) {
-            if ($this->isPrefix($record[0])) {
-                unset($record[0]);
-            }
-            if (count($record) > 0) {
-                return (int) end($record);
-            }
+        if ($this->isPrefix($record[0])) {
+            unset($record[0]);
         }
 
-        return null;
+        return (int) end($record);
     }
 
     /**
@@ -166,11 +156,11 @@ class Chan extends \Gedcom\Record
     public function getDay()
     {
         $record = explode(' ', $this->date);
-        if (!empty($record[0])) {
+        if (isset($record[0]) && $record[0] !== '') {
             if ($this->isPrefix($record[0])) {
                 unset($record[0]);
             }
-            if (count($record) > 0) {
+            if ($record !== []) {
                 $day = (int) reset($record);
                 if ($day >= 1 && $day <= 31) {
                     return substr("0{$day}", -2);

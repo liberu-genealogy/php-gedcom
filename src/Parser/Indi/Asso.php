@@ -33,7 +33,7 @@ class Asso extends \Gedcom\Parser\Component
 
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
-            $recordType = strtoupper(trim($record[1]));
+            $recordType = strtoupper(trim((string) $record[1]));
             $currentDepth = (int) $record[0];
 
             if ($currentDepth <= $depth) {
@@ -43,7 +43,7 @@ class Asso extends \Gedcom\Parser\Component
 
             switch ($recordType) {
                 case 'RELA':
-                    $asso->setRela(trim($record[2]));
+                    $asso->setRela(trim((string) $record[2]));
                     break;
                 case 'SOUR':
                     $sour = \Gedcom\Parser\SourRef::parse($parser);

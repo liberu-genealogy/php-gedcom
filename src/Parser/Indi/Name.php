@@ -22,7 +22,7 @@ class Name extends \Gedcom\Parser\Component
         $depth = (int) $record[0];
         if (isset($record[2])) {
             $name = new \Gedcom\Record\Indi\Name();
-            $name->setName(trim($record[2]));
+            $name->setName(trim((string) $record[2]));
         } else {
             $parser->skipToNextLevel($depth);
 
@@ -33,7 +33,7 @@ class Name extends \Gedcom\Parser\Component
 
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
-            $recordType = strtoupper(trim($record[1]));
+            $recordType = strtoupper(trim((string) $record[1]));
             $currentDepth = (int) $record[0];
 
             if ($currentDepth <= $depth) {
@@ -47,25 +47,25 @@ class Name extends \Gedcom\Parser\Component
 
             switch ($recordType) {
                 case 'TYPE':
-                    $name->setType(trim($record[2]));
+                    $name->setType(trim((string) $record[2]));
                     break;
                 case 'NPFX':
-                    $name->setNpfx(trim($record[2]));
+                    $name->setNpfx(trim((string) $record[2]));
                     break;
                 case 'GIVN':
-                    $name->setGivn(trim($record[2]));
+                    $name->setGivn(trim((string) $record[2]));
                     break;
                 case 'NICK':
-                    $name->setNick(trim($record[2]));
+                    $name->setNick(trim((string) $record[2]));
                     break;
                 case 'SPFX':
-                    $name->setSpfx(trim($record[2]));
+                    $name->setSpfx(trim((string) $record[2]));
                     break;
                 case 'SURN':
-                    $name->setSurn(trim($record[2]));
+                    $name->setSurn(trim((string) $record[2]));
                     break;
                 case 'NSFX':
-                    $name->setNsfx(trim($record[2]));
+                    $name->setNsfx(trim((string) $record[2]));
                     break;
                 case 'SOUR':
                     $sour = \Gedcom\Parser\SourRef::parse($parser);

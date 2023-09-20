@@ -20,7 +20,7 @@ class Addr extends \Gedcom\Parser\Component
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
-        $line = isset($record[2]) ? trim($record[2]) : '';
+        $line = isset($record[2]) ? trim((string) $record[2]) : '';
 
         $addr = new \Gedcom\Record\Addr();
         $addr->setAddr($line);
@@ -28,7 +28,7 @@ class Addr extends \Gedcom\Parser\Component
 
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
-            $recordType = strtolower(trim($record[1]));
+            $recordType = strtolower(trim((string) $record[1]));
             $currentDepth = (int) $record[0];
 
             if ($currentDepth <= $depth) {
@@ -37,17 +37,15 @@ class Addr extends \Gedcom\Parser\Component
             }
 
             if ($addr->hasAttribute($recordType)) {
-                $addr->{'set'.$recordType}(trim($record[2]));
-            } else {
-                if ($recordType == 'cont') {
-                    // FIXME: Can have CONT on multiple attributes
-                    $addr->setAddr($addr->getAddr()."\n");
-                    if (isset($record[2])) {
-                        $addr->setAddr($addr->getAddr().trim($record[2]));
-                    }
-                } else {
-                    $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
+                $addr->{'set'.$recordType}(trim((string) $record[2]));
+            } elseif ($recordType == 'cont') {
+                // FIXME: Can have CONT on multiple attributes
+                $addr->setAddr($addr->getAddr()."\n");
+                if (isset($record[2])) {
+                    $addr->setAddr($addr->getAddr().trim((string) $record[2]));
                 }
+            } else {
+                $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
             }
 
             $parser->forward();

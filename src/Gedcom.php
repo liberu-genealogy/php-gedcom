@@ -120,7 +120,7 @@ class Gedcom
     public function addIndi(\Gedcom\Record\Indi $indi)
     {
         $this->indi[$indi->getId()] = $indi;
-        if ($indi->getUid()) {
+        if ($indi->getUid() !== '' && $indi->getUid() !== '0') {
             $this->uid2indi[$indi->getUid()] = $indi;
         }
     }

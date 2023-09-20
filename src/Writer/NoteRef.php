@@ -34,11 +34,9 @@ class NoteRef
         $level++;
         // $sour
         $sour = $note->getSour();
-        if ($sour && count($sour) > 0) {
-            foreach ($sour as $item) {
-                $_convert = \Gedcom\Writer\SourRef::convert($item, $level);
-                $output .= $_convert;
-            }
+        foreach ($sour as $item) {
+            $_convert = \Gedcom\Writer\SourRef::convert($item, $level);
+            $output .= $_convert;
         }
 
         return $output;

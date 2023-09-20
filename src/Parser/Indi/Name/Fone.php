@@ -22,7 +22,7 @@ class Fone extends \Gedcom\Parser\Component
         $depth = (int) $record[0];
         if (isset($record[2])) {
             $fone = new \Gedcom\Record\Indi\Name\Fone();
-            $fone->setFone(trim($record[2]));
+            $fone->setFone(trim((string) $record[2]));
         } else {
             return null;
         }
@@ -31,7 +31,7 @@ class Fone extends \Gedcom\Parser\Component
 
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
-            $recordType = strtoupper(trim($record[1]));
+            $recordType = strtoupper(trim((string) $record[1]));
             $currentDepth = (int) $record[0];
 
             if ($currentDepth <= $depth) {
@@ -43,31 +43,16 @@ class Fone extends \Gedcom\Parser\Component
                 $record[2] = '';
             }
 
-            switch ($recordType) {
-                case 'TYPE':
-                    $fone->setType(trim($record[2]));
-                    break;
-                case 'NPFX':
-                    $fone->setNpfx(trim($record[2]));
-                    break;
-                case 'GIVN':
-                    $fone->setGivn(trim($record[2]));
-                    break;
-                case 'NICK':
-                    $fone->setNick(trim($record[2]));
-                    break;
-                case 'SPFX':
-                    $fone->setSpfx(trim($record[2]));
-                    break;
-                case 'SURN':
-                    $fone->setSurn(trim($record[2]));
-                    break;
-                case 'NSFX':
-                    $fone->setNsfx(trim($record[2]));
-                    break;
-                default:
-                    $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
-            }
+            match ($recordType) {
+                'TYPE' => $fone->setType(trim((string) $record[2])),
+                'NPFX' => $fone->setNpfx(trim((string) $record[2])),
+                'GIVN' => $fone->setGivn(trim((string) $record[2])),
+                'NICK' => $fone->setNick(trim((string) $record[2])),
+                'SPFX' => $fone->setSpfx(trim((string) $record[2])),
+                'SURN' => $fone->setSurn(trim((string) $record[2])),
+                'NSFX' => $fone->setNsfx(trim((string) $record[2])),
+                default => $parser->logUnhandledRecord(self::class.' @ '.__LINE__),
+            };
 
             $parser->forward();
         }

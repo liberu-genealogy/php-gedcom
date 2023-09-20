@@ -40,7 +40,7 @@ class Head extends \Gedcom\Parser\Component
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
             $currentDepth = (int) $record[0];
-            $recordType = strtoupper(trim($record[1]));
+            $recordType = strtoupper(trim((string) $record[1]));
 
             if ($currentDepth <= $depth) {
                 $parser->back();
@@ -59,16 +59,16 @@ class Head extends \Gedcom\Parser\Component
                     $head->setSubn($parser->normalizeIdentifier($record[2]));
                     break;
                 case 'DEST':
-                    $head->setDest(trim($record[2]));
+                    $head->setDest(trim((string) $record[2]));
                     break;
                 case 'FILE':
-                    $head->setFile(trim($record[2]));
+                    $head->setFile(trim((string) $record[2]));
                     break;
                 case 'COPR':
-                    $head->setCopr(trim($record[2]));
+                    $head->setCopr(trim((string) $record[2]));
                     break;
                 case 'LANG':
-                    $head->setLang(trim($record[2]));
+                    $head->setLang(trim((string) $record[2]));
                     break;
                 case 'DATE':
                     $date = \Gedcom\Parser\Head\Date::parse($parser);

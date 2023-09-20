@@ -44,12 +44,10 @@ class Corp
 
         // phon
         $phon = $corp->getPhon();
-        if ($phon && count($phon) > 0) {
-            foreach ($phon as $item) {
-                if ($item) {
-                    $_convert = \Gedcom\Writer\Phon::convert($item, $level);
-                    $output .= $_convert;
-                }
+        foreach ($phon as $item) {
+            if ($item) {
+                $_convert = \Gedcom\Writer\Phon::convert($item, $level);
+                $output .= $_convert;
             }
         }
 

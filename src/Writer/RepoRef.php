@@ -35,7 +35,7 @@ class RepoRef
 
         // Note array
         $note = $reporef->getNote();
-        if (!empty($note) && count($note) > 0) {
+        if (!empty($note) && (is_countable($note) ? count($note) : 0) > 0) {
             foreach ($note as $item) {
                 $_convert = \Gedcom\Writer\NoteRef::convert($item, $level);
                 $output .= $_convert;
@@ -44,7 +44,7 @@ class RepoRef
 
         // _caln array
         $_caln = $reporef->getCaln();
-        if (!empty($_caln) && count($_caln) > 0) {
+        if (!empty($_caln) && (is_countable($_caln) ? count($_caln) : 0) > 0) {
             foreach ($_caln as $item) {
                 $_convert = \Gedcom\Writer\Caln::convert($item, $level);
                 $output .= $_convert;

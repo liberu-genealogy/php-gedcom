@@ -21,7 +21,7 @@ class Plac extends \Gedcom\Parser\Component
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
         if (isset($record[2])) {
-            $_plac = trim($record[2]);
+            $_plac = trim((string) $record[2]);
         } else {
             $parser->skipToNextLevel($depth);
 
@@ -36,7 +36,7 @@ class Plac extends \Gedcom\Parser\Component
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
             $currentDepth = (int) $record[0];
-            $recordType = strtoupper(trim($record[1]));
+            $recordType = strtoupper(trim((string) $record[1]));
 
             if ($currentDepth <= $depth) {
                 $parser->back();
@@ -45,7 +45,7 @@ class Plac extends \Gedcom\Parser\Component
 
             switch ($recordType) {
                 case 'FORM':
-                    $plac->setForm(trim($record[2]));
+                    $plac->setForm(trim((string) $record[2]));
                     break;
                 case 'FONE':
                     $fone = \Gedcom\Parser\Plac\Fone::parse($parser);

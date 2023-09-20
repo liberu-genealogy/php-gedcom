@@ -22,7 +22,7 @@ class Sour extends \Gedcom\Parser\Component
         $depth = (int) $record[0];
         if (isset($record[2])) {
             $source = new \Gedcom\Record\Head\Sour();
-            $source->setSour(trim($record[2]));
+            $source->setSour(trim((string) $record[2]));
         } else {
             $parser->skipToNextLevel($depth);
 
@@ -33,7 +33,7 @@ class Sour extends \Gedcom\Parser\Component
 
         while (!$parser->eof()) {
             $record = $parser->getCurrentLineRecord();
-            $recordType = strtoupper(trim($record[1]));
+            $recordType = strtoupper(trim((string) $record[1]));
             $currentDepth = (int) $record[0];
 
             if ($currentDepth <= $depth) {
@@ -43,10 +43,10 @@ class Sour extends \Gedcom\Parser\Component
 
             switch ($recordType) {
                 case 'VERS':
-                    $source->setVers(trim($record[2]));
+                    $source->setVers(trim((string) $record[2]));
                     break;
                 case 'NAME':
-                    $source->setName(trim($record[2]));
+                    $source->setName(trim((string) $record[2]));
                     break;
                 case 'CORP':
                     $corp = \Gedcom\Parser\Head\Sour\Corp::parse($parser);
