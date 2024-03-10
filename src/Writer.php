@@ -3,7 +3,7 @@
  * php-gedcom.
  *
  * php-gedcom is a library for parsing, manipulating, importing and exporting
- * GEDCOM 5.5 files in PHP 5.3+.
+ * GEDCOM 5.5 files in PHP 8.3.
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
  * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
@@ -36,7 +36,7 @@ class Writer
      *
      * @return string The contents of the document in the converted format
      */
-    public static function convert(Gedcom $gedcom, $format = self::GEDCOM55)
+    public static function convert(Gedcom $gedcom, string $format = self::GEDCOM55): string
     {
         $head = $gedcom->getHead();
         $subn = $gedcom->getSubn();
