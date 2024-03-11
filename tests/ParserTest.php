@@ -10,6 +10,12 @@ use Gedcom\Parser;
 
 class ParserTest extends TestCase
 {
+    /**
+     * Test parsing functionality with an empty names array.
+     *
+     * This test ensures that the parser correctly handles Gedcom files with individuals that have no names defined.
+     * It verifies that no output is generated for such individuals.
+     */
     public function testParseWithEmptyNamesArray()
     {
         $parser = new Parser();
@@ -49,15 +55,3 @@ class ParserTest extends TestCase
         $this->assertStringContainsString('I1: Doe, John', $output);
     }
 }
-    /**
-     * Test parsing with an empty names array.
-     *
-     * This test ensures that the parser correctly handles Gedcom files with individuals that have no names.
-     * It expects that no names are outputted.
-     */
-    /**
-     * Test parsing with a non-empty names array.
-     *
-     * This test verifies that the parser correctly processes Gedcom files with individuals that have names.
-     * It expects that the names are correctly outputted and contains specific checks for known entries.
-     */
