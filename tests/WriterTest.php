@@ -61,15 +61,10 @@ class WriterTest extends TestCase
         // Create a mock Gedcom object
         $gedcom = $this->createMock(Gedcom::class);
 /**
-/**
- * Tests the conversion of Gedcom objects with a Head property.
+ * Tests the conversion functionality with a custom format.
  *
- * Verifies that the Gedcom writer correctly handles Gedcom objects that include
- * a Head property, ensuring accurate representation in the output string.
- */
- * Tests the conversion of Gedcom objects with multiple family properties into their string representation.
- *
- * @return void
+ * Ensures that the Gedcom writer supports custom formats and correctly applies
+ * them during the conversion process, resulting in the expected output string.
  */
         // Set up expectations for the mock Gedcom object
             public function testConvertWithMultipleSourProperties()
@@ -135,11 +130,6 @@ class WriterTest extends TestCase
         $this->assertEquals('expected_output', $output);
         
         // Call the convert method
-/**
- * Tests the conversion of Gedcom objects with a Subn property into their string representation.
- *
- * @return void
- */
         $output = Writer::convert($gedcom);
         
         // Assert the correctness of the output
@@ -151,7 +141,12 @@ class WriterTest extends TestCase
     {
         // Create a mock Gedcom object
         $gedcom = $this->createMock(Gedcom::class);
-
+/**
+ * Tests the conversion functionality with a custom format.
+ *
+ * Ensures that the Gedcom writer supports custom formats and correctly applies
+ * them during the conversion process, resulting in the expected output string.
+ */
         // Set up expectations for the mock Gedcom object
         // ...
 
