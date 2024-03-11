@@ -76,7 +76,7 @@ class WriterTest extends TestCase
         // Set up expectations for the mock Gedcom object
         // ...
         // Call the convert method with a custom format
-        $output = Writer::convertHeadHead($gedcom, 'custom_format');
+        $output = Writer::convertHead($gedcom, 'custom_format');
 
         // Assert the correctness of the output
         $this->assertEquals('expected_output', $output);
