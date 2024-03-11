@@ -32,15 +32,17 @@ class WriterTest extends TestCase
         $gedcom = $this->createMock(Gedcom::class);
 
         // Set up expectations for the mock Gedcom object
-            public function testConvertWithMultipleSubmProperties()
+            public function testConvertWithMultipleSourProperties()
     {
-        // Create a mock Gedcom object with multiple Subm properties
+        
+        // Create a mock Gedcom object with multiple Sour properties
         $gedcom = $this->createMock(Gedcom::class);
-        $subm1 = $this->createMock(Subm::class);
-        $subm2 = $this->createMock(Subm::class);
+        $sour1 = $this->createMock(Sour::class);
+        $sour2 = $this->createMock(Sour::class);
         $gedcom->expects($this->once())
-            ->method('getSubm')
-            ->willReturn([$subm1, $subm2]);
+            ->method('getSour')
+            ->willReturn([$sour1, $sour2]);
+      }
 
         // Set up expectations for the mock Gedcom object
         // ...
