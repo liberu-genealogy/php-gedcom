@@ -34,5 +34,17 @@ class WriterTest extends TestCase
             $result = Writer::convert($gedcomMock, 'any_format');
             $this->assertStringContainsString($expectedOutput, $result);
         }
+        }
+
+    public function testConvertWithFormatIntegration()
+    {
+        $gedcomMock = $this->createMock(Gedcom::class);
+        $format = 'GEDCOM5.5';
+        $expectedFormatInfo = 'Format information for GEDCOM5.5';
+
+        FormatInformation::method('addFormatInformation')->willReturn($expectedFormatInfo);
+        $result = Writer::convert($gedcomMock, $format);
+
+        $this->assertStringContainsString($expectedFormatInfo, $result);
     }
 }
