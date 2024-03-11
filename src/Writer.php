@@ -36,6 +36,13 @@ class Writer
      *
      * @return string The contents of the document in the converted format
      */
+    /**
+     * Convert the GEDCOM object to the specified format.
+     *
+     * @param Gedcom $gedcom The GEDCOM object
+     * @param string $format The format to convert the GEDCOM object to
+     * @return string The contents of the document in the converted format
+     */
     public static function convert(Gedcom $gedcom): string
     {
         $head = $gedcom->getHead();
@@ -122,6 +129,18 @@ class Writer
         }
         // EOF
         $output .= "0 TRLR\n";
+
+     * Example:
+     * ```
+     * $gedcom = new Gedcom();
+     * $gedcom->parse('gedcom_file.ged');
+     *
+     * $converted = Writer::convert($gedcom);
+     * echo $converted;
+     * ```
+     *
+     * @return string The contents of the document in the converted format
+     */
 
         return $output;
     }
