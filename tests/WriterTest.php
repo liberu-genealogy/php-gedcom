@@ -120,7 +120,7 @@ class WriterTest extends TestCase
         // ...
 
         // Call the convert method
-        $output = Writer::convertHeadHead($gedcom);
+        $output = Writer::convertHead($gedcom);
 
         // Assert the correctness of the output for multiple Note properties
         $this->assertEquals('expected_output', $output);
@@ -135,7 +135,7 @@ class WriterTest extends TestCase
         $head = $this->createMock(Head::class);
         $gedcom->expects($this->once())
             ->method('getHead')
-            ->willReturn($head);
+            ->willReturn([$note1, $note2]);
 
         // Set up expectations for the mock Gedcom object
         // ...
