@@ -51,80 +51,122 @@ class Writer\n{\n    final public const GEDCOM55 = 'gedcom5.5';\n\n    protected
         $output = '';
 
         $formatInformation = FormatInformation::addFormatInformation($format);
-        // head
-        if ($head) {
-            $output = $formatInformation . Head::convert($head, $format);
-        }
+        $output .= self::convertHead($head, $format, $formatInformation);
 
         // subn
         if ($subn) {
-            $output .= Subn::convert($subn);
+    /**
+     * Convert head section of GEDCOM.
+     *
+     * @param mixed $head
+     * @param string $format
+     * @param string $formatInformation
+     * @return string
+     */
+    protected static function convertHead($head, string $format, string $formatInformation): string
+    {
+        $output = '';
+        if ($head) {
+            $output = $formatInformation . Head::convert($head, $format);
         }
-
-        // subms
-        if (!empty($subms) && $subms !== []) {
-            foreach ($subms as $item) {
-                if ($item) {
-                    $output .= Subm::convert($item);
-                }
-            }
-        }
-
-        // sours
-        if (!empty($sours) && $sours !== []) {
-            foreach ($sours as $item) {
-                if ($item) {
-                    $output .= Sour::convert($item, 0);
-                }
-            }
-        }
+        return $output;
+    }
+        $output .= self::convertSubms($subms);
+        $output .= self::convertSours($sours);
 
         // indis
         if (!empty($indis) && $indis !== []) {
-            foreach ($indis as $indi) {
-                if ($indi) {
-                    foreach ($indi->getEven() as $eventType => $events) {
-                        foreach ($events as $event) {
-                            $output .= Indi::convertEvent($event, $eventType);
-                        }
+    protected static function convertSubn($subn): string
+    {
+        $output = '';
+        if ($subn) {
+            $output .= Subn::convert($subn);
+        }
+        return $output;
+    }
+
+    protected static function convertSubms(array $subms): string
+    {
+        $output = '';
+        foreach ($subms as $item) {
+            if ($item) {
+                $output .= Subm::convert($item);
+            }
+        }
+        return $output;
+    }
+
+    protected static function convertSours(array $sours): string
+    {
+        $output = '';
+        foreach ($sours as $item) {
+            if ($item) {
+                $output .= Sour::convert($item, 0);
+            }
+        }
+        return $output;
+    }
+        $output .= self::convertFams($fams);
+        // notes
+        if (!empty($notes) && $notes !== []) {
+    protected static function convertIndis(array $indis): string
+    {
+        $output = '';
+        foreach ($indis as $indi) {
+            if ($indi) {
+                foreach ($indi->getEven() as $eventType => $events) {
+                    foreach ($events as $event) {
+                        $output .= Indi::convertEvent($event, $eventType);
                     }
                 }
             }
         }
+        return $output;
+    }
 
-        // fams
-        if (!empty($fams) && $fams !== []) {
-            foreach ($fams as $item) {
-                if ($item) {
-                    $output .= Fam::convert($item);
-                }
+    protected static function convertFams(array $fams): string
+    {
+        $output = '';
+        foreach ($fams as $item) {
+            if ($item) {
+                $output .= Fam::convert($item);
             }
         }
-        // notes
-        if (!empty($notes) && $notes !== []) {
-            foreach ($notes as $item) {
-                if ($item) {
-                    $output .= Note::convert($item);
-                }
-            }
-        }
-
-        // repos
-        if (!empty($repos) && $repos !== []) {
-            foreach ($repos as $item) {
-                if ($item) {
-                    $output .= Repo::convert($item);
-                }
-            }
-        }
-        // Objes
-        if (!empty($objes) && $objes !== []) {
-            foreach ($objes as $item) {
-                if ($item) {
-                    $output .= Obje::convert($item);
-                }
-            }
-        }
-        // return $output;
+        return $output;
+    }
+        $output .= self::convertRepos($repos);
+        $output .= self::convertObjes($objes);
     }
 }
+    protected static function convertNotes(array $notes): string
+    {
+        $output = '';
+        foreach ($notes as $item) {
+            if ($item) {
+                $output .= Note::convert($item);
+            }
+        }
+        return $output;
+    }
+
+    protected static function convertRepos(array $repos): string
+    {
+        $output = '';
+        foreach ($repos as $item) {
+            if ($item) {
+                $output .= Repo::convert($item);
+            }
+        }
+        return $output;
+    }
+
+    protected static function convertObjes(array $objes): string
+    {
+        $output = '';
+        foreach ($objes as $item) {
+            if ($item) {
+                $output .= Obje::convert($item);
+            }
+        }
+        return $output;
+    }
