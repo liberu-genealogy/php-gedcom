@@ -59,7 +59,7 @@ class WriterTest extends TestCase
     {
         $subn = $this->createMock(Subn::class);
         $gedcom = $this->createMockGedcom(['Subn' => $subn]);
-        $output = Writer::convertHeadHead($gedcom);
+        $output = Writer::convertSubn($gedcom);
         $this->assertConvertOutput($output, 'expected_output');
         $output = Writer::convert($gedcom);
         
