@@ -76,6 +76,54 @@ class WriterTest extends TestCase
         // Set up expectations for the mock Gedcom object
         // ...
         // Call the convert method with a custom format
+    public function testConvertSubmsWithEmptyArray()
+    {
+        $subms = [];
+        $gedcom = $this->createMockGedcom(['Subms' => $subms]);
+        $output = Writer::convertSubms($gedcom);
+        $this->assertConvertOutput($output, 'expected_empty_output');
+    }
+
+    public function testConvertSubmsWithSingleItem()
+    {
+        $subm = $this->createMock(Subm::class);
+        $gedcom = $this->createMockGedcom(['Subms' => [$subm]]);
+        $output = Writer::convertSubms($gedcom);
+        $this->assertConvertOutput($output, 'expected_single_item_output');
+    }
+
+    public function testConvertSubmsWithMultipleItems()
+    {
+        $subm1 = $this->createMock(Subm::class);
+        $subm2 = $this->createMock(Subm::class);
+        $gedcom = $this->createMockGedcom(['Subms' => [$subm1, $subm2]]);
+        $output = Writer::convertSubms($gedcom);
+        $this->assertConvertOutput($output, 'expected_multiple_items_output');
+    }
+    public function testConvertSoursWithEmptyArray()
+    {
+        $sours = [];
+        $gedcom = $this->createMockGedcom(['Sour' => $sours]);
+        $output = Writer::convertSours($gedcom);
+        $this->assertConvertOutput($output, 'expected_empty_output');
+    }
+
+    public function testConvertSoursWithSingleSource()
+    {
+        $sour = $this->createMock(Sour::class);
+        $gedcom = $this->createMockGedcom(['Sour' => [$sour]]);
+        $output = Writer::convertSours($gedcom);
+        $this->assertConvertOutput($output, 'expected_single_source_output');
+    }
+
+    public function testConvertSoursWithMultipleSources()
+    {
+        $sour1 = $this->createMock(Sour::class);
+        $sour2 = $this->createMock(Sour::class);
+        $gedcom = $this->createMockGedcom(['Sour' => [$sour1, $sour2]]);
+        $output = Writer::convertSours($gedcom);
+        $this->assertConvertOutput($output, 'expected_multiple_sources_output');
+    }
         $output = Writer::convertHead($gedcom, 'custom_format');
 
         // Assert the correctness of the output
