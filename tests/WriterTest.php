@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * Test suite for the Gedcom writer component.
+ *
+ * This file contains tests that verify the functionality of the Gedcom writer,
+ * ensuring that it correctly converts Gedcom objects into their string representation
+ * according to the Gedcom specification.
+ */
+
 use Gedcom\Gedcom;
 use Gedcom\Writer;
 use Gedcom\Writer\Head;
@@ -46,7 +54,11 @@ class WriterTest extends TestCase
     {
         // Create a mock Gedcom object
         $gedcom = $this->createMock(Gedcom::class);
-
+/**
+ * Tests the conversion of Gedcom objects with multiple family properties into their string representation.
+ *
+ * @return void
+ */
         // Set up expectations for the mock Gedcom object
             public function testConvertWithMultipleSourProperties()
     {
@@ -84,7 +96,11 @@ class WriterTest extends TestCase
     // Add more test methods to cover different scenarios and edge cases
 
     // ...
-
+/**
+ * Tests the conversion of Gedcom objects with custom format into their string representation.
+ *
+ * @return void
+ */
 }
     public function testConvertWithSubnProperty()
     {
@@ -107,6 +123,11 @@ class WriterTest extends TestCase
         $this->assertEquals('expected_output', $output);
         
         // Call the convert method
+/**
+ * Tests the conversion of Gedcom objects with a Subn property into their string representation.
+ *
+ * @return void
+ */
         $output = Writer::convert($gedcom);
         
         // Assert the correctness of the output
@@ -132,6 +153,11 @@ class WriterTest extends TestCase
     }
 
     public function testConvertWithMultipleNoteProperties()
+/**
+ * Tests the conversion of Gedcom objects with custom format into their string representation.
+ *
+ * @return void
+ */
     {
         // Create a mock Gedcom object with a Head property
         $gedcom = $this->createMock(Gedcom::class);
@@ -151,6 +177,11 @@ class WriterTest extends TestCase
         // Add assertions for the basic functionality of the convert method
         // ...
     }
+/**
+ * Tests the conversion of Gedcom objects with multiple note properties into their string representation.
+ *
+ * @return void
+ */
     // Add more test methods to cover different scenarios and edge cases
     // ...
 
@@ -195,3 +226,8 @@ class WriterTest extends TestCase
         // Add assertions for the basic functionality of the convert method
         // ...
     }
+/**
+ * Tests the conversion of Gedcom objects with multiple note properties into their string representation.
+ *
+ * @return void
+ */
