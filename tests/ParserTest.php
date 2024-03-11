@@ -7,19 +7,7 @@ class ParserTest extends TestCase
 {
     public function testParseWithEmptyNamesArray()
     {
-        $parser = new Parser();
-        $gedcom = $parser->parse('empty_names.ged');
-        $output = '';
-
-        ob_start();
-        foreach ($gedcom->getIndi() as $individual) {
-            $names = $individual->getName();
-            if (!empty($names)) {
-                $name = reset($names);
-                $output .= $individual->getId() . ': ' . $name->getSurn() . ', ' . $name->getGivn() . PHP_EOL;
-            }
-        }
-        ob_end_clean();
+        $output = $this->generateOutputFromParsedGedcom('empty_names.ged');
 
         $this->assertEmpty($output);
     }
@@ -44,3 +32,21 @@ class ParserTest extends TestCase
         $this->assertStringContainsString('I1: Doe, John', $output);
     }
 }
+    private function generateOutputFromParsedGedcom($gedcomFileName)
+    {
+        $parser = new Parser();
+        $gedcom = $parser->parse($gedcomFileName);
+        $output = '';
+
+        ob_start();
+        foreach ($gedcom->getIndi() as $individual) {
+            $names = $individual->getName();
+            if (!empty($names)) {
+                $name = reset($names);
+                $output .= $individual->getId() . ': ' . $name->getSurn() . ', ' . $name->getGivn() . PHP_EOL;
+            }
+        }
+        ob_end_clean();
+
+        return $output;
+    }
