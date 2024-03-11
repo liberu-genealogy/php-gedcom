@@ -55,3 +55,9 @@ class ParserTest extends TestCase
         $this->assertStringContainsString('I1: Doe, John', $output);
     }
 }
+    /**
+     * Test parsing functionality with a non-empty names array.
+     *
+     * This test checks the parser's ability to correctly handle Gedcom files with individuals that have names defined.
+     * It verifies that the output correctly lists the individuals' IDs along with their surname and given names.
+     */
