@@ -9,7 +9,23 @@ use PHPUnit\Framework\TestCase;
 
 class WriterTest extends TestCase
 {
-    public function testConvertWithDefaultFormat()
+        public function testConvertWithMultipleIndiProperties() {
+        // Create a mock Gedcom object with multiple Indi properties
+        $gedcom = $this->createMock(Gedcom::class);
+        $indi1 = $this->createMock(Indi::class);
+        $indi2 = $this->createMock(Indi::class);
+        $gedcom->expects($this->once())
+            ->method('getIndi')
+            ->willReturn([$indi1, $indi2]);
+
+        // Call the convert method
+        $output = Writer::convert($gedcom);
+
+        // Assert the correctness of the output
+        $this->assertEquals('expected_output', $output);
+        // Add assertions for the basic functionality of the convert method
+        // ...
+    }
     {
         // Create a mock Gedcom object
         $gedcom = $this->createMock(Gedcom::class);
