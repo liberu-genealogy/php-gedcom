@@ -117,6 +117,40 @@ class Parser
             }
 
             switch ($recordType) {
+            case 'DATA':
+                $dataInstance = new \Gedcom\Record\Data();
+                $this->forward();
+
+                while (!$this->eof()) {
+                    $record = $this->getCurrentLineRecord();
+                    $recordTypeData = strtoupper(trim((string) $record[1]));
+                    $dataDepth = (int) $record[0];
+
+                    if ($dataDepth <= $currentDepth) {
+                        $this->back();
+                        break;
+                    }
+
+                    switch ($recordTypeData) {
+                        case 'TEXT':
+                            $textData = isset($record[2]) ? trim((string) $record[2]) : '';
+                            $dataInstance->setText($textData);
+                            break;
+                        case 'CONT':
+                            $contData = isset($record[2]) ? "\n" + trim((string) $record[2]) : "\n";
+                            $dataInstance->setText($dataInstance->getText() + $contData);
+                            break;
+                        default:
+                            $this->back();
+                            break 2;
+                    }
+
+                    $this->forward();
+                }
+
+                // Logic to associate $dataInstance with its parent object goes here
+
+                break;
             case 'CONT':
                 $data .= "\n";
 
