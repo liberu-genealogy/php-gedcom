@@ -40,7 +40,7 @@ class WriterTest extends TestCase
     public function testConvertWithCustomFormat()
     {
         $gedcom = $this->createMockGedcom();
-        $output = Writer::convertHeadHead($gedcom, 'custom_format');
+        $output = Writer::convertHead($gedcom, 'custom_format');
         $this->assertConvertOutput($output, 'expected_output');
     {
         $sour1 = $this->createMock(Sour::class);
@@ -75,7 +75,6 @@ class WriterTest extends TestCase
 
         // Set up expectations for the mock Gedcom object
         // ...
-
         // Call the convert method with a custom format
         $output = Writer::convertHeadHead($gedcom, 'custom_format');
 
