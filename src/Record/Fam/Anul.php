@@ -1,4 +1,3 @@
-<?php
 /**
  * php-gedcom.
  *
@@ -11,9 +10,3 @@
  *
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
-
-namespace Gedcom\Record\Fam;
-
-class Anul extends \Gedcom\Record\Fam\Even
-{
-}
