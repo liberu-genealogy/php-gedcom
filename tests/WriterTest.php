@@ -218,6 +218,12 @@ class WriterTest extends TestCase
         // Add assertions for the basic functionality of the convert method
         // ...
     }
+    /**
+    * Tests the conversion of Gedcom objects with a Header (Head) property.
+    *
+    * Checks that the Gedcom writer properly includes and formats the Header (Head)
+    * property in the output string, adhering to the Gedcom specification.
+    */
     // Add more test methods to cover different scenarios and edge cases
     public function testConvertWithHeadProperty()
     {
