@@ -184,15 +184,22 @@ class WriterTest extends TestCase
         // ...
     }
 /**
- * Tests the conversion of Gedcom objects with multiple note properties into their string representation.
+ * Tests the conversion of Gedcom objects with multiple note properties.
  *
- * @return void
+ * Ensures that the Gedcom writer can handle Gedcom objects that include
+ * multiple note properties, accurately reflecting these in the output string.
  */
     // Add more test methods to cover different scenarios and edge cases
     // ...
 
     public function testConvertWithMultipleNoteProperties()
     {
+/**
+ * Tests the conversion of Gedcom objects with multiple note properties.
+ *
+ * Ensures that the Gedcom writer can handle Gedcom objects that include
+ * multiple note properties, accurately reflecting these in the output string.
+ */
         // Create a mock Gedcom object with multiple Note properties
         $gedcom = $this->createMock(Gedcom::class);
         $head = $this->createMock(Head::class);
