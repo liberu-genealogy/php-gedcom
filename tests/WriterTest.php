@@ -140,7 +140,7 @@ class WriterTest extends TestCase
             ->method('getHead')
             ->willReturn($head);
 
-        // Set up expectations for the mock Gedcom object
+        // Set up expectations for the mock Gedcom object with multiple Repo properties with multiple Repo properties
         // ...
 
         // Call the convert method
