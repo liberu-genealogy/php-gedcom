@@ -33,6 +33,18 @@ class ParserTest extends TestCase
         ob_start();
         foreach ($gedcom->getIndi() as $individual) {
             $names = $individual->getName();
+/**
+ * Test parsing with an empty names array.
+ *
+ * Ensures that the parser correctly handles Gedcom files with no names,
+ * resulting in an empty output.
+ */
+/**
+ * PHPUnit tests for Gedcom Parser.
+ *
+ * This file tests the Gedcom Parser's ability to parse Gedcom files,
+ * focusing on handling empty and non-empty names arrays.
+ */
             if (!empty($names)) {
                 $name = reset($names);
                 $output .= $individual->getId() . ': ' . $name->getSurn() . ', ' . $name->getGivn() . PHP_EOL;
