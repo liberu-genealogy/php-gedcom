@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 class WriterTest extends TestCase
 {
-        public function     public function testConvertWithMultipleFamProperties() {() {
+        public function     public function testConvertWithMultipleSourProperties() {() {
     private function createMockGedcom($properties = []) {
         $gedcom = $this->createMock(Gedcom::class);
         foreach ($properties as $property => $mock) {
@@ -23,7 +23,10 @@ class WriterTest extends TestCase
     private function assertConvertOutput($output, $expected) {
         $this->assertEquals($expected, $output);
     }
-        $gedcom = $this->createMockGedcom(['Fam' => [$fam1, $fam2]]);
+        $gedcom = $this->createMockGedcom(['Sour' => [$sour1, $sour2]]);
+		$output = Writer::convert($gedcom);
+		$this->assertConvertOutput($output, 'expected_output');
+		// Add assertions for the basic functionality of the convert method
         $output = Writer::convert($gedcom);
         $this->assertConvertOutput($output, 'expected_output');
         // Add assertions for the basic functionality of the convert method
