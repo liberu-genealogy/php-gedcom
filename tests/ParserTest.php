@@ -1,3 +1,8 @@
+/**
+ * Tests for the Gedcom Parser.
+ *
+ * This file contains the test cases for testing the Gedcom file parsing functionality provided by the Parser class.
+ */
 <?php
 
 use PHPUnit\Framework\TestCase;
@@ -5,6 +10,12 @@ use Gedcom\Parser;
 
 class ParserTest extends TestCase
 {
+    /**
+     * Test parsing functionality with an empty names array.
+     *
+     * This test ensures that the parser correctly handles Gedcom files with individuals that have no names defined.
+     * It verifies that no output is generated for such individuals.
+     */
     public function testParseWithEmptyNamesArray()
     {
         $parser = new Parser();
@@ -44,3 +55,9 @@ class ParserTest extends TestCase
         $this->assertStringContainsString('I1: Doe, John', $output);
     }
 }
+    /**
+     * Test parsing functionality with a non-empty names array.
+     *
+     * This test checks the parser's ability to correctly handle Gedcom files with individuals that have names defined.
+     * It verifies that the output correctly lists the individuals' IDs along with their surname and given names.
+     */
