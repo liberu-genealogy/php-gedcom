@@ -12,7 +12,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Gedcom;
+namespace Gedcom;\n\nuse Gedcom\\FormatInformation;\n
 
 use Gedcom\Writer\Fam;
 use Gedcom\Writer\Head;
@@ -24,7 +24,7 @@ use Gedcom\Writer\Sour;
 use Gedcom\Writer\Subm;
 use Gedcom\Writer\Subn;
 
-class Writer
+class Writer\n{\n    final public const GEDCOM55 = 'gedcom5.5';\n\n    protected $_output;\n
 {
     final public const GEDCOM55 = 'gedcom5.5';
 
@@ -36,7 +36,7 @@ class Writer
      *
      * @return string The contents of the document in the converted format
      */
-    public static function convert(Gedcom $gedcom): string
+    public static function convert(Gedcom $gedcom, string $format = self::GEDCOM55): string
     {
         $head = $gedcom->getHead();
         $subn = $gedcom->getSubn();
@@ -50,9 +50,10 @@ class Writer
 
         $output = '';
 
+        $formatInformation = FormatInformation::addFormatInformation($format);
         // head
         if ($head) {
-            $output = Head::convert($head, $format);
+            $output = $formatInformation . Head::convert($head, $format);
         }
 
         // subn
@@ -120,9 +121,6 @@ class Writer
                 }
             }
         }
-        // EOF
-        $output .= "0 TRLR\n";
-
-        return $output;
+        // return $output;
     }
 }
