@@ -57,7 +57,10 @@ $parser = new \Gedcom\Parser();
 $gedcom = $parser->parse('tmp.ged');
 
 foreach ($gedcom->getIndi() as $individual) {
-    echo $individual->getId() . ': ' . current($individual->getName())->getSurn() .
-        ', ' . current($indi->$individual())->getGivn();
+    $names = $individual->getName();
+    if (!empty($names)) {
+        $name = reset($names); // Get the first name object from the array
+        echo $individual->getId() . ': ' . $name->getSurn() . ', ' . $name->getGivn() . PHP_EOL;
+    }
 }
 ```
