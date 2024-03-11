@@ -10,75 +10,44 @@ use PHPUnit\Framework\TestCase;
 class WriterTest extends TestCase
 {
         public function testConvertWithMultipleFamProperties() {
-        // Create a mock Gedcom object with multiple Indi properties
+    private function createMockGedcom($properties = []) {
         $gedcom = $this->createMock(Gedcom::class);
-        $fam1 = $this->createMock(Fam::class);
-        $fam2 = $this->createMock(Fam::class);
-        $gedcom->expects($this->once())
-            ->method('getFam')
-            ->willReturn([$indi1, $indi2]);
+        foreach ($properties as $property => $mock) {
+            $gedcom->expects($this->once())
+                ->method('get' . ucfirst($property))
+                ->willReturn($mock);
+        }
+        return $gedcom;
+    }
 
-        // Call the convert method
+    private function assertConvertOutput($output, $expected) {
+        $this->assertEquals($expected, $output);
+    }
+        $gedcom = $this->createMockGedcom(['Fam' => [$fam1, $fam2]]);
         $output = Writer::convert($gedcom);
-
-        // Assert the correctness of the output
-        $this->assertEquals('expected_output', $output);
+        $this->assertConvertOutput($output, 'expected_output');
         // Add assertions for the basic functionality of the convert method
         // ...
     }
     {
-        // Create a mock Gedcom object
-        $gedcom = $this->createMock(Gedcom::class);
-
-        // Set up expectations for the mock Gedcom object
-        // ...
-
-        // Call the convert method
+        $gedcom = $this->createMockGedcom();
         $output = Writer::convert($gedcom);
-
-        // Assert the correctness of the output
-        $this->assertEquals('expected_output', $output);
+        $this->assertConvertOutput($output, 'expected_output');
         // Add assertions for the basic functionality of the convert method
         // ...
     }
 
     public function testConvertWithCustomFormat()
     {
-        // Create a mock Gedcom object
-        $gedcom = $this->createMock(Gedcom::class);
-
-        // Set up expectations for the mock Gedcom object
-            public function testConvertWithMultipleSourProperties()
+        $gedcom = $this->createMockGedcom();
+        $output = Writer::convert($gedcom, 'custom_format');
+        $this->assertConvertOutput($output, 'expected_output');
     {
-        
-        // Create a mock Gedcom object with multiple Sour properties
-        $gedcom = $this->createMock(Gedcom::class);
         $sour1 = $this->createMock(Sour::class);
         $sour2 = $this->createMock(Sour::class);
-        $gedcom->expects($this->once())
-            ->method('getSour')
-            ->willReturn([$sour1, $sour2]);
-      }
-
-        // Set up expectations for the mock Gedcom object
-        // ...
-        
-        // Call the convert method
+        $gedcom = $this->createMockGedcom(['Sour' => [$sour1, $sour2]]);
         $output = Writer::convert($gedcom);
-
-        // Assert the correctness of the output
-        $this->assertEquals('expected_output', $output);
-        // Add assertions for the basic functionality of the convert method
-        // ...
-    }
-
-        // Call the convert method with a custom format
-        $output = Writer::convert($gedcom, 'custom_format');
-
-        // Assert the correctness of the output
-        $this->assertEquals('expected_output', $output);
-        // Add assertions for the basic functionality of the convert method
-        // ...
+        $this->assertConvertOutput($output, 'expected_output');
     }
 
     // Add more test methods to cover different scenarios and edge cases
@@ -88,25 +57,10 @@ class WriterTest extends TestCase
 }
     public function testConvertWithSubnProperty()
     {
-        // Create a mock Gedcom object with a Subn property
-        $gedcom = $this->createMock(Gedcom::class);
         $subn = $this->createMock(Subn::class);
-        $gedcom->expects($this->once())
-            ->method('getSubn')
-            ->willReturn($subn);
-        
-        // Set up expectations for the mock Gedcom object
-        // ...
-        // Set up expectations for the mock Gedcom object
-        $subn = $this->createMock(Subn::class);
-        $gedcom->expects($this->once())
-            ->method('getSubn')
-            ->willReturn($subn);
-        // ...
-        // Assert the correctness of the output
-        $this->assertEquals('expected_output', $output);
-        
-        // Call the convert method
+        $gedcom = $this->createMockGedcom(['Subn' => $subn]);
+        $output = Writer::convert($gedcom);
+        $this->assertConvertOutput($output, 'expected_output');
         $output = Writer::convert($gedcom);
         
         // Assert the correctness of the output
