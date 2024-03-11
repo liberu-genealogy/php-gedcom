@@ -63,6 +63,16 @@ class ParserTest extends TestCase
         $this->assertStringContainsString('I1: Doe, John', $output);
     }
 }
+    /**
+     * Generates output from parsed Gedcom file.
+     *
+     * Parses a given Gedcom file and generates a formatted output string
+     * containing individual IDs and names. This function is utilized by
+     * test cases to verify parser output.
+     *
+     * @param string $gedcomFileName Name of the Gedcom file to parse.
+     * @return string Formatted output string with individual IDs and names.
+     */
     private function generateOutputFromParsedGedcom($gedcomFileName)
     {
         $parser = new Parser();
