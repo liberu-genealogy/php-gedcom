@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 class WriterTest extends TestCase
 {
-        public function testConvertWithMultipleFamProperties() {
+        public function     public function testConvertWithMultipleFamProperties() {() {
     private function createMockGedcom($properties = []) {
         $gedcom = $this->createMock(Gedcom::class);
         foreach ($properties as $property => $mock) {
