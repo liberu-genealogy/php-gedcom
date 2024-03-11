@@ -97,7 +97,7 @@ class WriterTest extends TestCase
         // ...
 
         // Call the convert method
-        $output = Writer::convert($gedcom);
+        $output = Writer::convertHeadHead($gedcom);
 
         // Assert the correctness of the output
         $this->assertEquals('expected_output', $output);
