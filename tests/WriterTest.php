@@ -18,6 +18,8 @@ class WriterTest extends TestCase
         $output = Writer::convert($gedcom);
 
         // Assert the correctness of the output
+        $this->assertEquals('expected_output', $output);
+        // Add assertions for the basic functionality of the convert method
         // ...
     }
 
@@ -33,6 +35,8 @@ class WriterTest extends TestCase
         $output = Writer::convert($gedcom, 'custom_format');
 
         // Assert the correctness of the output
+        $this->assertEquals('expected_output', $output);
+        // Add assertions for the basic functionality of the convert method
         // ...
     }
 
