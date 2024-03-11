@@ -3,6 +3,7 @@
 	<testsuites>
 		<testsuite>
 			<directory>library/Gedcom/</directory>
+		<directory>tests/library/Gedcom/</directory>
 		</testsuite>
 	</testsuites>
 </phpunit>
