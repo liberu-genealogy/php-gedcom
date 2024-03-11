@@ -131,7 +131,7 @@ class WriterTest extends TestCase
         // ...
     }
 
-    public function testConvertWithHeadProperty()
+    public function testConvertWithMultipleNoteProperties()
     {
         // Create a mock Gedcom object with a Head property
         $gedcom = $this->createMock(Gedcom::class);
@@ -154,14 +154,14 @@ class WriterTest extends TestCase
     // Add more test methods to cover different scenarios and edge cases
     // ...
 
-    public function testConvertWithHeadProperty()
+    public function testConvertWithMultipleNoteProperties()
     {
-        // Create a mock Gedcom object with a Head property
+        // Create a mock Gedcom object with multiple Note properties
         $gedcom = $this->createMock(Gedcom::class);
         $head = $this->createMock(Head::class);
         $gedcom->expects($this->once())
             ->method('getHead')
-            ->willReturn($head);
+            ->willReturn([$note1, $note2]);
 
         // Set up expectations for the mock Gedcom object
         // ...
@@ -169,7 +169,7 @@ class WriterTest extends TestCase
         // Call the convert method
         $output = Writer::convert($gedcom);
 
-        // Assert the correctness of the output
+        // Assert the correctness of the output for multiple Note properties
         $this->assertEquals('expected_output', $output);
         // Add assertions for the basic functionality of the convert method
         // ...
