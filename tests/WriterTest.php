@@ -1,6 +1,6 @@
 <?php
 
-use Gedcom\Gedcom;
+use Gedcom\\Gedcom;
 use Gedcom\Writer;
 use Gedcom\Writer\Head;
 use Gedcom\Writer\Subn;
@@ -55,6 +55,12 @@ class WriterTest extends TestCase
     // ...
 
 }
+        /**
+     * Test the conversion of the Gedcom object with Subn property.
+     * Ensure the convert method works with Subn property.
+     *
+     * @return void
+     */
     public function testConvertWithSubnProperty()
     {
         $subn = $this->createMock(Subn::class);
@@ -85,6 +91,12 @@ class WriterTest extends TestCase
         // ...
     }
 
+        /**
+     * Test the conversion of the Gedcom object with multiple Note properties.
+     * Ensure the convert method works with multiple Note properties.
+     *
+     * @return void
+     */
     public function testConvertWithMultipleNoteProperties()
     {
         // Create a mock Gedcom object with a Head property
@@ -104,10 +116,41 @@ class WriterTest extends TestCase
         $this->assertEquals('expected_output', $output);
         // Add assertions for the basic functionality of the convert method
         // ...
+        }
+    /**
+     * Test the conversion of the Gedcom object with Head property.
+     * Ensure the convert method works with Head property.
+     *
+     * @return void
+     */
+    public function testConvertWithHeadProperty() {
+        // Create a mock Gedcom object with a Head property
+        $gedcom = $this->createMock(Gedcom::class);
+        $head = $this->createMock(Head::class);
+        $gedcom->expects($this->once())
+            ->method('getHead')
+            ->willReturn($head);
+
+        // Set up expectations for the mock Gedcom object
+        // ...
+
+        // Call the convert method
+        $output = Writer::convert($gedcom);
+
+        // Assert the correctness of the output
+        $this->assertEquals('expected_output', $output);
+        // Add assertions for the basic functionality of the convert method
+        // ...
     }
     // Add more test methods to cover different scenarios and edge cases
     // ...
 
+        /**
+     * Test the conversion of the Gedcom object with multiple Note properties.
+     * Ensure the convert method works with multiple Note properties.
+     *
+     * @return void
+     */
     public function testConvertWithMultipleNoteProperties()
     {
         // Create a mock Gedcom object with multiple Note properties
@@ -129,6 +172,12 @@ class WriterTest extends TestCase
         // ...
     }
     // Add more test methods to cover different scenarios and edge cases
+        /**
+     * Test the conversion of the Gedcom object with Head property.
+     * Ensure the convert method works with Head property.
+     *
+     * @return void
+     */
     public function testConvertWithHeadProperty()
     {
         // Create a mock Gedcom object with a Head property
