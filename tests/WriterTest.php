@@ -17,6 +17,12 @@ use PHPUnit\Framework\TestCase;
 
 class WriterTest extends TestCase
 {
+        /**
+        * Tests the conversion of Gedcom objects with multiple family properties.
+        *
+        * Verifies that the Gedcom writer correctly handles Gedcom objects that include
+        * multiple family (Fam) properties, ensuring accurate representation in the output string.
+        */
         public function testConvertWithMultipleFamProperties() {
         // Create a mock Gedcom object with multiple Indi properties
         $gedcom = $this->createMock(Gedcom::class);
@@ -55,6 +61,12 @@ class WriterTest extends TestCase
         // Create a mock Gedcom object
         $gedcom = $this->createMock(Gedcom::class);
 /**
+/**
+ * Tests the conversion of Gedcom objects with a Head property.
+ *
+ * Verifies that the Gedcom writer correctly handles Gedcom objects that include
+ * a Head property, ensuring accurate representation in the output string.
+ */
  * Tests the conversion of Gedcom objects with multiple family properties into their string representation.
  *
  * @return void
