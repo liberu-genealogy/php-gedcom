@@ -32,7 +32,8 @@ class Writer
 
     /**
      * @param        $gedcom The GEDCOM object
-     * @param string $format The format to convert the GEDCOM object to
+     * @return string The contents of the document in the converted format
+ */
      *
      * @return string The contents of the document in the converted format
      */
