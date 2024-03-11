@@ -24,7 +24,7 @@ class WriterTest extends TestCase
         $this->assertEquals($expected, $output);
     }
         $gedcom = $this->createMockGedcom(['Fam' => [$fam1, $fam2]]);
-        $output = Writer::convertHeadHead($gedcom);
+        $output = Writer::convertHead($gedcom);
         $this->assertConvertOutput($output, 'expected_output');
         // Add assertions for the basic functionality of the convert method
         // ...
