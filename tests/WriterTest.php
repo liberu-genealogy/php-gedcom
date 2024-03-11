@@ -47,6 +47,8 @@ class WriterTest extends TestCase
         $gedcom = $this->createMockGedcom(['Sour' => [$sour1, $sour2]]);
         $output = Writer::convert($gedcom);
         $this->assertConvertOutput($output, 'expected_output');
+        $output = Writer::convert($gedcom);
+        $this->assertConvertOutput($output, 'expected_output');
     }
 
     // Add more test methods to cover different scenarios and edge cases
