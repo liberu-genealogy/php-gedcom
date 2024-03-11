@@ -31,6 +31,20 @@ class WriterTest extends TestCase
     }
     public function testConvertWithCustomFormat()
     {
+        $gedcom = $this->createMock(Gedcom::class);
+        
+        // Set up expectations for the mock Gedcom object
+        // ...
+
+        // Call the convert method with a custom format
+        $output = Writer::convert($gedcom, 'custom_format');
+
+        // Assert the correctness of the output
+        $this->assertConvertOutput($output, 'expected_output');
+        // Add assertions for the basic functionality of the convert method
+        // ...
+    
+    {
         $gedcom = $this->createMockGedcom();
         $output = Writer::convert($gedcom, 'custom_format');
         $this->assertConvertOutput($output, 'expected_output');
@@ -51,7 +65,26 @@ class WriterTest extends TestCase
         $this->assertConvertOutput($output, 'expected_output');
     }
 
-    // Add more test methods to cover different scenarios and edge cases
+    public function testConvertWithMultipleNoteProperties()
+    {
+        // Create a mock Gedcom object with a Head property
+        $gedcom = $this->createMock(Gedcom::class);
+        $head = $this->createMock(Head::class);
+        $gedcom->expects($this->once())
+            ->method('getHead')
+            ->willReturn($head);
+
+        // Set up expectations for the mock Gedcom object with multiple Repo properties with multiple Repo properties
+        // ...
+
+        // Call the convert method
+        $output = Writer::convert($gedcom);
+
+        // Assert the correctness of the output
+        $this->assertEquals('expected_output', $output);
+        // Add assertions for the basic functionality of the convert method
+        // ...
+    
 
     // ...
 
@@ -61,7 +94,7 @@ class WriterTest extends TestCase
     {
         // Create a mock Gedcom object
         $gedcom = $this->createMock(Gedcom::class);
-
+        
         // Set up expectations for the mock Gedcom object
         // ...
 
@@ -72,30 +105,7 @@ class WriterTest extends TestCase
         $this->assertEquals('expected_output', $output);
         // Add assertions for the basic functionality of the convert method
         // ...
-    }
-
-    public function testConvertWithMultipleNoteProperties()
-    {
-        // Create a mock Gedcom object with a Head property
-        $gedcom = $this->createMock(Gedcom::class);
-        $head = $this->createMock(Head::class);
-        $gedcom->expects($this->once())
-            ->method('getHead')
-            ->willReturn($head);
-
-        // Set up expectations for the mock Gedcom object with multiple Repo properties with multiple Repo properties
-        // ...
-
-        // Call the convert method
-        $output = Writer::convert($gedcom);
-
-        // Assert the correctness of the output
-        $this->assertEquals('expected_output', $output);
-        // Add assertions for the basic functionality of the convert method
-        // ...
-    }
-    // Add more test methods to cover different scenarios and edge cases
-    public function testConvertWithCustomFormat()
+    
     {
         // Create a mock Gedcom object
         $gedcom = $this->createMock(Gedcom::class);
@@ -134,6 +144,74 @@ class WriterTest extends TestCase
     }
     // Add more test methods to cover different scenarios and edge cases
     public function testConvertWithCustomFormat()
+    {
+        // Create a mock Gedcom object
+        $gedcom = $this->createMock(Gedcom::class);
+        
+        // Set up expectations for the mock Gedcom object
+        // ...
+
+        // Call the convert method with a custom format
+        $output = Writer::convert($gedcom, 'custom_format');
+
+        // Assert the correctness of the output
+        $this->assertEquals('expected_output', $output);
+        // Add assertions for the basic functionality of the convert method
+        // ...
+    
+    {
+        // Create a mock Gedcom object
+        $gedcom = $this->createMock(Gedcom::class);
+
+        // Set up expectations for the mock Gedcom object
+        // ...
+
+        // Call the convert method with a custom format
+        $output = Writer::convert($gedcom, 'custom_format');
+
+        // Assert the correctness of the output
+        $this->assertEquals('expected_output', $output);
+        // Add assertions for the basic functionality of the convert method
+        // ...
+    }
+
+    public function testConvertWithMultipleNoteProperties()
+    {
+        // Create a mock Gedcom object with a Head property
+        $gedcom = $this->createMock(Gedcom::class);
+        $head = $this->createMock(Head::class);
+        $gedcom->expects($this->once())
+            ->method('getHead')
+            ->willReturn($head);
+
+        // Set up expectations for the mock Gedcom object with multiple Repo properties with multiple Repo properties
+        // ...
+
+        // Call the convert method
+        $output = Writer::convert($gedcom);
+
+        // Assert the correctness of the output
+        $this->assertEquals('expected_output', $output);
+        // Add assertions for the basic functionality of the convert method
+        // ...
+    }
+    // Add more test methods to cover different scenarios and edge cases
+    public function testConvertWithCustomFormat()
+    {
+        // Create a mock Gedcom object
+        $gedcom = $this->createMock(Gedcom::class);
+        
+        // Set up expectations for the mock Gedcom object
+        // ...
+
+        // Call the convert method with a custom format
+        $output = Writer::convert($gedcom, 'custom_format');
+
+        // Assert the correctness of the output
+        $this->assertEquals('expected_output', $output);
+        // Add assertions for the basic functionality of the convert method
+        // ...
+    
     {
         // Create a mock Gedcom object
         $gedcom = $this->createMock(Gedcom::class);
