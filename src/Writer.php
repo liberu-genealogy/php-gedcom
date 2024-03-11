@@ -1,8 +1,8 @@
 <?php
 /**
- * php-gedcom.
+ * php-gedcom is a library for parsing, manipulating, importing, and exporting GEDCOM 5.5 files in PHP 8.3. This file contains functions for writing GEDCOM data.
  *
- * php-gedcom is a library for parsing, manipulating, importing and exporting
+ * php-gedcom is a library for parsing, manipulating, importing, and exporting GEDCOM 5.5 files in PHP 8.3. This file contains functions to convert GEDCOM data to a specific format.
  * GEDCOM 5.5 files in PHP 8.3.
  *
  * @author          Kristopher Wilson <kristopherwilson@gmail.com>
@@ -53,7 +53,14 @@ class Writer\n{\n    final public const GEDCOM55 = 'gedcom5.5';\n\n    protected
         $formatInformation = FormatInformation::addFormatInformation($format);
         $output .= self::convertHead($head, $format, $formatInformation);
 
-        // subn
+            /*
+     * Convert the head section of GEDCOM.
+     *
+     * @param mixed $head
+     * @param string $format
+     * @param string $formatInformation
+     * @return string
+     */
         if ($subn) {
     /**
      * Convert head section of GEDCOM.
@@ -76,6 +83,12 @@ class Writer\n{\n    final public const GEDCOM55 = 'gedcom5.5';\n\n    protected
 
         // indis
         if (!empty($indis) && $indis !== []) {
+        /*
+     * Convert the subn section of GEDCOM.
+     *
+     * @param mixed $subn
+     * @return string
+     */
     protected static function convertSubn($subn): string
     {
         $output = '';
@@ -85,6 +98,12 @@ class Writer\n{\n    final public const GEDCOM55 = 'gedcom5.5';\n\n    protected
         return $output;
     }
 
+    /*
+     * Convert the subms section of GEDCOM.
+     *
+     * @param array $subms
+     * @return string
+     */
     protected static function convertSubms(array $subms): string
     {
         $output = '';
@@ -96,6 +115,12 @@ class Writer\n{\n    final public const GEDCOM55 = 'gedcom5.5';\n\n    protected
         return $output;
     }
 
+        /*
+     * Convert the sours section of GEDCOM.
+     *
+     * @param array $sours
+     * @return string
+     */
     protected static function convertSours(array $sours): string
     {
         $output = '';
@@ -109,6 +134,12 @@ class Writer\n{\n    final public const GEDCOM55 = 'gedcom5.5';\n\n    protected
         $output .= self::convertFams($fams);
         // notes
         if (!empty($notes) && $notes !== []) {
+        /*
+     * Convert the indis section of GEDCOM.
+     *
+     * @param array $indis
+     * @return string
+     */
     protected static function convertIndis(array $indis): string
     {
         $output = '';
@@ -124,6 +155,12 @@ class Writer\n{\n    final public const GEDCOM55 = 'gedcom5.5';\n\n    protected
         return $output;
     }
 
+        /*
+     * Convert the fams section of GEDCOM.
+     *
+     * @param array $fams
+     * @return string
+     */
     protected static function convertFams(array $fams): string
     {
         $output = '';
@@ -138,6 +175,12 @@ class Writer\n{\n    final public const GEDCOM55 = 'gedcom5.5';\n\n    protected
         $output .= self::convertObjes($objes);
     }
 }
+        /*
+     * Convert the notes section of GEDCOM.
+     *
+     * @param array $notes
+     * @return string
+     */
     protected static function convertNotes(array $notes): string
     {
         $output = '';
@@ -149,6 +192,12 @@ class Writer\n{\n    final public const GEDCOM55 = 'gedcom5.5';\n\n    protected
         return $output;
     }
 
+        /*
+     * Convert the repos section of GEDCOM.
+     *
+     * @param array $repos
+     * @return string
+     */
     protected static function convertRepos(array $repos): string
     {
         $output = '';
@@ -160,6 +209,12 @@ class Writer\n{\n    final public const GEDCOM55 = 'gedcom5.5';\n\n    protected
         return $output;
     }
 
+        /*
+     * Convert the objes section of GEDCOM.
+     *
+     * @param array $objes
+     * @return string
+     */
     protected static function convertObjes(array $objes): string
     {
         $output = '';
