@@ -37,7 +37,7 @@ class Writer
      *
      * @return string The contents of the document in the converted format
      */
-    public static function convert(Gedcom $gedcom, string $format = self::GEDCOM55): string
+    public static function convert(Gedcom $gedcom): string
     {
         $head = $gedcom->getHead();
         $subn = $gedcom->getSubn();
@@ -49,7 +49,7 @@ class Writer
         $repos = $gedcom->getRepo();    // array()
         $objes = $gedcom->getObje();    // array()
 
-        $output = '0 FORMAT '.$format."\n";
+        $output = '';
 
         // head
         if ($head) {
