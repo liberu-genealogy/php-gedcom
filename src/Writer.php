@@ -31,10 +31,13 @@ class Writer\n{\n    final public const GEDCOM55 = 'gedcom5.5';\n\n    protected
     protected $_output;
 
     /**
-     * @param        $gedcom The GEDCOM object
-     * @param string $format The format to convert the GEDCOM object to
-     *
-     * @return string The contents of the document in the converted format
+     * Converts a Gedcom object into a specified format, defaulting to GEDCOM 5.5 if no format is specified.
+     * This function processes various components of the Gedcom object and formats them according to the specified format.
+     * 
+     * @param Gedcom $gedcom The Gedcom object to be converted.
+     * @param string $format The format string to convert the Gedcom object into. Defaults to GEDCOM 5.5.
+     * 
+     * @return string The contents of the document in the converted format.
      */
     public static function convert(Gedcom $gedcom, string $format = self::GEDCOM55): string
     {
