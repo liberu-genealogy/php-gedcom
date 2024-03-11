@@ -9,3 +9,4 @@ Contributions are **welcome** and will be fully **credited**. We accept contribu
 - **Create feature branches.** Don't ask us to pull from your master branch.
 - **One pull request per feature.** If you want to do more than one thing, send multiple pull requests.
 - **Send coherent history.** Make sure each individual commit in your pull request is meaningful. If you had to make multiple intermediate commits while developing, please [squash them](http://www.git-scm.com/book/en/v2/Git-Tools-Rewriting-History#Changing-Multiple-Commit-Messages) before submitting.
+- **Run tests before submitting a pull request.** Ensure that all tests pass by running `vendor/bin/phpunit tests/` from the root directory. Add new tests if you introduce new functionality or modify existing logic.
