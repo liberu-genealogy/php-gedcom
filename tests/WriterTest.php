@@ -2,6 +2,9 @@
 
 use Gedcom\Gedcom;
 use Gedcom\Writer;
+use Gedcom\Writer\Head;
+use Gedcom\Writer\Subn;
+use Gedcom\Writer\Subn;
 use PHPUnit\Framework\TestCase;
 
 class WriterTest extends TestCase
@@ -45,7 +48,34 @@ class WriterTest extends TestCase
     // ...
 
 }
-    // Add more test methods to cover different scenarios and edge cases
+    public function testConvertWithSubnProperty()
+    {
+        // Create a mock Gedcom object with a Subn property
+        $gedcom = $this->createMock(Gedcom::class);
+        $subn = $this->createMock(Subn::class);
+        $gedcom->expects($this->once())
+            ->method('getSubn')
+            ->willReturn($subn);
+        
+        // Set up expectations for the mock Gedcom object
+        // ...
+        // Set up expectations for the mock Gedcom object
+        $subn = $this->createMock(Subn::class);
+        $gedcom->expects($this->once())
+            ->method('getSubn')
+            ->willReturn($subn);
+        // ...
+        // Assert the correctness of the output
+        $this->assertEquals('expected_output', $output);
+        
+        // Call the convert method
+        $output = Writer::convert($gedcom);
+        
+        // Assert the correctness of the output
+        $this->assertEquals('expected_output', $output);
+        // Add assertions for the basic functionality of the convert method
+        // ...
+    }
     public function testConvertWithCustomFormat()
     {
         // Create a mock Gedcom object
