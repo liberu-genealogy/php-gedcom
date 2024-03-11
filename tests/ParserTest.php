@@ -14,10 +14,11 @@ class ParserTest extends TestCase
 
     public function testParseWithNonEmptyNamesArray()
 /**
- * Tests for the Gedcom Parser.
+ * PHPUnit tests for the Gedcom Parser in ParserTest.php.
  *
- * This file contains PHPUnit tests for testing the functionality of the Gedcom parser,
- * including parsing empty and non-empty names arrays from Gedcom files.
+ * This file is dedicated to testing the functionality of the Gedcom parser,
+ * specifically focusing on its ability to parse Gedcom files with varying contents
+ * of names arrays, ensuring correct handling and output generation.
  */
     /**
      * Test parsing with an empty names array.
@@ -27,6 +28,12 @@ class ParserTest extends TestCase
      */
     {
         $parser = new Parser();
+        $gedcom = $parser->parse('non_empty_names.ged');
+        $output = '';
+
+        ob_start();
+        foreach ($gedcom->getIndi() as $individual) {
+            $names = $individual->getName();
         $gedcom = $parser->parse('non_empty_names.ged');
         $output = '';
 
