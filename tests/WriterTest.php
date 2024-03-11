@@ -9,13 +9,13 @@ use PHPUnit\Framework\TestCase;
 
 class WriterTest extends TestCase
 {
-        public function testConvertWithMultipleIndiProperties() {
+        public function testConvertWithMultipleFamProperties() {
         // Create a mock Gedcom object with multiple Indi properties
         $gedcom = $this->createMock(Gedcom::class);
-        $indi1 = $this->createMock(Indi::class);
-        $indi2 = $this->createMock(Indi::class);
+        $fam1 = $this->createMock(Fam::class);
+        $fam2 = $this->createMock(Fam::class);
         $gedcom->expects($this->once())
-            ->method('getIndi')
+            ->method('getFam')
             ->willReturn([$indi1, $indi2]);
 
         // Call the convert method
