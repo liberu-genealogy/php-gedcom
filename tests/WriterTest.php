@@ -61,7 +61,6 @@ class WriterTest extends TestCase
         $gedcom = $this->createMockGedcom(['Subn' => $subn]);
         $output = Writer::convert($gedcom);
         $this->assertConvertOutput($output, 'expected_output');
-        $output = Writer::convert($gedcom);
         
         // Assert the correctness of the output
         $this->assertEquals('expected_output', $output);
