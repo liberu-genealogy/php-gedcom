@@ -81,9 +81,13 @@ class Writer
 
         // indis
         if (!empty($indis) && $indis !== []) {
-            foreach ($indis as $item) {
-                if ($item) {
-                    $output .= Indi::convert($item);
+            foreach ($indis as $indi) {
+                if ($indi) {
+                    foreach ($indi->getEven() as $eventType => $events) {
+                        foreach ($events as $event) {
+                            $output .= Indi::convertEvent($event, $eventType);
+                        }
+                    }
                 }
             }
         }
