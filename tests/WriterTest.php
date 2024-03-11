@@ -104,11 +104,11 @@ class WriterTest extends TestCase
 
     // ...
 /**
- * Tests the conversion of Gedcom objects with custom format into their string representation.
+ * Tests the conversion of Gedcom objects with a Submission (Subn) property.
  *
- * @return void
+ * Verifies that the Gedcom writer accurately handles Gedcom objects containing
+ * a Submission (Subn) property, ensuring it is correctly represented in the output string.
  */
-}
     public function testConvertWithSubnProperty()
     {
         // Create a mock Gedcom object with a Subn property
@@ -149,7 +149,6 @@ class WriterTest extends TestCase
  */
         // Set up expectations for the mock Gedcom object
         // ...
-
         // Call the convert method with a custom format
         $output = Writer::convert($gedcom, 'custom_format');
 
