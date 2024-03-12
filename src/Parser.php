@@ -14,7 +14,7 @@
 
 namespace Gedcom;
 
-class Parser
+class Parser implements \Gedcom\Parser\Interfaces\ParserInterface
 {
     protected $_file;
 
@@ -38,6 +38,7 @@ class Parser
     }
 
     public function forward()
+use Gedcom\Parser\Interfaces\ParserInterface;
     {
         // if there was a returned line by back(), set that as our current
         // line and blank out the returnedLine variable, otherwise grab
