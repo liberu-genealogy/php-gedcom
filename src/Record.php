@@ -14,7 +14,26 @@
 
 namespace Gedcom;
 
-abstract class Record
+abstract class Record implements \Gedcom\Models\RecordInterface
+    public function getId()
+    {
+        return $this->_id ?? null;
+    }
+
+    public function setId($id)
+    {
+        $this->_id = $id;
+    }
+
+    public function getName()
+    {
+        return $this->_name ?? null;
+    }
+
+    public function setName($name)
+    {
+        $this->_name = $name;
+    }
 {
     public function __call($method, $args)
     {
