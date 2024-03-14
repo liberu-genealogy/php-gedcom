@@ -1,4 +1,11 @@
 <?php
+
+/**
+ * Parser for GEDCOM files.
+ *
+ * This file contains the Parser class responsible for parsing GEDCOM files. It implements the ParserInterface
+ * and provides functionality to read and interpret the structure and data of GEDCOM files.
+ */
 /**
  * php-gedcom.
  *
@@ -38,6 +45,13 @@ class Parser implements \Gedcom\Parser\Interfaces\ParserInterface
     }
 
     public function forward()
+/**
+ * Constructs a Parser instance.
+ *
+ * Initializes a new Parser object, optionally with a pre-existing Gedcom object.
+ *
+ * @param Gedcom|null $gedcom An optional Gedcom object to use.
+ */
 use Gedcom\Parser\Interfaces\ParserInterface;
     {
         // if there was a returned line by back(), set that as our current
@@ -58,6 +72,20 @@ use Gedcom\Parser\Interfaces\ParserInterface;
 
     public function back()
     {
+/**
+ * Parser class for GEDCOM files.
+ *
+ * Implements the ParserInterface to provide methods for parsing GEDCOM files, navigating through the file,
+ * and extracting data according to the GEDCOM standard.
+ */
+ * Advances the parser to the next line in the GEDCOM file.
+ *
+ * If a line was previously returned by the back() method, it sets that as the current line. Otherwise,
+ * it reads the next line from the file.
+ *
+ * @return $this The instance of the Parser for method chaining.
+ */
+    {
         // our parser object encountered a line it wasn't meant to parse
         // store this line for the previous parser to analyze
 
@@ -73,6 +101,13 @@ use Gedcom\Parser\Interfaces\ParserInterface;
      * @param int $level
      */
     public function skipToNextLevel($level)
+/**
+ * Moves the parser back to the previously read line.
+ *
+ * Stores the current line for the previous parser to analyze, effectively moving the parser's position back.
+ *
+ * @return $this The instance of the Parser for method chaining.
+ */
     {
         $currentDepth = 999;
 
@@ -99,6 +134,24 @@ use Gedcom\Parser\Interfaces\ParserInterface;
      * @return string
      */
     public function parseMultiLineRecord()
+/**
+ * Skips to the next level in the GEDCOM file that is less than or equal to the specified level.
+ *
+ * This method leaves the parser at the line above the specified level, such that calling forward() will
+ * result in landing at the correct level.
+ *
+ * @param int $level The level to skip to.
+ */
+/**
+ * Retrieves the Gedcom object associated with this parser.
+ *
+ * @return Gedcom The Gedcom object being parsed.
+ */
+/**
+ * Checks if the end of the GEDCOM file has been reached.
+ *
+ * @return bool True if the end of the file has been reached, false otherwise.
+ */
     {
         $record = $this->getCurrentLineRecord();
 
@@ -118,6 +171,13 @@ use Gedcom\Parser\Interfaces\ParserInterface;
             }
 
             switch ($recordType) {
+/**
+ * Parses a multi-line record from the GEDCOM file.
+ *
+ * This method handles records that span multiple lines, aggregating the data according to the GEDCOM standard.
+ *
+ * @return string The aggregated data from the multi-line record.
+ */
             case 'DATA':
                 $dataInstance = new \Gedcom\Record\Data();
                 $this->forward();
@@ -207,6 +267,19 @@ use Gedcom\Parser\Interfaces\ParserInterface;
     }
 
     public function logUnhandledRecord($additionalInfo = '')
+/**
+ * Retrieves the current line from the GEDCOM file.
+ *
+ * @return string The current line being parsed.
+ */
+/**
+ * Splits the current line into record components.
+ *
+ * This method splits the current line based on the specified number of pieces, caching the result for efficiency.
+ *
+ * @param int $pieces The number of pieces to split the line into.
+ * @return array|false The split line as an array of components, or false if the line is empty.
+ */
     {
         $this->logError(
             $this->_linesParsed.': (Unhandled) '.trim(implode('|', $this->getCurrentLineRecord())).
@@ -228,6 +301,32 @@ use Gedcom\Parser\Interfaces\ParserInterface;
     }
 
     public function normalizeIdentifier($identifier)
+/**
+ * Logs an error encountered during parsing.
+ *
+ * This method adds an error message to the internal log for later retrieval.
+ *
+ * @param string $error The error message to log.
+ */
+/**
+ * Logs an unhandled record encountered during parsing.
+ *
+ * This method logs a record that could not be handled, along with optional additional information.
+ *
+ * @param string $additionalInfo Optional additional information about the unhandled record.
+ */
+/**
+ * Logs a record that was skipped during parsing.
+ *
+ * This method logs a record that was intentionally skipped, along with optional additional information.
+ *
+ * @param string $additionalInfo Optional additional information about the skipped record.
+ */
+/**
+ * Retrieves the list of errors logged during parsing.
+ *
+ * @return array An array of error messages logged during parsing.
+ */
     {
         $identifier = trim((string) $identifier);
 
@@ -250,6 +349,20 @@ use Gedcom\Parser\Interfaces\ParserInterface;
         $this->forward();
 
         while (!$this->eof()) {
+/**
+ * Normalizes an identifier by trimming whitespace and '@' characters.
+ *
+ * @param string $identifier The identifier to normalize.
+ * @return string The normalized identifier.
+ */
+/**
+ * Parses a GEDCOM file.
+ *
+ * Opens and reads a GEDCOM file, parsing its contents and populating the Gedcom object.
+ *
+ * @param string $fileName The path to the GEDCOM file to parse.
+ * @return Gedcom|null The Gedcom object populated with data from the file, or null on failure.
+ */
             $record = $this->getCurrentLineRecord();
 
             if ($record === false) {
