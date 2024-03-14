@@ -15,6 +15,12 @@
 namespace Gedcom\Parser;
 
 class Sour extends \Gedcom\Parser\Component
+/**
+ * Parser for GEDCOM Source (SOUR) records.
+ *
+ * Handles the parsing of source records from GEDCOM files, extracting relevant data and attributes
+ * associated with sources.
+ */
 {
     public static function parse(\Gedcom\Parser $parser)
     {
@@ -36,6 +42,18 @@ class Sour extends \Gedcom\Parser\Component
         $parser->forward();
 
         while (!$parser->eof()) {
+/**
+ * Sour class for parsing source records.
+ *
+ * This class extends the Component class and provides functionality to parse source (SOUR) records
+ * from a GEDCOM file.
+ */
+/**
+ * Parses a source record from a GEDCOM file.
+ *
+ * @param \Gedcom\Parser $parser The parser instance.
+ * @return \Gedcom\Record\Sour|null The parsed source record, or null if parsing fails.
+ */
             $record = $parser->getCurrentLineRecord();
             $currentDepth = (int) $record[0];
             $recordType = strtoupper(trim((string) $record[1]));
@@ -46,6 +64,12 @@ class Sour extends \Gedcom\Parser\Component
             }
 
             switch ($recordType) {
+/**
+ * Parses the source record's substructures and attributes.
+ *
+ * Iterates through the lines of the source record, parsing its substructures like DATA, AUTH, TITL, etc.,
+ * based on the current depth and record type.
+ */
                 case 'DATA':
                     $sour->setData(\Gedcom\Parser\Sour\Data::parse($parser));
                     break;
@@ -62,6 +86,12 @@ class Sour extends \Gedcom\Parser\Component
                     $sour->setPubl($parser->parseMultilineRecord());
                     break;
                 case 'TEXT':
+/**
+ * Parses specific substructures of the source record.
+ *
+ * Depending on the record type, it delegates parsing to specialized methods or directly sets attributes
+ * of the source record.
+ */
                     $sour->setText($parser->parseMultilineRecord());
                     break;
                 case 'REPO':
@@ -79,6 +109,12 @@ class Sour extends \Gedcom\Parser\Component
                     $sour->setChan($chan);
                     break;
                 case 'NOTE':
+/**
+ * Continues parsing specific substructures of the source record.
+ *
+ * Handles additional record types like TEXT, REPO, REFN, and sets their corresponding attributes
+ * in the source record.
+ */
                     $note = \Gedcom\Parser\NoteRef::parse($parser);
                     if ($note) {
                         $sour->addNote($note);
@@ -98,3 +134,9 @@ class Sour extends \Gedcom\Parser\Component
         return $sour;
     }
 }
+/**
+ * Finalizes parsing of the source record.
+ *
+ * Parses the remaining record types like NOTE, OBJE, and handles unhandled records. Returns the fully
+ * parsed source record.
+ */
