@@ -24,7 +24,7 @@ class WriterTest extends TestCase
         $this->assertEquals($expected, $output);
     }
         $gedcom = $this->createMockGedcom(['Fam' => [$fam1, $fam2]]);
-        $output = Writer::convertHeadHead($gedcom);
+        $output = Writer::convert($gedcom);
         $this->assertConvertOutput($output, 'expected_output');
         // Add assertions for the basic functionality of the convert method
         // ...
@@ -40,7 +40,7 @@ class WriterTest extends TestCase
     public function testConvertWithCustomFormat()
     {
         $gedcom = $this->createMockGedcom();
-        $output = Writer::convertHeadHead($gedcom, 'custom_format');
+        $output = Writer::convert($gedcom, 'custom_format');
         $this->assertConvertOutput($output, 'expected_output');
     {
         $sour1 = $this->createMock(Sour::class);
@@ -59,9 +59,8 @@ class WriterTest extends TestCase
     {
         $subn = $this->createMock(Subn::class);
         $gedcom = $this->createMockGedcom(['Subn' => $subn]);
-        $output = Writer::convertHeadHead($gedcom);
-        $this->assertConvertOutput($output, 'expected_output');
         $output = Writer::convert($gedcom);
+        $this->assertConvertOutput($output, 'expected_output');
         
         // Assert the correctness of the output
         $this->assertEquals('expected_output', $output);
@@ -77,7 +76,7 @@ class WriterTest extends TestCase
         // ...
 
         // Call the convert method with a custom format
-        $output = Writer::convertHeadHead($gedcom, 'custom_format');
+        $output = Writer::convert($gedcom, 'custom_format');
 
         // Assert the correctness of the output
         $this->assertEquals('expected_output', $output);
@@ -121,7 +120,7 @@ class WriterTest extends TestCase
         // ...
 
         // Call the convert method
-        $output = Writer::convertHeadHead($gedcom);
+        $output = Writer::convert($gedcom);
 
         // Assert the correctness of the output for multiple Note properties
         $this->assertEquals('expected_output', $output);
