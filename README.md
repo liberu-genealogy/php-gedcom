@@ -25,7 +25,7 @@ To install php-gedcom in your project using composer, simply add the following r
 
     {
         "require": {
-            "laravel-liberu/php-gedcom": "1.0.*"
+            "liberu-genealogy/php-gedcom": "2.0.*"
         }
     }
 
