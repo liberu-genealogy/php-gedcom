@@ -45,6 +45,8 @@ class Indi extends \Gedcom\Parser\Component
                 break;
             }
 
+            error_log("RECORD:".$recordType);
+
             if ($recordType == 'BURI') {
                 $a = '';
             }
@@ -59,6 +61,7 @@ class Indi extends \Gedcom\Parser\Component
             case 'NAME':
                 $name = \Gedcom\Parser\Indi\Name::parse($parser);
                 $indi->addName($name);
+                error_log("NAME:".$name->getName());
                 break;
             case 'SEX':
                 $indi->setSex(isset($record[2]) ? trim((string) $record[2]) : '');
@@ -199,6 +202,7 @@ class Indi extends \Gedcom\Parser\Component
             $parser->forward();
         }
 
+        error_log("VAL: ".json_encode($indi->getName()));
         return $indi;
     }
 }

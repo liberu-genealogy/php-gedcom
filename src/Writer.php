@@ -1,4 +1,5 @@
 <?php
+
 /**
  * php-gedcom.
  *
@@ -12,7 +13,7 @@
  * @link            http://github.com/mrkrstphr/php-gedcom
  */
 
-namespace Gedcom;\n\nuse Gedcom\\FormatInformation;\n
+namespace Gedcom;
 
 use Gedcom\Writer\Fam;
 use Gedcom\Writer\Head;
@@ -24,74 +25,12 @@ use Gedcom\Writer\Sour;
 use Gedcom\Writer\Subm;
 use Gedcom\Writer\Subn;
 
-class Writer\n{\n    final public const GEDCOM55 = 'gedcom5.5';
-
-    public static function convert(Gedcom $gedcom, string $format = self::GEDCOM55): string
-
-    /**
-     * @param        $gedcom The GEDCOM object
-     * @param string $format The format to convert the GEDCOM object to
-     *
-     * @return string The contents of the document in the converted format
-     */
-    protected static function convertHead($head, string $format, string $formatInformation): string
-    {
-        $output = '';
-        if ($head) {
-            $output = $formatInformation . Head::convert($head, $format);
-        }
-        return $output;
-    }
- 
-    protected static function convertSubn($subn): string
-    {
-        $output = '';
-        if ($subn) {
-            $output .= Subn::convert($subn);
-        }
-        return $output;
-    }
-
-    protected static function convertSubms(array $subms): string
-    {
-        $output = '';
-        foreach ($subms as $item) {
-            if ($item) {
-                $output .= Subm::convert($item);
-            }
-        }
-        return $output;
-    }
-
-    protected static function convertSours(array $sours): string
-    {
-        $output = '';
-        foreach ($sours as $item) {
-            if ($item) {
-                $output .= Sour::convert($item, 0);
-            }
-        }
-        return $output;
-    }\n\n    protected $_output;\n
+class Writer
 {
+
     final public const GEDCOM55 = 'gedcom5.5';
 
-    protected $_output;
-
-    /**
-     * @param        $gedcom The GEDCOM object
-     * @param string $format The format to convert the GEDCOM object to
-     *
-     * @return string The contents of the document in the converted format
-     */
-    protected static function convertHead($head, string $format, string $formatInformation): string
-    {
-        $output = '';
-        if ($head) {
-            $output = $formatInformation . Head::convert($head, $format);
-        }
-        return $output;
-    }
+    public static function convert(Gedcom $gedcom, string $format = self::GEDCOM55): string
     {
         $head = $gedcom->getHead();
         $subn = $gedcom->getSubn();
@@ -108,15 +47,27 @@ class Writer\n{\n    final public const GEDCOM55 = 'gedcom5.5';
         $formatInformation = FormatInformation::addFormatInformation($format);
         $output .= self::convertHead($head, $format, $formatInformation);
 
-        // subn
-        $output .= {
+        $output .= self::convertSubn($subn);
+        $output .= self::convertSubms($subms);
+        $output .= self::convertSours($sours);
+        $output .= self::convertIndis($indis);
+        $output .= self::convertFams($fams);
+        $output .= self::convertNotes($notes);
+        $output .= self::convertRepos($repos);
+        $output .= self::convertObjes($objes);
+        
+        // EOF
+        $output .= "0 TRLR\n";
+
+        return $output;
+
+    }
+
     /**
-     * Convert head section of GEDCOM.
+     * @param        $gedcom The GEDCOM object
+     * @param string $format The format to convert the GEDCOM object to
      *
-     * @param mixed $head
-     * @param string $format
-     * @param string $formatInformation
-     * @return string
+     * @return string The contents of the document in the converted format
      */
     protected static function convertHead($head, string $format, string $formatInformation): string
     {
@@ -126,11 +77,7 @@ class Writer\n{\n    final public const GEDCOM55 = 'gedcom5.5';
         }
         return $output;
     }
-        $output .= self::convertSubms($subms);
-        $output .= self::convertSours($sours);
 
-        // indis
-        if (!empty($indis) && $indis !== []) {
     protected static function convertSubn($subn): string
     {
         $output = '';
@@ -161,9 +108,7 @@ class Writer\n{\n    final public const GEDCOM55 = 'gedcom5.5';
         }
         return $output;
     }
-        $output .= self::convertFams($fams);
-        // notes
-        if (!empty($notes) && $notes !== []) {
+      
     protected static function convertIndis(array $indis): string
     {
         $output = '';
@@ -189,11 +134,8 @@ class Writer\n{\n    final public const GEDCOM55 = 'gedcom5.5';
         }
         return $output;
     }
-        $output .= self::convertNotes($notes);
-        $output .= self::convertRepos($repos);
-        $output .= self::convertRepos($repos);
-}
-}
+
+
     protected static function convertNotes(array $notes): string
     {
         $output = '';
@@ -226,3 +168,4 @@ class Writer\n{\n    final public const GEDCOM55 = 'gedcom5.5';
         }
         return $output;
     }
+}

@@ -7,7 +7,7 @@ use Gedcom\Parser;
 /**
  * Class Issue00017Test.
  */
-class Issue00017Test extends \PHPUnit_Framework_TestCase
+class Issue00017Test extends \PHPUnit\Framework\TestCase
 {
     /**
      * Test an empty 1 FAMC under an INDI.

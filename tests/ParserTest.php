@@ -31,13 +31,13 @@ class ParserTest extends TestCase
         $this->assertNotEmpty($output);
         $this->assertStringContainsString('I1: Doe, John', $output);
     }
-}
+
     private function generateOutputFromParsedGedcom($gedcomFileName)
     {
         $parser = new Parser();
         $gedcom = $parser->parse($gedcomFileName);
         $output = '';
-
+        
         ob_start();
         foreach ($gedcom->getIndi() as $individual) {
             $names = $individual->getName();
@@ -50,3 +50,4 @@ class ParserTest extends TestCase
 
         return $output;
     }
+}

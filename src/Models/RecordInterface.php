@@ -1,4 +1,4 @@
-&lt;?php
+<?php
 
 namespace Gedcom\Models;
 
@@ -10,28 +10,31 @@ namespace Gedcom\Models;
  */
 interface RecordInterface
 {
+    /**
+     * Retrieves the ID of the record.
+     *
+     * @return mixed The ID of the record.
+     */
     public function getId();
+
+    /**
+     * Sets the ID of the record.
+     *
+     * @param mixed $id The new ID of the record.
+     */
     public function setId($id);
+
+    /**
+     * Retrieves the name of the record.
+     *
+     * @return string The name of the record.
+     */
     public function getName();
+
+    /**
+     * Sets the name of the record.
+     *
+     * @param string $name The new name of the record.
+     */
     public function setName($name);
 }
-/**
- * Retrieves the ID of the record.
- *
- * @return mixed The ID of the record.
- */
-/**
- * Sets the ID of the record.
- *
- * @param mixed $id The new ID of the record.
- */
-/**
- * Retrieves the name of the record.
- *
- * @return string The name of the record.
- */
-/**
- * Sets the name of the record.
- *
- * @param string $name The new name of the record.
- */

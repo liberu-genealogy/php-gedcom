@@ -7,7 +7,7 @@ use Gedcom\Parser;
 /**
  * Class Issue00018Test.
  */
-class Issue00018Test extends \PHPUnit_Framework_TestCase
+class Issue00018Test extends \PHPUnit\Framework\TestCase
 {
     /**
      * Test handling an empty note.
