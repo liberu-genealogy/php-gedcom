@@ -21,7 +21,7 @@ abstract class Lds extends \Gedcom\Parser\Component
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
         if (isset($record[1])) {
-            $className = 'GedcomRecordIndi'.ucfirst(strtolower(trim((string) $record[1])));
+            $className = '\\Gedcom\\Record\\Indi\\'.ucfirst(strtolower(trim((string) $record[1])));
             $lds = new $className();
         } else {
             $parser->skipToNextLevel($depth);

@@ -37,7 +37,7 @@ class ParserTest extends TestCase
         $parser = new Parser();
         $gedcom = $parser->parse($gedcomFileName);
         $output = '';
-
+        error_log(json_encode($gedcom));
         ob_start();
         foreach ($gedcom->getIndi() as $individual) {
             $names = $individual->getName();

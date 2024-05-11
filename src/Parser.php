@@ -341,6 +341,7 @@ class Parser implements \Gedcom\Parser\Interfaces\ParserInterface
         $this->_file = fopen($fileName, 'r'); //explode("\n", mb_convert_encoding($contents, 'UTF-8'));
 
         if (!$this->_file) {
+            error_log("Failed to open file: ". $fileName);
             return null;
         }
 
@@ -355,7 +356,7 @@ class Parser implements \Gedcom\Parser\Interfaces\ParserInterface
             }
 
             $depth = (int) $record[0];
-
+            
             // We only process 0 level records here. Sub levels are processed
             // in methods for those data types (individuals, sources, etc)
 
