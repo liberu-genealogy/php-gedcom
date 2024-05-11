@@ -7,7 +7,7 @@ use Gedcom\Parser;
 /**
  * Class Issue00012Test.
  */
-class Issue00012Test extends \PHPUnit_Framework_TestCase
+class Issue00012Test extends \PHPUnit\Framework\TestCase
 {
     public function testBirthDate()
     {

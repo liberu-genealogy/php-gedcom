@@ -1,4 +1,5 @@
 <?php
+
 /**
  * php-gedcom.
  *
@@ -31,10 +32,10 @@ class ParserTest extends \PHPUnit\Framework\TestCase
      */
     protected $gedcom = null;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->parser = new Parser();
-        $this->gedcom = $this->parser->parse(TEST_DIR.'/stresstestfiles/TGC551LF.ged');
+        $this->gedcom = $this->parser->parse(TEST_DIR . '/stresstestfiles/TGC551LF.ged');
     }
 
     public function testNoErrors()
@@ -63,80 +64,8 @@ class ParserTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(
             $head->getSour()->getCorp()->getAddr()->getAddr(),
             "7108 South Pine Cone Street\nSalt Lake City, UT 84121\nUSA"
-use PHPUnit\Framework\TestCase;
 
-class ParserTest extends TestCase
-{
-    protected $parser;
-    protected $gedcom;
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-        $this->parser = new \Gedcom\Parser();
-    }
-
-    public function testParseValidFile()
-    {
-        $this->gedcom = $this->parser->parse(TEST_DIR.'/validFiles/validTest.ged');
-        $this->assertNotNull($this->gedcom, 'Gedcom object should not be null for a valid file.');
-    }
-
-    public function testParseInvalidFile()
-    {
-        $this->expectException(\Exception::class);
-        $this->parser->parse(TEST_DIR.'/invalidFiles/invalidTest.ged');
-    }
-
-    public function testForwardFunctionality()
-    {
-        $this->parser->parse(TEST_DIR.'/validFiles/forwardTest.ged');
-        $this->assertEquals('2 INDI', trim($this->parser->forward()->getCurrentLine()), 'Forward method should move to the next line.');
-    }
-
-    public function testBackFunctionality()
-    {
-        $this->parser->parse(TEST_DIR.'/validFiles/backTest.ged');
-        $this->parser->forward(); // Move forward to allow back to work
-        $this->assertEquals('0 HEAD', trim($this->parser->back()->getCurrentLine()), 'Back method should revert to the previous line.');
-    }
-
-    public function testSkipToNextLevelFunctionality()
-    {
-        $this->parser->parse(TEST_DIR.'/validFiles/skipToNextLevelTest.ged');
-        $this->parser->skipToNextLevel(1);
-        $this->assertStringContainsString('1 BIRT', $this->parser->forward()->getCurrentLine(), 'SkipToNextLevel should skip to the specified level.');
-    }
-
-    public function testParseMultiLineRecord()
-    {
-        $this->parser->parse(TEST_DIR.'/validFiles/multiLineRecordTest.ged');
-        $data = $this->parser->parseMultiLineRecord();
-        $this->assertStringContainsString('Lorem ipsum dolor sit amet', $data, 'parseMultiLineRecord should correctly parse multi-line records.');
-    }
-
-    public function testEofFunctionality()
-    {
-        $this->parser->parse(TEST_DIR.'/validFiles/eofTest.ged');
-        while (!$this->parser->eof()) {
-            $this->parser->forward();
-        }
-        $this->assertTrue($this->parser->eof(), 'EOF should be true after reading the last line of the file.');
-    }
-
-    public function testErrorLogging()
-    {
-        $this->parser->parse(TEST_DIR.'/validFiles/errorLoggingTest.ged');
-        $errors = $this->parser->getErrors();
-        $this->assertNotEmpty($errors, 'Errors should be logged during parsing.');
-    }
-
-    public function testNormalizeIdentifier()
-    {
-        $normalized = $this->parser->normalizeIdentifier('@I1@');
-        $this->assertEquals('I1', $normalized, 'normalizeIdentifier should remove @ characters.');
-    }
-}
         );
         $this->assertEquals($head->getSour()->getCorp()->getAddr()->getCity(), 'Salt Lake City');
         $this->assertEquals($head->getSour()->getCorp()->getAddr()->getStae(), 'UT');
@@ -197,10 +126,10 @@ class ParserTest extends TestCase
         $this->assertEquals($subm['SUBMITTER']->getName(), 'John A. Nairn');
         $this->assertEquals(
             $subm['SUBMITTER']->getAddr()->getAddr(),
-            "Submitter address line 1\n".
-            "Submitter address line 2\n".
-            "Submitter address line 3\n".
-            'Submitter address line 4'
+            "Submitter address line 1\n" .
+                "Submitter address line 2\n" .
+                "Submitter address line 3\n" .
+                'Submitter address line 4'
         );
 
         $this->assertEquals($subm['SUBMITTER']->getAddr()->getAdr1(), 'Submitter address line 1');
@@ -234,8 +163,8 @@ class ParserTest extends TestCase
         $this->assertEquals($subm['SM2']->getName(), 'Secondary Submitter');
         $this->assertEquals(
             $subm['SM2']->getAddr()->getAddr(),
-            "Secondary Submitter Address 1\n".
-            'Secondary Submitter Address 2'
+            "Secondary Submitter Address 1\n" .
+                'Secondary Submitter Address 2'
         );
 
         $lang = $subm['SM2']->getLang();
@@ -248,8 +177,8 @@ class ParserTest extends TestCase
         $this->assertEquals($subm['SM3']->getName(), 'H. Eichmann');
         $this->assertEquals(
             $subm['SM3']->getAddr()->getAddr(),
-            "email: h.eichmann@@mbox.iqo.uni-hannover.de\n".
-            'or: heiner_eichmann@@h.maus.de (no more than 16k!!!!)'
+            "email: h.eichmann@@mbox.iqo.uni-hannover.de\n" .
+                'or: heiner_eichmann@@h.maus.de (no more than 16k!!!!)'
         );
         $this->assertEquals($subm['SM3']->getChan()->getDate(), '13 Jun 2000');
         $this->assertEquals($subm['SM3']->getChan()->getTime(), '17:07:32');
@@ -298,5 +227,68 @@ class ParserTest extends TestCase
 
         $this->assertEquals($firstNote->getChan()->getDate(), '24 May 1999');
         $this->assertEquals($firstNote->getChan()->getTime(), '16:39:55');
+    }
+
+
+
+    public function testParseValidFile()
+    {
+        $this->gedcom = $this->parser->parse(TEST_DIR . '/validFiles/validTest.ged');
+        $this->assertNotNull($this->gedcom, 'Gedcom object should not be null for a valid file.');
+    }
+
+    public function testParseInvalidFile()
+    {
+        $this->expectException(\Exception::class);
+        $this->parser->parse(TEST_DIR . '/invalidFiles/invalidTest.ged');
+    }
+
+    public function testForwardFunctionality()
+    {
+        $this->parser->parse(TEST_DIR . '/validFiles/forwardTest.ged');
+        $this->assertEquals('2 INDI', trim($this->parser->forward()->getCurrentLine()), 'Forward method should move to the next line.');
+    }
+
+    public function testBackFunctionality()
+    {
+        $this->parser->parse(TEST_DIR . '/validFiles/backTest.ged');
+        $this->parser->forward(); // Move forward to allow back to work
+        $this->assertEquals('0 HEAD', trim($this->parser->back()->getCurrentLine()), 'Back method should revert to the previous line.');
+    }
+
+    public function testSkipToNextLevelFunctionality()
+    {
+        $this->parser->parse(TEST_DIR . '/validFiles/skipToNextLevelTest.ged');
+        $this->parser->skipToNextLevel(1);
+        $this->assertStringContainsString('1 BIRT', $this->parser->forward()->getCurrentLine(), 'SkipToNextLevel should skip to the specified level.');
+    }
+
+    public function testParseMultiLineRecord()
+    {
+        $this->parser->parse(TEST_DIR . '/validFiles/multiLineRecordTest.ged');
+        $data = $this->parser->parseMultiLineRecord();
+        $this->assertStringContainsString('Lorem ipsum dolor sit amet', $data, 'parseMultiLineRecord should correctly parse multi-line records.');
+    }
+
+    public function testEofFunctionality()
+    {
+        $this->parser->parse(TEST_DIR . '/validFiles/eofTest.ged');
+        while (!$this->parser->eof()) {
+            $this->parser->forward();
+        }
+        $this->assertTrue($this->parser->eof(), 'EOF should be true after reading the last line of the file.');
+    }
+
+    public function testErrorLogging()
+    {
+        $this->parser->parse(TEST_DIR . '/validFiles/errorLoggingTest.ged');
+        $errors = $this->parser->getErrors();
+        $this->assertNotEmpty($errors, 'Errors should be logged during parsing.');
+    }
+
+    public function testNormalizeIdentifier()
+    {
+        $normalized = $this->parser->normalizeIdentifier('@I1@');
+        $this->assertEquals('I1', $normalized, 'normalizeIdentifier should remove @ characters.');
     }
 }
