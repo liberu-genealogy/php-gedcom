@@ -331,7 +331,7 @@ class Subm extends \Gedcom\Record implements Objectable
      *
      * @return Subm
      */
-    public function addObje($obje = [])
+    public function addObje($obje)
     {
         $this->obje[] = $obje;
 

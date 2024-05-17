@@ -42,24 +42,20 @@ class SourRef extends \Gedcom\Parser\Component
             }
 
             switch ($recordType) {
-                case 'PAGE':
-                    $sour->setPage(trim((string) $record[2]));
+                case 'CONT':
+                    $sour->setSour($sour->getSour() . "\n");
+
+                    if (isset($record[2])) {
+                        $sour->setSour($sour->getSour() . $record[2]);
+                    }
                     break;
-                case 'EVEN':
-                    $even = \Gedcom\Parser\SourRef\Even::parse($parser);
-                    $sour->setEven($even);
-                    break;
-                case 'DATA':
-                    $sour->setData(\Gedcom\Parser\SourRef\Data::parse($parser));
+                case 'CONC':
+                    if (isset($record[2])) {
+                        $sour->setSour($sour->getSour() . $record[2]);
+                    }
                     break;
                 case 'TEXT':
                     $sour->setText($parser->parseMultiLineRecord());
-                    break;
-                case 'OBJE':
-                    $obje = \Gedcom\Parser\ObjeRef::parse($parser);
-                    if ($obje) {
-                        $sour->addNote($obje);
-                    }
                     break;
                 case 'NOTE':
                     $note = \Gedcom\Parser\NoteRef::parse($parser);
@@ -67,9 +63,25 @@ class SourRef extends \Gedcom\Parser\Component
                         $sour->addNote($note);
                     }
                     break;
+                case 'DATA':
+                    $sour->setData(\Gedcom\Parser\SourRef\Data::parse($parser));
+                    break;
                 case 'QUAY':
                     $sour->setQuay(trim((string) $record[2]));
                     break;
+                case 'PAGE':
+                    $sour->setPage(trim((string) $record[2]));
+                    break;
+                case 'EVEN':
+                    $even = \Gedcom\Parser\SourRef\Even::parse($parser);
+                    $sour->setEven($even);
+                    break;   
+                case 'OBJE':
+                    $obje = \Gedcom\Parser\ObjeRef::parse($parser);
+                    if ($obje) {
+                        $sour->addNote($obje);
+                    }
+                    break;     
                 default:
                     $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
             }

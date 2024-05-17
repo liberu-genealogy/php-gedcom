@@ -16,5 +16,5 @@ namespace Gedcom\Record;
 
 interface Objectable
 {
-    public function addObje($obje = []);
+    public function addObje(\Gedcom\Record\ObjeRef $obje);
 }

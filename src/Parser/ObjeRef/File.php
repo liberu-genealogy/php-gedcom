@@ -40,7 +40,7 @@ class File extends \Gedcom\Parser\Component
 
             switch ($recordType) {
                 case 'FORM':
-                    $file->setDate(\Parser\ObjeRef\File\Form::parse($parser));
+                    $file->setDate(\Gedcom\Parser\ObjeRef\File\Form::parse($parser));
                     break;
                 case 'TITL':
                     $file->setTitl(trim((string) $record[2]));

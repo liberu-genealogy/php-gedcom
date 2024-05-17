@@ -16,5 +16,5 @@ namespace Gedcom\Record;
 
 interface Noteable
 {
-    public function addNote($note = []);
+    public function addNote(\Gedcom\Record\NoteRef $note);
 }

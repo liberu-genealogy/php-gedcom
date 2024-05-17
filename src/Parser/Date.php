@@ -19,19 +19,13 @@ class Date extends \Gedcom\Parser\Component
     public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
-        $depth = (int) $record[0];
-
-        $parser->forward();
-        $record = $parser->getCurrentLineRecord();
-
+       
         if (isset($record[1])) {
             $dat = new \Gedcom\Record\Date();
             if (!empty($record[2])) {
                 $dat->setDate($record[2]);
             }
         } else {
-            $parser->skipToNextLevel($depth);
-
             return null;
         }
 

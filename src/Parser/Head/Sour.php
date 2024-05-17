@@ -53,7 +53,7 @@ class Sour extends \Gedcom\Parser\Component
                     $source->setCorp($corp);
                     break;
                 case 'DATA':
-                    $data = Parser\Head\Sour\Data::parse($parser);
+                    $data = \Gedcom\Parser\Head\Sour\Data::parse($parser);
                     $source->setData($data);
                     break;
                 default:

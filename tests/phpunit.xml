@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="bootstrap.php" colors="true">
+<phpunit bootstrap="bootstrap.php" colors="true" displayDetailsOnTestsThatTriggerDeprecations="true" displayDetailsOnTestsThatTriggerErrors="true" displayDetailsOnTestsThatTriggerNotices="true" displayDetailsOnTestsThatTriggerWarnings="true">
 	<testsuites>
-		<testsuite>
-			<directory>library/Gedcom/</directory>
-		<directory>tests/library/Gedcom/</directory>
+		<testsuite name="default">
+			<directory>
+				library/Gedcom/
+			</directory>
 		</testsuite>
 	</testsuites>
 </phpunit>

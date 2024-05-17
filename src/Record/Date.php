@@ -76,6 +76,9 @@ class Date extends \Gedcom\Record
      */
     public function getYear()
     {
+        if (empty($this->date))
+            return 0;
+
         $record = explode(' ', $this->date);
         if ($this->isPrefix($record[0])) {
             unset($record[0]);
