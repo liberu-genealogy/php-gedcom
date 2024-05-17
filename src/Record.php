@@ -126,19 +126,10 @@ abstract class Record implements \Gedcom\Models\RecordInterface
 
             return $this;
         } elseif (str_starts_with((string) $method, 'get')) {
-            $arr = strtolower(substr((string) $method, 3));
-
-            // hotfix getData
-            if ('data' == $arr) {
-                if (!property_exists($this, '_text')) {
-                    throw new \Exception('Unknown ' . static::class . '::' . $arr);
-                }
-
-                return $this->{'_text'};
-            }
+            $arr = strtolower(substr($method, 3));
 
             if (!property_exists($this, '_' . $arr)) {
-                throw new \Exception('Unknown ' . static::class . '::' . $arr);
+                throw new \Exception('Unknown ' . get_class($this) . '::' . $arr);
             }
 
             return $this->{'_' . $arr};

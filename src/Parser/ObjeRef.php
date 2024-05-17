@@ -42,11 +42,25 @@ class ObjeRef extends \Gedcom\Parser\Component
                 break;
             }
 
-            match ($recordType) {
-                'TITL' => $obje->setTitl(trim((string) $record[2])),
-                'FILE' => $obje->setFile(\Gedcom\Parser\ObjeRef\File::parse($parser)),
-                default => $parser->logUnhandledRecord(self::class.' @ '.__LINE__),
-            };
+            switch ($recordType) {
+                case 'TITL':
+                    $obje->setTitl(trim((string) $record[2]));
+                    break;
+                case 'FILE':
+                    $obje->setFile(trim((string) $record[2]));
+                    break;
+                case 'FORM':
+                    $obje->setForm(trim((string) $record[2]));
+                    break;
+                case 'NOTE':
+                    $note = \Gedcom\Parser\NoteRef::parse($parser);
+                    if ($note) {
+                        $obje->addNote($note);
+                    }
+                    break;
+                default:
+                    $parser->logUnhandledRecord(get_class() . ' @ ' . __LINE__);
+            }
 
             $parser->forward();
         }

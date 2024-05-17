@@ -46,30 +46,35 @@ class Obje extends \Gedcom\Parser\Component
             }
 
             switch ($recordType) {
-                case 'FILE':
-                    $obje->setFile(trim((string) $record[2]));
+                case 'FORM':
+                    $obje->setForm(trim($record[2]));
+                    break;
+                case 'TITL':
+                    $obje->setTitl(trim($record[2]));
+                    break;
+                case 'OBJE':
+                    $obje->setForm($parser->normalizeIdentifier($record[2]));
+                    break;
+                case 'RIN':
+                    $obje->setRin(trim($record[2]));
                     break;
                 case 'REFN':
                     $refn = \Gedcom\Parser\Refn::parse($parser);
                     $obje->addRefn($refn);
                     break;
-                case 'RIN':
-                    $obje->setRin(trim((string) $record[2]));
+                case 'BLOB':
+                    $obje->setBlob($parser->parseMultiLineRecord());
                     break;
-
                 case 'NOTE':
                     $note = \Gedcom\Parser\NoteRef::parse($parser);
                     if ($note) {
                         $obje->addNote($note);
                     }
                     break;
-                case 'SOUR':
-
                 case 'CHAN':
                     $chan = \Gedcom\Parser\Chan::parse($parser);
                     $obje->setChan($chan);
                     break;
-
                 default:
                     $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
             }

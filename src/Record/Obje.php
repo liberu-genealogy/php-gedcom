@@ -16,35 +16,34 @@ namespace Gedcom\Record;
 
 class Obje extends \Gedcom\Record implements Noteable
 {
-    protected $_id;
+    protected $_id   = null;
 
-    protected $_file = [];
-    protected $_rin;
-    protected $_chan;
+    protected $_form = null;
+    protected $_titl = null;
+    protected $_blob = null;
+    protected $_rin  = null;
+    protected $_chan = null;
 
-    protected $_refn = [];
+    protected $_refn = array();
 
-    protected $_note = [];
+    /**
+     *
+     */
+    protected $_note = array();
 
-    protected $_sour = [];
-
-    public function addRefn($refn = [])
+    /**
+     *
+     */
+    public function addRefn(\Gedcom\Record\Refn $refn)
     {
         $this->_refn[] = $refn;
     }
 
-    public function addNote($note = [])
+    /**
+     *
+     */
+    public function addNote(\Gedcom\Record\NoteRef $note)
     {
         $this->_note[] = $note;
-    }
-
-    public function addFile($file)
-    {
-        $this->_file[] = $file;
-    }
-
-    public function addSour($sour)
-    {
-        $this->_sour[] = $sour;
     }
 }

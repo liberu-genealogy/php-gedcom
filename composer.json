@@ -23,5 +23,8 @@
         "psr-4": {
             "GedcomTest\\": "tests/"
         }
+    },
+    "scripts": {
+        "test": "./vendor/bin/phpunit -c tests/phpunit.xml"
     }
 }

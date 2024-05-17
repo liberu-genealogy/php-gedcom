@@ -54,7 +54,7 @@ class Subm extends \Gedcom\Parser\Component
                     $subm->setAddr($addr);
                     break;
                 case 'PHON':
-                    $phone = isset($record[2]) ? trim((string) $record[2]) : '';
+                    $phone = \Gedcom\Parser\Phon::parse($parser);
                     $subm->addPhon($phone);
                     break;
                 case 'EMAIL':

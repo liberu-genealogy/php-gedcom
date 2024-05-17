@@ -1,4 +1,5 @@
 <?php
+
 /**
  * php-gedcom.
  *
@@ -16,21 +17,58 @@ namespace Gedcom\Record;
 
 class ObjeRef extends \Gedcom\Record
 {
-    protected $_isRef = false;
 
-    protected $_obje;
+    /**
+     * @var bool
+     */
+    protected $_isRef   = false;
 
-    protected $_titl;
+    /**
+     *
+     */
+    protected $_obje    = null;
 
-    protected $_file;
+    /**
+     *
+     */
+    protected $_form    = null;
 
+    /**
+     *
+     */
+    protected $_titl    = null;
+
+    /**
+     *
+     */
+    protected $_file    = null;
+
+    /**
+     *
+     */
+    protected $_note = array();
+
+    /**
+     *
+     */
     public function setIsReference($isReference = true)
     {
         $this->_isRef = $isReference;
     }
 
+    /**
+     *
+     */
     public function getIsReference()
     {
         return $this->_isRef;
+    }
+
+    /**
+     *
+     */
+    public function addNote(\Gedcom\Record\NoteRef $note)
+    {
+        $this->_note[] = $note;
     }
 }

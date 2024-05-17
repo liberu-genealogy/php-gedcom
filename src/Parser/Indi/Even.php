@@ -1,4 +1,5 @@
 <?php
+
 /**
  * php-gedcom.
  *
@@ -27,7 +28,7 @@ class Even extends \Gedcom\Parser\Component
         }
 
         if (strtoupper(trim((string) $record[1])) != 'EVEN') {
-            $className = '\Gedcom\Record\Indi\\'.ucfirst(strtolower(trim((string) $record[1])));
+            $className = '\Gedcom\Record\Indi\\' . ucfirst(strtolower(trim((string) $record[1])));
             $even = new $className();
         } else {
             $even = new \Gedcom\Record\Indi\Even();
@@ -55,62 +56,62 @@ class Even extends \Gedcom\Parser\Component
             }
 
             switch ($recordType) {
-            case 'TYPE':
-                $even->setType(trim((string) $record[2]));
-                break;
-            case 'DATE':
-                $dat = \Gedcom\Parser\Date::parse($parser);
-                $even->setDate($dat);
-                //$even->setDate(trim($record[2]))
-                break;
-            case 'PLAC':
-                $plac = \Gedcom\Parser\Plac::parse($parser);
-                $even->setPlac($plac);
-                break;
-            case 'ADDR':
-                $even->setAddr(\Gedcom\Parser\Addr::parse($parser));
-                break;
-            case 'PHON':
-                $phone = \Gedcom\Parser\Phon::parse($parser);
-                $even->addPhone($phone);
-                break;
-            case 'CAUS':
-                $even->setCaus(trim((string) $record[2]));
-                break;
-            case 'AGE':
-                $even->setAge(trim((string) $record[2]));
-                break;
-            case 'AGNC':
-                $even->setAgnc(trim((string) $record[2]));
-                break;
-            case 'SOUR':
-                $sour = \Gedcom\Parser\SourRef::parse($parser);
-                $even->addSour($sour);
-                break;
-            case 'OBJE':
-                $obje = \Gedcom\Parser\ObjeRef::parse($parser);
-                $even->addObje($obje);
-                break;
-            case 'NOTE':
-                $note = \Gedcom\Parser\NoteRef::parse($parser);
-                if ($note) {
-                    $even->addNote($note);
-                }
-                break;
-            case 'CHAN':
-                $change = \Gedcom\Parser\Chan::parse($parser);
-                $even->setChan($change);
-                break;
-            default:
-                $self = static::class;
-                $method = 'parse'.$recordType;
+                case 'TYPE':
+                    $even->setType(trim((string) $record[2]));
+                    break;
+                case 'DATE':
+                    $dat = \Gedcom\Parser\Date::parse($parser);
+                    $even->setDate($dat);
+                    //$even->setDate(trim($record[2]))
+                    break;
+                case 'PLAC':
+                    $plac = \Gedcom\Parser\Indi\Even\Plac::parse($parser);
+                    $even->setPlac($plac);
+                    break;
+                case 'ADDR':
+                    $even->setAddr(\Gedcom\Parser\Addr::parse($parser));
+                    break;
+                case 'PHON':
+                    $phone = \Gedcom\Parser\Phon::parse($parser);
+                    $even->addPhone($phone);
+                    break;
+                case 'CAUS':
+                    $even->setCaus(trim((string) $record[2]));
+                    break;
+                case 'AGE':
+                    $even->setAge(trim((string) $record[2]));
+                    break;
+                case 'AGNC':
+                    $even->setAgnc(trim((string) $record[2]));
+                    break;
+                case 'SOUR':
+                    $sour = \Gedcom\Parser\SourRef::parse($parser);
+                    $even->addSour($sour);
+                    break;
+                case 'OBJE':
+                    $obje = \Gedcom\Parser\ObjeRef::parse($parser);
+                    $even->addObje($obje);
+                    break;
+                case 'NOTE':
+                    $note = \Gedcom\Parser\NoteRef::parse($parser);
+                    if ($note) {
+                        $even->addNote($note);
+                    }
+                    break;
+                case 'CHAN':
+                    $change = \Gedcom\Parser\Chan::parse($parser);
+                    $even->setChan($change);
+                    break;
+                default:
+                    $self = static::class;
+                    $method = 'parse' . $recordType;
 
-                if (method_exists($self, $method)) {
-                    $self::$method($parser, $even);
-                } else {
-                    $parser->logUnhandledRecord($self.' @ '.__LINE__);
-                    $parser->skipToNextLevel($currentDepth);
-                }
+                    if (method_exists($self, $method)) {
+                        $self::$method($parser, $even);
+                    } else {
+                        $parser->logUnhandledRecord($self . ' @ ' . __LINE__);
+                        $parser->skipToNextLevel($currentDepth);
+                    }
             }
 
             $parser->forward();
