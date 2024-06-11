@@ -1,5 +1,5 @@
 # php-gedcom
- ![Latest Stable Version](https://img.shields.io/github/release/familytree365/php-gedcom.svg) 
+ ![Latest Stable Version](https://img.shields.io/github/release/familytree365/php-gedcom.svg)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/familytree365/php-gedcom/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/familytree365/php-gedcom/?branch=master)
 [![Build Status](https://scrutinizer-ci.com/g/familytree365/php-gedcom/badges/build.png?b=master)](https://scrutinizer-ci.com/g/familytree365/php-gedcom/build-status/master)
 [![Code Intelligence Status](https://scrutinizer-ci.com/g/laravel-liberu/php-gedcom/badges/code-intelligence.svg?b=main)](https://scrutinizer-ci.com/code-intelligence)
@@ -7,6 +7,7 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/familytree365/php-gedcom/badge/master)](https://www.codefactor.io/repository/github/familytree365/php-gedcom/overview/master)
 [![codebeat badge](https://codebeat.co/badges/911f9e33-212a-4dfa-a860-751cdbbacff7)](https://codebeat.co/projects/github-com-modularphp-gedcom-php-gedcom-master)
 [![Build Status](https://travis-ci.org/familytree365/php-gedcom.svg?branch=master)](https://travis-ci.org/familytree365/php-gedcom)
+[![Tests](https://github.com/familytree365/php-gedcom/actions/workflows/run-tests.yml/badge.svg)](https://github.com/familytree365/php-gedcom/actions/workflows/run-tests.yml)
 
 
 
