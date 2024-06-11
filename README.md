@@ -7,7 +7,7 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/familytree365/php-gedcom/badge/master)](https://www.codefactor.io/repository/github/familytree365/php-gedcom/overview/master)
 [![codebeat badge](https://codebeat.co/badges/911f9e33-212a-4dfa-a860-751cdbbacff7)](https://codebeat.co/projects/github-com-modularphp-gedcom-php-gedcom-master)
 [![Build Status](https://travis-ci.org/familytree365/php-gedcom.svg?branch=master)](https://travis-ci.org/familytree365/php-gedcom)
-[![Tests](https://github.com/familytree365/php-gedcom/actions/workflows/run-tests.yml/badge.svg)](https://github.com/familytree365/php-gedcom/actions/workflows/run-tests.yml)
+[![Tests](https://github.com/liberu-genealogy/php-gedcom/actions/workflows/run-tests.yml/badge.svg)](https://github.com/liberu-genealogy/php-gedcom/actions/workflows/run-tests.yml)
 
 
 
