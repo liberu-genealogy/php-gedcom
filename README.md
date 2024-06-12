@@ -58,3 +58,10 @@ foreach ($gedcom->getIndi() as $individual) {
     }
 }
 ```
+
+
+## Contributors
+
+<a href = "https://github.com/liberu-genealogy/php-gedcom/graphs/contributors">
+  <img src = "https://contrib.rocks/image?repo=liberu-genealogy/php-gedcom"/>
+</a>
