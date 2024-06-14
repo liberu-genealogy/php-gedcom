@@ -44,7 +44,7 @@ class Gedcom
     /**
      * Stores all the individuals contained within the GEDCOM file.
      *
-     * @var \Gedcom\Record\Indi[]
+     * @var \Record\Indi[]
      */
     protected $indi = [];
 
@@ -117,7 +117,7 @@ class Gedcom
     /**
      * Adds an individual to the collection of individuals.
      */
-    public function addIndi(\Gedcom\Record\Indi $indi)
+    public function addIndi(\Record\Indi $indi)
     {
         $this->indi[$indi->getId()] = $indi;
         if ($indi->getUid() !== '' && $indi->getUid() !== '0') {
@@ -198,7 +198,7 @@ class Gedcom
     /**
      * Gets the collection of individuals stored in the GEDCOM file.
      *
-     * @return \Gedcom\Record\Indi[]
+     * @return \Record\Indi[]
      */
     public function getIndi()
     {

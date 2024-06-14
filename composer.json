@@ -16,7 +16,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Gedcom\\": "src/"
+            "Gedcom\\": "src/",
+            "Record\\": "src/Record/"
         }
     },
     "autoload-dev": {

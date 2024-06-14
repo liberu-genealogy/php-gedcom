@@ -1,6 +1,6 @@
 <?php
 
-namespace Gedcom\Record;
+namespace Record;
 
 class Indi
 {

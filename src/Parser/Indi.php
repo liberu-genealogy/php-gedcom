@@ -29,7 +29,7 @@ class Indi extends \Gedcom\Parser\Component
             return null;
         }
 
-        $indi = new \Gedcom\Record\Indi();
+        $indi = new \Record\Indi();
         $indi->setId($identifier);
 
         $parser->getGedcom()->addIndi($indi);
