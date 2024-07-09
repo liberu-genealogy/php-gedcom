@@ -58,3 +58,17 @@ foreach ($gedcom->getIndi() as $individual) {
     }
 }
 ```
+## Contributing 
+
+Pull requests are welcome, as are issues.
+
+
+## License
+
+MIT License (see License.md). This means you must retain the copyright and permission notice is all copies, or substantial portions of this software. 
+
+## Contributors
+
+<a href = "https://github.com/liberu-genealogy/php-gedcom/graphs/contributors">
+  <img src = "https://contrib.rocks/image?repo=liberu-genealogy/php-gedcom"/>
+</a>
