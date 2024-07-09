@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<ruleset name="PHP_CodeSniffer">
+  <description>PHP_CodeSniffer configuration</description>
+  <rule ref="PSR12">
+    <exclude name="PSR12.Operators.OperatorSpacing"/>
+    <exclude name="PSR12.Classes.PropertyDeclaration.Underscore" />
+  </rule>
+</ruleset>
