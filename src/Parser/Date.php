@@ -1,4 +1,5 @@
 <?php
+
 /**
  * php-gedcom.
  *
@@ -19,7 +20,7 @@ class Date extends \Gedcom\Parser\Component
     public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
-       
+
         if (isset($record[1])) {
             $dat = new \Gedcom\Record\Date();
             if (!empty($record[2])) {

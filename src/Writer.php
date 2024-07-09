@@ -27,7 +27,6 @@ use Gedcom\Writer\Subn;
 
 class Writer
 {
-
     final public const GEDCOM55 = 'gedcom5.5';
 
     public static function convert(Gedcom $gedcom, string $format = self::GEDCOM55): string
@@ -55,12 +54,11 @@ class Writer
         $output .= self::convertNotes($notes);
         $output .= self::convertRepos($repos);
         $output .= self::convertObjes($objes);
-        
+
         // EOF
         $output .= "0 TRLR\n";
 
         return $output;
-
     }
 
     /**
@@ -108,7 +106,7 @@ class Writer
         }
         return $output;
     }
-      
+
     protected static function convertIndis(array $indis): string
     {
         $output = '';

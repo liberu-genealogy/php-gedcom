@@ -5,7 +5,7 @@ namespace Gedcom\Models;
 /**
  * Interface for GEDCOM record models.
  *
- * Defines the essential operations that all GEDCOM record types must implement, 
+ * Defines the essential operations that all GEDCOM record types must implement,
  * such as getting and setting the ID and name.
  */
 interface RecordInterface

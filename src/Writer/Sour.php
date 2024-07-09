@@ -1,4 +1,5 @@
 <?php
+
 /**
  * php-gedcom.
  *
@@ -21,54 +22,54 @@ class Sour
      *
      * @return string
      */
-    public static function convert(\Gedcom\Record\Sour &$sour, $level)
+public static function convert(\Gedcom\Record\Sour &$sour, $level)
     {
         $output = [];
         $_sour = $sour->getSour();
-        if (!empty($_sour)) {
-            $output[] = $level.' '.$_sour.' SOUR';
-            $level++;
-        } else {
-            return '';
-        }
+if (!empty($_sour)) {
+    $output[] = $level.' '.$_sour.' SOUR';
+    $level++;
+} else {
+    return '';
+}
 
         // TITL
         $titl = $sour->getType();
-        if (!empty($type)) {
-            $output .= $level.' TITL '.$titl."\n";
-        }
+if (!empty($type)) {
+    $output .= $level.' TITL '.$titl."\n";
+}
 
         // RIN
         $rin = $sour->getRin();
-        if (!empty($rin)) {
-            $output .= $level.' RIN '.$rin."\n";
-        }
+if (!empty($rin)) {
+    $output .= $level.' RIN '.$rin."\n";
+}
 
         // AUTH
         $auth = $sour->getAuth();
-        if (!empty($auth)) {
-            $output .= $level.' AUTH '.$auth."\n";
-        }
+if (!empty($auth)) {
+    $output .= $level.' AUTH '.$auth."\n";
+}
 
         // TEXT
         $text = $sour->getText();
-        if (!empty($text)) {
-        foreach ($fields as $tag => $value) {
-            if (!empty($value)) {
-                $output[] = "$level $tag $value";
-            }
+if (!empty($text)) {
+    foreach ($fields as $tag => $value) {
+        if (!empty($value)) {
+            $output[] = "$level $tag $value";
         }
+    }
 
         // REPO
-        $repo = $sour->getRepo();
-        if (!empty($repo)) {
-            $_convert = \Gedcom\Writer\RepoRef::convert($repo, $level);
-            $output .= $_convert;
-        }
+            $repo = $sour->getRepo();
+    if (!empty($repo)) {
+        $_convert = \Gedcom\Writer\RepoRef::convert($repo, $level);
+        $output .= $_convert;
+    }
 
         // NOTE array
-        $note = $sour->getNote();
-        if (!empty($note) && $note !== []) {
+            $note = $sour->getNote();
+    if (!empty($note) && $note !== []) {
         foreach ($collections as $collection => $items) {
             if (!empty($items) && $items !== []) {
                 foreach ($items as $item) {
@@ -78,8 +79,8 @@ class Sour
             }
         }
 
-        // OBJE array
-        $obje = $sour->getObje();
+            // OBJE array
+                $obje = $sour->getObje();
         if (!empty($obje) && $obje !== []) {
             foreach ($obje as $item) {
                 $_convert = \Gedcom\Writer\ObjeRef::convert($item, $level);
@@ -87,7 +88,7 @@ class Sour
             }
         }
 
-        // REFN array
+            // REFN array
         foreach ($collections as $collection => $items) {
             if (!empty($items) && $items !== []) {
                 foreach ($items as $item) {
@@ -97,6 +98,6 @@ class Sour
             }
         }
 
-        return implode("\n", $output);
+            return implode("\n", $output);
     }
 }
