@@ -6,6 +6,7 @@
  * This file contains the Parser class responsible for parsing GEDCOM files. It implements the ParserInterface
  * and provides functionality to read and interpret the structure and data of GEDCOM files.
  */
+
 /**
  * php-gedcom.
  *
@@ -57,7 +58,7 @@ class Parser implements \Gedcom\Parser\Interfaces\ParserInterface
         $this->_gedcom = is_null($gedcom) ? new Gedcom() : $gedcom;
     }
 
-    /** 
+    /**
      * Advances the parser to the next line in the GEDCOM file.
      *
      * If a line was previously returned by the back() method, it sets that as the current line. Otherwise,
@@ -169,7 +170,6 @@ class Parser implements \Gedcom\Parser\Interfaces\ParserInterface
             }
 
             switch ($recordType) {
-
                 case 'DATA':
                     $dataInstance = new \Gedcom\Record\Data();
                     $this->forward();
@@ -348,7 +348,6 @@ class Parser implements \Gedcom\Parser\Interfaces\ParserInterface
         $this->forward();
 
         while (!$this->eof()) {
-
             $record = $this->getCurrentLineRecord();
 
             if ($record === false) {
@@ -356,7 +355,7 @@ class Parser implements \Gedcom\Parser\Interfaces\ParserInterface
             }
 
             $depth = (int) $record[0];
-            
+
             // We only process 0 level records here. Sub levels are processed
             // in methods for those data types (individuals, sources, etc)
 

@@ -22,7 +22,6 @@ namespace Gedcom;
  */
 abstract class Record implements \Gedcom\Models\RecordInterface
 {
-
     private $_id;
 
     private $_name;

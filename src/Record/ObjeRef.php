@@ -17,7 +17,6 @@ namespace Gedcom\Record;
 
 class ObjeRef extends \Gedcom\Record
 {
-
     /**
      * @var bool
      */

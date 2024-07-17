@@ -1,4 +1,5 @@
 <?php
+
 /**
  * php-gedcom.
  *
@@ -75,13 +76,13 @@ class SourRef extends \Gedcom\Parser\Component
                 case 'EVEN':
                     $even = \Gedcom\Parser\SourRef\Even::parse($parser);
                     $sour->setEven($even);
-                    break;   
+                    break;
                 case 'OBJE':
                     $obje = \Gedcom\Parser\ObjeRef::parse($parser);
                     if ($obje) {
                         $sour->addNote($obje);
                     }
-                    break;     
+                    break;
                 default:
                     $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
             }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * php-gedcom.
  *
@@ -26,7 +27,7 @@ class Sour
         $output = [];
         $_sour = $sour->getSour();
         if (!empty($_sour)) {
-            $output[] = $level.' '.$_sour.' SOUR';
+            $output[] = $level . ' ' . $_sour . ' SOUR';
             $level++;
         } else {
             return '';
@@ -35,68 +36,72 @@ class Sour
         // TITL
         $titl = $sour->getType();
         if (!empty($type)) {
-            $output .= $level.' TITL '.$titl."\n";
+            $output .= $level . ' TITL ' . $titl . "\n";
         }
 
         // RIN
         $rin = $sour->getRin();
         if (!empty($rin)) {
-            $output .= $level.' RIN '.$rin."\n";
+            $output .= $level . ' RIN ' . $rin . "\n";
         }
 
         // AUTH
         $auth = $sour->getAuth();
         if (!empty($auth)) {
-            $output .= $level.' AUTH '.$auth."\n";
+            $output .= $level . ' AUTH ' . $auth . "\n";
         }
 
         // TEXT
         $text = $sour->getText();
         if (!empty($text)) {
-        foreach ($fields as $tag => $value) {
-            if (!empty($value)) {
-                $output[] = "$level $tag $value";
-            }
-        }
-
-        // REPO
-        $repo = $sour->getRepo();
-        if (!empty($repo)) {
-            $_convert = \Gedcom\Writer\RepoRef::convert($repo, $level);
-            $output .= $_convert;
-        }
-
-        // NOTE array
-        $note = $sour->getNote();
-        if (!empty($note) && $note !== []) {
-        foreach ($collections as $collection => $items) {
-            if (!empty($items) && $items !== []) {
-                foreach ($items as $item) {
-                    $className = "\Gedcom\Writer\\" . ($collection === 'DATA' ? 'Sour\\' : '') . $collection;
-                    $output[] = $className::convert($item, $level);
+            foreach ($fields as $tag => $value) {
+                if (!empty($value)) {
+                    $output[] = "$level $tag $value";
                 }
             }
-        }
 
-        // OBJE array
-        $obje = $sour->getObje();
-        if (!empty($obje) && $obje !== []) {
-            foreach ($obje as $item) {
-                $_convert = \Gedcom\Writer\ObjeRef::convert($item, $level);
+            // REPO
+            $repo = $sour->getRepo();
+            if (!empty($repo)) {
+                $_convert = \Gedcom\Writer\RepoRef::convert($repo, $level);
                 $output .= $_convert;
             }
-        }
 
-        // REFN array
-        foreach ($collections as $collection => $items) {
-            if (!empty($items) && $items !== []) {
-                foreach ($items as $item) {
-                    $className = "\Gedcom\Writer\\" . $collection;
-                    $output[] = $className::convert($item, $level);
+            // NOTE array
+            $note = $sour->getNote();
+            if (!empty($note) && $note !== []) {
+                foreach ($collections as $collection => $items) {
+                    if (!empty($items) && $items !== []) {
+                        foreach ($items as $item) {
+                            $className = "\Gedcom\Writer\\" . ($collection === 'DATA' ? 'Sour\\' : '') . $collection;
+                            $output[] = $className::convert($item, $level);
+                        }
+                    }
                 }
+
+                // OBJE array
+                $obje = $sour->getObje();
+                if (!empty($obje) && $obje !== []) {
+                    foreach ($obje as $item) {
+                        $_convert = \Gedcom\Writer\ObjeRef::convert($item, $level);
+                        $output .= $_convert;
+                    }
+                }
+
+                // REFN array
+                foreach ($collections as $collection => $items) {
+                    if (!empty($items) && $items !== []) {
+                        foreach ($items as $item) {
+                            $className = "\Gedcom\Writer\\" . $collection;
+                            $output[] = $className::convert($item, $level);
+                        }
+                    }
+                }
+
+                return implode("\n", $output);
             }
         }
 
-        return implode("\n", $output);
+        return '';
     }
 }

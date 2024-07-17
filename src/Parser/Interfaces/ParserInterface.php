@@ -7,7 +7,7 @@ use Gedcom\Gedcom;
 /**
  * Interface for parsers within the GEDCOM project.
  *
- * Outlines the essential methods required for parsing operations, 
+ * Outlines the essential methods required for parsing operations,
  * including file handling and navigation through the parsed content.
  */
 interface ParserInterface
