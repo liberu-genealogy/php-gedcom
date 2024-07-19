@@ -60,7 +60,8 @@ class Head extends \Gedcom\Parser\Component
                     $head->setSubn($parser->normalizeIdentifier($record[2]));
                     break;
                 case 'DEST':
-                    $head->setDest(trim((string) $record[2]));
+                    $dest = \Gedcom\Parser\Head\Dest::parse($parser);
+                    $head->setDest($dest);
                     break;
                 case 'FILE':
                     $head->setFile(trim((string) $record[2]));
