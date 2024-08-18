@@ -342,6 +342,8 @@ class Indi extends \Gedcom\Record implements Noteable, Objectable, Sourceable
         if (isset($this->even[strtoupper((string) $key)])) {
             return $this->even[strtoupper((string) $key)];
         }
+
+        return [];
     }
 
     /**
