@@ -112,6 +112,7 @@ class Writer
         $output = '';
         foreach ($indis as $indi) {
             if ($indi) {
+                $output .= Indi::convert($indi);
                 foreach ($indi->getEven() as $eventType => $events) {
                     foreach ($events as $event) {
                         $output .= Indi::convertEvent($event, $eventType);
