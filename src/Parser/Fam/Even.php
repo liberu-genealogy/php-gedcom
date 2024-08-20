@@ -59,7 +59,7 @@ class Even extends \Gedcom\Parser\Component
                     break;
                 case 'PHON':
                     $phone = \Gedcom\Parser\Phon::parse($parser);
-                    $even->addPhone($phone);
+                    $even->addPhon($phone);
                     break;
                 case 'CAUS':
                     $even->setCaus(trim((string) $record[2]));
