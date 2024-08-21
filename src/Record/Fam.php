@@ -47,9 +47,9 @@ class Fam extends \Gedcom\Record implements Noteable, Sourceable, Objectable
 
     protected $_obje = [];
 
-    public function addEven($even)
+    public function addEven($recordType, $even)
     {
-        $this->_even[$even->getType()] = $even;
+        $this->_even[$recordType] = $even;
     }
 
     /**
