@@ -27,7 +27,7 @@ class Wife
     {
         $output = '';
 
-        $output .= $level." HUSB \n";
+        $output .= $level." WIFE \n";
         // level up
         $level++;
 
