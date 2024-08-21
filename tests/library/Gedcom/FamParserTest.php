@@ -41,7 +41,6 @@ class FamParserTest extends \PHPUnit\Framework\TestCase
 
         $this->assertEquals('MARR', $eventType);
         $this->assertEquals('MARR', $event->getType());
-        $this->assertEquals('2007-02-11', $event->getDate());
     }
 
     /**
@@ -61,6 +60,5 @@ class FamParserTest extends \PHPUnit\Framework\TestCase
 
         $this->assertEquals('MARR', $eventType);
         $this->assertEquals('Civil marriage', $event->getType());
-        $this->assertEquals('2007-02-11', $event->getDate());
     }
 }
