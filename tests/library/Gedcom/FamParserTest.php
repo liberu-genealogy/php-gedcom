@@ -29,7 +29,7 @@ class FamParserTest extends \PHPUnit\Framework\TestCase
      */
     public function testFamilyEventWithNoTypeIsParsed()
     {
-        $this->gedcom = $this->parser->parse(\TEST_DIR . '/stresstestfiles/family/family_event_no_type.ged');
+        $this->gedcom = $this->parser->parse(\TEST_DIR.'/stresstestfiles/family/family_event_no_type.ged');
 
         $fam = $this->gedcom->getFam('F1');
 
@@ -49,7 +49,7 @@ class FamParserTest extends \PHPUnit\Framework\TestCase
      */
     public function testFamilyEventWithTypeIsParsed()
     {
-        $this->gedcom = $this->parser->parse(\TEST_DIR . '/stresstestfiles/family/family_event_with_type.ged');
+        $this->gedcom = $this->parser->parse(\TEST_DIR.'/stresstestfiles/family/family_event_with_type.ged');
 
         $fam = $this->gedcom->getFam('F1');
 
