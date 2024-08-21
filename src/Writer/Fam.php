@@ -139,10 +139,12 @@ class Fam
         // EVEN
         $even = $fam->getAllEven();
         if (!empty($even) && $even !== []) {
-            foreach ($even as $eventType => $item) {
-                if ($item) {
-                    $_convert = \Gedcom\Writer\Fam\Even::convert($item, $eventType, $level);
-                    $output .= $_convert;
+            foreach ($even as $eventType => $items) {
+                foreach ($items as $item) {
+                    if ($item) {
+                        $_convert = \Gedcom\Writer\Fam\Even::convert($item, $eventType, $level);
+                        $output .= $_convert;
+                    }
                 }
             }
         }

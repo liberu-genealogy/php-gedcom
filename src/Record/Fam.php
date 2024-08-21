@@ -49,7 +49,13 @@ class Fam extends \Gedcom\Record implements Noteable, Sourceable, Objectable
 
     public function addEven($recordType, $even)
     {
-        $this->_even[$recordType] = $even;
+        if (!array_key_exists($recordType, $this->_even)) {
+            $this->_even[$recordType] = [];
+        }
+
+        $this->_even[$recordType][] = $even;
+
+        return $this;
     }
 
     /**
@@ -61,12 +67,18 @@ class Fam extends \Gedcom\Record implements Noteable, Sourceable, Objectable
     }
 
     /**
-     * @return void|\Gedcom\Record\Fam\Even
+     * @return void|\Gedcom\Record\Fam\Even|\Gedcom\Record\Fam\Even[]
      */
     public function getEven($key = '')
     {
-        if (isset($this->_even[strtoupper((string) $key)])) {
-            return $this->_even[strtoupper((string) $key)];
+        $key = strtoupper((string) $key);
+
+        if (isset($this->_even[$key])) {
+            if (count($this->_even[$key]) === 1) {
+                return $this->_even[$key][0];
+            }
+
+            return $this->_even[$key];
         }
     }
 
