@@ -22,14 +22,13 @@ class Even
      *
      * @return string
      */
-    public static function convert(\Gedcom\Record\Fam\Even &$even, $level)
+    public static function convert(\Gedcom\Record\Fam\Even &$even, $eventType, $level)
     {
         $output = '';
 
         // $type;
-        $type = $even->getType();
-        if (!empty($type)) {
-            $output .= $level.' '.$type."\n";
+        if (!empty($eventType)) {
+            $output .= $level.' '.$eventType."\n";
         } else {
             return $output;
         }
@@ -37,7 +36,7 @@ class Even
 
         // $type;
         $type = $even->getType();
-        if (!empty($type)) {
+        if (!empty($type) && $type != $eventType) {
             $output .= $level.' TYPE '.$type."\n";
         }
 

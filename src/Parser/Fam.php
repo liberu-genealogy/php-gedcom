@@ -78,7 +78,7 @@ class Fam extends \Gedcom\Parser\Component
                     $class = '\\Gedcom\\Parser\\Fam\\'.$className;
 
                     $even = $class::parse($parser);
-                    $fam->addEven($even);
+                    $fam->addEven($recordType, $even);
                     break;
                 case 'HUSB':
                     $fam->setHusb($parser->normalizeIdentifier($record[2]));
