@@ -55,9 +55,13 @@ class Indi
         // $even
         $even = $indi->getAllEven();
         if (!empty($even) && $even !== []) {
-            foreach ($even as $item) {
-                $_convert = \Gedcom\Writer\Indi\Even::convert($item, $level);
-                $output .= $_convert;
+            foreach ($even as $items) {
+                foreach ($items as $item) {
+                    if ($item) {
+                        $_convert = \Gedcom\Writer\Indi\Even::convert($item, $level);
+                        $output .= $_convert;
+                    }
+                }
             }
         }
 
