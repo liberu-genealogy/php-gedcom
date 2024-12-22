@@ -90,7 +90,7 @@ class Fam extends \Gedcom\Parser\Component
                     $fam->addChil($parser->normalizeIdentifier($record[2]));
                     break;
                 case 'NCHI':
-                    $fam->setNchi(trim((string) $record[2]));
+                    if(isset($record[2])) $fam->setNchi(trim((string) $record[2]));
                     break;
                 case 'SUBM':
                     $fam->addSubm($parser->normalizeIdentifier($record[2]));
