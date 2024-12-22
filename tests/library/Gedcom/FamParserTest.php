@@ -29,7 +29,7 @@ class FamParserTest extends \PHPUnit\Framework\TestCase
      */
     public function testFamilyEventWithNoTypeIsParsed()
     {
-        $this->gedcom = $this->parser->parse(\TEST_DIR.'/stresstestfiles/family/family_event_no_type.ged');
+        $this->gedcom = $this->parser->parse(\TEST_DIR . '/stresstestfiles/family/family_event_no_type.ged');
 
         $fam = $this->gedcom->getFam('F1');
 
@@ -48,7 +48,7 @@ class FamParserTest extends \PHPUnit\Framework\TestCase
      */
     public function testFamilyEventWithTypeIsParsed()
     {
-        $this->gedcom = $this->parser->parse(\TEST_DIR.'/stresstestfiles/family/family_event_with_type.ged');
+        $this->gedcom = $this->parser->parse(\TEST_DIR . '/stresstestfiles/family/family_event_with_type.ged');
 
         $fam = $this->gedcom->getFam('F1');
 
@@ -67,7 +67,7 @@ class FamParserTest extends \PHPUnit\Framework\TestCase
      */
     public function testMultipleEventsOfTheSameTypeAreKept()
     {
-        $this->gedcom = $this->parser->parse(\TEST_DIR.'/stresstestfiles/family/family_multiple_events.ged');
+        $this->gedcom = $this->parser->parse(\TEST_DIR . '/stresstestfiles/family/family_multiple_events.ged');
         $fam = $this->gedcom->getFam('F1');
 
         $events = $fam['F1']->getAllEven();
@@ -88,7 +88,7 @@ class FamParserTest extends \PHPUnit\Framework\TestCase
      */
     public function testGetEvenReturnsASingleEvent()
     {
-        $this->gedcom = $this->parser->parse(\TEST_DIR.'/stresstestfiles/family/family_event_with_type.ged');
+        $this->gedcom = $this->parser->parse(\TEST_DIR . '/stresstestfiles/family/family_event_with_type.ged');
 
         $fam = $this->gedcom->getFam('F1');
 
@@ -103,7 +103,7 @@ class FamParserTest extends \PHPUnit\Framework\TestCase
      */
     public function testGetEvenReturnsMultipleEvents()
     {
-        $this->gedcom = $this->parser->parse(\TEST_DIR.'/stresstestfiles/family/family_multiple_events.ged');
+        $this->gedcom = $this->parser->parse(\TEST_DIR . '/stresstestfiles/family/family_multiple_events.ged');
 
         $fam = $this->gedcom->getFam('F1');
 
@@ -117,5 +117,18 @@ class FamParserTest extends \PHPUnit\Framework\TestCase
 
         $this->assertEquals('First civil marriage', $event1->getType());
         $this->assertEquals('Second civil marriage', $event2->getType());
+    }
+
+    /**
+     * Test a family event with a custom tag is parsed.
+     */
+    public function testFamilyEventWithExtensionTagIsParsed()
+    {
+        $this->gedcom = $this->parser->parse(\TEST_DIR . '/stresstestfiles/family/family_with_extension_tag.ged');
+
+        $fam = $this->gedcom->getFam('F1');
+
+        $extensionTag = $fam['F1']->getExtensionTag('NAME');
+        $this->assertEquals('A random family', $extensionTag);
     }
 }

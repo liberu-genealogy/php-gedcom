@@ -41,9 +41,10 @@ class FamWriterTest extends TestCase
     public static function families()
     {
         return [
-            [\TEST_DIR.'/stresstestfiles/family/family_event_no_type.ged'],
-            [\TEST_DIR.'/stresstestfiles/family/family_event_with_type.ged'],
-            [\TEST_DIR.'/stresstestfiles/family/family_multiple_events.ged'],
+            [\TEST_DIR . '/stresstestfiles/family/family_event_no_type.ged'],
+            [\TEST_DIR . '/stresstestfiles/family/family_event_with_type.ged'],
+            [\TEST_DIR . '/stresstestfiles/family/family_multiple_events.ged'],
+            [\TEST_DIR . '/stresstestfiles/family/family_with_extension_tag.ged'],
         ];
     }
 }

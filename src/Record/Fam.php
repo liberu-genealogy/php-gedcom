@@ -15,7 +15,7 @@
 
 namespace Gedcom\Record;
 
-class Fam extends \Gedcom\Record implements Noteable, Sourceable, Objectable
+class Fam extends \Gedcom\Record implements Noteable, Sourceable, Objectable, Extendable
 {
     protected $_id;
 
@@ -46,6 +46,8 @@ class Fam extends \Gedcom\Record implements Noteable, Sourceable, Objectable
     protected $_sour = [];
 
     protected $_obje = [];
+
+    protected $_extensiontags = [];
 
     public function addEven($recordType, $even)
     {
@@ -105,5 +107,23 @@ class Fam extends \Gedcom\Record implements Noteable, Sourceable, Objectable
     public function addObje($obje = [])
     {
         $this->_obje[] = $obje;
+    }
+
+    public function addExtensionTag($tag, $value)
+    {
+        if (strpos($tag, '_') !== 0) {
+            $tag = "_$tag";
+        }
+
+        $this->_extensiontags[$tag] = $value;
+    }
+
+    public function getExtensionTag(string $tag): string
+    {
+        if (!isset($this->_extensiontags["_$tag"])) {
+            return '';
+        }
+
+        return $this->_extensiontags["_$tag"];
     }
 }

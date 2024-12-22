@@ -126,7 +126,11 @@ class Fam extends \Gedcom\Parser\Component
                     break;
 
                 default:
-                    $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
+                    if (strpos($recordType, '_') === 0) {
+                        $fam->addExtensionTag($recordType, $record[2]);
+                    }
+
+                    $parser->logUnhandledRecord(self::class . ' @ ' . __LINE__);
             }
 
             $parser->forward();
