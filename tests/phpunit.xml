@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="bootstrap.php" colors="true" displayDetailsOnTestsThatTriggerDeprecations="true" displayDetailsOnTestsThatTriggerErrors="true" displayDetailsOnTestsThatTriggerNotices="true" displayDetailsOnTestsThatTriggerWarnings="true">
-	<testsuites>
-		<testsuite name="default">
-			<directory>
-				library/Gedcom/
-			</directory>
-		</testsuite>
-	</testsuites>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.0/phpunit.xsd"
+         bootstrap="bootstrap.php"
+         colors="true"
+         displayDetailsOnTestsThatTriggerDeprecations="true"
+         displayDetailsOnTestsThatTriggerErrors="true" 
+         displayDetailsOnTestsThatTriggerNotices="true"
+         displayDetailsOnTestsThatTriggerWarnings="true"
+         requireCoverageMetadata="true">
+    <testsuites>
+        <testsuite name="default">
+            <directory>library/Gedcom/</directory>
+        </testsuite>
+    </testsuites>
 </phpunit>
