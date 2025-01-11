@@ -1,11 +1,12 @@
 <?php
 
+namespace GedcomTest;
+
 use Gedcom\Gedcom;
 use Gedcom\Writer;
 use Gedcom\Writer\Head;
 use Gedcom\Writer\Sour;
 use Gedcom\Writer\Subn;
-use PHPUnit\Framework\TestCase;
 
 class WriterTest extends TestCase
 {
