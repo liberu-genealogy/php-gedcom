@@ -197,9 +197,13 @@ class Even extends \Gedcom\Record implements Record\Objectable, Record\Sourceabl
      *
      * @return Even
      */
-    public function setAge($age = '')
+    public function setAge($record)
     {
-        $this->age = $age;
+        if (isset($record[2])) {
+            $this->age = trim($record[2]);
+        } else {
+            $this->age = '';
+        }
 
         return $this;
     }

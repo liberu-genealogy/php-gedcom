@@ -149,6 +149,16 @@ class Fam
             }
         }
 
+        // Custom tags
+        $extensionTags = $fam->getExtensionTags();
+        if (!empty($extensionTags) && (is_countable($extensionTags) ? count($extensionTags) : 0) > 0) {
+            foreach ($extensionTags as $tag => $value) {
+                if ($value) {
+                    $output .= $level . ' ' . $tag . ' ' . $value . "\n";
+                }
+            }
+        }
+
         return $output;
     }
 }

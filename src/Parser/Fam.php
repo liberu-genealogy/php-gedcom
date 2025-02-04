@@ -90,7 +90,7 @@ class Fam extends \Gedcom\Parser\Component
                     $fam->addChil($parser->normalizeIdentifier($record[2]));
                     break;
                 case 'NCHI':
-                    $fam->setNchi(trim((string) $record[2]));
+                    if(isset($record[2])) $fam->setNchi(trim((string) $record[2]));
                     break;
                 case 'SUBM':
                     $fam->addSubm($parser->normalizeIdentifier($record[2]));
@@ -126,7 +126,11 @@ class Fam extends \Gedcom\Parser\Component
                     break;
 
                 default:
-                    $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
+                    if (strpos($recordType, '_') === 0) {
+                        $fam->addExtensionTag($recordType, $record[2]);
+                    }
+
+                    $parser->logUnhandledRecord(self::class . ' @ ' . __LINE__);
             }
 
             $parser->forward();

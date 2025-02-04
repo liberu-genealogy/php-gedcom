@@ -7,7 +7,7 @@
 
 ## Requirements
 
-* php-gedcom 1.0+ requires PHP 8.3 (or later).
+* php-gedcom 1.0+ requires PHP 8.4 (or later).
 
 ## Installation
 

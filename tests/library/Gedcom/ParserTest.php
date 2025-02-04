@@ -16,32 +16,28 @@
 namespace GedcomTest;
 
 use Gedcom\Parser;
+use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class ParserTest.
  */
-class ParserTest extends \PHPUnit\Framework\TestCase
+class ParserTest extends TestCase
 {
-    /**
-     * @var \Gedcom\Parser
-     */
-    protected $parser = null;
+    private Parser $parser;
+    private ?Gedcom $gedcom = null;
 
-    /**
-     * @var \Gedcom\Gedcom
-     */
-    protected $gedcom = null;
-
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->parser = new Parser();
         $this->gedcom = $this->parser->parse(\TEST_DIR . '/stresstestfiles/TGC551LF.ged');
     }
 
-    public function testNoErrors()
+    #[Test]
+    public function testNoErrors(): void
     {
-        $ee = $this->parser->getErrors();
-        $this->assertEquals(1, count($ee));
+        $errors = $this->parser->getErrors();
+        $this->assertCount(1, $errors);
     }
 
     public function testRecordCounts()

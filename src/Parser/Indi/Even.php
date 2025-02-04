@@ -79,7 +79,7 @@ class Even extends \Gedcom\Parser\Component
                     $even->setCaus(trim((string) $record[2]));
                     break;
                 case 'AGE':
-                    $even->setAge(trim((string) $record[2]));
+                    $even->setAge($record);
                     break;
                 case 'AGNC':
                     $even->setAgnc(trim((string) $record[2]));
