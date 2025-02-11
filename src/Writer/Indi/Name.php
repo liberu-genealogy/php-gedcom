@@ -83,6 +83,12 @@ class Name
             }
         }
 
+        // TYPE
+        $type = $name->getType();
+        if (!empty($type)) {
+            $output .= $level . ' TYPE ' . $type . "\n";
+        }
+
         return $output;
     }
 }
