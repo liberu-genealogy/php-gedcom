@@ -23,7 +23,7 @@ class Refn
      *
      * @return string
      */
-    public static function convert(\Gedcom\Record\Refn $refn, int $level): string
+    public static function convert(\Gedcom\Record\Refn &$refn, $level)
     {
         $output = '';
         $_refn = $refn->getRefn();

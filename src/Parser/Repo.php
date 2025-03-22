@@ -17,7 +17,7 @@ namespace Gedcom\Parser;
 
 class Repo extends \Gedcom\Parser\Component
 {
-    public static function parse(\Gedcom\Parser $parser): ?\Gedcom\Record\Repo
+    public static function parse(\Gedcom\Parser $parser)
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
@@ -51,7 +51,8 @@ class Repo extends \Gedcom\Parser\Component
                     $repo->setName(trim((string) $record[2]));
                     break;
                 case 'ADDR':
-                    $repo->setAddr(\Gedcom\Parser\Addr::parse($parser));
+                    $addr = \Gedcom\Parser\Addr::parse($parser);
+                    $repo->setAddr($addr);
                     break;
                 case 'PHON':
                     $repo->addPhon(trim((string) $record[2]));
@@ -66,13 +67,9 @@ class Repo extends \Gedcom\Parser\Component
                     $repo->addWww(trim((string) $record[2]));
                     break;
                 case 'NOTE':
-                    match ($recordType) {
-                        'NAME' => $repo->setName(trim((string) $record[2])),
-                        'ADDR' => $repo->setAddr(\Gedcom\Parser\Addr::parse($parser)),
-                        'NOTE' => $repo->addNote(\Gedcom\Parser\NoteRef::parse($parser)),
-                        'REFN' => $repo->addRefn(\Gedcom\Parser\Refn::parse($parser)),
-                        default => $parser->logUnhandledRecord(self::class.' @ '.__LINE__)
-                    };
+                    if ($note = \Gedcom\Parser\NoteRef::parse($parser)) {
+                        $repo->addNote($note);
+                    }
                     break;
                 case 'REFN':
                     $refn = \Gedcom\Parser\Refn::parse($parser);

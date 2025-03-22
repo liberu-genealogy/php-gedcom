@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * php-gedcom.
  *
@@ -15,35 +17,30 @@
 
 namespace Gedcom\Writer;
 
-class RepoRef
+final class RepoRef
 {
+    /**
+     * @param \Gedcom\Record\RepoRef $reporef
+     * @param int $level
+     *
+     * @return string
+     */
     public static function convert(\Gedcom\Record\RepoRef $reporef, int $level): string
     {
-        $output = '';
-        $_repo = $reporef->getRepo();
-        if (empty($_sour)) {
-            return $output;
-        } else {
-            $output .= $level.' REPO '.$_repo."\n";
+        $repo = $reporef->getRepo();
+        if (empty($repo)) {
+            return '';
         }
-        // level up
+
+        $output = sprintf('%d REPO %s\n', $level, $repo);
         $level++;
 
-        // Note array
-        $notes = $reporef->getNote();
-        if (!empty($notes) && count($notes) > 0) {
-            foreach ($notes as $item) {
-                $output .= \Gedcom\Writer\NoteRef::convert($item, $level);
-            }
+        foreach ($reporef->getNote() as $note) {
+            $output .= NoteRef::convert($note, $level);
         }
 
-        // _caln array
-        $_caln = $reporef->getCaln();
-        if (!empty($_caln) && (is_countable($_caln) ? count($_caln) : 0) > 0) {
-            foreach ($_caln as $item) {
-                $_convert = \Gedcom\Writer\Caln::convert($item, $level);
-                $output .= $_convert;
-            }
+        foreach ($reporef->getCaln() as $caln) {
+            $output .= Caln::convert($caln, $level);
         }
 
         return $output;

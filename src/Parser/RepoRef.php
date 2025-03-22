@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * php-gedcom.
  *
@@ -15,22 +17,20 @@
 
 namespace Gedcom\Parser;
 
-class RepoRef extends \Gedcom\Parser\Component
+final class RepoRef extends Component
 {
     public static function parse(\Gedcom\Parser $parser): ?\Gedcom\Record\RepoRef
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
-        if (isset($record[2])) {
-            $identifier = $parser->normalizeIdentifier($record[2]);
-        } else {
+        if (!isset($record[2])) {
             $parser->skipToNextLevel($depth);
 
             return null;
         }
 
         $repo = new \Gedcom\Record\RepoRef();
-        $repo->setRepo($identifier);
+        $repo->setRepo($parser->normalizeIdentifier($record[2]));
 
         $parser->forward();
 
@@ -49,14 +49,13 @@ class RepoRef extends \Gedcom\Parser\Component
                     $repo->addCaln(\Parser\Caln::parse($parser));
                     break;
                 case 'NOTE':
-                    $repo->addNote(\Gedcom\Parser\NoteRef::parse($parser));
+                    $note = \Gedcom\Parser\NoteRef::parse($parser);
+                    if ($note) {
+                        $repo->addNote($note);
+                    }
                     break;
                 default:
-                    match ($recordType) {
-                        'CALN' => $repo->addCaln(\Parser\Caln::parse($parser)),
-                        'NOTE' => $repo->addNote(\Gedcom\Parser\NoteRef::parse($parser)),
-                        default => $parser->logUnhandledRecord(self::class.' @ '.__LINE__)
-                    };
+                    $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
             }
 
             $parser->forward();
