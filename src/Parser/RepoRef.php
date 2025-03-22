@@ -1,23 +1,10 @@
 <?php
 
-/**
- * php-gedcom.
- *
- * php-gedcom is a library for parsing, manipulating, importing and exporting
- * GEDCOM 5.5 files in PHP 5.3+.
- *
- * @author          Kristopher Wilson <kristopherwilson@gmail.com>
- * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
- * @license         MIT
- *
- * @link            http://github.com/mrkrstphr/php-gedcom
- */
-
 namespace Gedcom\Parser;
 
 class RepoRef extends \Gedcom\Parser\Component
 {
-    public static function parse(\Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser): ?\Gedcom\Record\RepoRef
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
@@ -25,7 +12,6 @@ class RepoRef extends \Gedcom\Parser\Component
             $identifier = $parser->normalizeIdentifier($record[2]);
         } else {
             $parser->skipToNextLevel($depth);
-
             return null;
         }
 
@@ -44,19 +30,11 @@ class RepoRef extends \Gedcom\Parser\Component
                 break;
             }
 
-            switch ($recordType) {
-                case 'CALN':
-                    $repo->addCaln(\Parser\Caln::parse($parser));
-                    break;
-                case 'NOTE':
-                    $note = \Gedcom\Parser\NoteRef::parse($parser);
-                    if ($note) {
-                        $repo->addNote($note);
-                    }
-                    break;
-                default:
-                    $parser->logUnhandledRecord(self::class.' @ '.__LINE__);
-            }
+            match ($recordType) {
+                'CALN' => $repo->addCaln(\Parser\Caln::parse($parser)),
+                'NOTE' => $repo->addNote(\Gedcom\Parser\NoteRef::parse($parser)),
+                default => $parser->logUnhandledRecord(self::class.' @ '.__LINE__)
+            };
 
             $parser->forward();
         }
