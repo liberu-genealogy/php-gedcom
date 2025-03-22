@@ -20,56 +20,17 @@ namespace Gedcom\Record;
  */
 class Repo extends \Gedcom\Record implements Noteable
 {
-    /**
-     * @var string
-     */
-    protected $repo;
-
-    /**
-     * @var string
-     */
-    protected $name;
-
-    /**
-     * @var Addr
-     */
-    protected $addr;
-
-    /**
-     * @var array
-     */
-    protected $phon = [];
-    /**
-     * @var array
-     */
-    protected $email = [];
-    /**
-     * @var array
-     */
-    protected $fax = [];
-    /**
-     * @var array
-     */
-    protected $www = [];
-    /**
-     * @var string
-     */
-    protected $rin;
-
-    /**
-     * @var Chan
-     */
-    protected $chan;
-
-    /**
-     * @var array
-     */
-    protected $refn = [];
-
-    /**
-     * @var array
-     */
-    protected $note = [];
+    protected string $repo;
+    protected string $name;
+    protected ?Addr $addr = null;
+    protected array $phon = [];
+    protected array $email = [];
+    protected array $fax = [];
+    protected array $www = [];
+    protected string $rin;
+    protected ?Chan $chan = null;
+    protected array $refn = [];
+    protected array $note = [];
 
     /**
      * @param null

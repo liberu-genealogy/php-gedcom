@@ -17,7 +17,7 @@ namespace Gedcom\Parser;
 
 class SourRef extends \Gedcom\Parser\Component
 {
-    public static function parse(\Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser): ?\Gedcom\Record\SourRef
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
@@ -44,25 +44,16 @@ class SourRef extends \Gedcom\Parser\Component
 
             switch ($recordType) {
                 case 'CONT':
-                    $sour->setSour($sour->getSour() . "\n");
-
-                    if (isset($record[2])) {
-                        $sour->setSour($sour->getSour() . $record[2]);
-                    }
+                    $sour->setSour($sour->getSour() . "\n" . ($record[2] ?? ''));
                     break;
                 case 'CONC':
-                    if (isset($record[2])) {
-                        $sour->setSour($sour->getSour() . $record[2]);
-                    }
+                    $sour->setSour($sour->getSour() . ($record[2] ?? ''));
                     break;
                 case 'TEXT':
                     $sour->setText($parser->parseMultiLineRecord());
                     break;
                 case 'NOTE':
-                    $note = \Gedcom\Parser\NoteRef::parse($parser);
-                    if ($note) {
-                        $sour->addNote($note);
-                    }
+                    $sour->addNote(\Gedcom\Parser\NoteRef::parse($parser));
                     break;
                 case 'DATA':
                     $sour->setData(\Gedcom\Parser\SourRef\Data::parse($parser));

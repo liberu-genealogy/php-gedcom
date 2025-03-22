@@ -23,7 +23,7 @@ class Repo
      *
      * @return string
      */
-    public static function convert(\Gedcom\Record\Repo &$repo)
+    public static function convert(\Gedcom\Record\Repo $repo): string
     {
         $level = 0;
         $output = '';

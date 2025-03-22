@@ -20,32 +20,24 @@ namespace Gedcom\Record;
  */
 class Refn extends \Gedcom\Record
 {
-    /**
-     * @var string
-     */
-    protected $refn;
-
-    /**
-     * @var string
-     */
-    protected $type;
+    protected string $refn;
+    protected string $type;
 
     /**
      * @param string $refn
      *
      * @return Refn
      */
-    public function setRefn($refn = '')
+    public function setRefn(string $refn = ''): self
     {
         $this->refn = $refn;
-
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getRefn()
+    public function getRefn(): string
     {
         return $this->refn;
     }
@@ -55,17 +47,16 @@ class Refn extends \Gedcom\Record
      *
      * @return Refn
      */
-    public function setType($type = '')
+    public function setType(string $type = ''): self
     {
         $this->type = $type;
-
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->type;
     }
