@@ -1,64 +1,31 @@
 <?php
 
-/**
- * php-gedcom.
- *
- * php-gedcom is a library for parsing, manipulating, importing and exporting
- * GEDCOM 5.5 files in PHP 8.3.
- *
- * @author          Kristopher Wilson <kristopherwilson@gmail.com>
- * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
- * @license         MIT
- *
- * @link            http://github.com/mrkrstphr/php-gedcom
- */
+declare(strict_types=1);
 
 namespace Gedcom;
 
-use Gedcom\Writer\Fam;
-use Gedcom\Writer\Head;
-use Gedcom\Writer\Indi;
-use Gedcom\Writer\Note;
-use Gedcom\Writer\Obje;
-use Gedcom\Writer\Repo;
-use Gedcom\Writer\Sour;
-use Gedcom\Writer\Subm;
-use Gedcom\Writer\Subn;
+use Gedcom\Writer\{Fam, Head, Indi, Note, Obje, Repo, Sour, Subm, Subn};
 
-class Writer
+final class Writer
 {
     final public const GEDCOM55 = 'gedcom5.5';
 
     public static function convert(Gedcom $gedcom, string $format = self::GEDCOM55): string
     {
-        $head = $gedcom->getHead();
-        $subn = $gedcom->getSubn();
-        $subms = $gedcom->getSubm();    // array()
-        $sours = $gedcom->getSour();    // array()
-        $indis = $gedcom->getIndi();    // array()
-        $fams = $gedcom->getFam();      // array()
-        $notes = $gedcom->getNote();    // array()
-        $repos = $gedcom->getRepo();    // array()
-        $objes = $gedcom->getObje();    // array()
-
         $output = '';
-
         $formatInformation = FormatInformation::addFormatInformation($format);
-        $output .= self::convertHead($head, $format, $formatInformation);
 
-        $output .= self::convertSubn($subn);
-        $output .= self::convertSubms($subms);
-        $output .= self::convertSours($sours);
-        $output .= self::convertIndis($indis);
-        $output .= self::convertFams($fams);
-        $output .= self::convertNotes($notes);
-        $output .= self::convertRepos($repos);
-        $output .= self::convertObjes($objes);
+        $output .= self::convertHead($gedcom->getHead(), $format, $formatInformation);
+        $output .= self::convertSubn($gedcom->getSubn());
+        $output .= self::convertSubms($gedcom->getSubm());
+        $output .= self::convertSours($gedcom->getSour());
+        $output .= self::convertIndis($gedcom->getIndi());
+        $output .= self::convertFams($gedcom->getFam());
+        $output .= self::convertNotes($gedcom->getNote());
+        $output .= self::convertRepos($gedcom->getRepo());
+        $output .= self::convertObjes($gedcom->getObje());
 
-        // EOF
-        $output .= "0 TRLR\n";
-
-        return $output;
+        return $output . "0 TRLR\n";
     }
 
     /**

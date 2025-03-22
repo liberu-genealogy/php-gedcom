@@ -1,68 +1,39 @@
 <?php
 
-/**
- * php-gedcom.
- *
- * php-gedcom is a library for parsing, manipulating, importing and exporting
- * GEDCOM 5.5 files in PHP 5.3+.
- *
- * @author          Kristopher Wilson <kristopherwilson@gmail.com>
- * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
- * @license         MIT
- *
- * @link            http://github.com/mrkrstphr/php-gedcom
- */
+declare(strict_types=1);
 
 namespace Gedcom\Record;
 
-use Gedcom\Record;
+use DateTimeInterface;
 
-/**
- * Class Chan.
- */
 class Chan extends \Gedcom\Record
 {
-    private array $months = [
-        'JAN' => '01', 'FEB' => '02', 'MAR' => '03', 'APR' => '04', 'MAY' => '05', 'JUN' => '06',
-        'JUL' => '07', 'AUG' => '08', 'SEP' => '09', 'OCT' => '10', 'NOV' => '11', 'DEC' => '12',
+    private const MONTHS = [
+        'JAN' => '01', 'FEB' => '02', 'MAR' => '03', 'APR' => '04',
+        'MAY' => '05', 'JUN' => '06', 'JUL' => '07', 'AUG' => '08',
+        'SEP' => '09', 'OCT' => '10', 'NOV' => '11', 'DEC' => '12',
     ];
 
-    /**
-     * @var string
-     */
-    protected $date;
-
-    /**
-     * @var string
-     */
-    protected $time;
-
-    /**
-     * @var string
-     */
-    protected $datetime = '';
-
-    /**
-     * @var array
-     */
-    protected $note = [];
+    private string $date = '';
+    private string $time = '';
+    private string $datetime = '';
+    private array $note = [];
 
     /**
      * @param string $date
      *
      * @return Chan
      */
-    public function setDate($date = '')
+    public function setDate(string $date = ''): self
     {
         $this->date = $date;
-
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getDate()
+    public function getDate(): string
     {
         return $this->date;
     }
@@ -72,17 +43,16 @@ class Chan extends \Gedcom\Record
      *
      * @return Chan
      */
-    public function addNote($note = [])
+    public function addNote(NoteRef $note): self
     {
         $this->note[] = $note;
-
         return $this;
     }
 
     /**
      * @return array
      */
-    public function getNote()
+    public function getNote(): array
     {
         return $this->note;
     }
@@ -92,29 +62,27 @@ class Chan extends \Gedcom\Record
      *
      * @return Chan
      */
-    public function setTime($time = '')
+    public function setTime(string $time = ''): self
     {
         $this->time = $time;
-
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getTime()
+    public function getTime(): string
     {
         return $this->time;
     }
 
-    public function setDatetime($date = '')
+    public function setDatetime(string $date = ''): self
     {
         $this->datetime = $date.' '.$this->time;
-
         return $this;
     }
 
-    public function getDatetime()
+    public function getDatetime(): string
     {
         return $this->datetime;
     }
@@ -126,8 +94,8 @@ class Chan extends \Gedcom\Record
             unset($record[0]);
         }
         foreach ($record as $part) {
-            if (isset($this->months[trim($part)])) {
-                return $this->months[trim($part)];
+            if (isset($this->MONTHS[trim($part)])) {
+                return $this->MONTHS[trim($part)];
             }
         }
 

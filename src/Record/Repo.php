@@ -1,92 +1,38 @@
 <?php
 
-/**
- * php-gedcom.
- *
- * php-gedcom is a library for parsing, manipulating, importing and exporting
- * GEDCOM 5.5 files in PHP 5.3+.
- *
- * @author          Kristopher Wilson <kristopherwilson@gmail.com>
- * @copyright       Copyright (c) 2010-2013, Kristopher Wilson
- * @license         MIT
- *
- * @link            http://github.com/mrkrstphr/php-gedcom
- */
+declare(strict_types=1);
 
 namespace Gedcom\Record;
 
-/**
- * Class Repo.
- */
-class Repo extends \Gedcom\Record implements Noteable
+final class Repo extends \Gedcom\Record implements Noteable
 {
-    /**
-     * @var string
-     */
-    protected $repo;
+    private string $repo = '';
+    private string $name = '';
+    private ?Addr $addr = null;
+    private array $phon = [];
+    private array $email = [];
+    private array $fax = [];
+    private array $www = [];
+    private string $rin = '';
+    private ?Chan $chan = null;
+    private array $refn = [];
+    private array $note = [];
 
     /**
-     * @var string
-     */
-    protected $name;
-
-    /**
-     * @var Addr
-     */
-    protected $addr;
-
-    /**
-     * @var array
-     */
-    protected $phon = [];
-    /**
-     * @var array
-     */
-    protected $email = [];
-    /**
-     * @var array
-     */
-    protected $fax = [];
-    /**
-     * @var array
-     */
-    protected $www = [];
-    /**
-     * @var string
-     */
-    protected $rin;
-
-    /**
-     * @var Chan
-     */
-    protected $chan;
-
-    /**
-     * @var array
-     */
-    protected $refn = [];
-
-    /**
-     * @var array
-     */
-    protected $note = [];
-
-    /**
-     * @param null
+     * @param string $phon
      *
      * @return Repo
      */
-    public function addPhon($phon = null)
+    public function addPhon(string $phon): self
     {
         $this->phon[] = $phon;
-
         return $this;
     }
 
     /**
      * @return array
      */
-    public function getPhon()
+    public function getPhon(): array
     {
         return $this->phon;
     }
