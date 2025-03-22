@@ -1,15 +1,10 @@
 <?php
 
-/**
- * Utility functions for data optimization and manipulation.
- *
- * This file contains static methods designed to assist with the optimization and manipulation of data,
- * particularly strings, within the GEDCOM project.
- */
+declare(strict_types=1);
 
 namespace Gedcom\Utils;
 
-class DataOptimizer
+final class DataOptimizer
 {
     public static function trimString(string $input): string
     {
@@ -18,13 +13,12 @@ class DataOptimizer
 
     public static function normalizeIdentifier(string $identifier): string
     {
-        $trimmed = self::trimString($identifier);
-        return trim($trimmed, '@');
+        return trim(self::trimString($identifier), '@');
     }
 
     public static function concatenateWithSeparator(array $strings, string $separator = ' '): string
     {
-        return implode($separator, array_map([self::class, 'trimString'], $strings));
+        return implode($separator, array_map(fn(string $str) => self::trimString($str), $strings));
     }
 }
 /**
