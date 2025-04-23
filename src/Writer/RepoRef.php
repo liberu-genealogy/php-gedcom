@@ -1,37 +1,46 @@
 <?php
 
+declare(strict_types=1);
+
+/**
+ * php-gedcom.
+ *
+ * php-gedcom is a library for parsing, manipulating, importing and exporting
+ * GEDCOM 5.5 files in PHP 5.3+.
+ *
+ * @author          Xiang Ming <wenqiangliu344@gmail.com>
+ * @copyright       Copyright (c) 2010-2013, Xiang Ming
+ * @license         MIT
+ *
+ * @link            http://github.com/mrkrstphr/php-gedcom
+ */
+
 namespace Gedcom\Writer;
 
-class RepoRef
+final class RepoRef
 {
+    /**
+     * @param \Gedcom\Record\RepoRef $reporef
+     * @param int $level
+     *
+     * @return string
+     */
     public static function convert(\Gedcom\Record\RepoRef $reporef, int $level): string
     {
-        $output = '';
-        $_repo = $reporef->getRepo();
-
-        if (empty($_repo)) {
-            return $output;
+        $repo = $reporef->getRepo();
+        if (empty($repo)) {
+            return '';
         }
 
-        $output .= $level.' REPO '.$_repo."\n";
-
-        // level up
+        $output = sprintf('%d REPO %s\n', $level, $repo);
         $level++;
 
-        // Note array
-        $notes = $reporef->getNote();
-        if (!empty($notes) && count($notes) > 0) {
-            foreach ($notes as $item) {
-                $output .= \Gedcom\Writer\NoteRef::convert($item, $level);
-            }
+        foreach ($reporef->getNote() as $note) {
+            $output .= NoteRef::convert($note, $level);
         }
 
-        // _caln array
-        $calns = $reporef->getCaln();
-        if (!empty($calns) && count($calns) > 0) {
-            foreach ($calns as $item) {
-                $output .= \Gedcom\Writer\Caln::convert($item, $level);
-            }
+        foreach ($reporef->getCaln() as $caln) {
+            $output .= Caln::convert($caln, $level);
         }
 
         return $output;
