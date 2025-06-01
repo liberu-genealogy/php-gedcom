@@ -4,8 +4,71 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fde386754ecc6d581386f4774d8a7691",
-    "packages": [],
+    "content-hash": "8a73c3980f6e7d54c6b1029aa1dfd953",
+    "packages": [
+        {
+            "name": "raza9798/siteconfig",
+            "version": "3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Raza9798/siteconfig.git",
+                "reference": "a8d2777f709589d278417e5e1ad820ad5eae6179"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Raza9798/siteconfig/zipball/a8d2777f709589d278417e5e1ad820ad5eae6179",
+                "reference": "a8d2777f709589d278417e5e1ad820ad5eae6179",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.2"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Core\\Siteconfig\\SiteconfigServiceProvider"
+                    ]
+                },
+                "scripts": {
+                    "post-autoload-dump": [
+                        "@php artisan siteconfig:env-sync"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Core\\Siteconfig\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "raza9798",
+                    "email": "m.raza9798@gmail.com"
+                }
+            ],
+            "description": "A Laravel package for managing site configurations.",
+            "keywords": [
+                "Settings",
+                "application",
+                "configuration",
+                "environment",
+                "laravel",
+                "package",
+                "php",
+                "siteconfig"
+            ],
+            "support": {
+                "issues": "https://github.com/Raza9798/siteconfig/issues",
+                "source": "https://github.com/Raza9798/siteconfig/tree/3.2"
+            },
+            "time": "2025-05-19T11:04:06+00:00"
+        }
+    ],
     "packages-dev": [
         {
             "name": "driftingly/rector-laravel",
@@ -104,16 +167,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v5.4.0",
+            "version": "v5.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "447a020a1f875a434d62f2a401f53b82a396e494"
+                "reference": "ae59794362fe85e051a58ad36b289443f57be7a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/447a020a1f875a434d62f2a401f53b82a396e494",
-                "reference": "447a020a1f875a434d62f2a401f53b82a396e494",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/ae59794362fe85e051a58ad36b289443f57be7a9",
+                "reference": "ae59794362fe85e051a58ad36b289443f57be7a9",
                 "shasum": ""
             },
             "require": {
@@ -156,9 +219,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nikic/PHP-Parser/issues",
-                "source": "https://github.com/nikic/PHP-Parser/tree/v5.4.0"
+                "source": "https://github.com/nikic/PHP-Parser/tree/v5.5.0"
             },
-            "time": "2024-12-30T11:07:19+00:00"
+            "time": "2025-05-31T08:24:38+00:00"
         },
         {
             "name": "phar-io/manifest",
