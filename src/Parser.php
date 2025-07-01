@@ -26,6 +26,57 @@ class Parser implements ParserInterface
 
         // Parsing implementation would go here
         // For now, just return the empty Gedcom object
+        $this->forward();
+
+        while (!$this->eof()) {
+            $record = $this->getCurrentLineRecord();
+
+            if ($record === false) {
+                continue;
+            }
+
+            $depth = (int) $record[0];
+
+            // We only process 0 level records here. Sub levels are processed
+            // in methods for those data types (individuals, sources, etc)
+
+            if ($depth == 0) {
+                // Although not always an identifier (HEAD,TRLR):
+                if (isset($record[1])) {
+                    $this->normalizeIdentifier($record[1]);
+                }
+
+                if (isset($record[1]) && trim((string) $record[1]) == 'HEAD') {
+                    \Gedcom\Parser\Head::parse($this);
+                } elseif (isset($record[2]) && trim((string) $record[2]) == 'SUBN') {
+                    \Gedcom\Parser\Subn::parse($this);
+                } elseif (isset($record[2]) && trim((string) $record[2]) == 'SUBM') {
+                    \Gedcom\Parser\Subm::parse($this);
+                } elseif (isset($record[2]) && $record[2] == 'SOUR') {
+                    \Gedcom\Parser\Sour::parse($this);
+                } elseif (isset($record[2]) && $record[2] == 'INDI') {
+                    \Gedcom\Parser\Indi::parse($this);
+                } elseif (isset($record[2]) && $record[2] == 'FAM') {
+                    \Gedcom\Parser\Fam::parse($this);
+                } elseif (isset($record[2]) && str_starts_with(trim((string) $record[2]), 'NOTE')) {
+                    \Gedcom\Parser\Note::parse($this);
+                } elseif (isset($record[2]) && $record[2] == 'REPO') {
+                    \Gedcom\Parser\Repo::parse($this);
+                } elseif (isset($record[2]) && $record[2] == 'OBJE') {
+                    \Gedcom\Parser\Obje::parse($this);
+                } elseif (isset($record[1]) && trim((string) $record[1]) == 'TRLR') {
+                    // EOF
+                    break;
+                } else {
+                    $this->logUnhandledRecord(self::class . ' @ ' . __LINE__);
+                }
+            } else {
+                $this->logUnhandledRecord(self::class . ' @ ' . __LINE__);
+            }
+
+            $this->forward();
+        }
+
         return $this->getGedcom();
     }
 
@@ -50,7 +101,7 @@ class Parser implements ParserInterface
         if (preg_match('/^(\d+)\s+(@[^@]+@)?\s*(\w+)(\s+(.*))?$/', $line, $matches)) {
             if (!empty($matches[2])) {
                 // Line with ID: level, ID, tag, value
-                return [$matches[1], $matches[3], $matches[5] ?? ''];
+                return [$matches[1], $matches[2], $matches[3] ?? ''];
             } else {
                 // Line without ID: level, tag, value
                 return [$matches[1], $matches[3], $matches[5] ?? ''];
