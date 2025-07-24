@@ -38,7 +38,7 @@ final class Writer
     {
         $output = '';
         if ($head) {
-            $output = $formatInformation . Head::convert($head, $format);
+            $output = Head::convert($head, $format);
         }
         return $output;
     }
