@@ -7,8 +7,9 @@
 
 ## Requirements
 
-* php-gedcom 2.0+ requires PHP 8.3 (or later).
-* php-gedcom 3.0+ requires PHP 8.4 (or later).
+* php-gedcom 2.0+ requires PHP 8.3 (or later). GEDCOM 5.5.1 only
+* php-gedcom 3.0+ requires PHP 8.4 (or later). GEDCOM 5.5.1 only
+* php-gedcom 4.0+ requires PHP 8.4 (or later). GEDCOM 5.5.1 and GEDCOM X
 
 ## Installation
 
