@@ -1,0 +1,220 @@
+{
+  "persons": [
+    {
+      "id": "p1",
+      "names": [
+        {
+          "nameForms": [
+            {
+              "fullText": "John /Smith/",
+              "parts": [
+                {
+                  "type": "http://gedcomx.org/Given",
+                  "value": "John"
+                },
+                {
+                  "type": "http://gedcomx.org/Surname",
+                  "value": "Smith"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "gender": {
+        "type": "http://gedcomx.org/Male"
+      },
+      "facts": [
+        {
+          "type": "http://gedcomx.org/Birth",
+          "date": {
+            "original": "15 Mar 1950"
+          },
+          "place": {
+            "original": "New York, New York, United States"
+          }
+        },
+        {
+          "type": "http://gedcomx.org/Death",
+          "date": {
+            "original": "22 Nov 2020"
+          },
+          "place": {
+            "original": "Boston, Massachusetts, United States"
+          }
+        }
+      ]
+    },
+    {
+      "id": "p2",
+      "names": [
+        {
+          "nameForms": [
+            {
+              "fullText": "Mary /Johnson/ Smith",
+              "parts": [
+                {
+                  "type": "http://gedcomx.org/Given",
+                  "value": "Mary"
+                },
+                {
+                  "type": "http://gedcomx.org/Surname",
+                  "value": "Johnson"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "gender": {
+        "type": "http://gedcomx.org/Female"
+      },
+      "facts": [
+        {
+          "type": "http://gedcomx.org/Birth",
+          "date": {
+            "original": "8 Jul 1952"
+          },
+          "place": {
+            "original": "Chicago, Illinois, United States"
+          }
+        }
+      ]
+    },
+    {
+      "id": "p3",
+      "names": [
+        {
+          "nameForms": [
+            {
+              "fullText": "Robert /Smith/",
+              "parts": [
+                {
+                  "type": "http://gedcomx.org/Given",
+                  "value": "Robert"
+                },
+                {
+                  "type": "http://gedcomx.org/Surname",
+                  "value": "Smith"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "gender": {
+        "type": "http://gedcomx.org/Male"
+      },
+      "facts": [
+        {
+          "type": "http://gedcomx.org/Birth",
+          "date": {
+            "original": "12 Dec 1975"
+          },
+          "place": {
+            "original": "Boston, Massachusetts, United States"
+          }
+        }
+      ]
+    },
+    {
+      "id": "p4",
+      "names": [
+        {
+          "nameForms": [
+            {
+              "fullText": "Sarah /Smith/",
+              "parts": [
+                {
+                  "type": "http://gedcomx.org/Given",
+                  "value": "Sarah"
+                },
+                {
+                  "type": "http://gedcomx.org/Surname",
+                  "value": "Smith"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "gender": {
+        "type": "http://gedcomx.org/Female"
+      },
+      "facts": [
+        {
+          "type": "http://gedcomx.org/Birth",
+          "date": {
+            "original": "5 Sep 1978"
+          },
+          "place": {
+            "original": "Boston, Massachusetts, United States"
+          }
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "r1",
+      "type": "http://gedcomx.org/Couple",
+      "person1": {
+        "resource": "#persons/p1"
+      },
+      "person2": {
+        "resource": "#persons/p2"
+      },
+      "facts": [
+        {
+          "type": "http://gedcomx.org/Marriage",
+          "date": {
+            "original": "14 Jun 1974"
+          },
+          "place": {
+            "original": "Las Vegas, Nevada, United States"
+          }
+        }
+      ]
+    },
+    {
+      "id": "r2",
+      "type": "http://gedcomx.org/ParentChild",
+      "person1": {
+        "resource": "#persons/p1"
+      },
+      "person2": {
+        "resource": "#persons/p3"
+      }
+    },
+    {
+      "id": "r3",
+      "type": "http://gedcomx.org/ParentChild",
+      "person1": {
+        "resource": "#persons/p2"
+      },
+      "person2": {
+        "resource": "#persons/p3"
+      }
+    },
+    {
+      "id": "r4",
+      "type": "http://gedcomx.org/ParentChild",
+      "person1": {
+        "resource": "#persons/p1"
+      },
+      "person2": {
+        "resource": "#persons/p4"
+      }
+    },
+    {
+      "id": "r5",
+      "type": "http://gedcomx.org/ParentChild",
+      "person1": {
+        "resource": "#persons/p2"
+      },
+      "person2": {
+        "resource": "#persons/p4"
+      }
+    }
+  ]
+}
