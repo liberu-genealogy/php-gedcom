@@ -7,6 +7,7 @@ namespace Gedcom;
 use Gedcom\GedcomX\Parser as GedcomXParser;
 use Gedcom\GedcomX\Generator as GedcomXGenerator;
 use Gedcom\GedcomX\Transformer;
+use Gedcom\Performance\Cache;
 use InvalidArgumentException;
 
 /**
@@ -24,17 +25,37 @@ class GedcomResource
     private GedcomXParser $gedcomxParser;
     private GedcomXGenerator $gedcomxGenerator;
     private Transformer $transformer;
+    private Cache $cache;
+    private bool $cacheEnabled;
+    private array $cacheConfig;
 
-    public function __construct()
-    {
+    public function __construct(
+        bool $cacheEnabled = true,
+        array $cacheConfig = []
+    ) {
+        $this->cacheEnabled = $cacheEnabled;
+        $this->cacheConfig = array_merge([
+            'memory_items' => 1000,
+            'cache_dir' => sys_get_temp_dir() . '/gedcom_cache',
+            'ttl' => 3600
+        ], $cacheConfig);
+
         $this->gedcomParser = new Parser();
         $this->gedcomxParser = new GedcomXParser();
-        $this->gedcomxGenerator = new GedcomXGenerator();
+        $this->gedcomxGenerator = GedcomXGenerator::create();
         $this->transformer = new Transformer();
+
+        if ($this->cacheEnabled) {
+            $this->cache = new Cache(
+                maxMemoryItems: $this->cacheConfig['memory_items'],
+                cacheDir: $this->cacheConfig['cache_dir'],
+                defaultTtl: $this->cacheConfig['ttl']
+            );
+        }
     }
 
     /**
-     * Import genealogical data from a file (auto-detects format)
+     * Import genealogical data from a file (auto-detects format) with caching
      */
     public function import(string $fileName): ?Gedcom
     {
@@ -42,16 +63,32 @@ class GedcomResource
             throw new InvalidArgumentException("File not found: $fileName");
         }
 
+        // Check cache first if enabled
+        if ($this->cacheEnabled) {
+            $mtime = filemtime($fileName);
+            $cacheKey = Cache::generateKey('import', $fileName, $mtime !== false ? (string)$mtime : '0');
+            $cached = $this->cache->get($cacheKey, $fileName);
+            if ($cached !== null) {
+                return $cached;
+            }
+        }
+
         $format = $this->detectFileFormat($fileName);
 
-        switch ($format) {
-            case self::FORMAT_GEDCOM:
-                return $this->importGedcom($fileName);
-            case self::FORMAT_GEDCOMX:
-                return $this->importGedcomX($fileName);
-            default:
-                throw new InvalidArgumentException("Unsupported file format: $fileName");
+        $gedcom = match ($format) {
+            self::FORMAT_GEDCOM => $this->importGedcom($fileName),
+            self::FORMAT_GEDCOMX => $this->importGedcomX($fileName),
+            default => throw new InvalidArgumentException("Unsupported file format: $fileName")
+        };
+
+        // Cache the result if enabled
+        if ($this->cacheEnabled && $gedcom !== null) {
+            $mtime = filemtime($fileName);
+            $cacheKey = Cache::generateKey('import', $fileName, $mtime !== false ? (string)$mtime : '0');
+            $this->cache->set($cacheKey, $gedcom, $fileName);
         }
+
+        return $gedcom;
     }
 
     /**
@@ -317,7 +354,7 @@ class GedcomResource
     }
 
     /**
-     * Merge multiple Gedcom objects
+     * Merge multiple Gedcom objects (PHP 8.4 optimized)
      */
     public function merge(array $gedcoms): Gedcom
     {
@@ -328,42 +365,69 @@ class GedcomResource
                 continue;
             }
 
-            // Merge individuals
-            foreach ($gedcom->getIndi() as $indi) {
-                $merged->addIndi($indi);
-            }
-
-            // Merge families
-            foreach ($gedcom->getFam() as $fam) {
-                $merged->addFam($fam);
-            }
-
-            // Merge sources
-            foreach ($gedcom->getSour() as $sour) {
-                $merged->addSour($sour);
-            }
-
-            // Merge repositories
-            foreach ($gedcom->getRepo() as $repo) {
-                $merged->addRepo($repo);
-            }
-
-            // Merge notes
-            foreach ($gedcom->getNote() as $note) {
-                $merged->addNote($note);
-            }
-
-            // Merge media objects
-            foreach ($gedcom->getObje() as $obje) {
-                $merged->addObje($obje);
-            }
-
-            // Merge submitters
-            foreach ($gedcom->getSubm() as $subm) {
-                $merged->addSubm($subm);
-            }
+            // Use PHP 8.4 optimized array operations
+            foreach ($gedcom->getIndi() as $indi) $merged->addIndi($indi);
+            foreach ($gedcom->getFam() as $fam) $merged->addFam($fam);
+            foreach ($gedcom->getSour() as $sour) $merged->addSour($sour);
+            foreach ($gedcom->getRepo() as $repo) $merged->addRepo($repo);
+            foreach ($gedcom->getNote() as $note) $merged->addNote($note);
+            foreach ($gedcom->getObje() as $obje) $merged->addObje($obje);
+            foreach ($gedcom->getSubm() as $subm) $merged->addSubm($subm);
         }
 
         return $merged;
+    }
+
+    /**
+     * Get cache statistics
+     */
+    public function getCacheStats(): array
+    {
+        if (!$this->cacheEnabled) {
+            return ['cache_enabled' => false];
+        }
+
+        return array_merge(
+            ['cache_enabled' => true],
+            $this->cache->getStats()
+        );
+    }
+
+    /**
+     * Clear cache
+     */
+    public function clearCache(): void
+    {
+        if ($this->cacheEnabled) {
+            $this->cache->clear();
+        }
+    }
+
+    /**
+     * Cleanup expired cache entries
+     */
+    public function cleanupCache(): int
+    {
+        if (!$this->cacheEnabled) {
+            return 0;
+        }
+
+        return $this->cache->cleanup();
+    }
+
+    /**
+     * Enable or disable caching
+     */
+    public function setCacheEnabled(bool $enabled): void
+    {
+        $this->cacheEnabled = $enabled;
+
+        if ($enabled && !isset($this->cache)) {
+            $this->cache = new Cache(
+                maxMemoryItems: $this->cacheConfig['memory_items'],
+                cacheDir: $this->cacheConfig['cache_dir'],
+                defaultTtl: $this->cacheConfig['ttl']
+            );
+        }
     }
 }

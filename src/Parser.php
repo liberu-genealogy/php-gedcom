@@ -8,10 +8,23 @@ use Gedcom\Parser\Interfaces\ParserInterface;
 
 class Parser implements ParserInterface
 {
-    private Gedcom $gedcom;
+    private readonly Gedcom $gedcom;
     private array $lineBuffer = [];
     private int $currentLine = 0;
     private array $errors = [];
+
+    // PHP 8.4 property hooks for lazy initialization
+    private \SplFileObject $fileHandle {
+        get => $this->fileHandle ??= new \SplFileObject($this->fileName, 'r');
+    }
+
+    private string $fileName;
+    private bool $useStreaming = false;
+
+    public function __construct()
+    {
+        $this->gedcom = new Gedcom();
+    }
 
     public function parse(string $fileName): ?Gedcom
     {
@@ -19,13 +32,20 @@ class Parser implements ParserInterface
             throw new \InvalidArgumentException("File not found: $fileName");
         }
 
+        $this->fileName = $fileName;
+        $fileSize = filesize($fileName);
+
+        // Use streaming for large files (> 100MB) to optimize memory usage
+        if ($fileSize > 100 * 1024 * 1024) {
+            $this->useStreaming = true;
+            return $this->parseStreaming();
+        }
+
+        // Optimized file reading for smaller files
         $this->lineBuffer = file($fileName, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
         $this->currentLine = 0;
-        $this->gedcom = new Gedcom();
         $this->errors = [];
 
-        // Parsing implementation would go here
-        // For now, just return the empty Gedcom object
         $this->forward();
 
         while (!$this->eof()) {
@@ -78,6 +98,56 @@ class Parser implements ParserInterface
         }
 
         return $this->getGedcom();
+    }
+
+    /**
+     * Streaming parser for large files (PHP 8.4 optimization)
+     */
+    private function parseStreaming(): ?Gedcom
+    {
+        $this->fileHandle->setFlags(\SplFileObject::READ_AHEAD | \SplFileObject::SKIP_EMPTY | \SplFileObject::DROP_NEW_LINE);
+
+        foreach ($this->fileHandle as $lineNumber => $line) {
+            $record = $this->parseLine($line);
+
+            if (empty($record)) {
+                continue;
+            }
+
+            $depth = (int) $record[0];
+
+            // Process only 0 level records in streaming mode for memory efficiency
+            if ($depth === 0) {
+                $this->processTopLevelRecord($record);
+            }
+        }
+
+        return $this->gedcom;
+    }
+
+    /**
+     * Process top-level records with optimized matching (PHP 8.4 match expression)
+     */
+    private function processTopLevelRecord(array $record): void
+    {
+        if (isset($record[1])) {
+            $this->normalizeIdentifier($record[1]);
+        }
+
+        $tag = $record[2] ?? $record[1] ?? '';
+
+        match (trim($tag)) {
+            'HEAD' => \Gedcom\Parser\Head::parse($this),
+            'SUBN' => \Gedcom\Parser\Subn::parse($this),
+            'SUBM' => \Gedcom\Parser\Subm::parse($this),
+            'SOUR' => \Gedcom\Parser\Sour::parse($this),
+            'INDI' => \Gedcom\Parser\Indi::parse($this),
+            'FAM' => \Gedcom\Parser\Fam::parse($this),
+            'REPO' => \Gedcom\Parser\Repo::parse($this),
+            'OBJE' => \Gedcom\Parser\Obje::parse($this),
+            'TRLR' => null, // EOF
+            default => str_starts_with($tag, 'NOTE') ? \Gedcom\Parser\Note::parse($this) : $this->logUnhandledRecord(self::class . ' @ ' . __LINE__)
+        };
     }
 
     public function getGedcom(): Gedcom

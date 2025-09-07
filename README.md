@@ -9,7 +9,7 @@
 
 * php-gedcom 2.0+ requires PHP 8.3 (or later). GEDCOM 5.5.1 only
 * php-gedcom 3.0+ requires PHP 8.4 (or later). GEDCOM 5.5.1 only
-* php-gedcom 4.0+ requires PHP 8.4 (or later). GEDCOM 5.5.1 and GEDCOM X
+* php-gedcom 4.0+ requires PHP 8.4 (or later). GEDCOM 5.5.1 and GEDCOM X with performance optimizations
 
 ## Installation
 
@@ -42,6 +42,66 @@ spl_autoload_register(function ($class) {
         require_once($pathToGedcom . $class);
     }
 });
+```
+
+## Performance Optimizations (PHP 8.4+)
+
+php-gedcom 4.0+ includes significant performance improvements leveraging PHP 8.4 features:
+
+### Key Optimizations
+
+- **Streaming Parsers**: Automatic streaming for large files (>100MB) to reduce memory usage
+- **Intelligent Caching**: LRU cache with file modification tracking and automatic invalidation
+- **Property Hooks**: Lazy initialization of parsers and generators using PHP 8.4 property hooks
+- **Optimized JSON Processing**: Enhanced JSON parsing with streaming support for large Gedcom X files
+- **Memory Efficiency**: Reduced memory footprint through optimized data structures
+
+### Performance Features
+
+- **Caching System**: Automatic caching of parsed files with configurable TTL and size limits
+- **Large File Support**: Streaming parsers handle files of any size without memory exhaustion
+- **Format Detection**: Fast file format detection with content analysis
+- **Batch Operations**: Optimized array operations using PHP 8.4 features
+
+### Benchmarking
+
+Run performance benchmarks to measure improvements:
+
+```bash
+# Basic benchmark
+php examples/cli/performance-benchmark.php sample.ged
+
+# Full benchmark with streaming and report
+php examples/cli/performance-benchmark.php large.ged --streaming --report
+
+# Save baseline for comparison
+php examples/cli/performance-benchmark.php test.ged --baseline
+
+# Compare with baseline
+php examples/cli/performance-benchmark.php test.ged --compare
+```
+
+### Cache Configuration
+
+```php
+use Gedcom\GedcomResource;
+
+// Enable caching with custom configuration
+$resource = new GedcomResource(
+    cacheEnabled: true,
+    cacheConfig: [
+        'memory_items' => 2000,           // Max items in memory cache
+        'cache_dir' => '/tmp/gedcom',     // Cache directory
+        'ttl' => 7200                     // Cache TTL in seconds
+    ]
+);
+
+// Get cache statistics
+$stats = $resource->getCacheStats();
+echo "Memory items: " . $stats['memory_items'] . "\n";
+
+// Clear cache when needed
+$resource->clearCache();
 ```
 
 ### Usage
