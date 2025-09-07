@@ -17,7 +17,7 @@ namespace Gedcom\Parser;
 
 class Indi extends \Gedcom\Parser\Component
 {
-    public static function parse(\Gedcom\Parser $parser)
+    public static function parse(\Gedcom\Parser $parser): mixed
     {
         $record = $parser->getCurrentLineRecord();
         $depth = (int) $record[0];
