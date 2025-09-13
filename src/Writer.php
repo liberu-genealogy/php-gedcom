@@ -80,7 +80,7 @@ final class Writer
         foreach ($indis as $indi) {
             if ($indi) {
                 $output .= Indi::convert($indi);
-                foreach ($indi->getEven() as $eventType => $events) {
+                foreach ($indi->getAllEven() as $eventType => $events) {
                     foreach ($events as $event) {
                         $output .= Indi::convertEvent($event, $eventType);
                     }

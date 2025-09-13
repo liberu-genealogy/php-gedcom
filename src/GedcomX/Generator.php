@@ -229,7 +229,7 @@ class Generator
         }
 
         // Convert events/facts
-        foreach ($indi->getEven() as $eventType => $events) {
+        foreach ($indi->getAllEven() as $eventType => $events) {
             if (is_array($events)) {
                 foreach ($events as $event) {
                     $gedcomxFact = $this->convertEventToGedcomX($event, $eventType);
@@ -375,7 +375,7 @@ class Generator
             ];
 
             // Add family events to couple relationship
-            foreach ($family->getEven() as $eventType => $events) {
+            foreach ($family->getAllEven() as $eventType => $events) {
                 if (is_array($events)) {
                     foreach ($events as $event) {
                         $gedcomxFact = $this->convertEventToGedcomX($event, $eventType);
