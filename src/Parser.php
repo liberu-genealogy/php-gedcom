@@ -46,8 +46,6 @@ class Parser implements ParserInterface
         $this->currentLine = 0;
         $this->errors = [];
 
-        $this->forward();
-
         while (!$this->eof()) {
             $record = $this->getCurrentLineRecord();
 
