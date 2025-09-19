@@ -229,7 +229,8 @@ class Generator
         }
 
         // Convert events/facts
-        foreach ($indi->getEven() as $eventType => $events) {
+        $events_facts = array_merge($indi->getAllEven(), $indi->getAllAttr());
+        foreach ($events_facts as $eventType => $events) {
             if (is_array($events)) {
                 foreach ($events as $event) {
                     $gedcomxFact = $this->convertEventToGedcomX($event, $eventType);
