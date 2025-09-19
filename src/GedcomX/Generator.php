@@ -251,6 +251,10 @@ class Generator
 
     private function convertNameToGedcomX(Name $name): array
     {
+        preg_match("/([^\/].*)\/([^\/].*)\//", $name->getName(), $matches);
+        $givenname = $matches[1] ?? '';
+        $surname = $matches[2] ?? '';
+
         $gedcomxName = [
             'nameForms' => []
         ];
@@ -277,13 +281,27 @@ class Generator
             ];
             $fullTextParts[] = $name->getGivn();
         }
+        else {
+            $nameForm['parts'][] = [
+                'type' => 'http://gedcomx.org/Given',
+                'value' => $givenname
+            ];
+            $fullTextParts[] = $givenname;        
+        }
 
         if ($name->getSurn()) {
             $nameForm['parts'][] = [
                 'type' => 'http://gedcomx.org/Surname',
                 'value' => $name->getSurn()
             ];
-            $fullTextParts[] = '/' . $name->getSurn() . '/';
+            $fullTextParts[] = $name->getSurn();
+        }
+        else {
+            $nameForm['parts'][] = [
+                'type' => 'http://gedcomx.org/Surname',
+                'value' => $surname
+            ];
+            $fullTextParts[] = $surname;        
         }
 
         if ($name->getNsfx()) {
@@ -295,7 +313,7 @@ class Generator
         }
 
         // Set full text
-        $nameForm['fullText'] = implode(' ', $fullTextParts);
+        $nameForm['fullText'] = str_replace("/", "", $name->getName());
 
         $gedcomxName['nameForms'][] = $nameForm;
 
