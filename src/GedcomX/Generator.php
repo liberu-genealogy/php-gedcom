@@ -308,7 +308,7 @@ class Generator
         return $this->gedcomToGedcomxGenderTypes[strtoupper($sex)] ?? 'http://gedcomx.org/Unknown';
     }
 
-    private function convertEventToGedcomX(Even $event, string $eventType): ?array
+    private function convertEventToGedcomX(mixed $event, string $eventType): ?array
     {
         $gedcomxFactType = $this->mapGedcomEventTypeToFactType($eventType);
         if (!$gedcomxFactType) {
