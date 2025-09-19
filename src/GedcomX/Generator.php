@@ -327,9 +327,9 @@ class Generator
         }
 
         // Convert place
-        if ($event->getPlac()) {
+        if ($event->getPlac() !== null ? $event->getPlac()->getPlac() : null) {
             $fact['place'] = [
-                'original' => $event->getPlac()
+                'original' => $event->getPlac()->getPlac()
             ];
         }
 
