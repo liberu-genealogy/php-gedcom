@@ -376,7 +376,7 @@ class Generator
         $relationships = [];
 
         // Create couple relationship if both spouses exist
-        if ($family->getHusb() && $family->getWife()) {
+        if ($family->getHusb() && isset($this->personIdMap[$family->getHusb()]) && $family->getWife() && isset($this->personIdMap[$family->getWife()])) {
             $coupleId = 'r' . $this->relationshipCounter++;
             $this->relationshipIdMap[$family->getId() . '_couple'] = $coupleId;
 
