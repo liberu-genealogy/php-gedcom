@@ -8,5 +8,5 @@ use Gedcom\Parser as GedcomParser;
 
 abstract class Component
 {
-    abstract public static function parse(GedcomParser $parser): mixed;
+    abstract public static function parse(GedcomParser $parser);
 }
