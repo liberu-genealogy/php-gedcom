@@ -4,71 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8a73c3980f6e7d54c6b1029aa1dfd953",
-    "packages": [
-        {
-            "name": "raza9798/siteconfig",
-            "version": "3.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Raza9798/siteconfig.git",
-                "reference": "a8d2777f709589d278417e5e1ad820ad5eae6179"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Raza9798/siteconfig/zipball/a8d2777f709589d278417e5e1ad820ad5eae6179",
-                "reference": "a8d2777f709589d278417e5e1ad820ad5eae6179",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^8.2"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Core\\Siteconfig\\SiteconfigServiceProvider"
-                    ]
-                },
-                "scripts": {
-                    "post-autoload-dump": [
-                        "@php artisan siteconfig:env-sync"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Core\\Siteconfig\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "raza9798",
-                    "email": "m.raza9798@gmail.com"
-                }
-            ],
-            "description": "A Laravel package for managing site configurations.",
-            "keywords": [
-                "Settings",
-                "application",
-                "configuration",
-                "environment",
-                "laravel",
-                "package",
-                "php",
-                "siteconfig"
-            ],
-            "support": {
-                "issues": "https://github.com/Raza9798/siteconfig/issues",
-                "source": "https://github.com/Raza9798/siteconfig/tree/3.2"
-            },
-            "time": "2025-05-19T11:04:06+00:00"
-        }
-    ],
+    "content-hash": "fde386754ecc6d581386f4774d8a7691",
+    "packages": [],
     "packages-dev": [
         {
             "name": "driftingly/rector-laravel",
@@ -2017,13 +1954,13 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
         "php": ">=8.4",
         "ext-mbstring": "*"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }
