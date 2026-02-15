@@ -9,6 +9,7 @@ use Gedcom\Writer\{Fam, Head, Indi, Note, Obje, Repo, Sour, Subm, Subn};
 final class Writer
 {
     final public const GEDCOM55 = 'gedcom5.5';
+    final public const GEDCOM70 = 'gedcom7.0';
 
     public static function convert(Gedcom $gedcom, string $format = self::GEDCOM55): string
     {
