@@ -11,12 +11,12 @@ use Gedcom\Record\Indi\Name;
 use Gedcom\Record\Indi\Even;
 
 /**
- * GedcomX Generator - Converts internal GEDCOM data structures to Gedcom X JSON format (PHP 8.4 Optimized)
+ * GedcomX Generator - Converts internal GEDCOM data structures to Gedcom X JSON format (PHP 8.3+ Compatible)
  * 
  * Generates Gedcom X compliant JSON from parsed GEDCOM data
  * 
  * Performance optimizations:
- * - Uses PHP 8.4 property hooks for lazy initialization
+ * - Uses lazy initialization for cached mappings
  * - Implements streaming JSON generation for large datasets
  * - Uses readonly properties and optimized array operations
  * - Memory-efficient processing with generators
@@ -30,18 +30,35 @@ class Generator
     private int $personCounter = 1;
     private int $relationshipCounter = 1;
 
-    // PHP 8.4 property hooks for cached mappings
-    private array $gedcomToGedcomxFactTypes {
-        get => $this->gedcomToGedcomxFactTypes ??= $this->initializeFactTypeMappings();
-    }
-
-    private array $gedcomToGedcomxGenderTypes {
-        get => $this->gedcomToGedcomxGenderTypes ??= $this->initializeGenderTypeMappings();
-    }
+    // Lazy-initialized cached mappings
+    private ?array $gedcomToGedcomxFactTypes = null;
+    private ?array $gedcomToGedcomxGenderTypes = null;
 
     public function __construct(Gedcom $gedcom)
     {
         $this->gedcom = $gedcom;
+    }
+
+    /**
+     * Get fact type mappings with lazy initialization
+     */
+    private function getFactTypeMappings(): array
+    {
+        if ($this->gedcomToGedcomxFactTypes === null) {
+            $this->gedcomToGedcomxFactTypes = $this->initializeFactTypeMappings();
+        }
+        return $this->gedcomToGedcomxFactTypes;
+    }
+
+    /**
+     * Get gender type mappings with lazy initialization
+     */
+    private function getGenderTypeMappings(): array
+    {
+        if ($this->gedcomToGedcomxGenderTypes === null) {
+            $this->gedcomToGedcomxGenderTypes = $this->initializeGenderTypeMappings();
+        }
+        return $this->gedcomToGedcomxGenderTypes;
     }
 
     public function generate(?Gedcom $gedcom = null): string
@@ -369,7 +386,8 @@ class Generator
     private function convertGenderToGedcomX(string $sex): string
     {
         // Use cached mapping for better performance
-        return $this->gedcomToGedcomxGenderTypes[strtoupper($sex)] ?? 'http://gedcomx.org/Unknown';
+        $mappings = $this->getGenderTypeMappings();
+        return $mappings[strtoupper($sex)] ?? 'http://gedcomx.org/Unknown';
     }
 
     private function convertEventToGedcomX(mixed $event, string $eventType): ?array

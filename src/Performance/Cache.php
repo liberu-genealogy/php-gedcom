@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Gedcom\Performance;
 
 /**
- * High-performance caching system for GEDCOM parsing (PHP 8.4 Optimized)
+ * High-performance caching system for GEDCOM parsing (PHP 8.3+ Compatible)
  * 
  * Features:
- * - Memory-efficient LRU cache with PHP 8.4 property hooks
+ * - Memory-efficient LRU cache with lazy initialization
  * - File-based persistent cache with optimized serialization
  * - Automatic cache invalidation based on file modification time
  * - Configurable cache size limits and TTL
@@ -21,10 +21,8 @@ class Cache
     private string $cacheDir;
     private int $defaultTtl;
 
-    // PHP 8.4 property hooks for lazy initialization
-    private array $fileHashes {
-        get => $this->fileHashes ??= $this->loadFileHashes();
-    }
+    // Lazy-initialized file hashes for modification tracking
+    private ?array $fileHashes = null;
 
     public function __construct(
         int $maxMemoryItems = 1000,
@@ -38,6 +36,17 @@ class Cache
         if (!is_dir($this->cacheDir)) {
             mkdir($this->cacheDir, 0755, true);
         }
+    }
+
+    /**
+     * Get file hashes with lazy initialization
+     */
+    private function getFileHashes(): array
+    {
+        if ($this->fileHashes === null) {
+            $this->fileHashes = $this->loadFileHashes();
+        }
+        return $this->fileHashes;
     }
 
     /**
@@ -77,7 +86,7 @@ class Cache
 
         // Store file hash for invalidation
         if ($sourceFile) {
-            $hashes = $this->fileHashes;
+            $hashes = $this->getFileHashes();
             $hashes[$key] = [
                 'hash' => md5_file($sourceFile),
                 'mtime' => filemtime($sourceFile)
@@ -100,7 +109,10 @@ class Cache
     {
         unset($this->memoryCache[$key]);
         unset($this->accessOrder[$key]);
-        unset($this->fileHashes[$key]);
+        
+        if ($this->fileHashes !== null) {
+            unset($this->fileHashes[$key]);
+        }
 
         $filePath = $this->getCacheFilePath($key);
         if (file_exists($filePath)) {
@@ -242,14 +254,15 @@ class Cache
      */
     private function isFileModified(string $sourceFile, string $key): bool
     {
-        if (!isset($this->fileHashes[$key])) {
+        $hashes = $this->getFileHashes();
+        if (!isset($hashes[$key])) {
             return true;
         }
 
         $currentHash = md5_file($sourceFile);
         $currentMtime = filemtime($sourceFile);
 
-        $cached = $this->fileHashes[$key];
+        $cached = $hashes[$key];
 
         return $cached['hash'] !== $currentHash || $cached['mtime'] !== $currentMtime;
     }
@@ -269,7 +282,8 @@ class Cache
     private function saveFileHashes(): void
     {
         $hashFile = $this->cacheDir . '/file_hashes.json';
-        file_put_contents($hashFile, json_encode($this->fileHashes), LOCK_EX);
+        $hashes = $this->fileHashes ?? [];
+        file_put_contents($hashFile, json_encode($hashes), LOCK_EX);
     }
 
     private function getMemoryCacheSize(): int
