@@ -10,9 +10,38 @@ final class Writer
 {
     final public const GEDCOM55 = 'gedcom5.5';
     final public const GEDCOM70 = 'gedcom7.0';
+    
+    private static string $currentFormat = self::GEDCOM55;
+
+    /**
+     * Get the current format being written
+     */
+    public static function getCurrentFormat(): string
+    {
+        return self::$currentFormat;
+    }
+
+    /**
+     * Check if current format is GEDCOM 7.0
+     */
+    public static function isGedcom70(): bool
+    {
+        return self::$currentFormat === self::GEDCOM70;
+    }
+
+    /**
+     * Check if current format is GEDCOM 5.5.1
+     */
+    public static function isGedcom55(): bool
+    {
+        return self::$currentFormat === self::GEDCOM55;
+    }
 
     public static function convert(Gedcom $gedcom, string $format = self::GEDCOM55): string
     {
+        // Store current format for use by sub-writers
+        self::$currentFormat = $format;
+        
         $output = '';
         $formatInformation = FormatInformation::addFormatInformation($format);
 

@@ -35,22 +35,29 @@ class Fam
         // level up
         $level++;
 
-        // _UID (GEDCOM 5.5.1)
-        $uids = $fam->getAllUid();
-        if (!empty($uids)) {
-            foreach ($uids as $uid) {
-                if (!empty($uid)) {
-                    $output .= $level.' _UID '.$uid."\n";
+        // UID handling - version-specific
+        // GEDCOM 5.5.1 uses _UID (custom tag)
+        // GEDCOM 7.0 uses UID (standard tag)
+        if (\Gedcom\Writer::isGedcom55()) {
+            // Output _UID for GEDCOM 5.5.1
+            $uids = $fam->getAllUid();
+            if (!empty($uids)) {
+                foreach ($uids as $uid) {
+                    if (!empty($uid)) {
+                        $output .= $level.' _UID '.$uid."\n";
+                    }
                 }
             }
         }
-
-        // UID (GEDCOM 7.0)
-        $uids7 = $fam->getAllUid7();
-        if (!empty($uids7)) {
-            foreach ($uids7 as $uid7) {
-                if (!empty($uid7)) {
-                    $output .= $level.' UID '.$uid7."\n";
+        
+        if (\Gedcom\Writer::isGedcom70()) {
+            // Output UID for GEDCOM 7.0
+            $uids7 = $fam->getAllUid7();
+            if (!empty($uids7)) {
+                foreach ($uids7 as $uid7) {
+                    if (!empty($uid7)) {
+                        $output .= $level.' UID '.$uid7."\n";
+                    }
                 }
             }
         }
