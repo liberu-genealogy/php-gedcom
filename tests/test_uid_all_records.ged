@@ -1,0 +1,42 @@
+0 HEAD
+1 SOUR php-gedcom test
+1 GEDC
+2 VERS 5.5.1
+1 CHAR UTF-8
+0 @I1@ INDI
+1 NAME Johann /Beispiel/
+1 BIRT
+2 DATE 12 MAR 1900
+1 _UID 550e8400-e29b-41d4-a716-446655440000
+1 UID 2c1b2a8a-6e7b-4ef6-9d8a-2a3db6c9b8a1
+0 @I2@ INDI
+1 NAME Maria /Schmidt/
+1 SEX F
+1 _UID abc-def-ghi
+1 _UID xyz-123-456
+1 UID 111-222-333
+0 @F1@ FAM
+1 HUSB @I1@
+1 WIFE @I2@
+1 MARR
+2 DATE 1 JAN 1920
+1 _UID fam-550e8400-e29b-41d4-a716-446655440000
+1 UID fam-2c1b2a8a-6e7b-4ef6-9d8a-2a3db6c9b8a1
+0 @S1@ SOUR
+1 TITL Test Source
+1 _UID sour-550e8400-e29b-41d4-a716-446655440000
+1 UID sour-2c1b2a8a-6e7b-4ef6-9d8a-2a3db6c9b8a1
+0 @R1@ REPO
+1 NAME Test Repository
+1 _UID repo-550e8400-e29b-41d4-a716-446655440000
+1 UID repo-2c1b2a8a-6e7b-4ef6-9d8a-2a3db6c9b8a1
+0 @U1@ SUBM
+1 NAME Test Submitter
+1 _UID subm-550e8400-e29b-41d4-a716-446655440000
+1 UID subm-2c1b2a8a-6e7b-4ef6-9d8a-2a3db6c9b8a1
+0 @O1@ OBJE
+1 FORM jpeg
+1 TITL Test Image
+1 _UID obje-550e8400-e29b-41d4-a716-446655440000
+1 UID obje-2c1b2a8a-6e7b-4ef6-9d8a-2a3db6c9b8a1
+0 TRLR

@@ -7,6 +7,8 @@ namespace Gedcom\Record;
 final class Repo extends \Gedcom\Record implements Noteable
 {
     private string $repo = '';
+    private array $uid = [];
+    private array $uid7 = [];
     private string $name = '';
     private ?Addr $addr = null;
     private array $phon = [];
@@ -244,5 +246,51 @@ final class Repo extends \Gedcom\Record implements Noteable
     public function getChan()
     {
         return $this->chan;
+    }
+
+    /**
+     * Add a _UID value (GEDCOM 5.5.1)
+     *
+     * @param string $uid
+     *
+     * @return Repo
+     */
+    public function addUid(string $uid): self
+    {
+        $this->uid[] = $uid;
+        return $this;
+    }
+
+    /**
+     * Get all _UID values
+     *
+     * @return array
+     */
+    public function getAllUid(): array
+    {
+        return $this->uid;
+    }
+
+    /**
+     * Add a UID value (GEDCOM 7.0)
+     *
+     * @param string $uid7
+     *
+     * @return Repo
+     */
+    public function addUid7(string $uid7): self
+    {
+        $this->uid7[] = $uid7;
+        return $this;
+    }
+
+    /**
+     * Get all UID values (GEDCOM 7.0)
+     *
+     * @return array
+     */
+    public function getAllUid7(): array
+    {
+        return $this->uid7;
     }
 }

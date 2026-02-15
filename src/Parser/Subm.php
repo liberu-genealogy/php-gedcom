@@ -47,6 +47,12 @@ class Subm extends \Gedcom\Parser\Component
             }
 
             switch ($recordType) {
+                case '_UID':
+                    $subm->addUid(trim((string) $record[2]));
+                    break;
+                case 'UID':
+                    $subm->addUid7(trim((string) $record[2]));
+                    break;
                 case 'NAME':
                     $subm->setName(isset($record[2]) ? trim((string) $record[2]) : '');
                     break;

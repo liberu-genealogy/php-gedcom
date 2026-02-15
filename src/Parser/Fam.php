@@ -60,6 +60,12 @@ class Fam extends \Gedcom\Parser\Component
             }
 
             switch ($recordType) {
+                case '_UID':
+                    $fam->addUid(trim((string) $record[2]));
+                    break;
+                case 'UID':
+                    $fam->addUid7(trim((string) $record[2]));
+                    break;
                 case 'RESN':
                     $fam->setResn(trim((string) $record[2]));
                     break;

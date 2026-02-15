@@ -47,6 +47,12 @@ class Obje extends \Gedcom\Parser\Component
             }
 
             switch ($recordType) {
+                case '_UID':
+                    $obje->addUid(trim((string) $record[2]));
+                    break;
+                case 'UID':
+                    $obje->addUid7(trim((string) $record[2]));
+                    break;
                 case 'FORM':
                     $obje->setForm(trim($record[2]));
                     break;

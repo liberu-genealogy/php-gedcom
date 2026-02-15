@@ -47,6 +47,12 @@ class Repo extends \Gedcom\Parser\Component
             }
 
             switch ($recordType) {
+                case '_UID':
+                    $repo->addUid(trim((string) $record[2]));
+                    break;
+                case 'UID':
+                    $repo->addUid7(trim((string) $record[2]));
+                    break;
                 case 'NAME':
                     $repo->setName(trim((string) $record[2]));
                     break;
