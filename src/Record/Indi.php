@@ -31,9 +31,14 @@ class Indi extends \Gedcom\Record implements Noteable, Objectable, Sourceable
     protected $gid;
 
     /**
-     * @var string
+     * @var array Array of _UID values (GEDCOM 5.5.1)
      */
-    protected $uid;
+    protected $uid = [];
+
+    /**
+     * @var array Array of UID values (GEDCOM 7.0)
+     */
+    protected $uid7 = [];
 
     /**
      * @var string
@@ -233,23 +238,77 @@ class Indi extends \Gedcom\Record implements Noteable, Objectable, Sourceable
     }
 
     /**
+     * Add a _UID value (GEDCOM 5.5.1)
+     * 
+     * @param string $uid
+     *
+     * @return Indi
+     */
+    public function addUid($uid = '')
+    {
+        $this->uid[] = $uid;
+
+        return $this;
+    }
+
+    /**
+     * Set _UID value (backward compatibility - sets as single value)
+     * 
      * @param string $uid
      *
      * @return Indi
      */
     public function setUid($uid = '')
     {
-        $this->uid = $uid;
+        if (!empty($uid)) {
+            $this->uid = [$uid];
+        }
 
         return $this;
     }
 
     /**
+     * Get first _UID value (backward compatibility)
+     * 
      * @return string
      */
     public function getUid()
     {
+        return !empty($this->uid) ? $this->uid[0] : '';
+    }
+
+    /**
+     * Get all _UID values
+     * 
+     * @return array
+     */
+    public function getAllUid()
+    {
         return $this->uid;
+    }
+
+    /**
+     * Add a UID value (GEDCOM 7.0)
+     * 
+     * @param string $uid7
+     *
+     * @return Indi
+     */
+    public function addUid7($uid7 = '')
+    {
+        $this->uid7[] = $uid7;
+
+        return $this;
+    }
+
+    /**
+     * Get all UID values (GEDCOM 7.0)
+     * 
+     * @return array
+     */
+    public function getAllUid7()
+    {
+        return $this->uid7;
     }
 
     /**

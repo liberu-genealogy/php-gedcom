@@ -35,10 +35,24 @@ class Indi
         // increase level after start indi
         $level++;
 
-        // uid
-        $uid = $indi->getUid();
-        if (!empty($uid)) {
-            $output .= $level.' _UID '.$uid."\n";
+        // _UID (GEDCOM 5.5.1)
+        $uids = $indi->getAllUid();
+        if (!empty($uids)) {
+            foreach ($uids as $uid) {
+                if (!empty($uid)) {
+                    $output .= $level.' _UID '.$uid."\n";
+                }
+            }
+        }
+
+        // UID (GEDCOM 7.0)
+        $uids7 = $indi->getAllUid7();
+        if (!empty($uids7)) {
+            foreach ($uids7 as $uid7) {
+                if (!empty($uid7)) {
+                    $output .= $level.' UID '.$uid7."\n";
+                }
+            }
         }
 
         // $attr
