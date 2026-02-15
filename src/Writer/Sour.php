@@ -33,6 +33,26 @@ class Sour
             return '';
         }
 
+        // _UID (GEDCOM 5.5.1)
+        $uids = $sour->getAllUid();
+        if (!empty($uids)) {
+            foreach ($uids as $uid) {
+                if (!empty($uid)) {
+                    $output[] = $level . ' _UID ' . $uid;
+                }
+            }
+        }
+
+        // UID (GEDCOM 7.0)
+        $uids7 = $sour->getAllUid7();
+        if (!empty($uids7)) {
+            foreach ($uids7 as $uid7) {
+                if (!empty($uid7)) {
+                    $output[] = $level . ' UID ' . $uid7;
+                }
+            }
+        }
+
         // TITL
         $titl = $sour->getType();
         if (!empty($type)) {

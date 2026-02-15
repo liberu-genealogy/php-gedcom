@@ -37,6 +37,26 @@ class Obje
         // level up
         $level++;
 
+        // _UID (GEDCOM 5.5.1)
+        $uids = $obje->getAllUid();
+        if (!empty($uids)) {
+            foreach ($uids as $uid) {
+                if (!empty($uid)) {
+                    $output .= $level.' _UID '.$uid."\n";
+                }
+            }
+        }
+
+        // UID (GEDCOM 7.0)
+        $uids7 = $obje->getAllUid7();
+        if (!empty($uids7)) {
+            foreach ($uids7 as $uid7) {
+                if (!empty($uid7)) {
+                    $output .= $level.' UID '.$uid7."\n";
+                }
+            }
+        }
+
         // FORM
         $form = $obje->getName();
         if ($form) {

@@ -438,6 +438,51 @@ class Generator
                 'facts' => []
             ];
 
+            // Add identifiers (UIDs) if present
+            $identifiers = [];
+            
+            // Add _UID values (GEDCOM 5.5.1)
+            $uids = $family->getAllUid();
+            if (!empty($uids)) {
+                $uidValues = [];
+                foreach ($uids as $uid) {
+                    if (!empty($uid)) {
+                        // Format as URN if it looks like a UUID
+                        if (preg_match('/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i', $uid)) {
+                            $uidValues[] = 'urn:uuid:' . strtolower($uid);
+                        } else {
+                            $uidValues[] = $uid;
+                        }
+                    }
+                }
+                if (!empty($uidValues)) {
+                    $identifiers['https://example.org/identifiers/gedcom/_UID'] = $uidValues;
+                }
+            }
+
+            // Add UID values (GEDCOM 7.0)
+            $uids7 = $family->getAllUid7();
+            if (!empty($uids7)) {
+                $uid7Values = [];
+                foreach ($uids7 as $uid7) {
+                    if (!empty($uid7)) {
+                        // Format as URN if it looks like a UUID
+                        if (preg_match('/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i', $uid7)) {
+                            $uid7Values[] = 'urn:uuid:' . strtolower($uid7);
+                        } else {
+                            $uid7Values[] = $uid7;
+                        }
+                    }
+                }
+                if (!empty($uid7Values)) {
+                    $identifiers['https://example.org/identifiers/gedcom/UID'] = $uid7Values;
+                }
+            }
+
+            if (!empty($identifiers)) {
+                $couple['identifiers'] = $identifiers;
+            }
+
             // Add family events to couple relationship
             foreach ($family->getAllEven() as $eventType => $events) {
                 if (is_array($events)) {
