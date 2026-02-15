@@ -52,7 +52,10 @@ class Indi extends \Gedcom\Parser\Component
 
             switch ($recordType) {
                 case '_UID':
-                    $indi->setUid(trim((string) $record[2]));
+                    $indi->addUid(trim((string) $record[2]));
+                    break;
+                case 'UID':
+                    $indi->addUid7(trim((string) $record[2]));
                     break;
                 case 'NAME':
                     $name = \Gedcom\Parser\Indi\Name::parse($parser);
