@@ -30,9 +30,6 @@
         "cs-fix": "./vendor/bin/phpcbf"
     },
     "config": {
-        "sort-packages": true,
-        "use-github-api": false,
-        "disable-tls": true,
-        "secure-http": false
+        "sort-packages": true
     }
 }
