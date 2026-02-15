@@ -13,13 +13,22 @@ class Parser implements ParserInterface
     private int $currentLine = 0;
     private array $errors = [];
 
-    // PHP 8.4 property hooks for lazy initialization
-    private \SplFileObject $fileHandle {
-        get => $this->fileHandle ??= new \SplFileObject($this->fileName, 'r');
-    }
+    // Lazy-initialized file handle for streaming
+    private ?\SplFileObject $fileHandle = null;
 
     private string $fileName;
     private bool $useStreaming = false;
+
+    /**
+     * Get the file handle, creating it if it doesn't exist (lazy initialization)
+     */
+    private function getFileHandle(): \SplFileObject
+    {
+        if ($this->fileHandle === null) {
+            $this->fileHandle = new \SplFileObject($this->fileName, 'r');
+        }
+        return $this->fileHandle;
+    }
 
     public function __construct()
     {
@@ -103,9 +112,10 @@ class Parser implements ParserInterface
      */
     private function parseStreaming(): ?Gedcom
     {
-        $this->fileHandle->setFlags(\SplFileObject::READ_AHEAD | \SplFileObject::SKIP_EMPTY | \SplFileObject::DROP_NEW_LINE);
+        $fileHandle = $this->getFileHandle();
+        $fileHandle->setFlags(\SplFileObject::READ_AHEAD | \SplFileObject::SKIP_EMPTY | \SplFileObject::DROP_NEW_LINE);
 
-        foreach ($this->fileHandle as $lineNumber => $line) {
+        foreach ($fileHandle as $lineNumber => $line) {
             $record = $this->parseLine($line);
 
             if (empty($record)) {

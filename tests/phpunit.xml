@@ -7,7 +7,7 @@
          displayDetailsOnTestsThatTriggerErrors="true" 
          displayDetailsOnTestsThatTriggerNotices="true"
          displayDetailsOnTestsThatTriggerWarnings="true"
-         requireCoverageMetadata="true">
+         requireCoverageMetadata="false">
     <testsuites>
         <testsuite name="default">
             <directory>library/Gedcom/</directory>

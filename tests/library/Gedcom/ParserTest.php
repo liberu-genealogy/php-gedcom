@@ -15,6 +15,7 @@
 
 namespace GedcomTest;
 
+use Gedcom\Gedcom;
 use Gedcom\Parser;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -82,7 +83,7 @@ class ParserTest extends TestCase
         $this->assertEquals($head->getSubm(), 'SUBMITTER');
         $this->assertEquals($head->getSubn(), 'SUBMISSION');
 
-        $this->assertEquals($head->getDest(), 'ANSTFILE');
+        $this->assertEquals($head->getDest()->getDest(), 'ANSTFILE');
 
         $this->assertEquals($head->getDate()->getDate(), '1 JAN 1998');
         $this->assertEquals($head->getDate()->getTime(), '13:57:24.80');
