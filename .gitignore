@@ -1,6 +1,8 @@
 vendor/*
 .idea/*
 tmp/*
+.phpunit.result.cache
+tests/.phpunit.result.cache
 tests/test_output_*.ged
 tests/test_converted_*.ged
 tests/tmp_gedcom70_output.ged
