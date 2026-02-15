@@ -9,7 +9,7 @@
 
 * php-gedcom 2.0+ requires PHP 8.3 (or later). GEDCOM 5.5.1 only
 * php-gedcom 3.0+ requires PHP 8.4 (or later). GEDCOM 5.5.1 only
-* php-gedcom 4.0+ requires PHP 8.4 (or later). GEDCOM 5.5.1 and GEDCOM X with performance optimizations
+* php-gedcom 4.0+ requires PHP 8.4 (or later). GEDCOM 5.5.1, GEDCOM 7.0 and GEDCOM X with performance optimizations
 
 ## Installation
 
@@ -103,6 +103,61 @@ echo "Memory items: " . $stats['memory_items'] . "\n";
 // Clear cache when needed
 $resource->clearCache();
 ```
+
+### GEDCOM Format Support
+
+php-gedcom 4.0+ supports both GEDCOM 5.5.1 and GEDCOM 7.0 formats. The library automatically detects the version when parsing and can write to either format.
+
+#### Parsing GEDCOM Files
+
+The parser automatically handles both GEDCOM 5.5.1 and 7.0 formats:
+
+```php
+$parser = new \Gedcom\Parser();
+
+// Parse a GEDCOM 5.5.1 file
+$gedcom551 = $parser->parse('family_tree_551.ged');
+
+// Parse a GEDCOM 7.0 file
+$gedcom70 = $parser->parse('family_tree_70.ged');
+
+// Check the version
+$head = $gedcom70->getHead();
+$gedc = $head->getGedc();
+$version = $gedc->getVersion(); // Returns "7.0" or "5.5.1"
+```
+
+#### Writing GEDCOM Files
+
+You can export to either format by specifying the format constant:
+
+```php
+use Gedcom\Writer;
+
+// Write as GEDCOM 5.5.1 (default)
+$output551 = Writer::convert($gedcom, Writer::GEDCOM55);
+file_put_contents('output_551.ged', $output551);
+
+// Write as GEDCOM 7.0
+$output70 = Writer::convert($gedcom, Writer::GEDCOM70);
+file_put_contents('output_70.ged', $output70);
+```
+
+#### Version-Specific Features
+
+The library handles version-specific features automatically:
+
+| Feature | GEDCOM 5.5.1 | GEDCOM 7.0 |
+|---------|--------------|------------|
+| Unique Identifier | `_UID` (custom tag) | `UID` (standard tag) |
+| Source Data Date | Not supported | `DATE` subfield |
+| Source Data Text | Not supported | `TEXT` subfield |
+
+When writing to a specific format:
+- **GEDCOM 5.5.1**: Outputs `_UID` tags for unique identifiers
+- **GEDCOM 7.0**: Outputs `UID` tags for unique identifiers
+
+The parser reads both tag types, ensuring compatibility when converting between versions.
 
 ### Usage
 
