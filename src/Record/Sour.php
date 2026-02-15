@@ -26,6 +26,16 @@ class Sour extends \Gedcom\Record implements Noteable, Objectable
     protected $sour;
 
     /**
+     * @var array Array of _UID values (GEDCOM 5.5.1)
+     */
+    protected $uid = [];
+
+    /**
+     * @var array Array of UID values (GEDCOM 7.0)
+     */
+    protected $uid7 = [];
+
+    /**
      * @var Data
      */
     protected $data;
@@ -343,5 +353,53 @@ class Sour extends \Gedcom\Record implements Noteable, Objectable
     public function getObje()
     {
         return $this->obje;
+    }
+
+    /**
+     * Add a _UID value (GEDCOM 5.5.1)
+     * 
+     * @param string $uid
+     *
+     * @return Sour
+     */
+    public function addUid($uid = '')
+    {
+        $this->uid[] = $uid;
+
+        return $this;
+    }
+
+    /**
+     * Get all _UID values
+     * 
+     * @return array
+     */
+    public function getAllUid()
+    {
+        return $this->uid;
+    }
+
+    /**
+     * Add a UID value (GEDCOM 7.0)
+     * 
+     * @param string $uid7
+     *
+     * @return Sour
+     */
+    public function addUid7($uid7 = '')
+    {
+        $this->uid7[] = $uid7;
+
+        return $this;
+    }
+
+    /**
+     * Get all UID values (GEDCOM 7.0)
+     * 
+     * @return array
+     */
+    public function getAllUid7()
+    {
+        return $this->uid7;
     }
 }

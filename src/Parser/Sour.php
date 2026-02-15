@@ -71,6 +71,12 @@ class Sour extends \Gedcom\Parser\Component
  * Iterates through the lines of the source record, parsing its substructures like DATA, AUTH, TITL, etc.,
  * based on the current depth and record type.
  */
+                case '_UID':
+                    $sour->addUid(trim((string) $record[2]));
+                    break;
+                case 'UID':
+                    $sour->addUid7(trim((string) $record[2]));
+                    break;
                 case 'DATA':
                     $sour->setData(\Gedcom\Parser\Sour\Data::parse($parser));
                     break;

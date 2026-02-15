@@ -28,6 +28,16 @@ class Subm extends \Gedcom\Record implements Objectable
     protected $subm;
 
     /**
+     * @var array Array of _UID values (GEDCOM 5.5.1)
+     */
+    protected $uid = [];
+
+    /**
+     * @var array Array of UID values (GEDCOM 7.0)
+     */
+    protected $uid7 = [];
+
+    /**
      * @var Record\Chan
      */
     protected $chan;
@@ -357,5 +367,53 @@ class Subm extends \Gedcom\Record implements Objectable
         $this->note[] = $note;
 
         return $this;
+    }
+
+    /**
+     * Add a _UID value (GEDCOM 5.5.1)
+     * 
+     * @param string $uid
+     *
+     * @return Subm
+     */
+    public function addUid($uid = '')
+    {
+        $this->uid[] = $uid;
+
+        return $this;
+    }
+
+    /**
+     * Get all _UID values
+     * 
+     * @return array
+     */
+    public function getAllUid()
+    {
+        return $this->uid;
+    }
+
+    /**
+     * Add a UID value (GEDCOM 7.0)
+     * 
+     * @param string $uid7
+     *
+     * @return Subm
+     */
+    public function addUid7($uid7 = '')
+    {
+        $this->uid7[] = $uid7;
+
+        return $this;
+    }
+
+    /**
+     * Get all UID values (GEDCOM 7.0)
+     * 
+     * @return array
+     */
+    public function getAllUid7()
+    {
+        return $this->uid7;
     }
 }
