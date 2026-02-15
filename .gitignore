@@ -1,3 +1,6 @@
 vendor/*
 .idea/*
 tmp/*
+tests/test_output_*.ged
+tests/test_converted_*.ged
+tests/tmp_gedcom70_output.ged
