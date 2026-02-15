@@ -1,0 +1,188 @@
+0 HEAD
+1 GEDC
+2 VERS 5.5.1
+2 FORM LINEAGE-LINKED
+1 CHAR UTF-8
+1 SOUR php-gedcom
+2 VERS 4.0
+2 NAME php-gedcom library
+2 CORP Liberu Genealogy
+3 ADDR 123 Main Street
+4 CITY Boston
+4 STAE MA
+4 POST 02101
+4 CTRY USA
+1 DATE 15 FEB 2026
+2 TIME 12:00:00
+1 SUBM @SUBM1@
+1 FILE comprehensive_test_551.ged
+1 LANG English
+0 @SUBM1@ SUBM
+1 NAME Test Submitter
+1 ADDR 456 Oak Avenue
+2 CITY Cambridge
+2 STAE MA
+2 POST 02139
+2 CTRY USA
+1 PHON +1-617-555-1234
+1 EMAIL test@example.com
+1 _UID subm-123e4567-e89b-12d3-a456-426614174000
+0 @I1@ INDI
+1 NAME John William /Doe/
+2 GIVN John William
+2 SURN Doe
+2 NPFX Mr.
+2 NSFX Jr.
+1 SEX M
+1 BIRT
+2 DATE 1 JAN 1950
+2 PLAC New York, New York, USA
+3 MAP
+4 LATI N40.7128
+4 LONG W74.0060
+2 SOUR @S1@
+3 PAGE Birth Certificate, Page 42
+1 DEAT
+2 DATE 15 DEC 2025
+2 PLAC Boston, Massachusetts, USA
+2 CAUS Natural causes
+1 BURI
+2 DATE 18 DEC 2025
+2 PLAC Forest Hills Cemetery, Boston, MA
+1 OCCU Software Engineer
+1 EDUC Masters Degree
+2 DATE 1975
+2 PLAC MIT, Cambridge, MA
+1 RESI
+2 DATE 2000
+2 ADDR 789 Elm Street
+3 CITY Boston
+3 STAE MA
+3 POST 02115
+1 EMAIL john.doe@example.com
+1 FAMC @F1@
+1 FAMS @F2@
+1 NOTE @N1@
+1 OBJE @O1@
+1 _UID indi1-123e4567-e89b-12d3-a456-426614174001
+0 @I2@ INDI
+1 NAME Jane Marie /Smith/
+2 GIVN Jane Marie
+2 SURN Smith
+2 NPFX Mrs.
+1 SEX F
+1 BIRT
+2 DATE 15 MAR 1952
+2 PLAC Chicago, Illinois, USA
+1 OCCU Teacher
+1 FAMS @F2@
+1 _UID indi2-234e5678-e89b-12d3-a456-426614174002
+0 @I3@ INDI
+1 NAME Robert James /Doe/
+2 GIVN Robert James
+2 SURN Doe
+1 SEX M
+1 BIRT
+2 DATE 10 JUN 1920
+2 PLAC Boston, Massachusetts, USA
+1 DEAT
+2 DATE 5 MAY 1995
+2 PLAC Boston, Massachusetts, USA
+1 FAMS @F1@
+1 _UID indi3-345e6789-e89b-12d3-a456-426614174003
+0 @I4@ INDI
+1 NAME Mary Elizabeth /Johnson/
+2 GIVN Mary Elizabeth
+2 SURN Johnson
+1 SEX F
+1 BIRT
+2 DATE 20 AUG 1922
+2 PLAC New York, New York, USA
+1 DEAT
+2 DATE 15 JAN 2000
+2 PLAC Boston, Massachusetts, USA
+1 FAMS @F1@
+1 _UID indi4-456e7890-e89b-12d3-a456-426614174004
+0 @I5@ INDI
+1 NAME Alice Rose /Doe/
+2 GIVN Alice Rose
+2 SURN Doe
+1 SEX F
+1 BIRT
+2 DATE 5 APR 1978
+2 PLAC Boston, Massachusetts, USA
+1 FAMC @F2@
+1 _UID indi5-567e8901-e89b-12d3-a456-426614174005
+0 @F1@ FAM
+1 HUSB @I3@
+1 WIFE @I4@
+1 MARR
+2 DATE 15 JUN 1945
+2 PLAC Boston, Massachusetts, USA
+2 SOUR @S1@
+1 CHIL @I1@
+1 _UID fam1-678e9012-e89b-12d3-a456-426614174006
+0 @F2@ FAM
+1 HUSB @I1@
+1 WIFE @I2@
+1 MARR
+2 DATE 10 JUN 1975
+2 PLAC Cambridge, Massachusetts, USA
+3 MAP
+4 LATI N42.3736
+4 LONG W71.1097
+2 SOUR @S2@
+1 CHIL @I5@
+1 _UID fam2-789e0123-e89b-12d3-a456-426614174007
+0 @S1@ SOUR
+1 TITL Massachusetts Vital Records
+1 ABBR MA Vital Rec.
+1 PUBL Massachusetts State Archives
+1 REPO @R1@
+2 CALN MVR-2020-001
+3 MEDI Electronic
+1 NOTE @N2@
+1 _UID sour1-890e1234-e89b-12d3-a456-426614174008
+0 @S2@ SOUR
+1 TITL City Hall Marriage Records
+1 PUBL Cambridge City Hall
+1 REPO @R2@
+1 _UID sour2-901e2345-e89b-12d3-a456-426614174009
+0 @R1@ REPO
+1 NAME Massachusetts State Archives
+1 ADDR 220 Morrissey Boulevard
+2 CITY Boston
+2 STAE MA
+2 POST 02125
+2 CTRY USA
+1 PHON +1-617-727-2816
+1 EMAIL archives@sec.state.ma.us
+1 _UID repo1-012e3456-e89b-12d3-a456-426614174010
+0 @R2@ REPO
+1 NAME Cambridge City Hall
+1 ADDR 795 Massachusetts Avenue
+2 CITY Cambridge
+2 STAE MA
+2 POST 02139
+1 _UID repo2-123e4567-e89b-12d3-a456-426614174011
+0 @O1@ OBJE
+1 FILE photos/john_doe_1950.jpg
+2 FORM JPG
+2 TYPE Photo
+2 TITL John Doe Birth Photo
+1 TITL Birth Photo of John Doe
+1 NOTE Photograph taken at hospital
+1 _UID obje1-234e5678-e89b-12d3-a456-426614174012
+0 @N1@ NOTE This is a comprehensive test note for John Doe.
+1 CONT It includes multiple lines of text to test
+1 CONT the NOTE record parsing and writing capabilities.
+1 CONT 
+1 CONT This note includes special characters: @#$%&*()
+1 SOUR @S1@
+2 PAGE Documentation, Section 3
+1 _UID note1-345e6789-e89b-12d3-a456-426614174013
+0 @N2@ NOTE Source quality note: This source has been verified
+1 CONT and is considered highly reliable for vital records
+1 CONT research in Massachusetts.
+1 _UID note2-456e7890-e89b-12d3-a456-426614174014
+0 TRLR

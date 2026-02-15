@@ -33,22 +33,29 @@ class Sour
             return '';
         }
 
-        // _UID (GEDCOM 5.5.1)
-        $uids = $sour->getAllUid();
-        if (!empty($uids)) {
-            foreach ($uids as $uid) {
-                if (!empty($uid)) {
-                    $output[] = $level . ' _UID ' . $uid;
+        // UID handling - version-specific
+        // GEDCOM 5.5.1 uses _UID (custom tag)
+        // GEDCOM 7.0 uses UID (standard tag)
+        if (\Gedcom\Writer::isGedcom55()) {
+            // Output _UID for GEDCOM 5.5.1
+            $uids = $sour->getAllUid();
+            if (!empty($uids)) {
+                foreach ($uids as $uid) {
+                    if (!empty($uid)) {
+                        $output[] = $level . ' _UID ' . $uid;
+                    }
                 }
             }
         }
 
-        // UID (GEDCOM 7.0)
-        $uids7 = $sour->getAllUid7();
-        if (!empty($uids7)) {
-            foreach ($uids7 as $uid7) {
-                if (!empty($uid7)) {
-                    $output[] = $level . ' UID ' . $uid7;
+        if (\Gedcom\Writer::isGedcom70()) {
+            // Output UID for GEDCOM 7.0
+            $uids7 = $sour->getAllUid7();
+            if (!empty($uids7)) {
+                foreach ($uids7 as $uid7) {
+                    if (!empty($uid7)) {
+                        $output[] = $level . ' UID ' . $uid7;
+                    }
                 }
             }
         }
